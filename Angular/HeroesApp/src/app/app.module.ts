@@ -9,6 +9,7 @@ import { HeroesComponent } from './components/heroes/heroes.component';
 import { HeroesService } from './components/services/heroes.services';
 import { HeroeComponent } from './components/heroe/heroe.component';
 import { ResultSearchComponent } from './components/result-search/result-search.component';
+import { HeroeTarjetaComponent } from './components/heroe-tarjeta/heroe-tarjeta.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ResultSearchComponent } from './components/result-search/result-search.
     AboutComponent,
     HeroesComponent,
     HeroeComponent,
-    ResultSearchComponent
+    ResultSearchComponent,
+    HeroeTarjetaComponent
   ],
   imports: [
     BrowserModule,
