@@ -11,10 +11,21 @@ export class SpotifyService {
   getNewReleases() {
 
     const headers = new HttpHeaders({
-      'Authorization': 'Bearer BQD0E4VflgrhB7gY0CuiTFvztsROPzmVknkoWS_tYeJeiB6NHebV5xZ5mN9oQ69VEGNIWapZ5M2mWcLKKIgT-KYEjDSWo4UuoFz1NDW0DoyYkmHYmzy7XZKEjfG3yUzQIilXfvAQr630uB2tMsvYX8mMhRsVBpiM'
+      'Authorization': 'Bearer BQBU7EkHaM4H2FGWC4dZoyQIONww-qXq1n9MK8q4NqLQOBRndC685c-x6H5UNyGyCeCCr8GDqJTUYyIvJK_ndnLk64Wx7ipFrwEZZUxPWBFjZzDoDSV6C_FX4HeU5lUGFKfkbTnvkh5VdR4WyDdaWXbBXNaTqgJH'
     });
 
     return this._http.get('https://api.spotify.com/v1/browse/new-releases', { 
+      headers 
+    });
+  }
+
+  getArtista(artista: string) {
+
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer BQBU7EkHaM4H2FGWC4dZoyQIONww-qXq1n9MK8q4NqLQOBRndC685c-x6H5UNyGyCeCCr8GDqJTUYyIvJK_ndnLk64Wx7ipFrwEZZUxPWBFjZzDoDSV6C_FX4HeU5lUGFKfkbTnvkh5VdR4WyDdaWXbBXNaTqgJH'
+    });
+
+    return this._http.get(`https://api.spotify.com/v1/search?q=${artista}&type=artist&limit=10`, { 
       headers 
     });
   }
