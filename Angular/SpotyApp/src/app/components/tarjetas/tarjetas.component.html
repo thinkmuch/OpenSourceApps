@@ -1,5 +1,5 @@
 <div class="card-columns m-5">
-  <div class="card" *ngFor="let song of songs">
+  <div class="card puntero" *ngFor="let song of songs" (click)="seeArtist(song)">
       <img class="card-img-top" [src]="song.images | noimage" alt="Card image cap">
       <div class="card-body">
           <h5 class="card-title">{{song.name}}</h5>
