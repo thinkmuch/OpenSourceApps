@@ -1,0 +1,13 @@
+<div class="container-fluid animated fadeIn faster">
+  <div class="row text-right mb-10">
+    <div class="col">
+      <button class="btn btn-primary fz-14px br-0" (click)="goToNewSurvey()">
+        <i class="fa fa-plus"></i>
+        Nueva encuesta
+      </button>
+    </div>
+  </div>
+</div>
+<div *ngFor="let survey of surveys">
+  <app-surveysummary class="pointer" [summaryInput] = "survey"></app-surveysummary>
+</div>

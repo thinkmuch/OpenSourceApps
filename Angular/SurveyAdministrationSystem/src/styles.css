@@ -1,0 +1,44 @@
+body {
+    font-family: SAP\ 72,Qualtrics Grotesque,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.mb-0 {
+    margin-bottom: 0 !important;
+}
+
+.fw-600 {
+    font-weight: 600 !important;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.fz-14px {
+    font-size: 14px !important;
+}
+
+.br-0 {
+    border-radius: 0 !important;
+}
+
+.bb-1 {
+    border-top: 1px solid #F1F1F1;
+}
+
+.pdtb-10 {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+.bkgrnd:hover {
+    background: #FAFAFA !important;
+}
+
+.mb-10 {
+    margin-bottom: 10px !important;
+}
+
+.fw-500 {
+    font-weight: 500 !important;
+}

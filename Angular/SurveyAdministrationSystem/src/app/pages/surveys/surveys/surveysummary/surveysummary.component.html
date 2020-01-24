@@ -1,0 +1,40 @@
+<div class="row pointer bb-1 pdtb-10 bkgrnd">
+  <div class="col-md-6">
+    <label class="mb-0 fw-600">
+      {{summaryInput.name}}
+      <span class="badge badge-primary fw-500 pointer" *ngIf="summaryInput.owner == true">Owner</span>
+    </label>
+    <small class="form-text text-muted">Modificado {{summaryInput.lastModified}}</small>
+  </div>
+  <div class="col text-center">
+    <label class="mb-0 fw-600">{{summaryInput.status}}</label>
+    <small class="form-text text-muted">Estatus</small>
+  </div>
+  <div class="col text-center">
+    <label class="mb-0 fw-600">{{summaryInput.totalQuestions}}</label>
+    <small class="form-text text-muted">Preguntas</small>
+  </div>
+  <div class="col text-center">
+    <label class="mb-0 fw-600">{{summaryInput.lenguages}}</label>
+    <small class="form-text text-muted">Idiomas</small>
+  </div>
+  <div class="col text-center">
+    <label class="mb-0 fw-600">{{summaryInput.plazas}}</label>
+    <small class="form-text text-muted" *ngIf="summaryInput.plazas > 1">Plazas</small>
+    <small class="form-text text-muted" *ngIf="summaryInput.plazas == 1">Plaza</small>
+  </div>
+  <div class="col">
+    <div class="text-right">
+      <div class="btn-group dropleft">
+          <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border: 0; background-color: #fff;">
+              <i class="fas fa-ellipsis-h"></i>
+          </button>
+          <div class="dropdown-menu animated fadeIn faster">
+              <a class="dropdown-item" href="#"><i class="far fa-edit"></i>   Editar</a>
+              <a class="dropdown-item" href="#"><i class="fas fa-power-off"></i>   Desactivar</a>
+              <a class="dropdown-item" href="#"><i class="far fa-trash-alt"></i>   Eliminar</a>
+          </div>
+      </div>
+  </div>
+  </div>
+</div>
