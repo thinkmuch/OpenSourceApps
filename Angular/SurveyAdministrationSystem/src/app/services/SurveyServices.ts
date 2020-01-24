@@ -1,3 +1,5 @@
+import { SurveySummary } from '../models/surevysummary';
+
 export class SurveyServices
 {
     getAllSurveysSummary() : Array<SurveySummary>{
