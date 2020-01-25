@@ -3,11 +3,13 @@
     <label class="mb-0 fw-600">
       {{summaryInput.name}}
       <span class="badge badge-primary fw-500 pointer" *ngIf="summaryInput.owner == true">Owner</span>
+      
     </label>
     <small class="form-text text-muted">Modificado {{summaryInput.lastModified}}</small>
   </div>
   <div class="col text-center">
-    <label class="mb-0 fw-600">{{summaryInput.status}}</label>
+    <label class="mb-0 fw-600 text-success" *ngIf="summaryInput.status == 1">{{summaryInput.statusDescripcion}}</label>
+    <label class="mb-0 fw-600 text-secondary" *ngIf="summaryInput.status == 0">{{summaryInput.statusDescripcion}}</label>
     <small class="form-text text-muted">Estatus</small>
   </div>
   <div class="col text-center">
@@ -25,16 +27,7 @@
   </div>
   <div class="col">
     <div class="text-right">
-      <div class="btn-group dropleft">
-          <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border: 0; background-color: #fff;">
-              <i class="fas fa-ellipsis-h"></i>
-          </button>
-          <div class="dropdown-menu animated fadeIn faster">
-              <a class="dropdown-item" href="#"><i class="far fa-edit"></i>   Editar</a>
-              <a class="dropdown-item" href="#"><i class="fas fa-power-off"></i>   Desactivar</a>
-              <a class="dropdown-item" href="#"><i class="far fa-trash-alt"></i>   Eliminar</a>
-          </div>
-      </div>
+      <app-menusummarysurvey [surveyInput] = "summaryInput"></app-menusummarysurvey>
   </div>
   </div>
 </div>

@@ -1,8 +1,10 @@
 export class SurveySummary
 {
+    id: number;
     name: string;
     lastModified: string;
-    status: string;
+    status: number;
+    statusDescripcion: string;
     totalQuestions: number;
     lenguages: number;
     plazas: number;

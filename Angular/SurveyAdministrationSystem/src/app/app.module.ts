@@ -8,6 +8,8 @@ import { SurveysComponent } from './pages/surveys/surveys/surveys.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SurveysummaryComponent } from './pages/surveys/surveys/surveysummary/surveysummary.component';
 import { NewEditSurveyComponent } from './pages/surveys/newsurvey/neweditsurvey/neweditsurvey.component';
+import { MenusummarysurveyComponent } from './pages/surveys/menusummarysurvey/menusummarysurvey.component';
+import { ControlButtonsComponent } from './pages/surveys/newsurvey/controlbuttons/controlbuttons.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { NewEditSurveyComponent } from './pages/surveys/newsurvey/neweditsurvey/
     DashboardComponent,
     SurveysComponent,
     SurveysummaryComponent,
-    NewEditSurveyComponent
+    NewEditSurveyComponent,
+    MenusummarysurveyComponent,
+    ControlButtonsComponent
   ],
   imports: [
     BrowserModule,

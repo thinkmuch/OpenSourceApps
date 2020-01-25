@@ -42,3 +42,19 @@ body {
 .fw-500 {
     font-weight: 500 !important;
 }
+
+.red {
+    color: red;
+}
+
+.blue-1 {
+    color: #016AD9;
+}
+
+.purple {
+    color: #BE4BDB;
+}
+
+.mr-10px {
+    margin-right: 10px;
+}
