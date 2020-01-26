@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { QuestionServices } from 'src/app/services/QuestionServices';
+import { Question } from 'src/app/models/Question';
 
 @Component({
   selector: 'app-neweditsurvey',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewEditSurveyComponent implements OnInit {
 
-  constructor() { }
+  isPredefinedChecked: boolean;
+  questions: Array<Question>;
 
-  ngOnInit() {
+  constructor(
+    private _questionServices: QuestionServices
+  ) {
+    this.questions = new Array<Question>();
   }
 
+  ngOnInit() {
+    this.questions = this._questionServices.getQuestions();
+  }
 }

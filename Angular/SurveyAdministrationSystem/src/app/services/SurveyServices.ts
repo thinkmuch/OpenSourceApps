@@ -1,4 +1,4 @@
-import { SurveySummary } from '../models/surevysummary';
+import { SurveySummary } from '../models/SurveySummary';
 import { Injectable } from '@angular/core';
 
 @Injectable({

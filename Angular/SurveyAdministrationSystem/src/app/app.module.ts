@@ -6,10 +6,12 @@ import { NavbarComponent } from './pages/navbar/navbar.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SurveysComponent } from './pages/surveys/surveys/surveys.component';
 import { AppRoutingModule } from './app-routing.module';
-import { SurveysummaryComponent } from './pages/surveys/surveys/surveysummary/surveysummary.component';
+import { SurveySummaryComponent } from './pages/surveys/surveys/surveysummary/surveysummary.component';
 import { NewEditSurveyComponent } from './pages/surveys/newsurvey/neweditsurvey/neweditsurvey.component';
-import { MenusummarysurveyComponent } from './pages/surveys/menusummarysurvey/menusummarysurvey.component';
+import { MenuSummarySurveyComponent } from './pages/surveys/menusummarysurvey/menusummarysurvey.component';
 import { ControlButtonsComponent } from './pages/surveys/newsurvey/controlbuttons/controlbuttons.component';
+import { OptionsPerQuestionComponent } from './pages/surveys/newsurvey/optionsperquestion/optionsperquestion.component';
+import { QuestionComponent } from './pages/surveys/newsurvey/question/question.component';
 
 @NgModule({
   declarations: [
@@ -17,10 +19,12 @@ import { ControlButtonsComponent } from './pages/surveys/newsurvey/controlbutton
     NavbarComponent,
     DashboardComponent,
     SurveysComponent,
-    SurveysummaryComponent,
+    SurveySummaryComponent,
     NewEditSurveyComponent,
-    MenusummarysurveyComponent,
-    ControlButtonsComponent
+    MenuSummarySurveyComponent,
+    ControlButtonsComponent,
+    OptionsPerQuestionComponent,
+    QuestionComponent,
   ],
   imports: [
     BrowserModule,

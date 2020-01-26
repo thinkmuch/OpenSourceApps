@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SurveySummary } from 'src/app/models/surevysummary';
+import { SurveySummary } from 'src/app/models/SurveySummary';
 import Swal from 'sweetalert2';
 import { SurveyServices } from 'src/app/services/SurveyServices';
 
@@ -8,7 +8,7 @@ import { SurveyServices } from 'src/app/services/SurveyServices';
   templateUrl: './menusummarysurvey.component.html',
   styleUrls: ['./menusummarysurvey.component.css']
 })
-export class MenusummarysurveyComponent implements OnInit {
+export class MenuSummarySurveyComponent implements OnInit {
 
   @Input() surveyInput: SurveySummary;
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { QuestionServices } from 'src/app/services/QuestionServices';
 
 @Component({
   selector: 'app-controlbuttons',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ControlButtonsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _questionServices: QuestionServices
+  ) { }
 
   ngOnInit() {
   }
 
+  addQuestion() {
+    this._questionServices.addQuestion();
+  }
 }
