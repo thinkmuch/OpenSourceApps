@@ -13,7 +13,9 @@
         <a class="list-group-item list-group-item-action p-0 animated fadeIn faster"
         *ngFor="let question of questions; let i = index;">
           <app-question
-          [indexInput] = "i + 1"></app-question>
+          [indexInput] = "i + 1"
+          [questionInput] = "question"
+          [totalQuestionsInput] = "questions.length"></app-question>
         </a>
       </div>
     </div>

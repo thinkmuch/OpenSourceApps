@@ -7,14 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OptionsPerQuestionComponent implements OnInit {
 
-  isPredefinedChecked: boolean;
-
   constructor() { }
 
   ngOnInit() {
-  }
-
-  onChangeCheckPredefined(value: any) {
-    this.isPredefinedChecked = value;
   }
 }

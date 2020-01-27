@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { QuestionServices } from 'src/app/services/QuestionServices';
+import { Question } from 'src/app/models/Question';
 
 @Component({
   selector: 'app-question',
@@ -8,7 +9,9 @@ import { QuestionServices } from 'src/app/services/QuestionServices';
 })
 export class QuestionComponent implements OnInit {
 
+  @Input() questionInput: Question;
   @Input() indexInput: number;
+  @Input() totalQuestionsInput: number;
   selected: boolean;
 
   constructor(
@@ -22,4 +25,15 @@ export class QuestionComponent implements OnInit {
     this._questionServices.removeQuestion(idQuestion);
   }
 
+  updateQuestionText(text: string, idQuestion: number) {
+    this._questionServices.updateQuestionText(idQuestion, text);
+  }
+
+  moveUp(idQuestion: number) {
+    this._questionServices.moveUp(idQuestion);
+  }
+
+  moveDown(idQuestion:number) {
+    this._questionServices.moveDown(idQuestion);
+  }
 }

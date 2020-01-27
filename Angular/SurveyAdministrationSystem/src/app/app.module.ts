@@ -12,6 +12,7 @@ import { MenuSummarySurveyComponent } from './pages/surveys/menusummarysurvey/me
 import { ControlButtonsComponent } from './pages/surveys/newsurvey/controlbuttons/controlbuttons.component';
 import { OptionsPerQuestionComponent } from './pages/surveys/newsurvey/optionsperquestion/optionsperquestion.component';
 import { QuestionComponent } from './pages/surveys/newsurvey/question/question.component';
+import { PredefinedresponsecatalogComponent } from './pages/surveys/newsurvey/question/predefinedresponsecatalog/predefinedresponsecatalog.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { QuestionComponent } from './pages/surveys/newsurvey/question/question.c
     ControlButtonsComponent,
     OptionsPerQuestionComponent,
     QuestionComponent,
+    PredefinedresponsecatalogComponent,
   ],
   imports: [
     BrowserModule,
