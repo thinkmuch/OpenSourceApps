@@ -1,31 +1,33 @@
-<div class="row">
-  <div class="form-check">
-    <input 
-    #predefinedCheck
-    class="form-check-input pointer" 
-    type="checkbox" 
-    id="predefinedCheck"
-    (change)="onChangeCheckPredefined(predefinedCheck.checked)">
-    <label class="form-check-label" for="predefinedCheck">
-      Predefinidas
-    </label>
+<div class="sticky">
+  <div class="row">
+    <div class="form-check" id="formCheckPredefined">
+      <input 
+      #predefinedCheck
+      class="form-check-input pointer" 
+      type="checkbox" 
+      id="predefinedCheck"
+      (change)="onChangeCheckPredefined(predefinedCheck.checked)">
+      <label class="form-check-label" for="predefinedCheck">
+        Predefinida
+      </label>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="dropdown dg vw-100">
-    <button 
-    class="btn btn-info dropdown-toggle fz-14px" 
-    type="button" id="dropdownMenuButton" 
-    data-toggle="dropdown" 
-    aria-haspopup="true" 
-    aria-expanded="false"
-    [disabled]="!isPredefinedChecked">
-      Seleccione
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item fz-14px p-custom-1" href="#">Action</a>
-      <a class="dropdown-item fz-14px p-custom-1" href="#">Another action</a>
-      <a class="dropdown-item fz-14px p-custom-1" href="#">Something else here</a>
+  <div class="row">
+    <div class="dropdown dg vw-100">
+      <button 
+      class="btn btn-info dropdown-toggle fz-14px" 
+      type="button" id="dropdownMenuButton" 
+      data-toggle="dropdown" 
+      aria-haspopup="true" 
+      aria-expanded="false"
+      [disabled]="!isPredefinedChecked">
+        Seleccione
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item fz-14px p-custom-1" href="#">Action</a>
+        <a class="dropdown-item fz-14px p-custom-1" href="#">Another action</a>
+        <a class="dropdown-item fz-14px p-custom-1" href="#">Something else here</a>
+      </div>
     </div>
   </div>
 </div>

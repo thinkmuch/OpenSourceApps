@@ -1,1 +1,25 @@
-<label>Question {{indexInput}}</label>
+<div class="container pointer">
+    <div class="row">
+        <div class="col-1 pl-0">
+            <div class="btn-group dropleft">
+                <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border: 0; background-color: #fff;">
+                    <i class="fas fa-ellipsis-h"></i>
+                </button>
+                <div class="dropdown-menu animated fadeIn faster">
+                    <a class="dropdown-item"><i class="fas fa-chevron-up"></i>  Subir</a>
+                    <a class="dropdown-item"><i class="fas fa-chevron-down"></i>  Bajar</a>
+                    <a class="dropdown-item" (click)="remove(indexInput)"><i class="far fa-trash-alt red"></i>  Eliminar</a>
+                </div>
+            </div>
+            <label>{{indexInput}}</label>
+        </div>
+        <div class="col-11">
+            <div class="row">
+                <label>Pregunta</label>
+            </div>
+            <div class="row">
+                <label>Respuestas</label>
+            </div>
+        </div>
+    </div>
+</div>

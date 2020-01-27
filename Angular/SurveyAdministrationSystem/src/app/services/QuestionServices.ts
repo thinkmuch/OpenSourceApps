@@ -19,8 +19,11 @@ export class QuestionServices
     }
 
     addQuestion() {
-        
         let question = new Question();
         this.questions.push(question);
+    }
+
+    removeQuestion(idQuestion: number) {
+        this.questions.splice(idQuestion - 1, 1);
     }
 }

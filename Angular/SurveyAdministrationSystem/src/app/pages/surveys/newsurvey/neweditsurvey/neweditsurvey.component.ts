@@ -21,4 +21,8 @@ export class NewEditSurveyComponent implements OnInit {
   ngOnInit() {
     this.questions = this._questionServices.getQuestions();
   }
+
+  addQuestion() {
+    this._questionServices.addQuestion();
+  }
 }

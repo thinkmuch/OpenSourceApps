@@ -1,3 +1,13 @@
 .dg {
     display: grid;
 }
+
+#formCheckPredefined {
+    margin-bottom: 5px;
+}
+
+.sticky {
+    top: 0;
+    position: sticky;
+    margin-left: 10px;
+}

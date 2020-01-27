@@ -10,15 +10,25 @@
     </div>
     <div class="row">
       <div class="list-group w-100">
-        <a class="list-group-item list-group-item-action"
+        <a class="list-group-item list-group-item-action p-0 animated fadeIn faster"
         *ngFor="let question of questions; let i = index;">
           <app-question
           [indexInput] = "i + 1"></app-question>
         </a>
       </div>
     </div>
+    <div class="row">
+      <button 
+      *ngIf="questions.length > 0"
+      id="btnAddQuestion"
+      class="btn btn-success fz-14px mr-10px"
+      (click) = "addQuestion()">
+      <i class="fas fa-plus"></i>
+      Agregar
+    </button>
+    </div>
   </div>
-  <div class="col-md-2 vh-100">
+  <div class="col-md-2">
     <app-optionsperquestion></app-optionsperquestion>
   </div>
 </div>

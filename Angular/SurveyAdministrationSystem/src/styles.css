@@ -70,3 +70,7 @@ body {
 .pl-14px {
     padding-left: 14px;
 }
+
+.c-delete {
+    color: #F76704;
+}
