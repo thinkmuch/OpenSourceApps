@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <mat-radio-group aria-label="Select an option">
+                <div class="row">
+                    <mat-radio-button value="1" [checked]="!disablePredefined" (click)="onClickAnswerType(predefinedRadio.value)" #predefinedRadio>Predefinida</mat-radio-button>
+                </div>
+                <div class="row">
+                    <div class="btn-group">
+                        <button type="button" 
+                                [ngClass]="{ 'disabled': disablePredefined }"
+                                class="btn btn-info dropdown-toggle" 
+                                data-toggle="dropdown">Seleccionar tipo de respuesta <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu scrollable-menu w-100 mh-374px" role="menu">
+                            <a class="dropdown-item pointer" *ngFor="let answer of answers">{{answer.resumeName}}</a>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row mt-20px">
+                    <mat-radio-button value="2" (click)="onClickAnswerType(openAnswerRadio.value)" #openAnswerRadio>Texto libre </mat-radio-button>
+                </div>
+            </mat-radio-group>
+        </div>
+    </div>
+</div>

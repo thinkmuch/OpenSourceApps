@@ -12,7 +12,10 @@ import { MenuSummarySurveyComponent } from './pages/surveys/menusummarysurvey/me
 import { ControlButtonsComponent } from './pages/surveys/newsurvey/controlbuttons/controlbuttons.component';
 import { OptionsPerQuestionComponent } from './pages/surveys/newsurvey/optionsperquestion/optionsperquestion.component';
 import { QuestionComponent } from './pages/surveys/newsurvey/question/question.component';
-import { PredefinedresponsecatalogComponent } from './pages/surveys/newsurvey/question/predefinedresponsecatalog/predefinedresponsecatalog.component';
+import { PredefinedresponsecatalogComponent } from './pages/surveys/newsurvey/predefinedresponsecatalog/predefinedresponsecatalog.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ResponsecatalogmodalComponent } from './pages/surveys/newsurvey/predefinedresponsecatalog/responsecatalogmodal/responsecatalogmodal.component';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -27,10 +30,13 @@ import { PredefinedresponsecatalogComponent } from './pages/surveys/newsurvey/qu
     OptionsPerQuestionComponent,
     QuestionComponent,
     PredefinedresponsecatalogComponent,
+    ResponsecatalogmodalComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NoopAnimationsModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

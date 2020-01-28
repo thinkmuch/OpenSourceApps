@@ -1,0 +1,13 @@
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
+
+.mt-20px {
+    margin-top: 20px;
+}
+
+.mh-374px {
+    max-height: 374px;
+}
