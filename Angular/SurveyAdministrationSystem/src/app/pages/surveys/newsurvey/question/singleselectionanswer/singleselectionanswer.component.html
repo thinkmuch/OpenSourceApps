@@ -1,0 +1,11 @@
+<div class="form-check">
+  <div *ngIf="answerInput && answerInput.answerOptions" class="animated fadeIn faster">
+    <div class="row animated fadeIn faster" *ngFor="let option of answerInput.answerOptions">
+      <label class="containerCheck">{{option.text}}
+        <input type="radio" name="radio">
+        <span class="checkmark"></span>
+      </label>
+    </div>
+  </div>
+</div>
+

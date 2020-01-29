@@ -1,5 +1,6 @@
 import { SurveySummary } from '../models/SurveySummary';
 import { Injectable } from '@angular/core';
+import { Answer } from '../models/Answer';
 
 @Injectable({
     providedIn: 'root'
@@ -77,7 +78,7 @@ export class SurveyServices
         survey6.lenguages = 3;
         survey6.plazas = 4;
         survey6.owner = true;
-
+        
         this.surveys.push(survey1);
         this.surveys.push(survey2);
         this.surveys.push(survey3);

@@ -20,6 +20,7 @@ export class NewEditSurveyComponent implements OnInit {
 
   ngOnInit() {
     this.questions = this._questionServices.getQuestions();
+    document.getElementById("surveyName").focus();
   }
 
   addQuestion() {

@@ -6,3 +6,19 @@
     width: 98%;
     margin-top: 15px;
 }
+
+.selected {
+    background: #E1F5FE;
+}
+
+.pt-10px {
+    padding-top: 10px;
+}
+
+.ml-0px {
+    margin-left: 0px;
+}
+
+.mt-10px {
+    margin-top: 10px;
+}

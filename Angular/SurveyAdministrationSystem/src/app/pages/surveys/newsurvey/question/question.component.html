@@ -1,8 +1,14 @@
-<div class="pointer">
+<div class="pointer" (click)="selectQuestion(indexInput)" id="{{indexInput}}">
     <div class="row">
         <div class="col-1 pdl-20px">
             <div class="btn-group dropleft">
-                <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border: 0; background-color: #fff;">
+                <button type="button" 
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        [ngClass]="{'menuSelected': totalQuestionsInput == 1}"
+                        style="border: 0; background-color: transparent;"
+                        id="menu{{indexInput}}">
                     <i class="fas fa-ellipsis-h"></i>
                 </button>
                 <div class="dropdown-menu animated fadeIn faster">
@@ -22,8 +28,8 @@
                 placeholder="Ingrese el texto aquí..." 
                 (input)="updateQuestionText(inputText.value, indexInput)" #inputText>
             </div>
-            <div class="row">
-                <label>Respuestas</label>
+            <div class="row ml-0px mt-10px">
+                <app-singleselectionanswer [answerInput]="questionInput.answer"></app-singleselectionanswer>
             </div>
         </div>
     </div>

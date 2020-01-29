@@ -13,12 +13,18 @@
                                 data-toggle="dropdown">Seleccionar tipo de respuesta <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu scrollable-menu w-100 mh-374px" role="menu">
-                            <a class="dropdown-item pointer" *ngFor="let answer of answers">{{answer.resumeName}}</a>
+                            <a class="dropdown-item pointer" 
+                               *ngFor="let answer of answers"
+                               (click)="selectPredefinedQuestion(answer)">{{answer.resumeName}}</a>
                         </ul>
                     </div>
                 </div>
                 <div class="row mt-20px">
-                    <mat-radio-button value="2" (click)="onClickAnswerType(openAnswerRadio.value)" #openAnswerRadio>Texto libre </mat-radio-button>
+                    <mat-radio-button 
+                    value="2" 
+                    (click)="onClickAnswerType(openAnswerRadio.value)" 
+                    (change)="onChangeFreeText(openAnswerRadio.value)" 
+                    #openAnswerRadio>Texto libre </mat-radio-button>
                 </div>
             </mat-radio-group>
         </div>

@@ -12,10 +12,11 @@ import { MenuSummarySurveyComponent } from './pages/surveys/menusummarysurvey/me
 import { ControlButtonsComponent } from './pages/surveys/newsurvey/controlbuttons/controlbuttons.component';
 import { OptionsPerQuestionComponent } from './pages/surveys/newsurvey/optionsperquestion/optionsperquestion.component';
 import { QuestionComponent } from './pages/surveys/newsurvey/question/question.component';
-import { PredefinedresponsecatalogComponent } from './pages/surveys/newsurvey/predefinedresponsecatalog/predefinedresponsecatalog.component';
+import { PredefinedResponseCatalogComponent } from './pages/surveys/newsurvey/predefinedresponsecatalog/predefinedresponsecatalog.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ResponsecatalogmodalComponent } from './pages/surveys/newsurvey/predefinedresponsecatalog/responsecatalogmodal/responsecatalogmodal.component';
 import { MatRadioModule } from '@angular/material/radio';
+import { SingleSelectionAnswerComponent } from './pages/surveys/newsurvey/question/singleselectionanswer/singleselectionanswer.component';
 
 @NgModule({
   declarations: [
@@ -29,8 +30,9 @@ import { MatRadioModule } from '@angular/material/radio';
     ControlButtonsComponent,
     OptionsPerQuestionComponent,
     QuestionComponent,
-    PredefinedresponsecatalogComponent,
+    PredefinedResponseCatalogComponent,
     ResponsecatalogmodalComponent,
+    SingleSelectionAnswerComponent,
   ],
   imports: [
     BrowserModule,
