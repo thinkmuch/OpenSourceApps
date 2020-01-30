@@ -19,8 +19,7 @@ export class QuestionComponent implements OnInit {
   selected: boolean;
 
   constructor(
-    private _questionServices: QuestionServices,
-    private _answerServices: AnswerServices
+    private _questionServices: QuestionServices
   ) { }
 
   ngOnInit() {

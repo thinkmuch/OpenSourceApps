@@ -19,7 +19,7 @@ export class QuestionServices
         this.questions = new Array<Question>();
         this.answers = new Array<Answer>();
         this.rowSelected = new EventEmitter<number>();
-
+        
         this.rowSelected.subscribe(data => {
             this.idQuestion = data;
         });
@@ -63,6 +63,11 @@ export class QuestionServices
 
         this.questions[index + 1] = currentQuestion;
         this.questions[index] = nextQuestion;
+    }
+
+    setAnswerFreeText(idQuestion: number) {
+        let index = idQuestion - 1;
+        this.questions[index].answer.answerType = AnswerType.FreeText;
     }
 
     getAnswers() : Array<Answer> {

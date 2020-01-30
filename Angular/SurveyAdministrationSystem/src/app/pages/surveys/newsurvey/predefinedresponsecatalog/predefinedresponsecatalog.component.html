@@ -10,7 +10,9 @@
                         <button type="button" 
                                 [ngClass]="{ 'disabled': disablePredefined }"
                                 class="btn btn-info dropdown-toggle" 
-                                data-toggle="dropdown">Seleccionar tipo de respuesta <span class="caret"></span>
+                                data-toggle="dropdown">
+                                <span *ngIf="answerName.length == 0">Seleccionar tipo de respuesta</span> <span class="caret"></span>
+                                <span *ngIf="answerName.length > 0">{{answerName}}</span> <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu scrollable-menu w-100 mh-374px" role="menu">
                             <a class="dropdown-item pointer" 

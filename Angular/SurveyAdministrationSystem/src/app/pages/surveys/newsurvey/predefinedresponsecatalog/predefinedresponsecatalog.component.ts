@@ -14,14 +14,16 @@ export class PredefinedResponseCatalogComponent implements OnInit {
   public disablePredefined: boolean;
   public answers: Array<Answer>;
   private idQuestionSelected: number;
+  public answerName: string;
 
   constructor(
-    private _questionServices: QuestionServices,
-    private _answerServices: AnswerServices,
-    private _surveyServices: SurveyServices
+    private _questionServices: QuestionServices
   ) {
+
+    this.answerName = "";
     this.disablePredefined = false;
     this.answers = new Array<Answer>();
+
     this._questionServices.rowSelected.subscribe(idQuestionSelected => {
       this.idQuestionSelected = idQuestionSelected;
     })
@@ -36,10 +38,12 @@ export class PredefinedResponseCatalogComponent implements OnInit {
   }
 
   onChangeFreeText(value: any) {
-    
+    this.answerName = "";
+    this._questionServices.setAnswerFreeText(this.idQuestionSelected);
   }
 
   selectPredefinedQuestion(answer: Answer) {
+    this.answerName = answer.resumeName;
     this._questionServices.setAnswerQuestion(answer, this.idQuestionSelected);
   }
 }
