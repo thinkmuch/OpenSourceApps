@@ -40,7 +40,6 @@ export class PredefinedResponseCatalogComponent implements OnInit {
   }
 
   selectDefaultOption() {
-    console.log("selectDefaultOption");
     this.multipleSelection = false;
     this.freeTextCheck = false;
     this.singleAnswerCheck = true;
