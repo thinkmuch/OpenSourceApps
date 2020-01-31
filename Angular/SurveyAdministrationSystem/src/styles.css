@@ -10,6 +10,10 @@ body {
     font-weight: 600 !important;
 }
 
+.mt-15px {
+    margin-top: 15px;
+}
+
 .pointer {
     cursor: pointer;
 }

@@ -1,4 +1,8 @@
-<div class="sticky animated fadeIn faster">
+<div
+class="sticky animated fadeIn faster"
+[ngClass]="{
+  'invisible': !visible
+}">
   <div class="row">
     <app-predefinedresponsecatalog></app-predefinedresponsecatalog>
     <hr>

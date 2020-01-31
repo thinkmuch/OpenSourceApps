@@ -8,21 +8,15 @@ import { AnswerOption } from '../models/AnswerOption';
 })
 export class QuestionServices
 {
-    private idQuestion: number;
     public questions: Array<Question>;
     private answers: Array<Answer>;
     @Output() rowSelected: EventEmitter<number>;
 
     constructor() {
         
-        this.idQuestion = 0;
         this.questions = new Array<Question>();
         this.answers = new Array<Answer>();
         this.rowSelected = new EventEmitter<number>();
-        
-        this.rowSelected.subscribe(data => {
-            this.idQuestion = data;
-        });
     }
 
     setAnswerQuestion(answer: Answer, idQuestion: number){

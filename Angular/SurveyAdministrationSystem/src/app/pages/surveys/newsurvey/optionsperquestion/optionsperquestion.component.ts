@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AnswerServices } from 'src/app/services/AnswerServices';
 
 @Component({
   selector: 'app-optionsperquestion',
@@ -7,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OptionsPerQuestionComponent implements OnInit {
 
-  constructor() { }
+  public visible: false;
+
+  constructor(
+    private _answerServices: AnswerServices
+  ) { 
+    this._answerServices.showOptions.subscribe(showOption => {
+      this.visible = showOption;
+    });
+  }
 
   ngOnInit() {
   }

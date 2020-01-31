@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Answer } from 'src/app/models/Answer';
 import { QuestionServices, AnswerType } from 'src/app/services/QuestionServices';
 import { AnswerServices } from 'src/app/services/AnswerServices';
@@ -14,24 +14,21 @@ export class PredefinedResponseCatalogComponent implements OnInit {
   public answers: Array<Answer>;
   private idQuestionSelected: number;
   public answerName: string;
-  public freeTextCheck: boolean;
-  public singleAnswerCheck: boolean;
-  public multipleSelection: boolean;
+
+  @ViewChild("checkPredefinedAnswer") checkSingeAnswer: ElementRef;
+  @ViewChild("checkFreeText") checkFreeText: ElementRef;
+  @ViewChild("checkMultitpleOptions") checkMultipleOptions: ElementRef;
 
   constructor(
     private _questionServices: QuestionServices,
     private _answerServices: AnswerServices
   ) {
-
-    this.freeTextCheck = false;
-    this.singleAnswerCheck = false;
-    this.multipleSelection = false;
     this.answerName = "";
     this.disablePredefined = false;
     this.answers = new Array<Answer>();
 
-    this._questionServices.rowSelected.subscribe(idQuestionSelected => {
-      this.idQuestionSelected = idQuestionSelected;
+    this._questionServices.rowSelected.subscribe(idQuestion => {
+      this.idQuestionSelected = idQuestion;
     })
 
     this._answerServices.answerSelected.subscribe((answer: Answer) => {
@@ -40,15 +37,17 @@ export class PredefinedResponseCatalogComponent implements OnInit {
   }
 
   selectDefaultOption() {
-    this.multipleSelection = false;
-    this.freeTextCheck = false;
-    this.singleAnswerCheck = true;
+    this.disablePredefined = false;
     this.answerName = "";
+
+    this.checkFreeText.nativeElement.checked = false;
+    this.checkMultipleOptions.nativeElement.checked = false;
+    this.checkSingeAnswer.nativeElement.checked = false;
   }
 
   setSelectedAnswer(answer: Answer) {
 
-    if(answer == undefined) {
+    if(answer == undefined || answer.answerType == 0) {
       this.selectDefaultOption()
     }
     else {
@@ -66,38 +65,49 @@ export class PredefinedResponseCatalogComponent implements OnInit {
   }
 
   selectFreeTextOption() {
+
     this.answerName = "";
-    this.singleAnswerCheck = false;
-    this.freeTextCheck = true;
     this.disablePredefined = true;
+    this.checkMultipleOptions.nativeElement.checked = false;
+    this.checkSingeAnswer.nativeElement.checked = false;
+    this.checkFreeText.nativeElement.checked = true;
   }
 
   selectSingleAnswerOption(answer: Answer) {
+
     this.answerName = answer.resumeName;
-    this.freeTextCheck = false;
-    this.singleAnswerCheck = true;
     this.disablePredefined = false;
+    this.checkFreeText.nativeElement.checked = false;
+    this.checkMultipleOptions.nativeElement.checked = false;
+    this.checkSingeAnswer.nativeElement.checked = true;
   }
 
   ngOnInit() {
     this.answers = this._questionServices.getAnswers();
   }
 
+  isQuestionSelected() {
+    return (this.idQuestionSelected != undefined && this.idQuestionSelected != null);
+  }
+
   onClickAnswerType(option: number) {
-    if(this.idQuestionSelected != undefined && this.idQuestionSelected != null) {
-      this.disablePredefined = (option == 2);
+
+    if(this.isQuestionSelected()) {
+      this.disablePredefined = (option != 1);
       this._questionServices.quitAnswerSelected(this.idQuestionSelected);
     }
   }
 
   onChangeFreeText() {
-    if(this.idQuestionSelected != undefined && this.idQuestionSelected != null) {
+
+    if(this.isQuestionSelected()) {
       this.answerName = "";
       this._questionServices.setAnswerFreeText(this.idQuestionSelected);
     }
   }
 
   onClickPredefinedAnswer(answer: Answer) {
+
     if(this.idQuestionSelected != undefined && this.idQuestionSelected != null) {
       this.answerName = answer.resumeName;
       this._questionServices.setAnswerQuestion(answer, this.idQuestionSelected);
