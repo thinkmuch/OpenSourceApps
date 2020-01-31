@@ -39,16 +39,30 @@ export class PredefinedResponseCatalogComponent implements OnInit {
     });
   }
 
+  selectDefaultOption() {
+    console.log("selectDefaultOption");
+    this.multipleSelection = false;
+    this.freeTextCheck = false;
+    this.singleAnswerCheck = true;
+    this.answerName = "";
+  }
+
   setSelectedAnswer(answer: Answer) {
-    switch(answer.answerType) {
-      case AnswerType.FreeText: {
-        this.selectFreeTextOption();
+
+    if(answer == undefined) {
+      this.selectDefaultOption()
+    }
+    else {
+      switch(answer.answerType) {
+        case AnswerType.FreeText: {
+          this.selectFreeTextOption();
+        }
+        break;
+        case AnswerType.SingleAnswer: {
+          this.selectSingleAnswerOption(answer);
+        }
+        break;
       }
-      break;
-      case AnswerType.SingleAnswer: {
-        this.selectSingleAnswerOption(answer);
-      }
-      break;
     }
   }
 
@@ -71,17 +85,23 @@ export class PredefinedResponseCatalogComponent implements OnInit {
   }
 
   onClickAnswerType(option: number) {
-    this.disablePredefined = (option == 2);
-    this._questionServices.quitAnswerSelected(this.idQuestionSelected);
+    if(this.idQuestionSelected != undefined && this.idQuestionSelected != null) {
+      this.disablePredefined = (option == 2);
+      this._questionServices.quitAnswerSelected(this.idQuestionSelected);
+    }
   }
 
-  onChangeFreeText(value: any) {
-    this.answerName = "";
-    this._questionServices.setAnswerFreeText(this.idQuestionSelected);
+  onChangeFreeText() {
+    if(this.idQuestionSelected != undefined && this.idQuestionSelected != null) {
+      this.answerName = "";
+      this._questionServices.setAnswerFreeText(this.idQuestionSelected);
+    }
   }
 
   onClickPredefinedAnswer(answer: Answer) {
-    this.answerName = answer.resumeName;
-    this._questionServices.setAnswerQuestion(answer, this.idQuestionSelected);
+    if(this.idQuestionSelected != undefined && this.idQuestionSelected != null) {
+      this.answerName = answer.resumeName;
+      this._questionServices.setAnswerQuestion(answer, this.idQuestionSelected);
+    }
   }
 }

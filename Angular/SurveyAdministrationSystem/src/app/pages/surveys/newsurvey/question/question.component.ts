@@ -54,9 +54,6 @@ export class QuestionComponent implements OnInit {
     }
 
     this._questionServices.rowSelected.emit(idQuestion);
-    
-    if(answer != undefined) {
-      this._answerServices.answerSelected.emit(answer);
-    }
+    this._answerServices.answerSelected.emit(answer);
   }
 }
