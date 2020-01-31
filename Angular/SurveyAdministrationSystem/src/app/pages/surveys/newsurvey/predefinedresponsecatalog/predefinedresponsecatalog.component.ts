@@ -37,7 +37,7 @@ export class PredefinedResponseCatalogComponent implements OnInit {
   }
 
   selectDefaultOption() {
-    this.disablePredefined = false;
+    this.disablePredefined = true;
     this.answerName = "";
 
     this.checkFreeText.nativeElement.checked = false;
@@ -46,7 +46,6 @@ export class PredefinedResponseCatalogComponent implements OnInit {
   }
 
   setSelectedAnswer(answer: Answer) {
-
     if(answer == undefined || answer.answerType == 0) {
       this.selectDefaultOption()
     }
@@ -65,7 +64,6 @@ export class PredefinedResponseCatalogComponent implements OnInit {
   }
 
   selectFreeTextOption() {
-
     this.answerName = "";
     this.disablePredefined = true;
     this.checkMultipleOptions.nativeElement.checked = false;
@@ -74,7 +72,6 @@ export class PredefinedResponseCatalogComponent implements OnInit {
   }
 
   selectSingleAnswerOption(answer: Answer) {
-
     this.answerName = answer.resumeName;
     this.disablePredefined = false;
     this.checkFreeText.nativeElement.checked = false;
@@ -91,7 +88,6 @@ export class PredefinedResponseCatalogComponent implements OnInit {
   }
 
   onClickAnswerType(option: number) {
-
     if(this.isQuestionSelected()) {
       this.disablePredefined = (option != 1);
       this._questionServices.quitAnswerSelected(this.idQuestionSelected);
@@ -99,7 +95,6 @@ export class PredefinedResponseCatalogComponent implements OnInit {
   }
 
   onChangeFreeText() {
-
     if(this.isQuestionSelected()) {
       this.answerName = "";
       this._questionServices.setAnswerFreeText(this.idQuestionSelected);
@@ -107,7 +102,6 @@ export class PredefinedResponseCatalogComponent implements OnInit {
   }
 
   onClickPredefinedAnswer(answer: Answer) {
-
     if(this.idQuestionSelected != undefined && this.idQuestionSelected != null) {
       this.answerName = answer.resumeName;
       this._questionServices.setAnswerQuestion(answer, this.idQuestionSelected);

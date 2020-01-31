@@ -19,8 +19,13 @@ import { ResponsecatalogmodalComponent } from './pages/surveys/newsurvey/predefi
 import { MatRadioModule } from '@angular/material/radio';
 import { SingleSelectionAnswerComponent } from './pages/surveys/newsurvey/question/singleselectionanswer/singleselectionanswer.component';
 import { FreetextanswerComponent } from './pages/surveys/newsurvey/question/freetextanswer/freetextanswer.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { SitescatalogmodalComponent } from './pages/surveys/newsurvey/question/sitescatalogmodal/sitescatalogmodal.component';
 
 @NgModule({
+  entryComponents: [
+    SitescatalogmodalComponent
+  ],
   declarations: [
     AppComponent,
     NavbarComponent,
@@ -36,13 +41,15 @@ import { FreetextanswerComponent } from './pages/surveys/newsurvey/question/free
     ResponsecatalogmodalComponent,
     SingleSelectionAnswerComponent,
     FreetextanswerComponent,
+    SitescatalogmodalComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
     MatRadioModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

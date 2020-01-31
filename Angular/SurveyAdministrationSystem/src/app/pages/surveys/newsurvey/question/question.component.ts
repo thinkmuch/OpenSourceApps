@@ -1,9 +1,10 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { QuestionServices } from 'src/app/services/QuestionServices';
 import { Question } from 'src/app/models/Question';
-import { forEach } from '@angular/router/src/utils/collection';
 import { AnswerServices } from 'src/app/services/AnswerServices';
 import { Answer } from 'src/app/models/Answer';
+import { MatDialog } from '@angular/material';
+import { SitescatalogmodalComponent } from './sitescatalogmodal/sitescatalogmodal.component';
 
 @Component({
   selector: 'app-question',
@@ -22,7 +23,8 @@ export class QuestionComponent implements OnInit {
 
   constructor(
     private _questionServices: QuestionServices,
-    private _answerServices: AnswerServices
+    private _answerServices: AnswerServices,
+    public _matDialog: MatDialog
   ) { 
     this.showSitesCatalog = false;
   }
@@ -74,10 +76,9 @@ export class QuestionComponent implements OnInit {
   }
 
   openCatalogSitesModal(idQuestion: number) {
-    this.showSitesCatalog = true;
-  }
-
-  closeSitesCatalogModal() {
-    this.showSitesCatalog = false;
+    this._matDialog.open(SitescatalogmodalComponent, {
+      width: '300px',
+      data: { idQuestion: idQuestion}
+    })
   }
 }
