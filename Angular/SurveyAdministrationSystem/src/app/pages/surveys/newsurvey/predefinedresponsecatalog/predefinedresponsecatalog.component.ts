@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Answer } from 'src/app/models/Answer';
-import { QuestionServices } from 'src/app/services/QuestionServices';
+import { QuestionServices, AnswerType } from 'src/app/services/QuestionServices';
 import { AnswerServices } from 'src/app/services/AnswerServices';
-import { SurveyServices } from 'src/app/services/SurveyServices';
 
 @Component({
   selector: 'app-predefinedresponsecatalog',
@@ -15,11 +14,18 @@ export class PredefinedResponseCatalogComponent implements OnInit {
   public answers: Array<Answer>;
   private idQuestionSelected: number;
   public answerName: string;
+  public freeTextCheck: boolean;
+  public singleAnswerCheck: boolean;
+  public multipleSelection: boolean;
 
   constructor(
-    private _questionServices: QuestionServices
+    private _questionServices: QuestionServices,
+    private _answerServices: AnswerServices
   ) {
 
+    this.freeTextCheck = false;
+    this.singleAnswerCheck = false;
+    this.multipleSelection = false;
     this.answerName = "";
     this.disablePredefined = false;
     this.answers = new Array<Answer>();
@@ -27,6 +33,37 @@ export class PredefinedResponseCatalogComponent implements OnInit {
     this._questionServices.rowSelected.subscribe(idQuestionSelected => {
       this.idQuestionSelected = idQuestionSelected;
     })
+
+    this._answerServices.answerSelected.subscribe((answer: Answer) => {
+      this.setSelectedAnswer(answer);
+    });
+  }
+
+  setSelectedAnswer(answer: Answer) {
+    switch(answer.answerType) {
+      case AnswerType.FreeText: {
+        this.selectFreeTextOption();
+      }
+      break;
+      case AnswerType.SingleAnswer: {
+        this.selectSingleAnswerOption(answer);
+      }
+      break;
+    }
+  }
+
+  selectFreeTextOption() {
+    this.answerName = "";
+    this.singleAnswerCheck = false;
+    this.freeTextCheck = true;
+    this.disablePredefined = true;
+  }
+
+  selectSingleAnswerOption(answer: Answer) {
+    this.answerName = answer.resumeName;
+    this.freeTextCheck = false;
+    this.singleAnswerCheck = true;
+    this.disablePredefined = false;
   }
 
   ngOnInit() {
@@ -35,6 +72,7 @@ export class PredefinedResponseCatalogComponent implements OnInit {
 
   onClickAnswerType(option: number) {
     this.disablePredefined = (option == 2);
+    this._questionServices.quitAnswerSelected(this.idQuestionSelected);
   }
 
   onChangeFreeText(value: any) {
@@ -42,7 +80,7 @@ export class PredefinedResponseCatalogComponent implements OnInit {
     this._questionServices.setAnswerFreeText(this.idQuestionSelected);
   }
 
-  selectPredefinedQuestion(answer: Answer) {
+  onClickPredefinedAnswer(answer: Answer) {
     this.answerName = answer.resumeName;
     this._questionServices.setAnswerQuestion(answer, this.idQuestionSelected);
   }

@@ -1,11 +1,15 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-            <mat-radio-group aria-label="Select an option">
+            <mat-radio-group>
                 <div class="row">
-                    <mat-radio-button value="1" [checked]="!disablePredefined" (click)="onClickAnswerType(predefinedRadio.value)" #predefinedRadio>Predefinida</mat-radio-button>
+                    <mat-radio-button 
+                    value="1"
+                    name="checkPredefinedAnswer" ngDefaultControl
+                    [checked]="singleAnswerCheck"
+                    (click)="onClickAnswerType(predefinedRadio.value)" 
+                    #predefinedRadio>Predefinida</mat-radio-button>
                 </div>
-                <div class="row">
                     <div class="btn-group">
                         <button type="button" 
                                 [ngClass]="{ 'disabled': disablePredefined }"
@@ -17,16 +21,25 @@
                         <ul class="dropdown-menu scrollable-menu w-100 mh-374px" role="menu">
                             <a class="dropdown-item pointer" 
                                *ngFor="let answer of answers"
-                               (click)="selectPredefinedQuestion(answer)">{{answer.resumeName}}</a>
+                               (click)="onClickPredefinedAnswer(answer)">{{answer.resumeName}}</a>
                         </ul>
                     </div>
-                </div>
                 <div class="row mt-20px">
                     <mat-radio-button 
-                    value="2" 
+                    value="2"
+                    name="checkFreeText" ngDefaultControl
+                    [checked]="freeTextCheck" 
                     (click)="onClickAnswerType(openAnswerRadio.value)" 
                     (change)="onChangeFreeText(openAnswerRadio.value)" 
                     #openAnswerRadio>Texto libre </mat-radio-button>
+                </div>
+                <div class="row">
+                    <mat-radio-button
+                    value="3"
+                    name="checkMultipleSelection"
+                    [checked]="multipleSelection"
+                    (click)="onClickAnswerType(multipleSelectionRadio.value)"
+                    #multipleSelectionRadio>Selección múltiple</mat-radio-button>
                 </div>
             </mat-radio-group>
         </div>

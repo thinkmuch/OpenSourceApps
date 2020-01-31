@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './pages/navbar/navbar.component';
@@ -17,6 +18,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ResponsecatalogmodalComponent } from './pages/surveys/newsurvey/predefinedresponsecatalog/responsecatalogmodal/responsecatalogmodal.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { SingleSelectionAnswerComponent } from './pages/surveys/newsurvey/question/singleselectionanswer/singleselectionanswer.component';
+import { FreetextanswerComponent } from './pages/surveys/newsurvey/question/freetextanswer/freetextanswer.component';
 
 @NgModule({
   declarations: [
@@ -33,12 +35,14 @@ import { SingleSelectionAnswerComponent } from './pages/surveys/newsurvey/questi
     PredefinedResponseCatalogComponent,
     ResponsecatalogmodalComponent,
     SingleSelectionAnswerComponent,
+    FreetextanswerComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
-    MatRadioModule
+    MatRadioModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

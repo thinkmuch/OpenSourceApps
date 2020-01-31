@@ -1,4 +1,5 @@
 import { AnswerOption } from './AnswerOption';
+import { AnswerType } from '../services/QuestionServices';
 
 export class Answer {
     id: number;

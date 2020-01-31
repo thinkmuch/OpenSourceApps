@@ -1,4 +1,4 @@
-<div class="pointer" (click)="selectQuestion(indexInput)" id="{{indexInput}}">
+<div class="pointer" (click)="selectQuestion(indexInput, questionInput.answer)" id="{{indexInput}}">
     <div class="row">
         <div class="col-1 pdl-20px">
             <div class="btn-group dropleft">
@@ -27,10 +27,14 @@
                 value={{questionInput.text}}
                 placeholder="Ingrese el texto aquí..." 
                 (input)="updateQuestionText(inputText.value, indexInput)" #inputText>
+                <i class="fas fa-map-marker-alt" id="iconSite"></i>
             </div>
-            <div class="row ml-0px mt-10px">
+            <div class="row mt-10px">
                 <app-singleselectionanswer 
+                *ngIf="questionInput.answer" 
                 [answerInput]="questionInput.answer"></app-singleselectionanswer>
+                <app-freetextanswer 
+                *ngIf="questionInput.answer && questionInput.answer.answerType == 2"></app-freetextanswer>
             </div>
         </div>
     </div>

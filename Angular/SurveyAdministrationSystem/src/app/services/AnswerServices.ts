@@ -7,8 +7,10 @@ import { Answer } from '../models/Answer';
 export class AnswerServices {
 
     public answers: Array<Answer>;
+    public answerSelected: EventEmitter<Answer>;
     
     constructor() {
         this.answers = new Array<Answer>();
+        this.answerSelected = new EventEmitter<Answer>();
     }
 }

@@ -3,7 +3,7 @@
 }
 
 .inputQuestion {
-    width: 98%;
+    width: 95%;
     margin-top: 15px;
 }
 
@@ -16,9 +16,20 @@
 }
 
 .ml-0px {
-    margin-left: 0px;
+    margin-left: 0px !important;
+}
+
+.mr-0px {
+    margin-right: 0px;
 }
 
 .mt-10px {
     margin-top: 10px;
+}
+
+#iconSite {
+    width: 3%;
+    text-align: center;
+    font-size: 23px;
+    margin-top: 18px;
 }

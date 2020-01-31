@@ -19,12 +19,11 @@ export class QuestionComponent implements OnInit {
   selected: boolean;
 
   constructor(
-    private _questionServices: QuestionServices
+    private _questionServices: QuestionServices,
+    private _answerServices: AnswerServices
   ) { }
 
-  ngOnInit() {
-    this._questionServices.rowSelected.emit(1);
-  }
+  ngOnInit() { }
 
   remove(idQuestion: number) {
     this._questionServices.removeQuestion(idQuestion);
@@ -42,17 +41,22 @@ export class QuestionComponent implements OnInit {
     this._questionServices.moveDown(idQuestion);
   }
 
-  selectQuestion(idQuestion: number) {
+  selectQuestion(idQuestion: number, answer: Answer) {
     
-    var row = document.getElementsByClassName("selected")[0];
-    
-    if(row != undefined) {
-      row.classList.remove("selected");
+    var deselectedRow = document.getElementsByClassName("selected")[0];
+    if(deselectedRow != undefined) {
+      deselectedRow.classList.remove("selected");
     }
 
-    var row2 = document.getElementById(`${idQuestion}`);
-    row2.className = "selected";
+    var selectedRow = document.getElementById(`${idQuestion}`);
+    if(selectedRow != undefined && selectedRow != null) {
+      selectedRow.className = "selected";
+    }
 
     this._questionServices.rowSelected.emit(idQuestion);
+    
+    if(answer != undefined) {
+      this._answerServices.answerSelected.emit(answer);
+    }
   }
 }
