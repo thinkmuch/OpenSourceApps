@@ -15,9 +15,10 @@ export class PredefinedResponseCatalogComponent implements OnInit {
   private idQuestionSelected: number;
   public answerName: string;
 
-  @ViewChild("checkPredefinedAnswer") checkSingeAnswer: ElementRef;
-  @ViewChild("checkFreeText") checkFreeText: ElementRef;
-  @ViewChild("checkMultitpleOptions") checkMultipleOptions: ElementRef;
+  @ViewChild("checkPredefinedAnswer", {read: ElementRef }) checkSingeAnswer: ElementRef;
+  @ViewChild("checkFreeText", {read: ElementRef }) checkFreeText: ElementRef;
+  @ViewChild("checkMultitpleOptions", {read: ElementRef }) checkMultipleOptions: ElementRef;
+
 
   constructor(
     private _questionServices: QuestionServices,
@@ -40,12 +41,29 @@ export class PredefinedResponseCatalogComponent implements OnInit {
     this.disablePredefined = true;
     this.answerName = "";
 
-    this.checkFreeText.nativeElement.checked = false;
-    this.checkMultipleOptions.nativeElement.checked = false;
-    this.checkSingeAnswer.nativeElement.checked = false;
+    if(this.checkFreeText != undefined && 
+       this.checkFreeText.nativeElement != undefined && 
+       this.checkFreeText.nativeElement.checked != undefined) {
+      this.checkFreeText.nativeElement.checked = false;
+    }
+    
+    if(this.checkMultipleOptions != undefined &&
+       this.checkMultipleOptions.nativeElement != undefined &&
+       this.checkMultipleOptions.nativeElement.checked != undefined) {
+      this.checkMultipleOptions.nativeElement.checked = false;
+    }
+    
+    if(this.checkSingeAnswer != undefined &&
+       this.checkSingeAnswer.nativeElement != undefined &&
+       this.checkSingeAnswer.nativeElement.checked != undefined) {
+      this.checkSingeAnswer.nativeElement.checked = false;
+    }
   }
 
   setSelectedAnswer(answer: Answer) {
+
+    console.log(answer);
+
     if(answer == undefined || answer.answerType == 0) {
       this.selectDefaultOption()
     }
@@ -72,10 +90,13 @@ export class PredefinedResponseCatalogComponent implements OnInit {
   }
 
   selectSingleAnswerOption(answer: Answer) {
+
     this.answerName = answer.resumeName;
     this.disablePredefined = false;
-    this.checkFreeText.nativeElement.checked = false;
-    this.checkMultipleOptions.nativeElement.checked = false;
+
+    console.log(this.checkSingeAnswer);
+    console.log(this.checkSingeAnswer.nativeElement);
+
     this.checkSingeAnswer.nativeElement.checked = true;
   }
 
