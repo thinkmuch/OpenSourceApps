@@ -1,69 +1,49 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-            <div class="row">
-                <div class="form-check">
-                    <input 
-                    class="form-check-input" 
-                    type="radio" 
-                    name="exampleRadios" 
+            <mat-radio-group>
+                <div class="row">
+                    <mat-radio-button 
                     value="1"
-                    id="checkPredefinedAnswer" 
+                    name="exampleRadios"
+                    id="checkPredefinedAnswer"
                     (click)="onClickAnswerType(checkPredefinedAnswer.value)"
-                    #checkPredefinedAnswer>
-                    <label class="form-check-label pointer" for="checkPredefinedAnswer">
-                        Predefinida
-                    </label>
+                    #checkPredefinedAnswer>Predefinida</mat-radio-button>
                 </div>
-            </div>
-            <div class="btn-group">
-                <button type="button" 
-                        [ngClass]="{ 
-                            'disabled': disablePredefined
-                        }"
-                        class="btn btn-info dropdown-toggle" 
-                        data-toggle="dropdown">
+                <div class="btn-group">
+                    <button 
+                    type="button" 
+                    [ngClass]="{'disabled': disablePredefined}"
+                    class="btn btn-info dropdown-toggle" 
+                    data-toggle="dropdown">
                         <span *ngIf="answerName.length == 0">Seleccionar tipo de respuesta</span> <span class="caret"></span>
                         <span *ngIf="answerName.length > 0">{{answerName}}</span> <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu scrollable-menu w-100 mh-374px" role="menu">
-                    <a class="dropdown-item pointer" 
+                    </button>
+                    <ul class="dropdown-menu scrollable-menu w-100 mh-374px" role="menu">
+                        <a 
+                        class="dropdown-item pointer" 
                         *ngFor="let answer of answers"
                         (click)="onClickPredefinedAnswer(answer)">{{answer.resumeName}}</a>
-                </ul>
-            </div>
-            <div class="row mt-20px">
-                <div class="form-check">
-                    <input 
-                    class="form-check-input" 
-                    type="radio" 
-                    name="exampleRadios" 
-                    value="2" 
+                    </ul>
+                </div>
+                <div class="row mt-20px">
+                    <mat-radio-button 
+                    value="2"
+                    name="exampleRadios"
                     id="checkFreeText"
                     (click)="onClickAnswerType(checkFreeText.value)"
                     (change)="onChangeFreeText()"
-                    #checkFreeText>
-                    <label class="form-check-label pointer" for="checkFreeText">
-                    Texto libre
-                    </label>
+                    #checkFreeText>Texto libre</mat-radio-button>
                 </div>
-            </div>
-            <div class="row">
-                <div class="form-check">
-                    <input 
-                    class="form-check-input" 
-                    type="radio" 
+                <div class="row">
+                    <mat-radio-button 
+                    value="3"
                     name="exampleRadios"
                     id="checkMultitpleOptions"
                     (click)="onClickAnswerType(checkMultitpleOptions.value)"
-                    value="3"
-                    #checkMultitpleOptions>
-                    <label class="form-check-label pointer" for="checkMultitpleOptions">
-                        Selección múltiple
-                    </label>
+                    #checkMultitpleOptions>Selección múltiple</mat-radio-button>
                 </div>
-            </div>
-           
+            </mat-radio-group>
         </div>
     </div>
     

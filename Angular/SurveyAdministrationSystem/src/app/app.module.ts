@@ -20,6 +20,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { SingleSelectionAnswerComponent } from './pages/surveys/newsurvey/question/singleselectionanswer/singleselectionanswer.component';
 import { FreetextanswerComponent } from './pages/surveys/newsurvey/question/freetextanswer/freetextanswer.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 import { SitescatalogmodalComponent } from './pages/surveys/newsurvey/question/sitescatalogmodal/sitescatalogmodal.component';
 
 @NgModule({
@@ -49,7 +51,8 @@ import { SitescatalogmodalComponent } from './pages/surveys/newsurvey/question/s
     NoopAnimationsModule,
     MatRadioModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
