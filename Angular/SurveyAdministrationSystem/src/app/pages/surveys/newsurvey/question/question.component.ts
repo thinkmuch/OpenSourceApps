@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { QuestionServices } from 'src/app/services/QuestionServices';
 import { Question } from 'src/app/models/Question';
 import { AnswerServices } from 'src/app/services/AnswerServices';
@@ -33,10 +33,7 @@ export class QuestionComponent implements OnInit {
 
   remove(idQuestion: number) {
     this._questionServices.removeQuestion(idQuestion);
-
-    if(this._questionServices.questions.length == 0) {
-      this._answerServices.showOptions.emit(false);
-    }
+    this._answerServices.showOptions.emit(false);
   }
 
   updateQuestionText(text: string, idQuestion: number) {
@@ -59,7 +56,6 @@ export class QuestionComponent implements OnInit {
   }
 
   selectQuestion(idQuestion: number, answer: Answer) {
-    
     this.deselectCurrentRow();
     this.selectNewRow(idQuestion);
 

@@ -1,51 +1,62 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-            <mat-radio-group>
-                <div class="row">
-                    <mat-radio-button 
-                    value="1"
-                    name="exampleRadios"
-                    id="checkPredefinedAnswer"
-                    (click)="onClickAnswerType(checkPredefinedAnswer.value)"
-                    #checkPredefinedAnswer>Predefinida</mat-radio-button>
+            <div class="row">
+                <div class="radio">
+                    <label class="pointer">
+                        <input 
+                        type="radio" 
+                        name="optradio"
+                        class="pointer"
+                        value="1"
+                        id="checkPredefinedAnswer"
+                        (click)="onClickAnswerType(answer, checkPredefinedAnswer.value, 1)"
+                        #checkPredefinedAnswer> Predefinida</label>
                 </div>
-                <div class="btn-group">
-                    <button 
-                    type="button" 
-                    [ngClass]="{'disabled': disablePredefined}"
-                    class="btn btn-info dropdown-toggle" 
-                    data-toggle="dropdown">
-                        <span *ngIf="answerName.length == 0">Seleccionar tipo de respuesta</span> <span class="caret"></span>
-                        <span *ngIf="answerName.length > 0">{{answerName}}</span> <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu scrollable-menu w-100 mh-374px" role="menu">
-                        <a 
-                        class="dropdown-item pointer" 
-                        *ngFor="let answer of answers"
-                        (click)="onClickPredefinedAnswer(answer)">{{answer.resumeName}}</a>
-                    </ul>
+            </div>
+            <div class="btn-group">
+                <button 
+                type="button" 
+                [ngClass]="{'disabled': disablePredefined}"
+                class="btn btn-info dropdown-toggle" 
+                data-toggle="dropdown">
+                    <span *ngIf="answerName.length == 0">Seleccionar tipo de respuesta</span> <span class="caret"></span>
+                    <span *ngIf="answerName.length > 0">{{answerName}}</span> <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu scrollable-menu w-100 mh-374px" role="menu">
+                    <a 
+                    class="dropdown-item pointer" 
+                    *ngFor="let answer of answers"
+                    (click)="onClickAnswerType(answer, checkMultitpleOptions.value, 1)">{{answer.resumeName}}</a>
+                </ul>
+            </div>
+            <div class="row mt-20px">
+                <div class="radio">
+                    <label class="pointer">
+                        <input 
+                        type="radio" 
+                        name="optradio"
+                        class="pointer"
+                        value="2"
+                        id="checkFreeText"
+                        (click)="onClickAnswerType(answer, checkFreeText.value, 2)"
+                        #checkFreeText> Texto libre</label>
                 </div>
-                <div class="row mt-20px">
-                    <mat-radio-button 
-                    value="2"
-                    name="exampleRadios"
-                    id="checkFreeText"
-                    (click)="onClickAnswerType(checkFreeText.value)"
-                    (change)="onChangeFreeText()"
-                    #checkFreeText>Texto libre</mat-radio-button>
+            </div>
+            <div class="row">
+                <div class="radio disabled">
+                    <label class="pointer">
+                        <input 
+                        type="radio" 
+                        name="optradio"
+                        class="pointer"
+                        value="3"
+                        id="checkMultitpleOptions"
+                        (click)="onClickAnswerType(answer, checkMultitpleOptions.value, 3)"
+                        #checkMultitpleOptions> Selección múltiple</label>
                 </div>
-                <div class="row">
-                    <mat-radio-button 
-                    value="3"
-                    name="exampleRadios"
-                    id="checkMultitpleOptions"
-                    (click)="onClickAnswerType(checkMultitpleOptions.value)"
-                    #checkMultitpleOptions>Selección múltiple</mat-radio-button>
-                </div>
-            </mat-radio-group>
+            </div>
         </div>
     </div>
-    
 </div>
 

@@ -31,10 +31,16 @@
             </div>
             <div class="row mt-10px">
                 <app-singleselectionanswer 
-                *ngIf="questionInput.answer" 
+                *ngIf="questionInput.answer &&
+                questionInput.answer.answerType == 1" 
                 [answerInput]="questionInput.answer"></app-singleselectionanswer>
                 <app-freetextanswer 
-                *ngIf="questionInput.answer && questionInput.answer.answerType == 2"></app-freetextanswer>
+                *ngIf="questionInput.answer && 
+                questionInput.answer.answerType == 2"></app-freetextanswer>
+                <app-multiplechoises
+                *ngIf="questionInput.answer &&
+                questionInput.answer.answerType == 3"
+                [answerInput]="questionInput.answer"></app-multiplechoises>
             </div>
         </div>
     </div>

@@ -88,3 +88,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .pl-0px {
     padding-left: 0px;
 }
+
+.c-green-success {
+    color: #22883A;
+}

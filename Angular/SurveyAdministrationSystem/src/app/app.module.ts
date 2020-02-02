@@ -23,6 +23,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { SitescatalogmodalComponent } from './pages/surveys/newsurvey/question/sitescatalogmodal/sitescatalogmodal.component';
+import { MultiplechoisesComponent } from './pages/surveys/newsurvey/question/multiplechoises/multiplechoises.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   entryComponents: [
@@ -44,6 +46,7 @@ import { SitescatalogmodalComponent } from './pages/surveys/newsurvey/question/s
     SingleSelectionAnswerComponent,
     FreetextanswerComponent,
     SitescatalogmodalComponent,
+    MultiplechoisesComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,8 @@ import { SitescatalogmodalComponent } from './pages/surveys/newsurvey/question/s
     MatRadioModule,
     FormsModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

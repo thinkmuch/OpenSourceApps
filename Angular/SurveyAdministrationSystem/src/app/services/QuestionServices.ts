@@ -19,9 +19,10 @@ export class QuestionServices
         this.rowSelected = new EventEmitter<number>();
     }
 
-    setAnswerQuestion(answer: Answer, idQuestion: number){
+    setAnswer(answer: Answer, idQuestion: number, type: AnswerType) {
         let index = idQuestion - 1;
-        this.questions[index].answer = answer;
+        this.questions[index].answer = (answer == undefined) ? new Answer() : answer;
+        this.questions[index].answer.answerType = type;
     }
 
     getQuestions(): Array<Question> {
@@ -57,12 +58,6 @@ export class QuestionServices
 
         this.questions[index + 1] = currentQuestion;
         this.questions[index] = nextQuestion;
-    }
-
-    setAnswerFreeText(idQuestion: number) {
-        let index = idQuestion - 1;
-        this.questions[index].answer = new Answer();
-        this.questions[index].answer.answerType = AnswerType.FreeText;
     }
 
     quitAnswerSelected(idQuestion: number) {
@@ -1166,5 +1161,6 @@ export class QuestionServices
 
 export enum AnswerType {
     SingleAnswer = 1,
-    FreeText = 2
+    FreeText = 2,
+    MultipleChoises = 3
 }
