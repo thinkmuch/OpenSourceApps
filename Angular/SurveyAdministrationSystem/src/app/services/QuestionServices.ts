@@ -13,7 +13,6 @@ export class QuestionServices
     @Output() rowSelected: EventEmitter<number>;
 
     constructor() {
-        
         this.questions = new Array<Question>();
         this.answers = new Array<Answer>();
         this.rowSelected = new EventEmitter<number>();
@@ -23,6 +22,12 @@ export class QuestionServices
         let index = idQuestion - 1;
         this.questions[index].answer = (answer == undefined) ? new Answer() : answer;
         this.questions[index].answer.answerType = type;
+
+        if(type == AnswerType.MultipleChoises) {
+            this.questions[index].answer.answerType = type;
+            this.questions[index].answer.answerOptions = new Array<AnswerOption>();
+            this.questions[index].answer.answerOptions.push(new AnswerOption());
+        }
     }
 
     getQuestions(): Array<Question> {
@@ -64,6 +69,10 @@ export class QuestionServices
         let index = idQuestion - 1;
         this.questions[index].answer = new Answer();
         this.questions[index].answer.answerType = 0;
+    }
+
+    removeOptionOfQuestion(idQuestion: number, idOption) {
+        this.questions[idQuestion - 1].answer.answerOptions.splice(idOption, 1);
     }
 
     getAnswers() : Array<Answer> {

@@ -60,7 +60,6 @@ export class PredefinedResponseCatalogComponent implements OnInit {
   }
 
   setSelectedAnswer(answer: Answer) {
-
     if(answer == undefined || answer.answerType == 0) {
       this.selectDefaultOption()
     }

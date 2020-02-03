@@ -4,7 +4,7 @@ import { Question } from 'src/app/models/Question';
 import { AnswerServices } from 'src/app/services/AnswerServices';
 import { Answer } from 'src/app/models/Answer';
 import { MatDialog } from '@angular/material';
-import { SitescatalogmodalComponent } from './sitescatalogmodal/sitescatalogmodal.component';
+import { SitesCatalogModalComponent } from './sitescatalogmodal/sitescatalogmodal.component';
 
 @Component({
   selector: 'app-question',
@@ -34,6 +34,8 @@ export class QuestionComponent implements OnInit {
   remove(idQuestion: number) {
     this._questionServices.removeQuestion(idQuestion);
     this._answerServices.showOptions.emit(false);
+
+    this._questionServices.questions
   }
 
   updateQuestionText(text: string, idQuestion: number) {
@@ -72,9 +74,9 @@ export class QuestionComponent implements OnInit {
   }
 
   openCatalogSitesModal(idQuestion: number) {
-    this._matDialog.open(SitescatalogmodalComponent, {
-      width: '300px',
+    this._matDialog.open(SitesCatalogModalComponent, {
+      width: '800px',
       data: { idQuestion: idQuestion}
-    })
+    });
   }
 }

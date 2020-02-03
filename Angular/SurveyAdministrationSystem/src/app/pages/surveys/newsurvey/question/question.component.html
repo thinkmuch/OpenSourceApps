@@ -26,8 +26,12 @@
                 type="text"
                 value={{questionInput.text}}
                 placeholder="Ingrese el texto aquí..." 
-                (input)="updateQuestionText(inputText.value, indexInput)" #inputText>
-                <i class="fas fa-map-marker-alt pointer" id="iconSite" (click)="openCatalogSitesModal(indexInput)"></i>
+                (input)="updateQuestionText(inputText.value, indexInput)" 
+                #inputText>
+                    <i 
+                    class="fas fa-map-marker-alt pointer" 
+                    id="iconSite" 
+                    (click)="openCatalogSitesModal(indexInput)"></i>
             </div>
             <div class="row mt-10px">
                 <app-singleselectionanswer 
@@ -40,7 +44,7 @@
                 <app-multiplechoises
                 *ngIf="questionInput.answer &&
                 questionInput.answer.answerType == 3"
-                [answerInput]="questionInput.answer"></app-multiplechoises>
+                [idQuestionInput]="indexInput"></app-multiplechoises>
             </div>
         </div>
     </div>

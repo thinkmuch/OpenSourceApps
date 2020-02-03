@@ -22,13 +22,13 @@ import { FreetextanswerComponent } from './pages/surveys/newsurvey/question/free
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
-import { SitescatalogmodalComponent } from './pages/surveys/newsurvey/question/sitescatalogmodal/sitescatalogmodal.component';
-import { MultiplechoisesComponent } from './pages/surveys/newsurvey/question/multiplechoises/multiplechoises.component';
+import { SitesCatalogModalComponent } from './pages/surveys/newsurvey/question/sitescatalogmodal/sitescatalogmodal.component';
+import { MultipleChoisesComponent } from './pages/surveys/newsurvey/question/multiplechoises/multiplechoises.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   entryComponents: [
-    SitescatalogmodalComponent
+    SitesCatalogModalComponent
   ],
   declarations: [
     AppComponent,
@@ -45,8 +45,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     ResponsecatalogmodalComponent,
     SingleSelectionAnswerComponent,
     FreetextanswerComponent,
-    SitescatalogmodalComponent,
-    MultiplechoisesComponent,
+    SitesCatalogModalComponent,
+    MultipleChoisesComponent,
   ],
   imports: [
     BrowserModule,

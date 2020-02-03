@@ -19,6 +19,10 @@
     margin-left: 0px !important;
 }
 
+.red-danger {
+    color: red;
+}
+
 .mr-0px {
     margin-right: 0px;
 }
