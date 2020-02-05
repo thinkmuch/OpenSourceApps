@@ -3,3 +3,7 @@
     overflow: scroll;
     margin-top: 15px;
 }
+
+#btnAccept {
+    margin-right: 5px;
+}

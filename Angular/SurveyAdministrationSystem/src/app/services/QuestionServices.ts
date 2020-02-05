@@ -2,6 +2,7 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Question } from '../models/Question';
 import { Answer } from '../models/Answer';
 import { AnswerOption } from '../models/AnswerOption';
+import { Site } from '../models/Site';
 
 @Injectable({
     providedIn: 'root'
@@ -18,16 +19,24 @@ export class QuestionServices
         this.rowSelected = new EventEmitter<number>();
     }
 
-    setAnswer(answer: Answer, idQuestion: number, type: AnswerType) {
-        let index = idQuestion - 1;
-        this.questions[index].answer = (answer == undefined) ? new Answer() : answer;
-        this.questions[index].answer.answerType = type;
+    initializeAnswerObject(idQuestion: number, answerType: AnswerType) {
 
-        if(type == AnswerType.MultipleChoises) {
-            this.questions[index].answer.answerType = type;
-            this.questions[index].answer.answerOptions = new Array<AnswerOption>();
-            this.questions[index].answer.answerOptions.push(new AnswerOption());
-        }
+        let index = idQuestion - 1;
+        this.questions[index].answer = new Answer();
+        this.questions[index].answer.answerType = answerType;
+    }
+
+    initializeAnswerOptions(idQuestions: number) {
+
+        let index = idQuestions - 1;
+        this.questions[index].answer.answerOptions = new Array<AnswerOption>();
+        this.questions[index].answer.answerOptions.push(new AnswerOption());
+    }
+
+    setPredefinedAnswer(idQuestion: number, answer: Answer) {
+
+        let index = idQuestion - 1;
+        this.questions[index].answer = answer;
     }
 
     getQuestions(): Array<Question> {
@@ -48,6 +57,7 @@ export class QuestionServices
     }
 
     moveUp(idQuestion: number) {
+
         let index = idQuestion - 1;
         let previusQuestion = this.questions[index - 1];
         let currentQuestion = this.questions[index];
@@ -57,6 +67,7 @@ export class QuestionServices
     }
 
     moveDown(idQuestion: number) {
+
         let index = idQuestion - 1;
         let nextQuestion = this.questions[index + 1];
         let currentQuestion = this.questions[index];
@@ -66,6 +77,7 @@ export class QuestionServices
     }
 
     quitAnswerSelected(idQuestion: number) {
+
         let index = idQuestion - 1;
         this.questions[index].answer = new Answer();
         this.questions[index].answer.answerType = 0;
@@ -73,6 +85,11 @@ export class QuestionServices
 
     removeOptionOfQuestion(idQuestion: number, idOption) {
         this.questions[idQuestion - 1].answer.answerOptions.splice(idOption, 1);
+    }
+
+    setSiteToAnswer(idQuestion, site: Site) {
+        let index = idQuestion - 1;
+        this.questions[index].site = site;
     }
 
     getAnswers() : Array<Answer> {

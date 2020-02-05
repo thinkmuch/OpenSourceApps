@@ -60,10 +60,12 @@ export class PredefinedResponseCatalogComponent implements OnInit {
   }
 
   setSelectedAnswer(answer: Answer) {
+
     if(answer == undefined || answer.answerType == 0) {
       this.selectDefaultOption()
     }
     else {
+
       this.answerName = (answer.resumeName == undefined) ? "" : answer.resumeName;
       this.disablePredefined = !(answer.answerType == AnswerType.SingleAnswer);
 
@@ -71,10 +73,14 @@ export class PredefinedResponseCatalogComponent implements OnInit {
       this.checkSingeAnswer.nativeElement.checked = false;
       this.checkFreeText.nativeElement.checked = false;
 
-      switch(answer.answerType) {
-        case AnswerType.FreeText: this.checkFreeText.nativeElement.checked = true; break;
-        case AnswerType.SingleAnswer: this.checkSingeAnswer.nativeElement.checked = true; break;
-        case AnswerType.MultipleChoises: this.checkMultipleOptions.nativeElement.checked = true; break;
+      if(answer.answerType == AnswerType.FreeText) {
+        this.checkFreeText.nativeElement.checked = true;
+      }
+      else if(answer.answerType == AnswerType.MultipleChoises) {
+        this.checkMultipleOptions.nativeElement.checked = true;
+      }
+      else if(answer.answerType == AnswerType.SingleAnswer) {
+        this.checkSingeAnswer.nativeElement.checked = true;
       }
     }
   }
@@ -87,10 +93,23 @@ export class PredefinedResponseCatalogComponent implements OnInit {
     return (this.idQuestionSelected != undefined && this.idQuestionSelected != null);
   }
 
-  onClickAnswerType(answer: Answer, option: number, type: AnswerType) {
+  onClickAnswerType(answerType: AnswerType) {
+
     if(this.isQuestionSelected()) {
-      this.disablePredefined = (option != 1);
-      this._questionServices.setAnswer(answer, this.idQuestionSelected, type);
+
+      this.disablePredefined = (answerType != AnswerType.SingleAnswer);
+      this._questionServices.initializeAnswerObject(this.idQuestionSelected, answerType);
+
+      if(answerType == AnswerType.MultipleChoises) {
+        this._questionServices.initializeAnswerOptions(this.idQuestionSelected)
+      }
+    }
+  }
+
+  onSelectPredefinedAnswer(answer: Answer) {
+
+    if(this.isQuestionSelected()) {
+      this._questionServices.setPredefinedAnswer(this.idQuestionSelected, answer);
     }
   }
 }

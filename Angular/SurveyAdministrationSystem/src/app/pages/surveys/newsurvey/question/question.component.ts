@@ -74,6 +74,7 @@ export class QuestionComponent implements OnInit {
   }
 
   openCatalogSitesModal(idQuestion: number) {
+
     this._matDialog.open(SitesCatalogModalComponent, {
       width: '800px',
       data: { idQuestion: idQuestion}

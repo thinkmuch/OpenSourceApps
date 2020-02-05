@@ -10,7 +10,7 @@
                         class="pointer"
                         value="1"
                         id="checkPredefinedAnswer"
-                        (click)="onClickAnswerType(answer, checkPredefinedAnswer.value, 1)"
+                        (click)="onClickAnswerType(checkPredefinedAnswer.value)"
                         #checkPredefinedAnswer> Predefinida</label>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                     <a 
                     class="dropdown-item pointer" 
                     *ngFor="let answer of answers"
-                    (click)="onClickAnswerType(answer, checkMultitpleOptions.value, 1)">{{answer.resumeName}}</a>
+                    (click)="onSelectPredefinedAnswer(answer)">{{answer.resumeName}}</a>
                 </ul>
             </div>
             <div class="row mt-20px">
@@ -39,7 +39,7 @@
                         class="pointer"
                         value="2"
                         id="checkFreeText"
-                        (click)="onClickAnswerType(answer, checkFreeText.value, 2)"
+                        (click)="onClickAnswerType(checkFreeText.value)"
                         #checkFreeText> Texto libre</label>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                         class="pointer"
                         value="3"
                         id="checkMultitpleOptions"
-                        (click)="onClickAnswerType(answer, checkMultitpleOptions.value, 3)"
+                        (click)="onClickAnswerType(checkMultitpleOptions.value)"
                         #checkMultitpleOptions> Selección múltiple</label>
                 </div>
             </div>

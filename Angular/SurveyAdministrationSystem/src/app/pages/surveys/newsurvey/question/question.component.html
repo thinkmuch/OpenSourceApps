@@ -31,6 +31,11 @@
                     <i 
                     class="fas fa-map-marker-alt pointer" 
                     id="iconSite" 
+                    [ngClass]="{
+                        'red-danger' : _questionServices.questions[indexInput - 1] && 
+                                       _questionServices.questions[indexInput - 1].site &&
+                                       _questionServices.questions[indexInput - 1].site.id > 0 
+                    }"
                     (click)="openCatalogSitesModal(indexInput)"></i>
             </div>
             <div class="row mt-10px">

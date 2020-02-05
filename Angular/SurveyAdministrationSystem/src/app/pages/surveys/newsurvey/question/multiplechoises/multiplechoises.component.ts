@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Answer } from 'src/app/models/Answer';
 import { QuestionServices } from 'src/app/services/QuestionServices';
 import { AnswerOption } from 'src/app/models/AnswerOption';
 
@@ -13,7 +12,7 @@ export class MultipleChoisesComponent implements OnInit {
   @Input() idQuestionInput: number;
 
   constructor(
-    private _questionServices: QuestionServices
+    public _questionServices: QuestionServices
   ) { }
 
   ngOnInit() {

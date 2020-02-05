@@ -1,7 +1,7 @@
-<div class="row animated fadeIn faster" 
+<div class="row animated fadeIn faster align-items-baseline" 
 *ngFor="let option of this._questionServices.questions[this.idQuestionInput - 1].answer.answerOptions; let i = index;">
-    <mat-checkbox class="d-inline"></mat-checkbox>
-    <div class="input-group input-group-sm mb-3">
+    <mat-checkbox class="d-inline pr-2"></mat-checkbox>
+    <div class="input-group input-group-sm mb-1 w-auto">
         <input 
         type="text" 
         class="form-control" 
@@ -10,6 +10,6 @@
         (input)="updateTextOption(i, inputOption.value)"
         #inputOption>
     </div>
-    <i class="fas fa-plus pointer c-green-success" (click)="addOption()"></i>
-    <i class="fas fa-minus pointer c-red-danger" (click)="removeOption(i)"></i>
+    <i class="fas fa-plus pointer c-green-success pl-2" (click)="addOption()"></i>
+    <i class="fas fa-minus pointer c-red-danger pl-2" (click)="removeOption(i)"></i>
 </div>
