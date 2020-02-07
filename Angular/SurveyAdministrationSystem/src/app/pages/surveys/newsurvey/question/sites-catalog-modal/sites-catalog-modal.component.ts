@@ -1,13 +1,13 @@
 import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { QuestionServices } from 'src/app/services/QuestionServices';
+import { QuestionServices } from 'src/app/services/question-services';
 import { Site } from 'src/app/models/Site';
-import { SitesServices } from 'src/app/services/SitesService';
+import { SitesServices } from 'src/app/services/sites-service';
 
 @Component({
   selector: 'app-sitescatalogmodal',
-  templateUrl: './sitescatalogmodal.component.html',
-  styleUrls: ['./sitescatalogmodal.component.css']
+  templateUrl: './sites-catalog-modal.component.html',
+  styleUrls: ['./sites-catalog-modal.component.css']
 })
 export class SitesCatalogModalComponent implements OnInit, AfterViewInit {
 
@@ -46,7 +46,6 @@ export class SitesCatalogModalComponent implements OnInit, AfterViewInit {
   }
 
   selectSite(site: Site) {
-
     let currentSelectedRow = document.getElementsByClassName("active")[0];
 
     if(currentSelectedRow != undefined &&

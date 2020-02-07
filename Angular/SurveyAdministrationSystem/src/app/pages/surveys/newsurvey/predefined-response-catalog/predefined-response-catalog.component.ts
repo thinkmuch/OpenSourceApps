@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Renderer2 } from '@angular/core';
 import { Answer } from 'src/app/models/Answer';
-import { QuestionServices, AnswerType } from 'src/app/services/QuestionServices';
-import { AnswerServices } from 'src/app/services/AnswerServices';
+import { QuestionServices, AnswerType } from 'src/app/services/question-services';
+import { AnswerServices } from 'src/app/services/answer-services';
 
 @Component({
   selector: 'app-predefinedresponsecatalog',

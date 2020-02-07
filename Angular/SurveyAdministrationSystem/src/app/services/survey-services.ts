@@ -1,6 +1,5 @@
 import { SurveySummary } from '../models/SurveySummary';
 import { Injectable } from '@angular/core';
-import { Answer } from '../models/Answer';
 
 @Injectable({
     providedIn: 'root'

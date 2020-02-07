@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AnswerServices } from 'src/app/services/AnswerServices';
+import { AnswerServices } from 'src/app/services/answer-services';
 
 @Component({
   selector: 'app-optionsperquestion',

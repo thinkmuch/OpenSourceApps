@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SurveySummary } from 'src/app/models/SurveySummary';
 import Swal from 'sweetalert2';
-import { SurveyServices } from 'src/app/services/SurveyServices';
+import { SurveyServices } from 'src/app/services/survey-services';
 
 @Component({
   selector: 'app-menusummarysurvey',

@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { QuestionServices } from 'src/app/services/QuestionServices';
+import { QuestionServices } from 'src/app/services/question-services';
 import { Question } from 'src/app/models/Question';
-import { AnswerServices } from 'src/app/services/AnswerServices';
+import { AnswerServices } from 'src/app/services/answer-services';
 import { Answer } from 'src/app/models/Answer';
 import { MatDialog } from '@angular/material';
-import { SitesCatalogModalComponent } from './sitescatalogmodal/sitescatalogmodal.component';
+import { SitesCatalogModalComponent } from "./sites-catalog-modal/sites-catalog-modal.component";
 
 @Component({
   selector: 'app-question',
