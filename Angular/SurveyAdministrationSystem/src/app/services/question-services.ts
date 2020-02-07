@@ -1151,6 +1151,248 @@ export class QuestionServices
         answer28.answerOptions.push(option4Answer28);
         answer28.answerOptions.push(option5Answer28);
 
+        let answer29 = new Answer();
+        answer29.id = 29;
+        answer29.answerType = AnswerType.SingleAnswer;
+        answer29.resumeName = "Con qué precisión";
+
+            let option1Answer29 = new AnswerOption;
+            option1Answer29.id = 1;
+            option1Answer29.text = "Extremadamente preciso";
+
+            let option2Answer29 = new AnswerOption;
+            option2Answer29.id = 2;
+            option2Answer29.text = "Con mucha precisión";
+
+            let option3Answer29 = new AnswerOption;
+            option3Answer29.id = 3;
+            option3Answer29.text = "Moderadamente precisa";
+
+            let option4Answer29 = new AnswerOption;
+            option4Answer29.id = 4;
+            option4Answer29.text = "Ligeramente exacto";
+
+            let option5Answer29 = new AnswerOption;
+            option5Answer29.id = 5;
+            option5Answer29.text = "No con precisión en absoluto";
+
+        answer29.answerOptions = new Array<AnswerOption>();
+        answer29.answerOptions.push(option1Answer29);
+        answer29.answerOptions.push(option2Answer29);
+        answer29.answerOptions.push(option3Answer29);
+        answer29.answerOptions.push(option4Answer29);
+        answer29.answerOptions.push(option5Answer29);
+
+        let answer30 = new Answer();
+        answer30.id = 30;
+        answer30.answerType = AnswerType.SingleAnswer;
+        answer30.resumeName = "Adecuado - Inadecuado";
+
+            let option1Answer30 = new AnswerOption;
+            option1Answer30.id = 1;
+            option1Answer30.text = "Extremadamente adecuado";
+
+            let option2Answer30 = new AnswerOption;
+            option2Answer30.id = 2;
+            option2Answer30.text = "Moderadamente adecuado";
+
+            let option3Answer30 = new AnswerOption;
+            option3Answer30.id = 3;
+            option3Answer30.text = "Ligeramente adecuado";
+
+            let option4Answer30 = new AnswerOption;
+            option4Answer30.id = 4;
+            option4Answer30.text = "Ni adecuado ni inadecuado";
+
+            let option5Answer30 = new AnswerOption;
+            option5Answer30.id = 5;
+            option5Answer30.text = "Ligeramente inadecuado";
+
+            let option6Answer30 = new AnswerOption;
+            option6Answer30.id = 6;
+            option6Answer30.text = "Moderadamente inadecuado";
+
+            let option7Answer30 = new AnswerOption;
+            option7Answer30.id = 7;
+            option7Answer30.text = "Extremadamente inadecuado";
+
+        answer30.answerOptions = new Array<AnswerOption>();
+        answer30.answerOptions.push(option1Answer30);
+        answer30.answerOptions.push(option2Answer30);
+        answer30.answerOptions.push(option3Answer30);
+        answer30.answerOptions.push(option4Answer30);
+        answer30.answerOptions.push(option5Answer30);
+        answer30.answerOptions.push(option6Answer30);
+        answer30.answerOptions.push(option7Answer30);
+
+        let answer31 = new Answer();
+        answer31.id = 31;
+        answer31.answerType = AnswerType.SingleAnswer;
+        answer31.resumeName = "Profesional - No profesional";
+
+            let option1Answer31 = new AnswerOption;
+            option1Answer31.id = 1;
+            option1Answer31.text = "Extremadamente profesional";
+
+            let option2Answer31 = new AnswerOption;
+            option2Answer31.id = 2;
+            option2Answer31.text = "Moderadamente profesional";
+
+            let option3Answer31 = new AnswerOption;
+            option3Answer31.id = 3;
+            option3Answer31.text = "Ligeramente profesional";
+
+            let option4Answer31 = new AnswerOption;
+            option4Answer31.id = 4;
+            option4Answer31.text = "Ni profesional ni no profesional";
+
+            let option5Answer31 = new AnswerOption;
+            option5Answer31.id = 5;
+            option5Answer31.text = "Ligeramente poco profesional";
+
+            let option6Answer31 = new AnswerOption;
+            option6Answer31.id = 6;
+            option6Answer31.text = "Moderadamente poco profesional";
+
+            let option7Answer31 = new AnswerOption;
+            option7Answer31.id = 7;
+            option7Answer31.text = "Extremadamente profesional";
+
+        answer31.answerOptions = new Array<AnswerOption>();
+        answer31.answerOptions.push(option1Answer31);
+        answer31.answerOptions.push(option2Answer31);
+        answer31.answerOptions.push(option3Answer31);
+        answer31.answerOptions.push(option4Answer31);
+        answer31.answerOptions.push(option5Answer31);
+        answer31.answerOptions.push(option6Answer31);
+        answer31.answerOptions.push(option7Answer31);
+
+        let answer32 = new Answer();
+        answer32.id = 32;
+        answer32.answerType = AnswerType.SingleAnswer;
+        answer32.resumeName = "Competente - Incompetente";
+
+            let option1Answer32 = new AnswerOption;
+            option1Answer32.id = 1;
+            option1Answer32.text = "Extremadamente competente";
+
+            let option2Answer32 = new AnswerOption;
+            option2Answer32.id = 2;
+            option2Answer32.text = "Moderadamente competente";
+
+            let option3Answer32 = new AnswerOption;
+            option3Answer32.id = 3;
+            option3Answer32.text = "Ligeramente competente";
+
+            let option4Answer32 = new AnswerOption;
+            option4Answer32.id = 4;
+            option4Answer32.text = "Ni competente ni incompetente";
+
+            let option5Answer32 = new AnswerOption;
+            option5Answer32.id = 5;
+            option5Answer32.text = "Ligeramente incompetente";
+
+            let option6Answer32 = new AnswerOption;
+            option6Answer32.id = 6;
+            option6Answer32.text = "Moderadamente incompetente";
+
+            let option7Answer32 = new AnswerOption;
+            option7Answer32.id = 7;
+            option7Answer32.text = "Extremadamente incompetente";
+
+        answer32.answerOptions = new Array<AnswerOption>();
+        answer32.answerOptions.push(option1Answer32);
+        answer32.answerOptions.push(option2Answer32);
+        answer32.answerOptions.push(option3Answer32);
+        answer32.answerOptions.push(option4Answer32);
+        answer32.answerOptions.push(option5Answer32);
+        answer32.answerOptions.push(option6Answer32);
+        answer32.answerOptions.push(option7Answer32);
+
+        let answer33 = new Answer();
+        answer33.id = 33;
+        answer33.answerType = AnswerType.SingleAnswer;
+        answer33.resumeName = "Positivo - negativo";
+
+            let option1Answer33 = new AnswerOption;
+            option1Answer33.id = 1;
+            option1Answer33.text = "Extremadamente positivo";
+
+            let option2Answer33 = new AnswerOption;
+            option2Answer33.id = 2;
+            option2Answer33.text = "Moderadamente positivo";
+
+            let option3Answer33 = new AnswerOption;
+            option3Answer33.id = 3;
+            option3Answer33.text = "Ligeramente positivo";
+
+            let option4Answer33 = new AnswerOption;
+            option4Answer33.id = 4;
+            option4Answer33.text = "Ni positivo ni negativo";
+
+            let option5Answer33 = new AnswerOption;
+            option5Answer33.id = 5;
+            option5Answer33.text = "Ligeramente negativo";
+
+            let option6Answer33 = new AnswerOption;
+            option6Answer33.id = 6;
+            option6Answer33.text = "Moderadamente negativo";
+
+            let option7Answer33 = new AnswerOption;
+            option7Answer33.id = 7;
+            option7Answer33.text = "Extremadamente negativo";
+
+        answer33.answerOptions = new Array<AnswerOption>();
+        answer33.answerOptions.push(option1Answer33);
+        answer33.answerOptions.push(option2Answer33);
+        answer33.answerOptions.push(option3Answer33);
+        answer33.answerOptions.push(option4Answer33);
+        answer33.answerOptions.push(option5Answer33);
+        answer33.answerOptions.push(option6Answer33);
+        answer33.answerOptions.push(option7Answer33);
+
+        let answer34 = new Answer();
+        answer34.id = 34;
+        answer34.answerType = AnswerType.SingleAnswer;
+        answer34.resumeName = "Cómodo - Incómodo";
+
+            let option1Answer34 = new AnswerOption;
+            option1Answer34.id = 1;
+            option1Answer34.text = "Extremadamente cómodo";
+
+            let option2Answer34 = new AnswerOption;
+            option2Answer34.id = 2;
+            option2Answer34.text = "Moderadamente cómodo";
+
+            let option3Answer34 = new AnswerOption;
+            option3Answer34.id = 3;
+            option3Answer34.text = "Ligeramente cómodo";
+
+            let option4Answer34 = new AnswerOption;
+            option4Answer34.id = 4;
+            option4Answer34.text = "Ni cómodo ni incómodo";
+
+            let option5Answer34 = new AnswerOption;
+            option5Answer34.id = 5;
+            option5Answer34.text = "Ligeramente incómodo";
+
+            let option6Answer34 = new AnswerOption;
+            option6Answer34.id = 6;
+            option6Answer34.text = "Moderadamente incómodo";
+
+            let option7Answer34 = new AnswerOption;
+            option7Answer34.id = 7;
+            option7Answer34.text = "Extremadamente incómodo";
+
+        answer34.answerOptions = new Array<AnswerOption>();
+        answer34.answerOptions.push(option1Answer34);
+        answer34.answerOptions.push(option2Answer34);
+        answer34.answerOptions.push(option3Answer34);
+        answer34.answerOptions.push(option4Answer34);
+        answer34.answerOptions.push(option5Answer34);
+        answer34.answerOptions.push(option6Answer34);
+        answer34.answerOptions.push(option7Answer34);
+
         this.answers.push(answer1);
         this.answers.push(answer2);
         this.answers.push(answer3);
@@ -1179,6 +1421,12 @@ export class QuestionServices
         this.answers.push(answer26);
         this.answers.push(answer27);
         this.answers.push(answer28);
+        this.answers.push(answer29);
+        this.answers.push(answer30);
+        this.answers.push(answer31);
+        this.answers.push(answer32);
+        this.answers.push(answer33);
+        this.answers.push(answer34);
 
         return this.answers;
     }
