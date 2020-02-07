@@ -5,8 +5,8 @@ import { AnswerServices } from 'src/app/services/AnswerServices';
 
 @Component({
   selector: 'app-predefinedresponsecatalog',
-  templateUrl: './predefinedresponsecatalog.component.html',
-  styleUrls: ['./predefinedresponsecatalog.component.css']
+  templateUrl: './predefined-response-catalog.component.html',
+  styleUrls: ['./predefined-response-catalog.component.css']
 })
 export class PredefinedResponseCatalogComponent implements OnInit {
 

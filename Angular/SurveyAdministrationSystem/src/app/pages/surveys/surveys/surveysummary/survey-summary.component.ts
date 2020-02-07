@@ -3,8 +3,8 @@ import { SurveySummary } from '../../../../models/SurveySummary';
 
 @Component({
   selector: 'app-surveysummary',
-  templateUrl: './surveysummary.component.html',
-  styleUrls: ['./surveysummary.component.css']
+  templateUrl: './survey-summary.component.html',
+  styleUrls: ['./survey-summary.component.css']
 })
 export class SurveySummaryComponent implements OnInit {
 

@@ -20,21 +20,18 @@ export class QuestionServices
     }
 
     initializeAnswerObject(idQuestion: number, answerType: AnswerType) {
-
         let index = idQuestion - 1;
         this.questions[index].answer = new Answer();
         this.questions[index].answer.answerType = answerType;
     }
 
     initializeAnswerOptions(idQuestions: number) {
-
         let index = idQuestions - 1;
         this.questions[index].answer.answerOptions = new Array<AnswerOption>();
         this.questions[index].answer.answerOptions.push(new AnswerOption());
     }
 
     setPredefinedAnswer(idQuestion: number, answer: Answer) {
-
         let index = idQuestion - 1;
         this.questions[index].answer = answer;
     }
@@ -57,7 +54,6 @@ export class QuestionServices
     }
 
     moveUp(idQuestion: number) {
-
         let index = idQuestion - 1;
         let previusQuestion = this.questions[index - 1];
         let currentQuestion = this.questions[index];
@@ -67,7 +63,6 @@ export class QuestionServices
     }
 
     moveDown(idQuestion: number) {
-
         let index = idQuestion - 1;
         let nextQuestion = this.questions[index + 1];
         let currentQuestion = this.questions[index];
@@ -77,7 +72,6 @@ export class QuestionServices
     }
 
     quitAnswerSelected(idQuestion: number) {
-
         let index = idQuestion - 1;
         this.questions[index].answer = new Answer();
         this.questions[index].answer.answerType = 0;
@@ -90,6 +84,11 @@ export class QuestionServices
     setSiteToAnswer(idQuestion, site: Site) {
         let index = idQuestion - 1;
         this.questions[index].site = site;
+    }
+
+    getSite(idQuestion: number): Site {
+        let index = idQuestion - 1;
+        return this.questions[index].site;
     }
 
     getAnswers() : Array<Answer> {

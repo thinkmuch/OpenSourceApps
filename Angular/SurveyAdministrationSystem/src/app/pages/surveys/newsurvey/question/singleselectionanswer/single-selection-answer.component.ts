@@ -3,8 +3,8 @@ import { Answer } from 'src/app/models/Answer';
 
 @Component({
   selector: 'app-singleselectionanswer',
-  templateUrl: './singleselectionanswer.component.html',
-  styleUrls: ['./singleselectionanswer.component.css']
+  templateUrl: './single-selection-answer.component.html',
+  styleUrls: ['./single-selection-answer.component.css']
 })
 export class SingleSelectionAnswerComponent implements OnInit {
 

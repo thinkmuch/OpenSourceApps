@@ -4,8 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-controlbuttons',
-  templateUrl: './controlbuttons.component.html',
-  styleUrls: ['./controlbuttons.component.css']
+  templateUrl: './control-buttons.component.html',
+  styleUrls: ['./control-buttons.component.css']
 })
 export class ControlButtonsComponent implements OnInit {
 

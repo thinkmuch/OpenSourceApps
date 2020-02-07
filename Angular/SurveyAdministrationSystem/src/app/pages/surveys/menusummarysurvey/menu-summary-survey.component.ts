@@ -5,17 +5,18 @@ import { SurveyServices } from 'src/app/services/SurveyServices';
 
 @Component({
   selector: 'app-menusummarysurvey',
-  templateUrl: './menusummarysurvey.component.html',
-  styleUrls: ['./menusummarysurvey.component.css']
+  templateUrl: './menu-summary-survey.component.html',
+  styleUrls: ['./menu-summary-survey.component.css']
 })
 export class MenuSummarySurveyComponent implements OnInit {
 
   @Input() surveyInput: SurveySummary;
 
-  constructor(private _surveyServices: SurveyServices) { }
+  constructor(
+    private _surveyServices: SurveyServices
+  ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   deleteSurvey(id: number) {
 

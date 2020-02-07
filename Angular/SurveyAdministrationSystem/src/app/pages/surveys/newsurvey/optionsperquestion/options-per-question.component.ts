@@ -3,8 +3,8 @@ import { AnswerServices } from 'src/app/services/AnswerServices';
 
 @Component({
   selector: 'app-optionsperquestion',
-  templateUrl: './optionsperquestion.component.html',
-  styleUrls: ['./optionsperquestion.component.css']
+  templateUrl: './options-per-question.component.html',
+  styleUrls: ['./options-per-question.component.css']
 })
 export class OptionsPerQuestionComponent implements OnInit {
 

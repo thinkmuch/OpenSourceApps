@@ -34,8 +34,6 @@ export class QuestionComponent implements OnInit {
   remove(idQuestion: number) {
     this._questionServices.removeQuestion(idQuestion);
     this._answerServices.showOptions.emit(false);
-
-    this._questionServices.questions
   }
 
   updateQuestionText(text: string, idQuestion: number) {
@@ -74,7 +72,6 @@ export class QuestionComponent implements OnInit {
   }
 
   openCatalogSitesModal(idQuestion: number) {
-
     this._matDialog.open(SitesCatalogModalComponent, {
       width: '800px',
       data: { idQuestion: idQuestion}

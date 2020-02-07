@@ -4,8 +4,8 @@ import { Question } from 'src/app/models/Question';
 
 @Component({
   selector: 'app-neweditsurvey',
-  templateUrl: './neweditsurvey.component.html',
-  styleUrls: ['./neweditsurvey.component.css']
+  templateUrl: './new-edit-survey.component.html',
+  styleUrls: ['./new-edit-survey.component.css']
 })
 export class NewEditSurveyComponent implements OnInit {
 

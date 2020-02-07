@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-responsecatalogmodal',
-  templateUrl: './responsecatalogmodal.component.html',
-  styleUrls: ['./responsecatalogmodal.component.css']
+  templateUrl: './response-catalog-modal.component.html',
+  styleUrls: ['./response-catalog-modal.component.css']
 })
 export class ResponsecatalogmodalComponent implements OnInit {
 

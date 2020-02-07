@@ -4,8 +4,8 @@ import { AnswerOption } from 'src/app/models/AnswerOption';
 
 @Component({
   selector: 'app-multiplechoises',
-  templateUrl: './multiplechoises.component.html',
-  styleUrls: ['./multiplechoises.component.css']
+  templateUrl: './multiple-choises.component.html',
+  styleUrls: ['./multiple-choises.component.css']
 })
 export class MultipleChoisesComponent implements OnInit {
 
