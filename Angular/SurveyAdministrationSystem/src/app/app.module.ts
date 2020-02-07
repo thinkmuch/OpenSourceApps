@@ -25,6 +25,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   entryComponents: [
@@ -58,7 +59,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatCheckboxModule,
     MatTooltipModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

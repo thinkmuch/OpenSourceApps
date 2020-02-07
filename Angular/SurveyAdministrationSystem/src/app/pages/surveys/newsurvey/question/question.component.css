@@ -42,3 +42,12 @@
 .fw-500 {
     font-weight: 500;
 }
+
+.item-menu-question {
+    align-items: center;
+    display: flex;
+}
+
+mat-icon {
+    margin-bottom: 3px;
+}
