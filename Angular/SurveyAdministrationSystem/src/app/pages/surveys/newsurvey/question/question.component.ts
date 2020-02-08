@@ -61,7 +61,7 @@ export class QuestionComponent implements OnInit {
 
     this._questionServices.rowSelected.emit(idQuestion);
     this._answerServices.showOptions.emit(true);
-    this._answerServices.answerSelected.emit(answer);
+    this._answerServices.answerSelected.emit(idQuestion);
   }
 
   selectNewRow(idQuestion: number) {

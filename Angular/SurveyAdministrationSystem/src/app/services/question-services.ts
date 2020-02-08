@@ -31,6 +31,11 @@ export class QuestionServices
         this.questions[index].answer.answerOptions.push(new AnswerOption());
     }
 
+    getQuestionById(idQuestion: number): Question {
+        let index = idQuestion - 1;
+        return this.questions[index];
+    }
+
     setPredefinedAnswer(idQuestion: number, answer: Answer) {
         let index = idQuestion - 1;
         this.questions[index].answer = answer;
@@ -89,6 +94,11 @@ export class QuestionServices
     getSite(idQuestion: number): Site {
         let index = idQuestion - 1;
         return this.questions[index].site;
+    }
+
+    setResponseAnswer(idQuestion: number, forceResponse: boolean) {
+        let index = idQuestion - 1;
+        this.questions[index].forceResponse = forceResponse;
     }
 
     getAnswers() : Array<Answer> {
@@ -1393,6 +1403,90 @@ export class QuestionServices
         answer34.answerOptions.push(option6Answer34);
         answer34.answerOptions.push(option7Answer34);
 
+        let answer35 = new Answer();
+        answer35.id = 35;
+        answer35.answerType = AnswerType.SingleAnswer;
+        answer35.resumeName = "Razonable - Irrazonable";
+
+            let option1Answer35 = new AnswerOption;
+            option1Answer35.id = 1;
+            option1Answer35.text = "Extremadamente razonable";
+
+            let option2Answer35 = new AnswerOption;
+            option2Answer35.id = 2;
+            option2Answer35.text = "Moderadamente razonable";
+
+            let option3Answer35 = new AnswerOption;
+            option3Answer35.id = 3;
+            option3Answer35.text = "Ligeramente razonable";
+
+            let option4Answer35 = new AnswerOption;
+            option4Answer35.id = 4;
+            option4Answer35.text = "Ni razonable ni irrazonable";
+
+            let option5Answer35 = new AnswerOption;
+            option5Answer35.id = 5;
+            option5Answer35.text = "Ligeramente irracional";
+
+            let option6Answer35 = new AnswerOption;
+            option6Answer35.id = 6;
+            option6Answer35.text = "Moderadamente irrazonable";
+
+            let option7Answer35 = new AnswerOption;
+            option7Answer35.id = 7;
+            option7Answer35.text = "Extremadamente irrazonable";
+
+        answer35.answerOptions = new Array<AnswerOption>();
+        answer35.answerOptions.push(option1Answer35);
+        answer35.answerOptions.push(option2Answer35);
+        answer35.answerOptions.push(option3Answer35);
+        answer35.answerOptions.push(option4Answer35);
+        answer35.answerOptions.push(option5Answer35);
+        answer35.answerOptions.push(option6Answer35);
+        answer35.answerOptions.push(option7Answer35);
+
+        let answer36 = new Answer();
+        answer36.id = 36;
+        answer36.answerType = AnswerType.SingleAnswer;
+        answer36.resumeName = "Claro - Poco claro";
+
+            let option1Answer36 = new AnswerOption;
+            option1Answer36.id = 1;
+            option1Answer36.text = "Extremadamente claro";
+
+            let option2Answer36 = new AnswerOption;
+            option2Answer36.id = 2;
+            option2Answer36.text = "Moderadamente claro";
+
+            let option3Answer36 = new AnswerOption;
+            option3Answer36.id = 3;
+            option3Answer36.text = "Ligeramente claro";
+
+            let option4Answer36 = new AnswerOption;
+            option4Answer36.id = 4;
+            option4Answer36.text = "Ni claro ni claro";
+
+            let option5Answer36 = new AnswerOption;
+            option5Answer36.id = 5;
+            option5Answer36.text = "Ligeramente poco claro";
+
+            let option6Answer36 = new AnswerOption;
+            option6Answer36.id = 6;
+            option6Answer36.text = "Moderadamente poco claro";
+
+            let option7Answer36 = new AnswerOption;
+            option7Answer36.id = 7;
+            option7Answer36.text = "Extremadamente poco claro";
+
+        answer36.answerOptions = new Array<AnswerOption>();
+        answer36.answerOptions.push(option1Answer36);
+        answer36.answerOptions.push(option2Answer36);
+        answer36.answerOptions.push(option3Answer36);
+        answer36.answerOptions.push(option4Answer36);
+        answer36.answerOptions.push(option5Answer36);
+        answer36.answerOptions.push(option6Answer36);
+        answer36.answerOptions.push(option7Answer36);
+
         this.answers.push(answer1);
         this.answers.push(answer2);
         this.answers.push(answer3);
@@ -1427,6 +1521,8 @@ export class QuestionServices
         this.answers.push(answer32);
         this.answers.push(answer33);
         this.answers.push(answer34);
+        this.answers.push(answer35);
+        this.answers.push(answer36);
 
         return this.answers;
     }

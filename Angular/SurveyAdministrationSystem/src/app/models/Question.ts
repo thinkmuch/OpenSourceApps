@@ -6,4 +6,5 @@ export class Question {
     text: string;
     answer: Answer;
     site: Site;
+    forceResponse: boolean;
 }

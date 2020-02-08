@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Renderer2 } fr
 import { Answer } from 'src/app/models/Answer';
 import { QuestionServices, AnswerType } from 'src/app/services/question-services';
 import { AnswerServices } from 'src/app/services/answer-services';
+import { Question } from 'src/app/models/Question';
 
 @Component({
   selector: 'app-predefinedresponsecatalog',
@@ -18,6 +19,7 @@ export class PredefinedResponseCatalogComponent implements OnInit {
   @ViewChild("checkPredefinedAnswer", {read: ElementRef }) checkSingeAnswer: ElementRef;
   @ViewChild("checkFreeText", {read: ElementRef }) checkFreeText: ElementRef;
   @ViewChild("checkMultitpleOptions", {read: ElementRef }) checkMultipleOptions: ElementRef;
+  @ViewChild("checkForceResponse", {read: ElementRef }) checkForceResponse: ElementRef;
 
   constructor(
     private _questionServices: QuestionServices,
@@ -31,8 +33,9 @@ export class PredefinedResponseCatalogComponent implements OnInit {
       this.idQuestionSelected = idQuestion;
     })
 
-    this._answerServices.answerSelected.subscribe((answer: Answer) => {
-      this.setSelectedAnswer(answer);
+    this._answerServices.answerSelected.subscribe((idQuestion: number) => {
+      let question: Question = this._questionServices.getQuestionById(idQuestion);
+      this.setSelectedAnswer(question);
     });
   }
 
@@ -57,9 +60,13 @@ export class PredefinedResponseCatalogComponent implements OnInit {
        this.checkSingeAnswer.nativeElement.checked != undefined) {
       this.checkSingeAnswer.nativeElement.checked = false;
     }
+
+    this.checkForceResponse.nativeElement.checked = false;
   }
 
-  setSelectedAnswer(answer: Answer) {
+  setSelectedAnswer(question: Question) {
+
+    let answer: Answer = question.answer;
 
     if(answer == undefined || answer.answerType == 0) {
       this.selectDefaultOption()
@@ -82,6 +89,8 @@ export class PredefinedResponseCatalogComponent implements OnInit {
       else if(answer.answerType == AnswerType.SingleAnswer) {
         this.checkSingeAnswer.nativeElement.checked = true;
       }
+
+      this.checkForceResponse.nativeElement.checked = question.forceResponse;
     }
   }
 
@@ -94,7 +103,6 @@ export class PredefinedResponseCatalogComponent implements OnInit {
   }
 
   onClickAnswerType(answerType: AnswerType) {
-
     if(this.isQuestionSelected()) {
 
       this.disablePredefined = (answerType != AnswerType.SingleAnswer);
@@ -107,9 +115,15 @@ export class PredefinedResponseCatalogComponent implements OnInit {
   }
 
   onSelectPredefinedAnswer(answer: Answer) {
-
     if(this.isQuestionSelected()) {
       this._questionServices.setPredefinedAnswer(this.idQuestionSelected, answer);
+    }
+  }
+
+  onChangeForceResponse(checked: boolean) {
+    console.log(checked);
+    if(this.isQuestionSelected()) {
+      this._questionServices.setResponseAnswer(this.idQuestionSelected, checked);
     }
   }
 }
