@@ -5,16 +5,17 @@ import { AnswerServices } from 'src/app/services/answer-services';
 import { Question } from 'src/app/models/Question';
 
 @Component({
-  selector: 'app-predefinedresponsecatalog',
+  selector: 'app-answer-types-catalog',
   templateUrl: './answer-types-catalog.component.html',
   styleUrls: ['./answer-types-catalog.component.css']
 })
-export class PredefinedResponseCatalogComponent implements OnInit, AfterViewInit {
+export class AnswerTypesCatalogComponent implements OnInit, AfterViewInit {
 
   public disablePredefined: boolean;
   public answers: Array<Answer>;
-  private idQuestionSelected: number;
+  public idQuestionSelected: number;
   public answerName: string;
+  public isAnswerTypeCatalogsVisible: boolean;
 
   @ViewChild("checkPredefinedAnswer", {read: ElementRef }) checkSingeAnswer: ElementRef;
   @ViewChild("checkFreeText", {read: ElementRef }) checkFreeText: ElementRef;
@@ -27,6 +28,7 @@ export class PredefinedResponseCatalogComponent implements OnInit, AfterViewInit
   ) {
     this.answerName = "";
     this.disablePredefined = false;
+    this.isAnswerTypeCatalogsVisible = false;
     this.answers = new Array<Answer>();
 
     this._questionServices.rowSelected.subscribe(idQuestion => {
@@ -37,6 +39,10 @@ export class PredefinedResponseCatalogComponent implements OnInit, AfterViewInit
       let question: Question = this._questionServices.getQuestionById(idQuestion);
       this.setSelectedAnswer(question);
     });
+
+    this._answerServices.showOptions.subscribe(visible => {
+      this.isAnswerTypeCatalogsVisible = visible;
+    })
   }
 
   ngAfterViewInit() {
@@ -115,12 +121,6 @@ export class PredefinedResponseCatalogComponent implements OnInit, AfterViewInit
       if(answerType == AnswerType.MultipleChoises) {
         this._questionServices.initializeAnswerOptions(this.idQuestionSelected)
       }
-    }
-  }
-
-  onSelectPredefinedAnswer(answer: Answer) {
-    if(this.isQuestionSelected()) {
-      this._questionServices.setPredefinedAnswer(this.idQuestionSelected, answer);
     }
   }
 

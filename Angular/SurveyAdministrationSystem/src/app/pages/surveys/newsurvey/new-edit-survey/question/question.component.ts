@@ -13,9 +13,9 @@ import { SitesCatalogModalComponent } from "./sites-catalog-modal/sites-catalog-
 })
 export class QuestionComponent implements OnInit {
 
-  @Input() questionInput: Question;
-  @Input() indexInput: number;
-  @Input() totalQuestionsInput: number;
+  @Input('questionInput') question: Question;
+  @Input('indexInput') index: number;
+  @Input('totalQuestionsInput') totalQuestions: number;
 
   public answer: Answer;
   public showSitesCatalog: boolean;
@@ -31,21 +31,8 @@ export class QuestionComponent implements OnInit {
 
   ngOnInit() { }
 
-  remove(idQuestion: number) {
-    this._questionServices.removeQuestion(idQuestion);
-    this._answerServices.showOptions.emit(false);
-  }
-
   updateQuestionText(text: string, idQuestion: number) {
     this._questionServices.updateQuestionText(idQuestion, text);
-  }
-
-  moveUp(idQuestion: number) {
-    this._questionServices.moveUp(idQuestion);
-  }
-
-  moveDown(idQuestion:number) {
-    this._questionServices.moveDown(idQuestion);
   }
 
   deselectCurrentRow() {

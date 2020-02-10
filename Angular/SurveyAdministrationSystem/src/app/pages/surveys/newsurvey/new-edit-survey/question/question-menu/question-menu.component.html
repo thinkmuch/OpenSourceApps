@@ -1,10 +1,18 @@
-<div
-class="sticky animated fadeIn faster"
-[ngClass]="{
-  'invisible': !visible
-}">
-  <div class="row">
-    <app-predefinedresponsecatalog></app-predefinedresponsecatalog>
-    <hr>
-  </div>
+<div class="btn-group dropleft">
+  <mat-icon aria-hidden="false" [matMenuTriggerFor]="menu" class="pointer">drag_indicator</mat-icon>
+  <mat-menu #menu="matMenu">
+      <div class="pointer item-menu-question" (click)="moveUp(index)" *ngIf="index > 1">
+          <mat-icon aria-hidden="false">expand_less</mat-icon>
+          <label class="pointer mb-0">Subir</label>
+      </div>
+      <div class="pointer item-menu-question" (click)="moveDown(index)" *ngIf="index < totalQuestions">
+          <mat-icon aria-hidden="false">expand_more</mat-icon>
+          <label class="pointer mb-0">Bajar</label>
+      </div>
+      <div class="pointer item-menu-question" (click)="remove(index)">
+          <mat-icon aria-hidden="false" class="red-danger">clear</mat-icon>
+          <label class="pointer mb-0">Eliminar</label>
+      </div>
+  </mat-menu>
 </div>
+<label>{{index}}</label>

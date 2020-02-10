@@ -1,73 +1,70 @@
-<div class="container">
+<div 
+class="container sticky animated fadeIn faster"
+[ngClass]="{'invisible': !isAnswerTypeCatalogsVisible}">
     <div class="row">
-        <div class="col-lg-12">
+        <div class="container">
             <div class="row">
-                <div class="radio">
-                    <label class="pointer">
-                        <input 
-                        type="radio" 
-                        name="optradio"
-                        class="pointer"
-                        value="1"
-                        id="checkPredefinedAnswer"
-                        (click)="onClickAnswerType(checkPredefinedAnswer.value)"
-                        #checkPredefinedAnswer> Predefinida</label>
-                </div>
-            </div>
-            <div class="btn-group">
-                <button 
-                type="button" 
-                [ngClass]="{'disabled': disablePredefined}"
-                class="btn btn-info dropdown-toggle" 
-                data-toggle="dropdown">
-                    <span *ngIf="answerName.length == 0">Seleccionar tipo de respuesta</span> <span class="caret"></span>
-                    <span *ngIf="answerName.length > 0">{{answerName}}</span> <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu scrollable-menu w-100 mh-374px" role="menu">
-                    <a 
-                    class="dropdown-item pointer" 
-                    *ngFor="let answer of answers"
-                    (click)="onSelectPredefinedAnswer(answer)">{{answer.resumeName}}</a>
-                </ul>
-            </div>
-            <div class="row mt-20px">
-                <div class="radio">
-                    <label class="pointer">
-                        <input 
-                        type="radio" 
-                        name="optradio"
-                        class="pointer"
-                        value="2"
-                        id="checkFreeText"
-                        (click)="onClickAnswerType(checkFreeText.value)"
-                        #checkFreeText> Texto libre</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="radio disabled">
-                    <label class="pointer">
-                        <input 
-                        type="radio" 
-                        name="optradio"
-                        class="pointer"
-                        value="3"
-                        id="checkMultitpleOptions"
-                        (click)="onClickAnswerType(checkMultitpleOptions.value)"
-                        #checkMultitpleOptions> Selección múltiple</label>
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="radio">
+                            <label class="pointer">
+                                <input 
+                                type="radio" 
+                                name="optradio"
+                                class="pointer"
+                                value="1"
+                                id="checkPredefinedAnswer"
+                                (click)="onClickAnswerType(checkPredefinedAnswer.value)"
+                                #checkPredefinedAnswer> Predefinida</label>
+                        </div>
+                    </div>
+
+                    <app-dropdown-predefined-answer 
+                    [idQuestionSelectedInput]="idQuestionSelected"
+                    [answerNameInput]="answerName"
+                    [answersInput]="answers"></app-dropdown-predefined-answer>
+
+                    <div class="row mt-20px">
+                        <div class="radio">
+                            <label class="pointer">
+                                <input 
+                                type="radio" 
+                                name="optradio"
+                                class="pointer"
+                                value="2"
+                                id="checkFreeText"
+                                (click)="onClickAnswerType(checkFreeText.value)"
+                                #checkFreeText> Texto libre</label>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="radio disabled">
+                            <label class="pointer">
+                                <input 
+                                type="radio" 
+                                name="optradio"
+                                class="pointer"
+                                value="3"
+                                id="checkMultitpleOptions"
+                                (click)="onClickAnswerType(checkMultitpleOptions.value)"
+                                #checkMultitpleOptions> Selección múltiple</label>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<hr>
-<div class="container ml-20px">
-    <div class="row">
-        <input 
-        type="checkbox" 
-        class="form-check-input pointer" 
-        id="exampleCheck1" 
-        (change)="onChangeForceResponse(checkForceResponse.checked)" 
-        #checkForceResponse>
-        <label class="form-check-label pointer" for="exampleCheck1">Respuesta forzosa</label>
+        <hr>
+        <div class="container ml-20px">
+            <div class="row">
+                <input 
+                type="checkbox" 
+                class="form-check-input pointer" 
+                id="exampleCheck1" 
+                (change)="onChangeForceResponse(checkForceResponse.checked)" 
+                #checkForceResponse>
+                <label class="form-check-label pointer" for="exampleCheck1">Respuesta forzosa</label>
+            </div>
+        </div>
     </div>
 </div>

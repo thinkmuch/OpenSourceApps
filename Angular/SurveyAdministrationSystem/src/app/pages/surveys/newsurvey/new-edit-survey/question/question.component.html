@@ -1,33 +1,18 @@
-<div class="pointer" (click)="selectQuestion(indexInput, questionInput.answer)" id="{{indexInput}}">
+<div class="pointer" (click)="selectQuestion(index, question.answer)" id="{{index}}">
     <div class="row">
         <div class="col-1 pdl-20px">
-            <div class="btn-group dropleft">
-                <mat-icon aria-hidden="false" [matMenuTriggerFor]="menu" class="pointer">drag_indicator</mat-icon>
-                <mat-menu #menu="matMenu">
-                    <div class="pointer item-menu-question" (click)="moveUp(indexInput)" *ngIf="indexInput > 1">
-                        <mat-icon aria-hidden="false">expand_less</mat-icon>
-                        <label class="pointer mb-0">Subir</label>
-                    </div>
-                    <div class="pointer item-menu-question" (click)="moveDown(indexInput)" *ngIf="indexInput < totalQuestionsInput">
-                        <mat-icon aria-hidden="false">expand_more</mat-icon>
-                        <label class="pointer mb-0">Bajar</label>
-                    </div>
-                    <div class="pointer item-menu-question" (click)="remove(indexInput)">
-                        <mat-icon aria-hidden="false" class="red-danger">clear</mat-icon>
-                        <label class="pointer mb-0">Eliminar</label>
-                    </div>
-                </mat-menu>
-            </div>
-            <label>{{indexInput}}</label>
+            <app-question-menu
+            [indexInput]="index"
+            [totalQuestionsInput]="totalQuestions"></app-question-menu>
         </div>
         <div class="col-11">
             <div class="row">
                 <input 
                 class="form-control inputQuestion fw-500"
                 type="text"
-                value={{questionInput.text}}
+                value={{question.text}}
                 placeholder="Ingrese el texto aquí..." 
-                (input)="updateQuestionText(inputText.value, indexInput)" 
+                (input)="updateQuestionText(inputText.value, index)" 
                 required
                 #inputText>
                     <i 
@@ -38,21 +23,23 @@
                                        _questionServices.questions[indexInput - 1].site &&
                                        _questionServices.questions[indexInput - 1].site.id > 0 
                     }"
-                    (click)="openCatalogSitesModal(indexInput)"></i>
+                    (click)="openCatalogSitesModal(index)"></i>
 
             </div>
             <div class="row mt-10px">
-                <app-singleselectionanswer 
-                *ngIf="questionInput.answer &&
-                questionInput.answer.answerType == 1" 
-                [answerInput]="questionInput.answer"></app-singleselectionanswer>
-                <app-freetextanswer 
-                *ngIf="questionInput.answer && 
-                questionInput.answer.answerType == 2"></app-freetextanswer>
-                <app-multiplechoises
-                *ngIf="questionInput.answer &&
-                questionInput.answer.answerType == 3"
-                [idQuestionInput]="indexInput"></app-multiplechoises>
+                <app-single-selection-answer 
+                *ngIf="question.answer &&
+                question.answer.answerType == 1" 
+                [answerInput]="question.answer"></app-single-selection-answer>
+
+                <app-free-text-answer-preview 
+                *ngIf="question.answer && 
+                question.answer.answerType == 2"></app-free-text-answer-preview>
+                
+                <app-multiple-choises
+                *ngIf="question.answer &&
+                question.answer.answerType == 3"
+                [idQuestionInput]="index"></app-multiple-choises>
             </div>
         </div>
     </div>

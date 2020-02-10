@@ -3,7 +3,7 @@ import { QuestionServices } from 'src/app/services/question-services';
 import { AnswerOption } from 'src/app/models/AnswerOption';
 
 @Component({
-  selector: 'app-multiplechoises',
+  selector: 'app-multiple-choises',
   templateUrl: './multiple-choises-preview.component.html',
   styleUrls: ['./multiple-choises-preview.component.css']
 })
