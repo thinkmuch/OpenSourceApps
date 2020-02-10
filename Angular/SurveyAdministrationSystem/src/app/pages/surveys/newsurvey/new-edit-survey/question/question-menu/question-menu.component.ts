@@ -3,10 +3,10 @@ import { AnswerServices } from 'src/app/services/answer-services';
 
 @Component({
   selector: 'app-optionsperquestion',
-  templateUrl: './options-per-question.component.html',
-  styleUrls: ['./options-per-question.component.css']
+  templateUrl: './question-menu.component.html',
+  styleUrls: ['./question-menu.component.css']
 })
-export class OptionsPerQuestionComponent implements OnInit {
+export class QuestionMenuComponent implements OnInit {
 
   public visible: false;
 

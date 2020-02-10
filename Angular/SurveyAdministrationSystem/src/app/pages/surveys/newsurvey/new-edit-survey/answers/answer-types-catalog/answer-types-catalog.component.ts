@@ -6,10 +6,10 @@ import { Question } from 'src/app/models/Question';
 
 @Component({
   selector: 'app-predefinedresponsecatalog',
-  templateUrl: './predefined-response-catalog.component.html',
-  styleUrls: ['./predefined-response-catalog.component.css']
+  templateUrl: './answer-types-catalog.component.html',
+  styleUrls: ['./answer-types-catalog.component.css']
 })
-export class PredefinedResponseCatalogComponent implements OnInit {
+export class PredefinedResponseCatalogComponent implements OnInit, AfterViewInit {
 
   public disablePredefined: boolean;
   public answers: Array<Answer>;
@@ -37,6 +37,10 @@ export class PredefinedResponseCatalogComponent implements OnInit {
       let question: Question = this._questionServices.getQuestionById(idQuestion);
       this.setSelectedAnswer(question);
     });
+  }
+
+  ngAfterViewInit() {
+
   }
 
   selectDefaultOption() {
@@ -121,7 +125,6 @@ export class PredefinedResponseCatalogComponent implements OnInit {
   }
 
   onChangeForceResponse(checked: boolean) {
-    console.log(checked);
     if(this.isQuestionSelected()) {
       this._questionServices.setResponseAnswer(this.idQuestionSelected, checked);
     }

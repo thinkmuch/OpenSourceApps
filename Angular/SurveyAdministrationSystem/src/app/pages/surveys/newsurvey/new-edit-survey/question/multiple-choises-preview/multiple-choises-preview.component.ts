@@ -4,10 +4,10 @@ import { AnswerOption } from 'src/app/models/AnswerOption';
 
 @Component({
   selector: 'app-multiplechoises',
-  templateUrl: './multiple-choises.component.html',
-  styleUrls: ['./multiple-choises.component.css']
+  templateUrl: './multiple-choises-preview.component.html',
+  styleUrls: ['./multiple-choises-preview.component.css']
 })
-export class MultipleChoisesComponent implements OnInit {
+export class MultipleChoisesPreviewComponent implements OnInit {
 
   @Input() idQuestionInput: number;
 

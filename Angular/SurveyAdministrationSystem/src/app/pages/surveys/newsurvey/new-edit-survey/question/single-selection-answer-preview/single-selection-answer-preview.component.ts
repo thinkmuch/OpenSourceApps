@@ -3,10 +3,10 @@ import { Answer } from 'src/app/models/Answer';
 
 @Component({
   selector: 'app-singleselectionanswer',
-  templateUrl: './single-selection-answer.component.html',
-  styleUrls: ['./single-selection-answer.component.css']
+  templateUrl: './single-selection-answer-preview.component.html',
+  styleUrls: ['./single-selection-answer-preview.component.css']
 })
-export class SingleSelectionAnswerComponent implements OnInit {
+export class SingleSelectionAnswerPreviewComponent implements OnInit {
 
   @Input() answerInput: Answer;
 
