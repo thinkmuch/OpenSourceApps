@@ -1,5 +1,3 @@
-import { Answer } from './Answer';
-
 export class SurveySummary
 {
     id: number;

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { QuestionServices } from 'src/app/services/question-services';
-import { AnswerOption } from 'src/app/models/AnswerOption';
+import { AnswerOption } from 'src/app/models/answer-option';
 
 @Component({
   selector: 'app-multiple-choises',

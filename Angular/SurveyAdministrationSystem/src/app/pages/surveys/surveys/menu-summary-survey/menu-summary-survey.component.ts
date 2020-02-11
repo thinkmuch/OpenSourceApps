@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SurveySummary } from 'src/app/models/SurveySummary';
+import { SurveySummary } from 'src/app/models/survey-summary';
 import Swal from 'sweetalert2';
 import { SurveyServices } from 'src/app/services/survey-services';
 

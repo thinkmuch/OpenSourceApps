@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { QuestionServices } from 'src/app/services/question-services';
-import { Question } from 'src/app/models/Question';
+import { Question } from 'src/app/models/question';
 import { AnswerServices } from 'src/app/services/answer-services';
-import { Answer } from 'src/app/models/Answer';
+import { Answer } from 'src/app/models/answer';
 import { MatDialog } from '@angular/material';
 import { SitesCatalogModalComponent } from "./sites-catalog-modal/sites-catalog-modal.component";
 

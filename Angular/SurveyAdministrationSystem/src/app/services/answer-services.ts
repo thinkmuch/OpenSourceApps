@@ -1,5 +1,5 @@
 import { Output, EventEmitter, Injectable } from '@angular/core';
-import { Answer } from '../models/Answer';
+import { Answer } from '../models/answer';
 
 @Injectable({
     providedIn: 'root'

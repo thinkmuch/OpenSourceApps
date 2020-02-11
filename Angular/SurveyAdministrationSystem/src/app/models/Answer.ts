@@ -1,4 +1,4 @@
-import { AnswerOption } from './AnswerOption';
+import { AnswerOption } from './answer-option';
 import { AnswerType } from '../services/question-services';
 
 export class Answer {

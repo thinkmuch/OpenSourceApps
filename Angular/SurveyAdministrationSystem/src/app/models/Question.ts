@@ -1,5 +1,5 @@
-import { Answer } from './Answer';
-import { Site } from '././Site'
+import { Answer } from './answer';
+import { Site } from './site'
 
 export class Question {
     id: number;

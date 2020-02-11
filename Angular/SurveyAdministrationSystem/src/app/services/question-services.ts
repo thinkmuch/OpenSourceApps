@@ -1,8 +1,8 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
-import { Question } from '../models/Question';
-import { Answer } from '../models/Answer';
-import { AnswerOption } from '../models/AnswerOption';
-import { Site } from '../models/Site';
+import { Question } from '../models/question';
+import { Answer } from '../models/answer';
+import { AnswerOption } from '../models/answer-option';
+import { Site } from '../models/site';
 
 @Injectable({
     providedIn: 'root'
@@ -1524,7 +1524,15 @@ export class QuestionServices
         this.answers.push(answer35);
         this.answers.push(answer36);
 
-        return this.answers;
+        return this.answers.sort((a, b) => {
+            if (a.resumeName > b.resumeName) {
+                return 1;
+            }
+            if (b.resumeName > a.resumeName) {
+                return -1;
+            }
+            return 0;
+        });
     }
 }
 

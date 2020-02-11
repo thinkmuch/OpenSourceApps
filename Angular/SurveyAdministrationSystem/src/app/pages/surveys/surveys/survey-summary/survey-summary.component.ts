@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SurveySummary } from '../../../../models/SurveySummary';
+import { SurveySummary } from '../../../../models/survey-summary';
 
 @Component({
   selector: 'app-surveysummary',

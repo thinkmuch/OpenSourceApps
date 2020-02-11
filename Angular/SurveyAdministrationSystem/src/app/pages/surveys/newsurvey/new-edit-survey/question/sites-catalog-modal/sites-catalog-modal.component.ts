@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { QuestionServices } from 'src/app/services/question-services';
-import { Site } from 'src/app/models/Site';
+import { Site } from 'src/app/models/site';
 import { SitesServices } from 'src/app/services/sites-service';
 
 @Component({

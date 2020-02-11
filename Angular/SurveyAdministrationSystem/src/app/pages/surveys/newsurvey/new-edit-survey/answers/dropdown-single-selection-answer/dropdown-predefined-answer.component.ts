@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { QuestionServices } from 'src/app/services/question-services';
-import { Answer } from 'src/app/models/Answer';
+import { Answer } from 'src/app/models/answer';
 
 @Component({
   selector: 'app-dropdown-predefined-answer',
