@@ -12,6 +12,7 @@ export class DropdownPredefinedAnswerComponent implements OnInit {
   @Input('idQuestionSelectedInput') idQuestionSelected: number;
   @Input('answerNameInput') answerName: string;
   @Input('answersInput') answers: Array<Answer>;
+  @Input('disablePredefinedInput') disablePredefined: boolean;
 
   constructor(
     private _questionServices: QuestionServices

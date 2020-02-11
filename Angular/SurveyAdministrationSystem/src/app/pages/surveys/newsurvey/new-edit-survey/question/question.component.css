@@ -19,10 +19,6 @@
     margin-left: 0px !important;
 }
 
-.red-danger {
-    color: #FF5722;
-}
-
 .mr-0px {
     margin-right: 0px;
 }
@@ -43,6 +39,3 @@
     font-weight: 500;
 }
 
-mat-icon {
-    margin-bottom: 3px;
-}

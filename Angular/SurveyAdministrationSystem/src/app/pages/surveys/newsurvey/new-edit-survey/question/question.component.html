@@ -16,15 +16,14 @@
                 required
                 #inputText>
                     <i 
-                    class="fas fa-map-marker-alt pointer" 
-                    id="iconSite"
+                    class="fas fa-map-marker-alt pointer red-danger"
                     [ngClass]="{
-                        'red-danger' : _questionServices.questions[indexInput - 1] && 
-                                       _questionServices.questions[indexInput - 1].site &&
-                                       _questionServices.questions[indexInput - 1].site.id > 0 
+                        'red-danger': this._questionServices.questions[index - 1] &&
+                                      this._questionServices.questions[index - 1].site &&
+                                      this._questionServices.questions[index - 1].site.id > 0
                     }"
+                    id="iconSite"
                     (click)="openCatalogSitesModal(index)"></i>
-
             </div>
             <div class="row mt-10px">
                 <app-single-selection-answer 
