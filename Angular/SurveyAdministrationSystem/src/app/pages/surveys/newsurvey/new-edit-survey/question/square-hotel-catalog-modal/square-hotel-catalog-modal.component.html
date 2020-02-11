@@ -1,0 +1,51 @@
+<label>Selecciona las plazas y hoteles en las que estará disponible la encuesta</label>
+<div class="container h-350px">
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <a 
+      class="nav-item nav-link active" 
+      id="nav-home-tab" 
+      data-toggle="tab" 
+      href="#nav-home" 
+      role="tab" 
+      aria-controls="nav-home" 
+      aria-selected="true"
+      (click)="onClickTabSquares()">Plaza</a>
+      <a 
+      class="nav-item nav-link" 
+      id="nav-profile-tab" 
+      data-toggle="tab" 
+      href="#nav-profile" 
+      role="tab" 
+      aria-controls="nav-profile" 
+      aria-selected="false"
+      (click)="onClickTabHotels()">Hotel</a>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent" id="squaresCatalog">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let square of squares">
+          <mat-checkbox (change)="onChangeSquare(square, checkSquare.checked)" #checkSquare>{{square.name}}</mat-checkbox>
+        </li>
+      </ul>
+    </div>
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+      <li class="list-group-item" *ngFor="let hotel of hotels">
+        <mat-checkbox (change)="onChangeHotel(hotel, checkHotel.checked)" #checkHotel>{{hotel.name}}</mat-checkbox>
+      </li>
+    </div>
+  </div>
+  <br>
+  <div class="container text-right">
+    <div class="row">
+      <div class="col text-left">
+        <mat-checkbox *ngIf="squareCatalog">Todas las Plazas</mat-checkbox>
+        <mat-checkbox *ngIf="!squareCatalog">Todos los Hoteles</mat-checkbox>
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-secondary" (click)="close()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

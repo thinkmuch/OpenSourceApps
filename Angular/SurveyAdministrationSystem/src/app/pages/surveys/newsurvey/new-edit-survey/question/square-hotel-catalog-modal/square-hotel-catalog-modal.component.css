@@ -1,0 +1,13 @@
+#btnAccept {
+    margin-right: 10px;
+}
+
+.h-350px {
+    height: 470px;
+}
+
+#squaresCatalog {
+    overflow: scroll;
+    max-height: 400px;
+    height: 350px;
+}

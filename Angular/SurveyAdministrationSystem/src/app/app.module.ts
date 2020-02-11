@@ -28,10 +28,12 @@ import { MatMenuModule } from '@angular/material/menu';
 import { FooterComponent } from './pages/surveys/newsurvey/new-edit-survey/footer/footer.component';
 import { DropdownPredefinedAnswerComponent } from './pages/surveys/newsurvey/new-edit-survey/answers/dropdown-single-selection-answer/dropdown-predefined-answer.component';
 import { QuestionMenuComponent } from './pages/surveys/newsurvey/new-edit-survey/question/question-menu/question-menu.component';
+import { SquareHotelCatalogModalComponent } from './pages/surveys/newsurvey/new-edit-survey/question/square-hotel-catalog-modal/square-hotel-catalog-modal.component';
 
 @NgModule({
   entryComponents: [
-    SitesCatalogModalComponent
+    SitesCatalogModalComponent,
+    SquareHotelCatalogModalComponent
   ],
   declarations: [
     AppComponent,
@@ -51,6 +53,7 @@ import { QuestionMenuComponent } from './pages/surveys/newsurvey/new-edit-survey
     FooterComponent,
     DropdownPredefinedAnswerComponent,
     QuestionMenuComponent,
+    SquareHotelCatalogModalComponent,
   ],
   imports: [
     BrowserModule,

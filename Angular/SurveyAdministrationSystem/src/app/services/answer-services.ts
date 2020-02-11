@@ -1,4 +1,4 @@
-import { Output, EventEmitter, Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Answer } from '../models/answer';
 
 @Injectable({
