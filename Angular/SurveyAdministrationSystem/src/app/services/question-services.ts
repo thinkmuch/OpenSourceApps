@@ -856,35 +856,27 @@ export class QuestionServices
         let answer20 = new Answer();
         answer20.id = 20;
         answer20.answerType = AnswerType.SingleAnswer;
-        answer20.resumeName = "Infeliz - Feliz";
+        answer20.resumeName = "Si - No";
 
             let option1Answer20 = new AnswerOption;
             option1Answer20.id = 1;
-            option1Answer20.text = "Extremadamente feliz";
+            option1Answer20.text = "Definitivamente si";
 
             let option2Answer20 = new AnswerOption;
             option2Answer20.id = 2;
-            option2Answer20.text = "Moderadamente feliz";
+            option2Answer20.text = "Probablemente si";
 
             let option3Answer20 = new AnswerOption;
             option3Answer20.id = 3;
-            option3Answer20.text = "Un poco feliz";
+            option3Answer20.text = "Puede que si o puede que no";
 
             let option4Answer20 = new AnswerOption;
             option4Answer20.id = 4;
-            option4Answer20.text = "Ni feliz ni infeliz";
+            option4Answer20.text = "Probablemtnte no";
 
             let option5Answer20 = new AnswerOption;
             option5Answer20.id = 5;
-            option5Answer20.text = "Ligeramente infeliz";
-
-            let option6Answer20 = new AnswerOption;
-            option6Answer20.id = 6;
-            option6Answer20.text = "Moderadamente infeliz";
-
-            let option7Answer20 = new AnswerOption;
-            option7Answer20.id = 7;
-            option7Answer20.text = "Extremadamente infeliz";
+            option5Answer20.text = "Definitivamente no";
 
         answer20.answerOptions = new Array<AnswerOption>();
         answer20.answerOptions.push(option1Answer20);
@@ -892,41 +884,31 @@ export class QuestionServices
         answer20.answerOptions.push(option3Answer20);
         answer20.answerOptions.push(option4Answer20);
         answer20.answerOptions.push(option5Answer20);
-        answer20.answerOptions.push(option6Answer20);
-        answer20.answerOptions.push(option7Answer20);
 
         let answer21 = new Answer();
         answer21.id = 21;
         answer21.answerType = AnswerType.SingleAnswer;
-        answer21.resumeName = "Inútil - Útil";
+        answer21.resumeName = "Cierto - Falso";
 
             let option1Answer21 = new AnswerOption;
             option1Answer21.id = 1;
-            option1Answer21.text = "Extremadamente útil";
+            option1Answer21.text = "Definitivamente cierto";
 
             let option2Answer21 = new AnswerOption;
             option2Answer21.id = 2;
-            option2Answer21.text = "Moderadamente útil";
+            option2Answer21.text = "Probablemente cierto";
 
             let option3Answer21 = new AnswerOption;
             option3Answer21.id = 3;
-            option3Answer21.text = "Ligeramente útil";
+            option3Answer21.text = "Ni cierto ni falso";
 
             let option4Answer21 = new AnswerOption;
             option4Answer21.id = 4;
-            option4Answer21.text = "Ni útil ni inútil";
+            option4Answer21.text = "Probablemente falso";
 
             let option5Answer21 = new AnswerOption;
             option5Answer21.id = 5;
-            option5Answer21.text = "Ligeramente inútil";
-
-            let option6Answer21 = new AnswerOption;
-            option6Answer21.id = 6;
-            option6Answer21.text = "Moderadamente inútil";
-
-            let option7Answer21 = new AnswerOption;
-            option7Answer21.id = 7;
-            option7Answer21.text = "Extremadamente inútil";
+            option5Answer21.text = "Definitivamente falso";
 
         answer21.answerOptions = new Array<AnswerOption>();
         answer21.answerOptions.push(option1Answer21);
@@ -934,40 +916,6 @@ export class QuestionServices
         answer21.answerOptions.push(option3Answer21);
         answer21.answerOptions.push(option4Answer21);
         answer21.answerOptions.push(option5Answer21);
-        answer21.answerOptions.push(option6Answer21);
-        answer21.answerOptions.push(option7Answer21);
-
-        let answer22 = new Answer();
-        answer22.id = 22;
-        answer22.answerType = AnswerType.SingleAnswer;
-        answer22.resumeName = "Sin importancia - Importante";
-
-            let option1Answer22 = new AnswerOption;
-            option1Answer22.id = 1;
-            option1Answer22.text = "Extremadamente importante";
-
-            let option2Answer22 = new AnswerOption;
-            option2Answer22.id = 2;
-            option2Answer22.text = "Muy importante";
-
-            let option3Answer22 = new AnswerOption;
-            option3Answer22.id = 3;
-            option3Answer22.text = "Moderadamente importante";
-
-            let option4Answer22 = new AnswerOption;
-            option4Answer22.id = 4;
-            option4Answer22.text = "Ligeramente importante";
-
-            let option5Answer22 = new AnswerOption;
-            option5Answer22.id = 5;
-            option5Answer22.text = "No tan importante";
-
-        answer22.answerOptions = new Array<AnswerOption>();
-        answer22.answerOptions.push(option1Answer22);
-        answer22.answerOptions.push(option2Answer22);
-        answer22.answerOptions.push(option3Answer22);
-        answer22.answerOptions.push(option4Answer22);
-        answer22.answerOptions.push(option5Answer22);
 
         let answer23 = new Answer();
         answer23.id = 24;
@@ -1508,7 +1456,6 @@ export class QuestionServices
         this.answers.push(answer19);
         this.answers.push(answer20);
         this.answers.push(answer21);
-        this.answers.push(answer22);
         this.answers.push(answer23);
         this.answers.push(answer24);
         this.answers.push(answer25);

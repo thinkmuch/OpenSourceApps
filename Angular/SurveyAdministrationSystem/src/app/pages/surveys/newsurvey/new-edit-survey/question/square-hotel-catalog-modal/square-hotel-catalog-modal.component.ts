@@ -14,6 +14,7 @@ export class SquareHotelCatalogModalComponent implements OnInit {
   public squares: Array<Square>;
   public hotels: Array<Hotel> = new Array<Hotel>();
   public squareCatalog: boolean;
+  public allSquares: boolean;
 
   constructor(
     private _squareServices: SquareServices,
@@ -21,6 +22,7 @@ export class SquareHotelCatalogModalComponent implements OnInit {
   ) { 
     this.squares = this._squareServices.getAllSquares();
     this.squareCatalog = true;
+    this.allSquares = false;
   }
 
   ngOnInit() {
