@@ -3,12 +3,16 @@ import { Question } from '../models/question';
 import { Answer } from '../models/answer';
 import { AnswerOption } from '../models/answer-option';
 import { Site } from '../models/site';
+import { Language } from '../models/laguage';
+import { Square } from '../models/square';
 
 @Injectable({
     providedIn: 'root'
 })
 export class QuestionServices
 {
+    public language: Language;
+    public squares: Array<Square>;
     public questions: Array<Question>;
     private answers: Array<Answer>;
     @Output() rowSelected: EventEmitter<number>;
@@ -17,6 +21,7 @@ export class QuestionServices
         this.questions = new Array<Question>();
         this.answers = new Array<Answer>();
         this.rowSelected = new EventEmitter<number>();
+        this.squares = new Array<Square>();
     }
 
     initializeAnswerObject(idQuestion: number, answerType: AnswerType) {
@@ -99,6 +104,26 @@ export class QuestionServices
     setResponseAnswer(idQuestion: number, forceResponse: boolean) {
         let index = idQuestion - 1;
         this.questions[index].forceResponse = forceResponse;
+    }
+
+    setLanguage(language: Language) {
+        this.language = language;
+    }
+
+    addSquare(square: Square) {
+        this.squares.push(square);
+    }
+
+    removeSquare(square: Square) {
+        for(let i = 0; i < this.squares.length; i++) {
+            if(this.squares[i].id == square.id) {
+                this.squares.splice(i, 1);
+            }
+        }
+    }
+
+    removeAllSquares() {
+        this.squares = [];
     }
 
     getAnswers() : Array<Answer> {

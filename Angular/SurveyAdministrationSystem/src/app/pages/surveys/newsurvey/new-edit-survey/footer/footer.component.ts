@@ -3,7 +3,7 @@ import { QuestionServices } from 'src/app/services/question-services';
 import { LanguageServices } from 'src/app/services/language-services';
 import { Language } from 'src/app/models/laguage';
 import { MatDialog } from '@angular/material';
-import { SquareHotelCatalogModalComponent } from '../question/square-hotel-catalog-modal/square-hotel-catalog-modal.component';
+import { SquareHotelCatalogModalComponent } from './square-hotel-catalog-modal/square-hotel-catalog-modal.component';
 
 @Component({
   selector: 'app-footer',
@@ -28,6 +28,7 @@ export class FooterComponent implements OnInit {
 
   onSelectLanguage(language: Language) {
     this.languageSelected = language.language;
+    this._questionServices.setLanguage(language);
   }
 
   onClickConfigSquareHotel() {

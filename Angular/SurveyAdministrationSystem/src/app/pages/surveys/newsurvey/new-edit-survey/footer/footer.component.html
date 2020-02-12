@@ -1,9 +1,9 @@
 <nav class="navbar fixed-bottom navbar-expand-lg navbar-light bg-light">
     <div class="row w-100">
-        <div class="col-9">
+        <div class="col">
             <label *ngIf="_questionServices">Total preguntas: {{ _questionServices.questions.length }}</label>
         </div>
-        <div class="col-3 text-right">
+        <div class="col text-right">
             <button class="btn btn btn-secondary fz-14px btn-sm mr-10px" (click)="onClickConfigSquareHotel()">
                 <i class="fas fa-wrench"></i>
                 Configurar plazas y hoteles

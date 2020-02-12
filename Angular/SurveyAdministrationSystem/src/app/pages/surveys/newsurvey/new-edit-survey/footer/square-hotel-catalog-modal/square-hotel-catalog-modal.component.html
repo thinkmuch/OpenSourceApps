@@ -40,7 +40,7 @@
   <div class="container text-right">
     <div class="row">
       <div class="col text-left">
-        <mat-checkbox *ngIf="squareCatalog" (click)="allSquares = !allSquares">Todas las Plazas</mat-checkbox>
+        <mat-checkbox *ngIf="squareCatalog" (click)="onClickAllSquares()">Todas las Plazas</mat-checkbox>
         <mat-checkbox *ngIf="!squareCatalog">Todos los Hoteles</mat-checkbox>
       </div>
       <div class="col">
