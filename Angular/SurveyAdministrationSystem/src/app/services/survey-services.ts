@@ -1,5 +1,6 @@
 import { SurveySummary } from '../models/survey-summary';
 import { Injectable } from '@angular/core';
+import { Survey } from '../models/survey';
 
 @Injectable({
     providedIn: 'root'
@@ -7,6 +8,10 @@ import { Injectable } from '@angular/core';
 export class SurveyServices
 {
     private surveys = new Array<SurveySummary>();
+
+    saveSurvey(survey: Survey) {
+        console.log(survey);
+    }
 
     getAllSurveysSummary() : Array<SurveySummary>{
 

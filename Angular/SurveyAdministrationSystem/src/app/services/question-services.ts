@@ -6,6 +6,7 @@ import { Site } from '../models/site';
 import { Language } from '../models/laguage';
 import { Square } from '../models/square';
 import { Hotel } from '../models/hotel';
+import { Survey } from '../models/survey';
 
 @Injectable({
     providedIn: 'root'
@@ -17,6 +18,7 @@ export class QuestionServices
     public hotels: Array<Hotel>;
     public questions: Array<Question>;
     private answers: Array<Answer>;
+    private nameSurvey: string;
     @Output() rowSelected: EventEmitter<number>;
 
     constructor() {
@@ -37,6 +39,18 @@ export class QuestionServices
         let index = idQuestions - 1;
         this.questions[index].answer.answerOptions = new Array<AnswerOption>();
         this.questions[index].answer.answerOptions.push(new AnswerOption());
+    }
+
+    getNewSurvey(): Survey {
+        let survey = new Survey();
+
+        survey.language = this.language;
+        survey.questions = this.questions;
+        survey.squares = this.squares;
+        survey.name = this.nameSurvey;
+        survey.hotels = this.hotels;
+
+        return survey;
     }
 
     getQuestionById(idQuestion: number): Question {

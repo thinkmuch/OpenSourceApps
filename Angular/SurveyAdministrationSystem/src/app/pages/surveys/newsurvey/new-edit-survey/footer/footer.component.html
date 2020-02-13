@@ -6,7 +6,14 @@
             <label class="ml-20px">Hoteles: {{ _questionServices.hotels.length }}</label>
         </div>
         <div class="col text-right">
-            <button class="btn btn btn-secondary fz-14px btn-sm mr-10px" (click)="onClickConfigSquareHotel()">
+            <button 
+            class="btn btn btn-secondary fz-14px btn-sm mr-10px" 
+            (click)="onClickConfigSquareHotel()"
+            [ngClass]="{
+                'btn-info': 
+                    _questionServices.squares.length > 0 && 
+                    _questionServices.hotels.length > 0
+            }">
                 <i class="fas fa-wrench"></i>
                 Configurar plazas y hoteles
             </button>
