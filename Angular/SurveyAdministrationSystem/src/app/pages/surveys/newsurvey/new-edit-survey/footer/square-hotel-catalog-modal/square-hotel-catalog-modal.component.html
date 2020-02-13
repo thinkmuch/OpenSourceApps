@@ -36,7 +36,7 @@
     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
       <li class="list-group-item" *ngFor="let hotel of hotels">
         <mat-checkbox  
-        [checked]="allHotels"
+        [checked]="allHotels || isHotelSelected(hotel)"
         (change)="onChangeHotel(hotel, checkHotel.checked)" 
         #checkHotel>{{hotel.name}}</mat-checkbox>
       </li>

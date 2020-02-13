@@ -110,6 +110,10 @@ export class SquareHotelCatalogModalComponent implements OnInit {
     return ((this._questionServices.squares.find(p => p.id == square.id)) != undefined);
   }
 
+  isHotelSelected(hotel: Hotel) {
+    return ((this._questionServices.hotels.find(p => p.id == hotel.id)) != undefined);
+  }
+
   onClickAllHotels() {
     this.allHotels = !this.allHotels;
 
