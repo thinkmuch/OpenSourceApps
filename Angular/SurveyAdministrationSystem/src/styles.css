@@ -106,10 +106,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     display: flex;
 }
 
-.invisible {
-    display: none;
-}
-
 .red-danger {
     color: #FF5722;
 }

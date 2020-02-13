@@ -27,7 +27,7 @@
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let square of squares">
           <mat-checkbox 
-          [checked]="allSquares"
+          [checked]="allSquares || isSquareSelected(square)"
           (change)="onChangeSquare(square, checkSquare.checked)" 
           #checkSquare>{{square.name}}</mat-checkbox>
         </li>
@@ -46,8 +46,8 @@
   <div class="container text-right">
     <div class="row">
       <div class="col text-left">
-        <mat-checkbox [ngClass]="{'invisible': !squareCatalog}" (click)="onClickAllSquares()" #checkAllSquares>Todas las Plazas</mat-checkbox>
-        <mat-checkbox [ngClass]="{'invisible': squareCatalog}" (click)="onClickAllHotels()">Todos los Hoteles</mat-checkbox>
+        <mat-checkbox [hidden]="!squareCatalog" (click)="onClickAllSquares()" #checkAllSquares>Todas las Plazas</mat-checkbox>
+        <mat-checkbox [hidden]="squareCatalog" (click)="onClickAllHotels()">Todos los Hoteles</mat-checkbox>
       </div>
       <div class="col">
         <button type="button" class="btn btn-secondary" (click)="close()">Cerrar</button>

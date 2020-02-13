@@ -31,6 +31,7 @@ export class SquareHotelCatalogModalComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.filterHotels();
   }
 
   close() {
@@ -103,6 +104,10 @@ export class SquareHotelCatalogModalComponent implements OnInit {
       
       this.filterHotels();
     }
+  }
+
+  isSquareSelected(square: Square): boolean {
+    return ((this._questionServices.squares.find(p => p.id == square.id)) != undefined);
   }
 
   onClickAllHotels() {
