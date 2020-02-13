@@ -5,6 +5,7 @@ import { AnswerOption } from '../models/answer-option';
 import { Site } from '../models/site';
 import { Language } from '../models/laguage';
 import { Square } from '../models/square';
+import { Hotel } from '../models/hotel';
 
 @Injectable({
     providedIn: 'root'
@@ -13,6 +14,7 @@ export class QuestionServices
 {
     public language: Language;
     public squares: Array<Square>;
+    public hotels: Array<Hotel>;
     public questions: Array<Question>;
     private answers: Array<Answer>;
     @Output() rowSelected: EventEmitter<number>;
@@ -22,6 +24,7 @@ export class QuestionServices
         this.answers = new Array<Answer>();
         this.rowSelected = new EventEmitter<number>();
         this.squares = new Array<Square>();
+        this.hotels = new Array<Hotel>();
     }
 
     initializeAnswerObject(idQuestion: number, answerType: AnswerType) {
@@ -124,6 +127,22 @@ export class QuestionServices
 
     removeAllSquares() {
         this.squares = [];
+    }
+
+    addHotel(hotel: Hotel) {
+        this.hotels.push(hotel);
+    }
+
+    removeAllHotels() {
+        this.hotels = [];
+    }
+
+    removeHotel(hotel: Hotel) {
+        for(let i = 0; i < this.hotels.length; i++) {
+            if(this.hotels[i].id == hotel.id) {
+                this.hotels.splice(i, 1);
+            }
+        }
     }
 
     getAnswers() : Array<Answer> {

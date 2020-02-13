@@ -26,13 +26,19 @@
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let square of squares">
-          <mat-checkbox [checked]="allSquares" (change)="onChangeSquare(square, checkSquare.checked)" #checkSquare>{{square.name}}</mat-checkbox>
+          <mat-checkbox 
+          [checked]="allSquares"
+          (change)="onChangeSquare(square, checkSquare.checked)" 
+          #checkSquare>{{square.name}}</mat-checkbox>
         </li>
       </ul>
     </div>
     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
       <li class="list-group-item" *ngFor="let hotel of hotels">
-        <mat-checkbox (change)="onChangeHotel(hotel, checkHotel.checked)" #checkHotel>{{hotel.name}}</mat-checkbox>
+        <mat-checkbox  
+        [checked]="allHotels"
+        (change)="onChangeHotel(hotel, checkHotel.checked)" 
+        #checkHotel>{{hotel.name}}</mat-checkbox>
       </li>
     </div>
   </div>
@@ -40,8 +46,8 @@
   <div class="container text-right">
     <div class="row">
       <div class="col text-left">
-        <mat-checkbox *ngIf="squareCatalog" (click)="onClickAllSquares()">Todas las Plazas</mat-checkbox>
-        <mat-checkbox *ngIf="!squareCatalog">Todos los Hoteles</mat-checkbox>
+        <mat-checkbox [ngClass]="{'invisible': !squareCatalog}" (click)="onClickAllSquares()" #checkAllSquares>Todas las Plazas</mat-checkbox>
+        <mat-checkbox [ngClass]="{'invisible': squareCatalog}" (click)="onClickAllHotels()">Todos los Hoteles</mat-checkbox>
       </div>
       <div class="col">
         <button type="button" class="btn btn-secondary" (click)="close()">Cerrar</button>

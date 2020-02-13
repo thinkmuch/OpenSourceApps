@@ -2,6 +2,8 @@
     <div class="row w-100">
         <div class="col">
             <label *ngIf="_questionServices">Total preguntas: {{ _questionServices.questions.length }}</label>
+            <label class="ml-20px">Plazas: {{ _questionServices.squares.length }}</label>
+            <label class="ml-20px">Hoteles: {{ _questionServices.hotels.length }}</label>
         </div>
         <div class="col text-right">
             <button class="btn btn btn-secondary fz-14px btn-sm mr-10px" (click)="onClickConfigSquareHotel()">
@@ -9,7 +11,13 @@
                 Configurar plazas y hoteles
             </button>
             <div class="btn-group dropup">
-                <button type="button" class="btn btn-secondary dropdown-toggle btn-sm w-150px" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button 
+                type="button" 
+                class="btn btn-secondary dropdown-toggle btn-sm w-150px" 
+                [ngClass]="{'btn-info':languageSelected.length > 0}" 
+                data-toggle="dropdown" 
+                aria-haspopup="true" 
+                aria-expanded="false">
                     <span *ngIf="languageSelected.length == 0">Seleccione Idioma</span>
                     <span *ngIf="languageSelected.length > 0">{{languageSelected}}</span>
                 </button>

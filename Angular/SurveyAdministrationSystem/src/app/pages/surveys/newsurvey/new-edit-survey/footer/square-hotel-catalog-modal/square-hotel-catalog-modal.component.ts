@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { SquareServices } from 'src/app/services/square-services';
 import { Square } from 'src/app/models/square';
@@ -16,6 +16,7 @@ export class SquareHotelCatalogModalComponent implements OnInit {
   public hotels: Array<Hotel>;
   public squareCatalog: boolean;
   public allSquares: boolean;
+  public allHotels: boolean;
 
   constructor(
     private _squareServices: SquareServices,
@@ -25,6 +26,7 @@ export class SquareHotelCatalogModalComponent implements OnInit {
     this.squares = this._squareServices.getAllSquares();
     this.squareCatalog = true;
     this.allSquares = false;
+    this.allHotels = false;
     this.hotels = new Array<Hotel>();
   }
 
@@ -71,7 +73,12 @@ export class SquareHotelCatalogModalComponent implements OnInit {
   }
 
   onChangeHotel(hotel: Hotel, checked: boolean) {
-    
+    if(checked) {
+      this._questionServices.addHotel(hotel);
+    }
+    else {
+      this._questionServices.removeHotel(hotel);
+    }
   }
 
   onClickTabSquares() {
@@ -84,9 +91,30 @@ export class SquareHotelCatalogModalComponent implements OnInit {
 
   onClickAllSquares() {
     this.allSquares = !this.allSquares;
+    
     if(!this.allSquares) {
       this._questionServices.removeAllSquares();
       this.filterHotels();
+    }
+    else {
+      this._squareServices.getAllSquares().forEach(square => {
+        this._questionServices.addSquare(square);
+      });
+      
+      this.filterHotels();
+    }
+  }
+
+  onClickAllHotels() {
+    this.allHotels = !this.allHotels;
+
+    if(!this.allHotels) {
+      this._questionServices.removeAllHotels();
+    }
+    else {
+      this.hotels.forEach(hotel => {
+        this._questionServices.addHotel(hotel);
+      });
     }
   }
 }

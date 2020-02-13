@@ -113,3 +113,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .red-danger {
     color: #FF5722;
 }
+
+.ml-20px {
+    margin-left: 20px;
+}
