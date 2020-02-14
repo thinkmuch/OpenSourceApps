@@ -583,6 +583,70 @@ export class QuestionServices
         answer12.answerOptions.push(option4Answer12);
         answer12.answerOptions.push(option5Answer12);
 
+        let answer13 = new Answer();
+        answer13.id = 13;
+        answer13.answerType = AnswerType.SingleAnswer;
+        answer13.resumeName = "Bueno - Malo";
+        
+            let option1Answer13 = new AnswerOption;
+            option1Answer13.id = 1;
+            option1Answer13.text = "Extremadamente malo";
+
+            let option2Answer13 = new AnswerOption;
+            option2Answer13.id = 2;
+            option2Answer13.text = "Malo";
+
+            let option3Answer13 = new AnswerOption;
+            option3Answer13.id = 3;
+            option3Answer13.text = "Ni bueno ni malo";
+
+            let option4Answer13 = new AnswerOption;
+            option4Answer13.id = 4;
+            option4Answer13.text = "Bueno";
+
+            let option5Answer13 = new AnswerOption;
+            option5Answer13.id = 5;
+            option5Answer13.text = "Extremadamente bueno";
+
+        answer13.answerOptions = new Array<AnswerOption>()
+        answer13.answerOptions.push(option1Answer13);
+        answer13.answerOptions.push(option2Answer13);
+        answer13.answerOptions.push(option3Answer13);
+        answer13.answerOptions.push(option4Answer13);
+        answer13.answerOptions.push(option5Answer13);
+
+        let answer14 = new Answer();
+        answer14.id = 14;
+        answer14.answerType = AnswerType.SingleAnswer;
+        answer14.resumeName = "Rápido - Lento";
+        
+            let option1Answer14 = new AnswerOption;
+            option1Answer14.id = 1;
+            option1Answer14.text = "Extremadatemte lento";
+
+            let option2Answer14 = new AnswerOption;
+            option2Answer14.id = 2;
+            option2Answer14.text = "Lento";
+
+            let option3Answer14 = new AnswerOption;
+            option3Answer14.id = 3;
+            option3Answer14.text = "Promedio";
+
+            let option4Answer14 = new AnswerOption;
+            option4Answer14.id = 4;
+            option4Answer14.text = "Rápido";
+
+            let option5Answer14 = new AnswerOption;
+            option5Answer14.id = 5;
+            option5Answer14.text = "Extremadamente rápido";
+
+        answer14.answerOptions = new Array<AnswerOption>()
+        answer14.answerOptions.push(option1Answer14);
+        answer14.answerOptions.push(option2Answer14);
+        answer14.answerOptions.push(option3Answer14);
+        answer14.answerOptions.push(option4Answer14);
+        answer14.answerOptions.push(option5Answer14);
+
         this.answers.push(answer1);
         this.answers.push(answer2);
         this.answers.push(answer3);
@@ -595,6 +659,8 @@ export class QuestionServices
         this.answers.push(answer10);
         this.answers.push(answer11);
         this.answers.push(answer12);
+        this.answers.push(answer13);
+        this.answers.push(answer14);
 
         return this.answers.sort((a, b) => {
             if (a.resumeName > b.resumeName) {
