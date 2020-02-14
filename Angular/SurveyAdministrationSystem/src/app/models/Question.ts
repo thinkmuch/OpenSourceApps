@@ -7,4 +7,5 @@ export class Question {
     answer: Answer;
     site: Site;
     forceResponse: boolean;
+    acceptNA: boolean;
 }

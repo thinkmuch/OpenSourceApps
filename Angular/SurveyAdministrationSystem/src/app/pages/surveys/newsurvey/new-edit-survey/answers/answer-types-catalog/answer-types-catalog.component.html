@@ -56,4 +56,13 @@
         #checkForceResponse>
         <label class="form-check-label pointer" for="exampleCheck1">Respuesta forzosa</label>
     </div>
+    <div class="row ml-5px">
+        <input
+        class="form-check-input pointer" 
+        type="checkbox"
+        id="inputCheckAcceptNA"
+        (change)="onChangeAcceptNA(matCheckAcceptNA.checked)"
+        #matCheckAcceptNA>
+        <label class="form-check-label pointer" for="inputCheckAcceptNA">Aceptar NA</label>
+    </div>
 </div>

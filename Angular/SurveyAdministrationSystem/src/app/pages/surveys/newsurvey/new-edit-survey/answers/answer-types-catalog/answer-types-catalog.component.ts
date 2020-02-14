@@ -3,6 +3,7 @@ import { Answer } from 'src/app/models/answer';
 import { QuestionServices, AnswerType } from 'src/app/services/question-services';
 import { AnswerServices } from 'src/app/services/answer-services';
 import { Question } from 'src/app/models/question';
+import { MatCheckbox } from '@angular/material';
 
 @Component({
   selector: 'app-answer-types-catalog',
@@ -16,11 +17,14 @@ export class AnswerTypesCatalogComponent implements OnInit, AfterViewInit {
   public idQuestionSelected: number;
   public answerName: string;
   public isAnswerTypeCatalogsVisible: boolean;
+  public checkedAcceptNA: boolean;
+  public checkedForceResponse: boolean;
 
   @ViewChild("checkPredefinedAnswer", {read: ElementRef }) checkSingeAnswer: ElementRef;
   @ViewChild("checkFreeText", {read: ElementRef }) checkFreeText: ElementRef;
   @ViewChild("checkMultitpleOptions", {read: ElementRef }) checkMultipleOptions: ElementRef;
   @ViewChild("checkForceResponse", {read: ElementRef }) checkForceResponse: ElementRef;
+  @ViewChild("matCheckAcceptNA", {read: ElementRef}) matCheckAcceptNA: ElementRef;
 
   constructor(
     private _questionServices: QuestionServices,
@@ -29,6 +33,8 @@ export class AnswerTypesCatalogComponent implements OnInit, AfterViewInit {
     this.answerName = "";
     this.disablePredefined = false;
     this.isAnswerTypeCatalogsVisible = false;
+    this.checkedAcceptNA = false;
+    this.checkedForceResponse = false;
     this.answers = new Array<Answer>();
 
     this._questionServices.rowSelected.subscribe(idQuestion => {
@@ -99,8 +105,20 @@ export class AnswerTypesCatalogComponent implements OnInit, AfterViewInit {
       else if(answer.answerType == AnswerType.SingleAnswer) {
         this.checkSingeAnswer.nativeElement.checked = true;
       }
+    }
 
-      this.checkForceResponse.nativeElement.checked = question.forceResponse;
+    if(question.acceptNA == undefined || !question.acceptNA) {
+      this.matCheckAcceptNA.nativeElement.checked = false;
+    }
+    else {
+      this.matCheckAcceptNA.nativeElement.checked = true;
+    }
+
+    if(question.forceResponse == undefined || !question.forceResponse) {
+      this.checkForceResponse.nativeElement.checked = false;
+    }
+    else {
+      this.checkForceResponse.nativeElement.checked = true;
     }
   }
 
@@ -127,6 +145,12 @@ export class AnswerTypesCatalogComponent implements OnInit, AfterViewInit {
   onChangeForceResponse(checked: boolean) {
     if(this.isQuestionSelected()) {
       this._questionServices.setResponseAnswer(this.idQuestionSelected, checked);
+    }
+  }
+
+  onChangeAcceptNA(checked: boolean) {
+    if(this.isQuestionSelected()) {
+      this._questionServices.setAcceptNA(this.idQuestionSelected, checked);
     }
   }
 }
