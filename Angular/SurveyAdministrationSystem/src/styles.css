@@ -113,3 +113,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .ml-20px {
     margin-left: 20px;
 }
+
+.fz-10px {
+    font-size: 10px;
+}
