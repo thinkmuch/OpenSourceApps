@@ -6,7 +6,12 @@
       <div class="col-3 pl-0px">
         <div class="form-group">
           <label for="exampleInputEmail1">Nombre de la encuesta</label>
-          <input class="form-control form-control-sm" type="text" id="surveyName">
+          <input 
+          class="form-control form-control-sm" 
+          type="text" 
+          id="surveyName"
+          (click)="onClickSurveyName()"
+          #surveyName>
         </div>
       </div>
     </div>
@@ -29,7 +34,7 @@
       *ngIf="questions.length > 0"
       id="btnAddQuestion"
       class="btn btn-success fz-14px mr-10px"
-      (click) = "addQuestion()">
+      (click)="addQuestion()">
       <i class="fas fa-plus"></i>
       Agregar
     </button>

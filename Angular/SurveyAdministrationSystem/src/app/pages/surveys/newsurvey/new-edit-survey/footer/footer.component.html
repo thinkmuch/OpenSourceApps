@@ -24,7 +24,8 @@
                 [ngClass]="{'btn-info':languageSelected.length > 0}" 
                 data-toggle="dropdown" 
                 aria-haspopup="true" 
-                aria-expanded="false">
+                aria-expanded="false"
+                #language>
                     <span *ngIf="languageSelected.length == 0">Seleccione Idioma</span>
                     <span *ngIf="languageSelected.length > 0">{{languageSelected}}</span>
                 </button>

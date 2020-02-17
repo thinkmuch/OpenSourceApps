@@ -1,4 +1,4 @@
-<div class="pointer" (click)="selectQuestion(index, question.answer)" id="{{index}}">
+<div class="pointer" (click)="selectQuestion(index, question.answer)" id="{{index}}" #rowQuestion>
     <div class="row">
         <div class="col-1 pdl-20px">
             <app-question-menu
@@ -13,6 +13,7 @@
                 value={{question.text}}
                 placeholder="Ingrese el texto aquí..." 
                 (input)="updateQuestionText(inputText.value, index)" 
+                (click)="onClickQuestionText()"
                 required
                 #inputText>
                     <i 

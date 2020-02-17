@@ -41,6 +41,10 @@ export class QuestionServices
         this.questions[index].answer.answerOptions.push(new AnswerOption());
     }
 
+    getLanguageSelected(): Language {
+        return this.language;
+    }
+
     getNewSurvey(): Survey {
         let survey = new Survey();
 

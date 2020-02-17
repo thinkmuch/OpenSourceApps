@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { QuestionServices } from 'src/app/services/question-services';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SurveyServices } from 'src/app/services/survey-services';
+import { ViewServices } from 'src/app/services/view-services';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-controlbuttons',
@@ -11,9 +12,10 @@ import { SurveyServices } from 'src/app/services/survey-services';
 export class ControlButtonsComponent implements OnInit {
 
   constructor(
-    private _questionServices: QuestionServices,
+    public _questionServices: QuestionServices,
     private _snackBar: MatSnackBar,
-    private _surveyServices: SurveyServices
+    private _viewServices: ViewServices,
+    private renderer: Renderer2
   ) { }
 
   ngOnInit() {
@@ -27,7 +29,55 @@ export class ControlButtonsComponent implements OnInit {
   }
 
   saveSurvey() {
-    let survey = this._questionServices.getNewSurvey();
-    this._surveyServices.saveSurvey(survey);
+    let allQuestionCaptured: boolean = this.isAllQuestionCaptured();
+    let languageSelected: boolean = this.isLanguageSelected();
+    let surveyNameCaptured: boolean = this.isSurveyNameCaptured();
+
+    if(allQuestionCaptured && languageSelected && surveyNameCaptured) {
+      console.log("Encuesta capturada correctamente");
+    }
+    else {
+      Swal.fire(
+        'Datos incompletos',
+        'Debe capturar todos los datos de la encuesta',
+        'warning'
+      )
+    }
+  }
+
+  isSurveyNameCaptured(): boolean {
+    if(this._viewServices.surveyName.nativeElement.value.length > 0) {
+      return true;
+    }
+    else {
+      this.renderer.addClass(this._viewServices.surveyName.nativeElement, "alert-danger");
+      return false;
+    }
+  }
+
+  isAllQuestionCaptured(): boolean {
+    let isValidSurvey = true;
+    let questionControls = this._viewServices.getQuestionControls();
+
+    questionControls.forEach(control => {
+      if(control.nativeElement.value.length == 0) {
+        isValidSurvey = false;
+        this.renderer.addClass(control.nativeElement, "alert-danger");
+      }
+    });
+
+    return isValidSurvey;
+  }
+
+  isLanguageSelected(): boolean {
+    let language = this._questionServices.getLanguageSelected();
+
+    if (language != undefined) {
+      return true;
+    }
+    else {
+      this.renderer.addClass(this._viewServices.languageControl.nativeElement, "alert-danger");
+      return false;
+    }
   }
 }
