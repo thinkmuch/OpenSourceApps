@@ -13,7 +13,8 @@
                 'btn-info': 
                     _questionServices.squares.length > 0 && 
                     _questionServices.hotels.length > 0
-            }">
+            }"
+            #squaresAndHotels>
                 <i class="fas fa-wrench"></i>
                 Configurar plazas y hoteles
             </button>
@@ -25,6 +26,7 @@
                 data-toggle="dropdown" 
                 aria-haspopup="true" 
                 aria-expanded="false"
+                (click)="onClickLanguage()"
                 #language>
                     <span *ngIf="languageSelected.length == 0">Seleccione Idioma</span>
                     <span *ngIf="languageSelected.length > 0">{{languageSelected}}</span>

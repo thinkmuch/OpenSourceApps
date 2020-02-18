@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Renderer2 } fr
 import { QuestionServices } from 'src/app/services/question-services';
 import { Question } from 'src/app/models/question';
 import { ViewServices } from 'src/app/services/view-services';
+import { Alerts } from 'src/app/enums/class-enum';
 
 @Component({
   selector: 'app-neweditsurvey',
@@ -23,11 +24,11 @@ export class NewEditSurveyComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this._viewServices.surveyName = this.surveyName;
+    this._viewServices.surveyNameControl = this.surveyName;
   }
 
   onClickSurveyName() {
-    this.render.removeClass(this.surveyName.nativeElement, "alert-danger");
+    this.render.removeClass(this.surveyName.nativeElement, Alerts.Danger);
   }
 
   ngOnInit() {

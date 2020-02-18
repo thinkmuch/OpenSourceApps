@@ -16,3 +16,8 @@
   position: sticky;
   margin-left: 10px;
 }
+
+#surveyName {
+  font-weight: 500;
+  font-size: 18px;
+}

@@ -6,6 +6,7 @@ import { Answer } from 'src/app/models/answer';
 import { MatDialog } from '@angular/material';
 import { SitesCatalogModalComponent } from "./sites-catalog-modal/sites-catalog-modal.component";
 import { ViewServices } from 'src/app/services/view-services';
+import { Alerts } from 'src/app/enums/class-enum';
 
 @Component({
   selector: 'app-question',
@@ -41,7 +42,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
   }
 
   onClickQuestionText() {
-    this.renderer.removeClass(this.inputText.nativeElement, "alert-danger");
+    this.renderer.removeClass(this.inputText.nativeElement, Alerts.Danger);
   }
 
   updateQuestionText(text: string, idQuestion: number) {
