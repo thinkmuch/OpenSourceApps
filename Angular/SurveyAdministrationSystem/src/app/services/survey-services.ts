@@ -8,33 +8,35 @@ import { Survey } from '../models/survey';
 export class SurveyServices
 {
     private surveys = new Array<SurveySummary>();
-
-    saveSurvey(survey: Survey) {
-        console.log(survey);
-    }
+    private fullSurveys = new Array<Survey>();
 
     getAllSurveysSummary() : Array<SurveySummary>{
-
         this.surveys = [];
 
-        let survey1 = new SurveySummary();
-        survey1.id = 1;
-        survey1.name = "Vida Vacations";
-        survey1.lastModified = "Ene 23, 2020";
-        survey1.status = 1;
-        survey1.statusDescripcion = "Activa";
-        survey1.totalQuestions = 15;
-        survey1.lenguages = 3;
-        survey1.plazas = 6;
-        survey1.owner = true;
-        
-        this.surveys.push(survey1);
+        for(let survey of this.fullSurveys) {
+            
+            let surveySummary = new SurveySummary();
+            surveySummary.id = 1;
+            surveySummary.name = survey.name;
+            surveySummary.lastModified = "Ene 23, 2020";
+            surveySummary.status = 0;
+            surveySummary.statusDescripcion = "Inactiva";
+            surveySummary.totalQuestions = survey.questions.length;
+            surveySummary.lenguages = 1;
+            surveySummary.plazas = survey.squares.length;
+            surveySummary.owner = true;
+            
+            this.surveys.push(surveySummary);
+        }
 
         return this.surveys;
     }
 
-    deleteSurvey(id: number) {
+    saveNewSurvey(newSurvey: Survey) {
+        this.fullSurveys.push(newSurvey);
+    }
 
+    deleteSurvey(id: number) {
         for( var i = 0; i < this.surveys.length; i++){ 
             if ( this.surveys[i].id === id) {
               this.surveys.splice(i, 1); 

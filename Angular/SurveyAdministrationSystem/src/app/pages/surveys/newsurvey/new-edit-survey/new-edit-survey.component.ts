@@ -16,7 +16,7 @@ export class NewEditSurveyComponent implements OnInit, AfterViewInit {
   @ViewChild("surveyName", { read: ElementRef }) surveyName: ElementRef;
 
   constructor(
-    private _questionServices: QuestionServices,
+    public _questionServices: QuestionServices,
     private _viewServices: ViewServices,
     private render: Renderer2
   ) {

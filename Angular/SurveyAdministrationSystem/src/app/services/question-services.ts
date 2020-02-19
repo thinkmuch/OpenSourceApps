@@ -18,7 +18,7 @@ export class QuestionServices
     public hotels: Array<Hotel>;
     public questions: Array<Question>;
     private answers: Array<Answer>;
-    private nameSurvey: string;
+    public nameSurvey: string;
     @Output() rowSelected: EventEmitter<number>;
 
     constructor() {
@@ -27,6 +27,15 @@ export class QuestionServices
         this.rowSelected = new EventEmitter<number>();
         this.squares = new Array<Square>();
         this.hotels = new Array<Hotel>();
+    }
+
+    initialize() {
+        this.language = new Language();
+        this.squares = new Array<Square>();
+        this.hotels = new Array<Hotel>();
+        this.questions = new Array<Question>();
+        this.answers = new Array<Answer>();
+        this.nameSurvey = "";
     }
 
     initializeAnswerObject(idQuestion: number, answerType: AnswerType) {

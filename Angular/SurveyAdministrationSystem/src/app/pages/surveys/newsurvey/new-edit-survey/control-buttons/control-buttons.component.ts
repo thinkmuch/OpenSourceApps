@@ -5,6 +5,7 @@ import { ViewServices } from 'src/app/services/view-services';
 import Swal from 'sweetalert2';
 import { SurveyServices } from 'src/app/services/survey-services';
 import { Survey } from 'src/app/models/survey';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-controlbuttons',
@@ -17,7 +18,8 @@ export class ControlButtonsComponent implements OnInit {
     public _questionServices: QuestionServices,
     private _snackBar: MatSnackBar,
     private _viewServices: ViewServices,
-    private _surveyServices: SurveyServices
+    private _surveyServices: SurveyServices,
+    private _router: Router
   ) { }
 
   ngOnInit() {
@@ -37,8 +39,19 @@ export class ControlButtonsComponent implements OnInit {
     let isSquaresAndHotelsSelected: boolean = this._viewServices.isSquaresAndHotelsSelected();
 
     if(allQuestionCaptured && languageSelected && surveyNameCaptured && isSquaresAndHotelsSelected) {
+
       let newSurvey: Survey = this._questionServices.generateNewSurvey();
-      console.log(newSurvey);
+      this._surveyServices.saveNewSurvey(newSurvey);
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Encuesta guardada',
+        showConfirmButton: false,
+        timer: 1500
+      }).then(() => {
+        this._questionServices.initialize();
+        this._router.navigate(["encuestas"]);
+      });
     }
     else {
       Swal.fire(
