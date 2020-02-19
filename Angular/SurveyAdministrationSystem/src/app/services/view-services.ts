@@ -29,12 +29,24 @@ export class ViewServices {
     this._surveyNameControl = control;
   }
 
+  get SurveyNameControl() {
+    return this._surveyNameControl.nativeElement;
+  }
+
   set languageControl(control: ElementRef) {
     this._languageControl = control;
   }
 
+  get LanguageControl() {
+    return this._languageControl.nativeElement;
+  }
+
   set squaresControl(control: ElementRef) {
     this._squaresControl = control;
+  }
+
+  get SquaresControl() {
+    return this._squaresControl.nativeElement;
   }
   
   isAllQuestionCaptured(): boolean {
@@ -56,7 +68,7 @@ export class ViewServices {
 
     if (language == undefined) {
       result = false;
-      this._renderer.addClass(this._languageControl.nativeElement, Alerts.Danger);
+      this.setInvalidControl(this.LanguageControl);
     }
 
     return result;
@@ -65,9 +77,9 @@ export class ViewServices {
   isSurveyNameCaptured(): boolean {
     let result: boolean = true;
 
-    if(this._surveyNameControl.nativeElement.value.length == 0) {
+    if(this.SurveyNameControl.value.length == 0) {
       result = false;
-      this._renderer.addClass(this._surveyNameControl.nativeElement, Alerts.Danger);
+      this.setInvalidControl(this.SurveyNameControl);
     }
 
     return result;
@@ -76,11 +88,15 @@ export class ViewServices {
   isSquaresAndHotelsSelected(): boolean {
     let result: boolean = true;
 
-    if(this._questionServices.squares.length == 0) {
+    if(this._questionServices.squares.length == 0 && this._questionServices.hotels.length == 0) {
       result = false;
-      this._renderer.addClass(this._squaresControl.nativeElement, Alerts.Danger);
+      this.setInvalidControl(this.SquaresControl);
     }
 
     return result;
+  }
+
+  setInvalidControl(control: any) {
+    this._renderer.addClass(control, Alerts.Danger);
   }
 }
