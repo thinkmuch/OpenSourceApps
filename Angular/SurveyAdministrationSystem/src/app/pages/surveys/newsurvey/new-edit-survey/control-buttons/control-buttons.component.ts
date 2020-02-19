@@ -33,6 +33,11 @@ export class ControlButtonsComponent implements OnInit {
     let surveyNameCaptured: boolean = this._viewServices.isSurveyNameCaptured();
     let isSquaresAndHotelsSelected: boolean = this._viewServices.isSquaresAndHotelsSelected();
 
+    console.log(`allQuestionCaptured = ${allQuestionCaptured}`);
+    console.log(`languageSelected = ${languageSelected}`);
+    console.log(`surveyNameCaptured = ${surveyNameCaptured}`);
+    console.log(`isSquaresAndHotelsSelected = ${isSquaresAndHotelsSelected}`);
+
     if(allQuestionCaptured && languageSelected && surveyNameCaptured && isSquaresAndHotelsSelected) {
       console.log("Encuesta capturada correctamente");
     }

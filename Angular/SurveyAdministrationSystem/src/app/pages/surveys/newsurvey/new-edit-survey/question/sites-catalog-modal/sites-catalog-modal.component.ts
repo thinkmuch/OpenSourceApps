@@ -33,7 +33,7 @@ export class SitesCatalogModalComponent implements OnInit, AfterViewInit {
     let site = this._questionServices.getSite(this.idQuestion);
 
     if(site != undefined && site.id > 0) {
-      this.selectSite(site);
+      this.selectSite(site, true);
       document.getElementById(`Site_${site.id}`).scrollIntoView();
     }
   }
@@ -45,7 +45,7 @@ export class SitesCatalogModalComponent implements OnInit, AfterViewInit {
     this._matDialog.closeAll();
   }
 
-  selectSite(site: Site) {
+  selectSite(site: Site, checked: boolean) {
     let currentSelectedRow = document.getElementsByClassName("active")[0];
 
     if(currentSelectedRow != undefined &&

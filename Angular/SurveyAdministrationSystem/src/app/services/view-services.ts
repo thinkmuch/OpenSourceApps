@@ -88,7 +88,7 @@ export class ViewServices {
   isSquaresAndHotelsSelected(): boolean {
     let result: boolean = true;
 
-    if(this._questionServices.squares.length == 0 && this._questionServices.hotels.length == 0) {
+    if(this._questionServices.squares.length == 0 || this._questionServices.hotels.length == 0) {
       result = false;
       this.setInvalidControl(this.SquaresControl);
     }
