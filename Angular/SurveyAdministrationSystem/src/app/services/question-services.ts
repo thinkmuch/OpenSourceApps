@@ -666,6 +666,7 @@ export class QuestionServices
         this.answers.push(answer13);
         this.answers.push(answer14);
 
+        /*
         return this.answers.sort((a, b) => {
             if (a.resumeName > b.resumeName) {
                 return 1;
@@ -675,6 +676,9 @@ export class QuestionServices
             }
             return 0;
         });
+        */
+
+        return this.answers;
     }
 }
 
