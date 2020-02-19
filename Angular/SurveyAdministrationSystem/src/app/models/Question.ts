@@ -8,4 +8,5 @@ export class Question {
     site: Site;
     forceResponse: boolean;
     acceptNA: boolean;
+    justifyAnswer: boolean;
 }

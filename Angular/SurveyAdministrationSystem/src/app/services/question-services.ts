@@ -41,6 +41,18 @@ export class QuestionServices
         this.questions[index].answer.answerOptions.push(new AnswerOption());
     }
 
+    generateNewSurvey(): Survey {
+        let newSurvey: Survey = new Survey();
+
+        newSurvey.name = this.nameSurvey;
+        newSurvey.language = this.language;
+        newSurvey.squares = this.squares;
+        newSurvey.hotels = this.hotels;
+        newSurvey.questions = this.questions;
+
+        return newSurvey;
+    }
+
     getLanguageSelected(): Language {
         return this.language;
     }
@@ -166,6 +178,11 @@ export class QuestionServices
     setAcceptNA(idQuestion: number, acceptNA: boolean) {
         let index = idQuestion - 1;
         this.questions[index].acceptNA = acceptNA;
+    }
+
+    setJustifyAnswer(idQuestion: number, justify: boolean) {
+        let index = idQuestion - 1;
+        this.questions[index].justifyAnswer = justify;
     }
 
     getAnswers() : Array<Answer> {

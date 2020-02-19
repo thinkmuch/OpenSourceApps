@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { QuestionServices } from 'src/app/services/question-services';
 import { Answer } from 'src/app/models/answer';
 
@@ -13,10 +13,13 @@ export class DropdownPredefinedAnswerComponent implements OnInit {
   @Input('answerNameInput') answerName: string;
   @Input('answersInput') answers: Array<Answer>;
   @Input('disablePredefinedInput') disablePredefined: boolean;
+  @Output('selectPredefinedAnswerOutput') onSelectPredefinedAnswerEmitter: EventEmitter<boolean>;
 
   constructor(
     private _questionServices: QuestionServices
-  ) { }
+  ) { 
+    this.onSelectPredefinedAnswerEmitter = new EventEmitter<boolean>();
+  }
 
   ngOnInit() {
   }
@@ -28,6 +31,7 @@ export class DropdownPredefinedAnswerComponent implements OnInit {
   onSelectPredefinedAnswer(answer: Answer) {
     if(this.isQuestionSelected()) {
       this._questionServices.setPredefinedAnswer(this.idQuestionSelected, answer);
+      this.onSelectPredefinedAnswerEmitter.emit(true);
     }
   }
 }

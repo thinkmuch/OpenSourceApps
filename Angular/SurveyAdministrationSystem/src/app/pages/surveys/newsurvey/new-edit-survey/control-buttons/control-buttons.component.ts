@@ -3,6 +3,8 @@ import { QuestionServices } from 'src/app/services/question-services';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ViewServices } from 'src/app/services/view-services';
 import Swal from 'sweetalert2';
+import { SurveyServices } from 'src/app/services/survey-services';
+import { Survey } from 'src/app/models/survey';
 
 @Component({
   selector: 'app-controlbuttons',
@@ -14,7 +16,8 @@ export class ControlButtonsComponent implements OnInit {
   constructor(
     public _questionServices: QuestionServices,
     private _snackBar: MatSnackBar,
-    private _viewServices: ViewServices
+    private _viewServices: ViewServices,
+    private _surveyServices: SurveyServices
   ) { }
 
   ngOnInit() {
@@ -34,7 +37,8 @@ export class ControlButtonsComponent implements OnInit {
     let isSquaresAndHotelsSelected: boolean = this._viewServices.isSquaresAndHotelsSelected();
 
     if(allQuestionCaptured && languageSelected && surveyNameCaptured && isSquaresAndHotelsSelected) {
-      console.log("Encuesta capturada correctamente");
+      let newSurvey: Survey = this._questionServices.generateNewSurvey();
+      console.log(newSurvey);
     }
     else {
       Swal.fire(

@@ -17,7 +17,8 @@
     [idQuestionSelectedInput]="idQuestionSelected"
     [answerNameInput]="answerName"
     [answersInput]="answers"
-    [disablePredefinedInput]="disablePredefined"></app-dropdown-predefined-answer>
+    [disablePredefinedInput]="disablePredefined"
+    (selectPredefinedAnswerOutput)="showJustifyAnswerControl($event)"></app-dropdown-predefined-answer>
 
     <div class="row mt-20px">
         <div class="radio">
@@ -65,11 +66,13 @@
         #matCheckAcceptNA>
         <label class="form-check-label pointer" for="inputCheckAcceptNA">Aceptar NA</label>
     </div>
-    <div class="row ml-5px">
+    <div class="row ml-5px" [hidden]="!justifyAnswerVisible">
         <input
         class="form-check-input pointer"
         id="checkJustifyAnswer"
-        type="checkbox">
+        type="checkbox"
+        (change)="onChangeJustifyAnswer(justifyAnswerInput.checked)"
+        #justifyAnswerInput>
         <label class="form-check-label pointer" for="checkJustifyAnswer">Justificar respuesta</label>
     </div>
 </div>
