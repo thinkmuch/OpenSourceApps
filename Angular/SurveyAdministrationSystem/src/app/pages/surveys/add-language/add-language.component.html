@@ -1,3 +1,11 @@
+<div class="row d-flex justify-content-end">
+  <button 
+  class="btn btn-outline-danger btn-sm mr-15px mb-5px"
+  (click)="navigateTo('encuestas')">
+    <i class="fas fa-arrow-left"></i>
+    Regresar
+  </button>
+</div>
 <div class="dropdown">
   <button class="btn btn-info dropdown-toggle w-300px" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <span *ngIf="languageSelected == undefined">Seleccione el nuevo idioma</span>
@@ -15,12 +23,12 @@
   <thead>
     <tr>
       <th scope="col" class="text-center">{{this.defaultQuestions.lenguage.language}}</th>
-      <th scope="col" class="text-center">{{languageSelected.language}}</th>
+      <th scope="col" class="text-center">{{languageSelected?.language}}</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let question of defaultQuestions.questions">
-      <th scope="row">{{question.text}}</th>
+      <td>{{question.text}}</td>
       <td>
         <input class="form-control">
       </td>

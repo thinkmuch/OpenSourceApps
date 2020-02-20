@@ -61,4 +61,8 @@ export class ControlButtonsComponent implements OnInit {
       )
     }
   }
+
+  navigateTo(path: string) {
+    this._router.navigate([path]);
+  }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LanguageServices } from 'src/app/services/language-services';
 import { Language } from 'src/app/models/laguage';
 import { Question } from 'src/app/models/question';
@@ -22,11 +22,18 @@ export class AddLanguageComponent implements OnInit {
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _languageServices: LanguageServices,
-    private _surveyServices: SurveyServices
+    private _surveyServices: SurveyServices,
+    private _router: Router
   ) { 
     this.surveyId = parseInt(this._activatedRoute.snapshot.paramMap.get("id"));
-    this.languages = this._languageServices.getAll();
     this.defaultQuestions = this._surveyServices.getDefaultquestionById(this.surveyId);
+    this.languages = new Array<Language>();
+
+    this._languageServices.getAll().forEach(language => {
+      if(language.id != this.defaultQuestions.lenguage.id) {
+        this.languages.push(language);
+      }
+    });
   }
 
   ngOnInit() {
@@ -34,5 +41,9 @@ export class AddLanguageComponent implements OnInit {
 
   onSelectLanguage(language: Language) {
     this.languageSelected = language;
+  }
+
+  navigateTo(path: string) {
+    this._router.navigate([path]);
   }
 }
