@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, ContentChildren } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LanguageServices } from 'src/app/services/language-services';
 import { Language } from 'src/app/models/laguage';
-import { Question } from 'src/app/models/question';
 import { SurveyServices } from 'src/app/services/survey-services';
 import { QuestionsByLanguage } from 'src/app/models/questions-by-language';
+import { NgForm } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-language',
@@ -27,13 +28,7 @@ export class AddLanguageComponent implements OnInit {
   ) { 
     this.surveyId = parseInt(this._activatedRoute.snapshot.paramMap.get("id"));
     this.defaultQuestions = this._surveyServices.getDefaultquestionById(this.surveyId);
-    this.languages = new Array<Language>();
-
-    this._languageServices.getAll().forEach(language => {
-      if(language.id != this.defaultQuestions.lenguage.id) {
-        this.languages.push(language);
-      }
-    });
+    this.languages = this._languageServices.getAll();
   }
 
   ngOnInit() {
@@ -45,5 +40,26 @@ export class AddLanguageComponent implements OnInit {
 
   navigateTo(path: string) {
     this._router.navigate([path]);
+  }
+
+  saveQuestions(formQuestions: NgForm) {
+
+    if(formQuestions.invalid) {
+      Swal.fire(
+        'Datos incompletos',
+        'Debe capturar todas las preguntas',
+        'warning'
+      );
+    }
+    else {
+      Swal.fire({
+        icon: 'success',
+        title: 'Preguntas guardadas',
+        showConfirmButton: false,
+        timer: 1500
+      }).then(() => {
+        this._router.navigate(["encuestas"]);
+      });
+    }
   }
 }
