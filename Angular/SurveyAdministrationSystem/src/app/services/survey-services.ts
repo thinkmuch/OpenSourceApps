@@ -35,7 +35,7 @@ export class SurveyServices
             surveySummary.status = 0;
             surveySummary.statusDescripcion = "Inactiva";
             surveySummary.totalQuestions = survey.questions.length;
-            surveySummary.lenguages = 1;
+            surveySummary.lenguages = this.getTotalLAnguagesBySurvey(survey.id);
             surveySummary.plazas = survey.squares.length;
             surveySummary.hoteles = survey.hotels.length;
             surveySummary.owner = true;
@@ -44,6 +44,22 @@ export class SurveyServices
         }
 
         return this.surveys;
+    }
+
+    getTotalLAnguagesBySurvey(surveyId: number): number {
+        let totalLAnguages: number = 0;
+
+        if(localStorage.questionsByLanguage) {
+            this.questionsByLanguage = JSON.parse(localStorage.questionsByLanguage);
+        }
+
+        this.questionsByLanguage.forEach(language => {
+            if(language.surveyId == surveyId) {
+                totalLAnguages++;
+            }
+        });
+
+        return totalLAnguages;
     }
 
     saveNewSurvey(newSurvey: Survey) {

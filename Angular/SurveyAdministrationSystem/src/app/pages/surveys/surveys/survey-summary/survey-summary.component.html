@@ -21,7 +21,8 @@
   </div>
   <div class="col text-center">
     <label class="mb-0 fw-600">{{summaryInput.lenguages}}</label>
-    <small class="form-text text-muted">Idiomas</small>
+    <small class="form-text text-muted" *ngIf="summaryInput.lenguages > 1">Idiomas</small>
+    <small class="form-text text-muted" *ngIf="summaryInput.lenguages == 1">Idioma</small>
   </div>
   <div class="col text-center">
     <label class="mb-0 fw-600">{{summaryInput.plazas}}</label>

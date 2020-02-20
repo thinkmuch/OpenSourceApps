@@ -6,20 +6,30 @@
     Regresar
   </button>
 </div>
-<div class="dropdown">
-  <button class="btn btn-info dropdown-toggle w-300px" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <span *ngIf="languageSelected == undefined">Seleccione el nuevo idioma</span>
-    <span *ngIf="languageSelected != undefined && languageSelected.id > 0">{{languageSelected.language}}</span>
-  </button>
-  <div class="dropdown-menu w-300px" aria-labelledby="dropdownMenuButton">
-    <a
-    class="dropdown-item"
-    *ngFor="let language of languages"
-    (click)="onSelectLanguage(language)">{{language.language}}</a>
+<div class="row">
+  <div class="col">
+    <div class="dropdown">
+      <button class="btn btn-info dropdown-toggle w-300px" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span *ngIf="languageSelected == undefined">Seleccione el nuevo idioma</span>
+        <span *ngIf="languageSelected != undefined && languageSelected.id > 0">{{languageSelected.language}}</span>
+      </button>
+      <div class="dropdown-menu w-300px" aria-labelledby="dropdownMenuButton">
+        <a
+        class="dropdown-item"
+        *ngFor="let language of languages"
+        (click)="onSelectLanguage(language)">{{language.language}}</a>
+      </div>
+    </div>
+  </div>
+  <div class="col text-right">
+    <button 
+      class="btn btn btn-primary fz-14px" >
+        <i class="far fa-save"></i>
+        Guardar
+    </button>
   </div>
 </div>
-<hr>
-<table class="table">
+<table class="table" id="questionsTable">
   <thead>
     <tr>
       <th scope="col" class="text-center">{{this.defaultQuestions.lenguage.language}}</th>
