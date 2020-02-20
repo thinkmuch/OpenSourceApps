@@ -4,6 +4,7 @@ import { LanguageServices } from 'src/app/services/language-services';
 import { Language } from 'src/app/models/laguage';
 import { Question } from 'src/app/models/question';
 import { SurveyServices } from 'src/app/services/survey-services';
+import { QuestionsByLanguage } from 'src/app/models/questions-by-language';
 
 @Component({
   selector: 'app-add-language',
@@ -15,7 +16,7 @@ export class AddLanguageComponent implements OnInit {
   surveyId: number;
   languages: Array<Language>;
   languageSelected: Language;
-  defaultQuestions: Array<Question>;
+  defaultQuestions: QuestionsByLanguage;
   languageDefault: Language;
 
   constructor(
@@ -25,6 +26,7 @@ export class AddLanguageComponent implements OnInit {
   ) { 
     this.surveyId = parseInt(this._activatedRoute.snapshot.paramMap.get("id"));
     this.languages = this._languageServices.getAll();
+    this.defaultQuestions = this._surveyServices.getDefaultquestionById(this.surveyId);
   }
 
   ngOnInit() {

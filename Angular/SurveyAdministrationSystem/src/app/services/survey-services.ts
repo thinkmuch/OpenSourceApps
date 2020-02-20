@@ -2,6 +2,7 @@ import { SurveySummary } from '../models/survey-summary';
 import { Injectable } from '@angular/core';
 import { Survey } from '../models/survey';
 import { QuestionsByLanguage } from '../models/questions-by-language';
+import { Question } from '../models/question';
 
 @Injectable({
     providedIn: 'root'
@@ -71,5 +72,19 @@ export class SurveyServices
               this.surveys.splice(i, 1); 
             }
          }
+    }
+
+    getDefaultquestionById(surveyId: number): QuestionsByLanguage {
+
+        let questions = new QuestionsByLanguage();
+        this.questionsByLanguage = JSON.parse(localStorage.questionsByLanguage);
+
+        this.questionsByLanguage.forEach(item => {
+            if(item.surveyId == surveyId) {
+                questions = item;
+            }
+        });
+
+        return questions;
     }
 }

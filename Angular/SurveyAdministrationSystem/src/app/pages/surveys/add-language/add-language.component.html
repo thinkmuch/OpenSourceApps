@@ -11,3 +11,19 @@
   </div>
 </div>
 <hr>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col" class="text-center">{{this.defaultQuestions.lenguage.language}}</th>
+      <th scope="col" class="text-center">{{languageSelected.language}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let question of defaultQuestions.questions">
+      <th scope="row">{{question.text}}</th>
+      <td>
+        <input class="form-control">
+      </td>
+    </tr>
+  </tbody>
+</table>
