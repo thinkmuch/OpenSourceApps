@@ -1,6 +1,7 @@
 import { SurveySummary } from '../models/survey-summary';
 import { Injectable } from '@angular/core';
 import { Survey } from '../models/survey';
+import { QuestionsByLanguage } from '../models/questions-by-language';
 
 @Injectable({
     providedIn: 'root'
@@ -9,9 +10,11 @@ export class SurveyServices
 {
     private surveys = new Array<SurveySummary>();
     public fullSurveys = new Array<Survey>();
+    private questionsByLanguage: Array<QuestionsByLanguage>;
 
     constructor() { 
         this.fullSurveys = new Array<Survey>();
+        this.questionsByLanguage = new Array<QuestionsByLanguage>();
     }
 
     getAllSurveysSummary() : Array<SurveySummary>{
@@ -19,14 +22,13 @@ export class SurveyServices
 
         if(localStorage.fullSurveys) {
             let arraySurveys = JSON.parse(localStorage.fullSurveys);
-            console.log(arraySurveys);
-            console.log(arraySurveys.length);
+            this.fullSurveys = arraySurveys;
         }
 
         for(let survey of this.fullSurveys) {
             
             let surveySummary = new SurveySummary();
-            surveySummary.id = 1;
+            surveySummary.id = survey.id;
             surveySummary.name = survey.name;
             surveySummary.lastModified = "Ene 23, 2020";
             surveySummary.status = 0;
@@ -44,8 +46,23 @@ export class SurveyServices
     }
 
     saveNewSurvey(newSurvey: Survey) {
+
+        if(localStorage.questionsByLanguage) {
+            this.questionsByLanguage = JSON.parse(localStorage.questionsByLanguage);
+        }
+
+        newSurvey.id = this.questionsByLanguage.length + 1;
+
         this.fullSurveys.push(newSurvey);
         localStorage.fullSurveys = JSON.stringify(this.fullSurveys);
+
+        let questions = new QuestionsByLanguage();
+        questions.surveyId = newSurvey.id;
+        questions.lenguage = newSurvey.language;
+        questions.questions = newSurvey.questions;
+
+        this.questionsByLanguage.push(questions);
+        localStorage.questionsByLanguage = JSON.stringify(this.questionsByLanguage);
     }
 
     deleteSurvey(id: number) {
