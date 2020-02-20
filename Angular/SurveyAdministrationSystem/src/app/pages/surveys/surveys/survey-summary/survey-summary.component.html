@@ -1,9 +1,12 @@
 <div class="row pointer bb-1 pdtb-10 bkgrnd">
-  <div class="col-md-6">
+  <div class="col text-center">
+    <label class="mb-0 fw-600">{{summaryInput.id}}</label>
+    <small class="form-text text-muted">ID</small>
+  </div>
+  <div class="col-md-5">
     <label class="mb-0 fw-600">
       {{summaryInput.name}}
       <span class="badge badge-primary fw-500 pointer" *ngIf="summaryInput.owner == true">Owner</span>
-      
     </label>
     <small class="form-text text-muted">Modificado {{summaryInput.lastModified}}</small>
   </div>
@@ -24,6 +27,11 @@
     <label class="mb-0 fw-600">{{summaryInput.plazas}}</label>
     <small class="form-text text-muted" *ngIf="summaryInput.plazas > 1">Plazas</small>
     <small class="form-text text-muted" *ngIf="summaryInput.plazas == 1">Plaza</small>
+  </div>
+  <div class="col text-center">
+    <label class="mb-0 fw-600">{{summaryInput.hoteles}}</label>
+    <small class="form-text text-muted" *ngIf="summaryInput.plazas > 1">Hoteles</small>
+    <small class="form-text text-muted" *ngIf="summaryInput.plazas == 1">Hotel</small>
   </div>
   <div class="col">
     <div class="text-right">

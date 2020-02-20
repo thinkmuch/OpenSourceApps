@@ -1,5 +1,5 @@
 <div class="btn-group dropleft" *ngIf="surveyInput.owner">
-  <mat-icon aria-hidden="false" [matMenuTriggerFor]="menu" class="pointer">drag_indicator</mat-icon>
+  <mat-icon aria-hidden="false" [matMenuTriggerFor]="menu" class="pointer">more_vert</mat-icon>
   <mat-menu #menu="matMenu">
     <div class="pointer item-menu-question">
       <a class="dropdown-item" *ngIf="surveyInput.status == 1"><i class="far fa-edit blue-1"></i>   Editar</a>
@@ -12,6 +12,9 @@
     </div>
     <div class="pointer item-menu-question">
       <a class="dropdown-item"><i class="fas fa-user-plus purple"></i>   Delegar</a>
+    </div>
+    <div class="pointer item-menu-question">
+      <a class="dropdown-item" [routerLink]="['/encuestas', surveyInput.id, 'idioma']"><i class="fas fa-globe blue-success"></i>   Agregar idioma</a>
     </div>
   </mat-menu>
 </div>

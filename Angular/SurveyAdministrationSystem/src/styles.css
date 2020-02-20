@@ -121,3 +121,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .cursorDefault {
     cursor: default;
 }
+
+.blue-success {
+    color: #027dff;
+}
+
+.w-300px {
+    width: 300px;
+}

@@ -8,5 +8,6 @@ export class SurveySummary
     totalQuestions: number;
     lenguages: number;
     plazas: number;
+    hoteles: number;
     owner: boolean;
 }

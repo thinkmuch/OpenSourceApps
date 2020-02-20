@@ -5,7 +5,7 @@ import { Language } from '../models/laguage';
     providedIn: 'root'
 })
 export class LanguageServices {
-
+    
     constructor() {}
 
     getAll(): Array<Language> {

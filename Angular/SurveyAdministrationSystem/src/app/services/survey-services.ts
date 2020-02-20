@@ -8,10 +8,20 @@ import { Survey } from '../models/survey';
 export class SurveyServices
 {
     private surveys = new Array<SurveySummary>();
-    private fullSurveys = new Array<Survey>();
+    public fullSurveys = new Array<Survey>();
+
+    constructor() { 
+        this.fullSurveys = new Array<Survey>();
+    }
 
     getAllSurveysSummary() : Array<SurveySummary>{
         this.surveys = [];
+
+        if(localStorage.fullSurveys) {
+            let arraySurveys = JSON.parse(localStorage.fullSurveys);
+            console.log(arraySurveys);
+            console.log(arraySurveys.length);
+        }
 
         for(let survey of this.fullSurveys) {
             
@@ -24,6 +34,7 @@ export class SurveyServices
             surveySummary.totalQuestions = survey.questions.length;
             surveySummary.lenguages = 1;
             surveySummary.plazas = survey.squares.length;
+            surveySummary.hoteles = survey.hotels.length;
             surveySummary.owner = true;
             
             this.surveys.push(surveySummary);
@@ -34,6 +45,7 @@ export class SurveyServices
 
     saveNewSurvey(newSurvey: Survey) {
         this.fullSurveys.push(newSurvey);
+        localStorage.fullSurveys = JSON.stringify(this.fullSurveys);
     }
 
     deleteSurvey(id: number) {

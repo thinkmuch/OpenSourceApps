@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SurveysComponent } from './pages/surveys/surveys/surveys.component';
 import { NewEditSurveyComponent } from './pages/surveys/newsurvey/new-edit-survey/new-edit-survey.component';
+import { AddLanguageComponent } from './pages/surveys/add-language/add-language.component';
 
 const routes: Routes = [
   { 
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'encuesta/nueva',
     component: NewEditSurveyComponent
+  },
+  {
+    path: 'encuestas/:id/idioma',
+    component: AddLanguageComponent
   },
   { 
     path: '**', 
