@@ -3,6 +3,8 @@ import { Answer } from 'src/app/models/answer';
 import { QuestionServices, AnswerType } from 'src/app/services/question-services';
 import { AnswerServices } from 'src/app/services/answer-services';
 import { Question } from 'src/app/models/question';
+import { AreasServices } from 'src/app/services/areas-services';
+import { Area } from 'src/app/models/area';
 
 @Component({
   selector: 'app-answer-types-catalog',
@@ -13,12 +15,14 @@ export class AnswerTypesCatalogComponent implements OnInit, AfterViewInit {
 
   public disablePredefined: boolean;
   public answers: Array<Answer>;
+  public areas: Array<Area>;
   public idQuestionSelected: number;
   public answerName: string;
   public isAnswerTypeCatalogsVisible: boolean;
   public checkedAcceptNA: boolean;
   public checkedForceResponse: boolean;
   public justifyAnswerVisible: boolean;
+  public areaSelected: Area;
 
   @ViewChild("checkPredefinedAnswer", {read: ElementRef }) checkSingeAnswer: ElementRef;
   @ViewChild("checkFreeText", {read: ElementRef }) checkFreeText: ElementRef;
@@ -30,8 +34,11 @@ export class AnswerTypesCatalogComponent implements OnInit, AfterViewInit {
   constructor(
     private _questionServices: QuestionServices,
     private _answerServices: AnswerServices,
+    private _areasServices: AreasServices,
     private _renderer: Renderer2
-  ) {
+  ) { }
+
+  ngOnInit() {
     this.answerName = "";
     this.disablePredefined = false;
     this.isAnswerTypeCatalogsVisible = false;
@@ -39,6 +46,7 @@ export class AnswerTypesCatalogComponent implements OnInit, AfterViewInit {
     this.checkedForceResponse = false;
     this.justifyAnswerVisible = false;
     this.answers = new Array<Answer>();
+    this.areaSelected = new Area();
 
     this._questionServices.rowSelected.subscribe(idQuestion => {
       this.idQuestionSelected = idQuestion;
@@ -49,9 +57,12 @@ export class AnswerTypesCatalogComponent implements OnInit, AfterViewInit {
       this.setSelectedAnswer(question);
     });
 
-    this._answerServices.showOptions.subscribe(visible => {
+    this._answerServices.showOptions.subscribe((visible: boolean) => {
       this.isAnswerTypeCatalogsVisible = visible;
     })
+
+    this.areas = this._areasServices.getAllAreas();
+    this.answers = this._questionServices.getAnswers();
   }
 
   ngAfterViewInit() {
@@ -154,10 +165,12 @@ export class AnswerTypesCatalogComponent implements OnInit, AfterViewInit {
     this.setAcceptNA(question);
     this.setForceResponse(question);
     this.setJustifyAnswer(question);
+    this.setArea(question);
   }
 
-  ngOnInit() {
-    this.answers = this._questionServices.getAnswers();
+  setArea(question: Question) {
+    console.log(question.area);
+    this.areaSelected = question.area;
   }
 
   isQuestionSelected() {
@@ -188,5 +201,10 @@ export class AnswerTypesCatalogComponent implements OnInit, AfterViewInit {
     if(this.isQuestionSelected()) {
       this._questionServices.setAcceptNA(this.idQuestionSelected, checked);
     }
+  }
+
+  onSelectArea(area: Area) {
+    this.areaSelected = area;
+    this._questionServices.setArea(this.idQuestionSelected, area);
   }
 }

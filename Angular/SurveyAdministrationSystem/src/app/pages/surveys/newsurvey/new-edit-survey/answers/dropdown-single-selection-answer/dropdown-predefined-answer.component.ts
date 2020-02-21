@@ -30,6 +30,7 @@ export class DropdownPredefinedAnswerComponent implements OnInit {
 
   onSelectPredefinedAnswer(answer: Answer) {
     if(this.isQuestionSelected()) {
+      this.answerName = answer.resumeName;
       this._questionServices.setPredefinedAnswer(this.idQuestionSelected, answer);
       this.onSelectPredefinedAnswerEmitter.emit(true);
     }

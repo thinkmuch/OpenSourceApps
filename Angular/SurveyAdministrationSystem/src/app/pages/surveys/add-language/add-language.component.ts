@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild, ContentChildren } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LanguageServices } from 'src/app/services/language-services';
 import { Language } from 'src/app/models/laguage';
@@ -24,12 +24,15 @@ export class AddLanguageComponent implements OnInit {
     private _activatedRoute: ActivatedRoute,
     private _surveyServices: SurveyServices,
     private _languageServices: LanguageServices,
-    private _router: Router
+    private _router: Router,
   ) { 
     this.surveyId = parseInt(this._activatedRoute.snapshot.paramMap.get("id"));
     this.languages = this._languageServices.getAll();
     this.defaultQuestionsText = this._surveyServices.getQuestionsBySurveyId(this.surveyId);
-    this.surveyName = "La Cantina";
+    
+    this._activatedRoute.queryParams.subscribe(params => {
+      this.surveyName = params['name'];
+    });
   }
 
   ngOnInit() {

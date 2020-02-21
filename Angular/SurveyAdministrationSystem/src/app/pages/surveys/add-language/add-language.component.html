@@ -1,11 +1,19 @@
 <div class="animated fadeIn faster">
   <form #formQuestions="ngForm" (ngSubmit)="saveQuestions(formQuestions)" novalidate="novalidate" name="formQuestions">
-    <label>Encuesta: {{surveyName}}</label>
-    <div class="row d-flex justify-content-end">
-      <button class="btn btn-outline-danger btn-sm mr-15px mb-5px" (click)="navigateTo('encuestas')">
-        <i class="fas fa-arrow-left"></i>
-        Regresar
-      </button>
+    <div class="row">
+      <div class="col">
+        <label><strong>ID: </strong>{{surveyId}}</label>
+        <br>
+        <label><strong>Encuesta: </strong>{{surveyName}}</label>
+      </div>
+      <div class="col">
+        <div class="row d-flex justify-content-end">
+          <button class="btn btn-outline-danger btn-sm mr-15px mb-5px" (click)="navigateTo('encuestas')">
+            <i class="fas fa-arrow-left"></i>
+            Regresar
+          </button>
+        </div>
+      </div>
     </div>
     <div class="row">
       <div class="col text-right">

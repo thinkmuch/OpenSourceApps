@@ -1,5 +1,6 @@
 import { Answer } from './answer';
 import { Site } from './site'
+import { Area } from './area';
 
 export class Question {
     id: number;
@@ -9,4 +10,5 @@ export class Question {
     forceResponse: boolean;
     acceptNA: boolean;
     justifyAnswer: boolean;
+    area: Area;
 }

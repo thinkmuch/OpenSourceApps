@@ -7,6 +7,7 @@ import { Language } from '../models/laguage';
 import { Square } from '../models/square';
 import { Hotel } from '../models/hotel';
 import { Survey } from '../models/survey';
+import { Area } from '../models/area';
 
 @Injectable({
     providedIn: 'root'
@@ -192,6 +193,11 @@ export class QuestionServices
     setJustifyAnswer(idQuestion: number, justify: boolean) {
         let index = idQuestion - 1;
         this.questions[index].justifyAnswer = justify;
+    }
+
+    setArea(idQuestion: number, area: Area) {
+        let index = idQuestion - 1;
+        this.questions[index].area = area;
     }
 
     getAnswers() : Array<Answer> {

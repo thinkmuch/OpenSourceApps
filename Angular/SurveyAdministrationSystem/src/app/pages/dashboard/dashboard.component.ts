@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SquareServices } from 'src/app/services/square-services';
 import { Square } from 'src/app/models/square';
+import { Hotel } from 'src/app/models/hotel';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,11 +11,10 @@ import { Square } from 'src/app/models/square';
 export class DashboardComponent implements OnInit {
 
   squares: Array<Square>;
-
   constructor(
     private _squaresServices: SquareServices
   ) { 
-    this.squares = this._squaresServices.getAllSquares()
+    this.squares = this._squaresServices.getAllSquares();
   }
 
   ngOnInit() {

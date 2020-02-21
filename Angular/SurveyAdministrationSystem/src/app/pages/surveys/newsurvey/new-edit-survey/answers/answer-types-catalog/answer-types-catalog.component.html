@@ -12,14 +12,12 @@
                 #checkPredefinedAnswer> Predefinida</label>
         </div>
     </div>
-
     <app-dropdown-predefined-answer 
     [idQuestionSelectedInput]="idQuestionSelected"
     [answerNameInput]="answerName"
     [answersInput]="answers"
     [disablePredefinedInput]="disablePredefined"
     (selectPredefinedAnswerOutput)="showJustifyAnswerControl($event)"></app-dropdown-predefined-answer>
-
     <div class="row mt-20px">
         <div class="radio">
             <label class="pointer">
@@ -33,7 +31,6 @@
                 #checkFreeText> Texto libre</label>
         </div>
     </div>
-
     <div class="row">
         <div class="radio disabled">
             <label class="pointer">
@@ -74,5 +71,17 @@
         (change)="onChangeJustifyAnswer(justifyAnswerInput.checked)"
         #justifyAnswerInput>
         <label class="form-check-label pointer" for="checkJustifyAnswer">Justificar respuesta</label>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="btn-group w-100">
+            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span *ngIf="areaSelected == undefined">Seleccione el área</span>
+              <span *ngIf="areaSelected != undefined && areaSelected.id > 0">{{areaSelected.area}}</span>
+            </button>
+            <div class="dropdown-menu scrollable-menu w-100 mh-374px pointer">
+                <a class="dropdown-item" *ngFor="let area of areas" (click)="onSelectArea(area)">{{area.area}}</a>
+            </div>
+          </div>
     </div>
 </div>

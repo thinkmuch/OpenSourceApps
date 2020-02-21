@@ -13,7 +13,9 @@
     <div class="pointer item-menu-question">
       <a 
       class="dropdown-item" 
-      (click)="goToEditQuestionText(surveyInput.id)"><i class="fas fa-globe blue-success"></i>   Agregar idioma</a>
+      [routerLink]="['/encuestas', surveyInput.id, 'idioma']"
+      [queryParams]="{ name: surveyInput.name}">
+      <i class="fas fa-globe blue-success"></i>   Agregar idioma</a>
     </div>
     <div class="pointer item-menu-question">
       <a class="dropdown-item"><i class="fas fa-edit c-orange"></i>   Editar</a>
