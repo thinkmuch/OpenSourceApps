@@ -2,7 +2,7 @@ import { SurveySummary } from '../models/survey-summary';
 import { Injectable } from '@angular/core';
 import { Survey } from '../models/survey';
 import { QuestionsByLanguage } from '../models/questions-by-language';
-import { Question } from '../models/question';
+import { QuestionText } from '../models/question-text';
 
 @Injectable({
     providedIn: 'root'
@@ -35,7 +35,7 @@ export class SurveyServices
             surveySummary.status = 0;
             surveySummary.statusDescripcion = "Inactiva";
             surveySummary.totalQuestions = survey.questions.length;
-            surveySummary.lenguages = this.getTotalLAnguagesBySurvey(survey.id);
+            surveySummary.lenguages = 1;
             surveySummary.plazas = survey.squares.length;
             surveySummary.hoteles = survey.hotels.length;
             surveySummary.owner = true;
@@ -46,24 +46,7 @@ export class SurveyServices
         return this.surveys;
     }
 
-    getTotalLAnguagesBySurvey(surveyId: number): number {
-        let totalLAnguages: number = 0;
-
-        if(localStorage.questionsByLanguage) {
-            this.questionsByLanguage = JSON.parse(localStorage.questionsByLanguage);
-        }
-
-        this.questionsByLanguage.forEach(language => {
-            if(language.surveyId == surveyId) {
-                totalLAnguages++;
-            }
-        });
-
-        return totalLAnguages;
-    }
-
     saveNewSurvey(newSurvey: Survey) {
-
         if(localStorage.questionsByLanguage) {
             this.questionsByLanguage = JSON.parse(localStorage.questionsByLanguage);
         }
@@ -73,12 +56,30 @@ export class SurveyServices
         this.fullSurveys.push(newSurvey);
         localStorage.fullSurveys = JSON.stringify(this.fullSurveys);
 
-        let questions = new QuestionsByLanguage();
-        questions.surveyId = newSurvey.id;
-        questions.lenguage = newSurvey.language;
-        questions.questions = newSurvey.questions;
+        this.saveQuestionText(newSurvey);
+    }
 
-        this.questionsByLanguage.push(questions);
+    saveQuestionTextByLanguage(questionText: QuestionsByLanguage) {
+        let questionsText = JSON.stringify(this.questionsByLanguage);
+        console.log(questionsText);
+    }
+
+    saveQuestionText(newSurvey: Survey) {
+        let questionsText = new QuestionsByLanguage();
+
+        questionsText.surveyId = newSurvey.id;
+        questionsText.lenguage = newSurvey.language;
+        questionsText.questionsText = new Array<QuestionText>();
+
+        for(let i = 0; i < newSurvey.questions.length; i++) {
+
+            let questionText = new QuestionText();
+            questionText.id = newSurvey.questions[i].id;
+            questionText.text = newSurvey.questions[i].text;
+            questionsText.questionsText.push(questionText);
+        }
+
+        this.questionsByLanguage.push(questionsText);
         localStorage.questionsByLanguage = JSON.stringify(this.questionsByLanguage);
     }
 
@@ -90,8 +91,7 @@ export class SurveyServices
          }
     }
 
-    getDefaultquestionById(surveyId: number): QuestionsByLanguage {
-
+    getQuestionsBySurveyId(surveyId: number): QuestionsByLanguage {
         let questions = new QuestionsByLanguage();
         this.questionsByLanguage = JSON.parse(localStorage.questionsByLanguage);
 

@@ -1,8 +1,8 @@
 import { Language } from './laguage';
-import { Question } from './question';
+import { QuestionText } from './question-text';
 
 export class QuestionsByLanguage {
     surveyId: number;
     lenguage: Language;
-    questions: Array<Question>;
+    questionsText: Array<QuestionText>;
 }

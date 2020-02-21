@@ -16,19 +16,18 @@ export class AddLanguageComponent implements OnInit {
 
   surveyId: number;
   languages: Array<Language>;
+  defaultQuestionsText: QuestionsByLanguage;
   languageSelected: Language;
-  defaultQuestions: QuestionsByLanguage;
-  languageDefault: Language;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
-    private _languageServices: LanguageServices,
     private _surveyServices: SurveyServices,
+    private _languageServices: LanguageServices,
     private _router: Router
   ) { 
     this.surveyId = parseInt(this._activatedRoute.snapshot.paramMap.get("id"));
-    this.defaultQuestions = this._surveyServices.getDefaultquestionById(this.surveyId);
     this.languages = this._languageServices.getAll();
+    this.defaultQuestionsText = this._surveyServices.getQuestionsBySurveyId(this.surveyId);
   }
 
   ngOnInit() {
@@ -43,7 +42,6 @@ export class AddLanguageComponent implements OnInit {
   }
 
   saveQuestions(formQuestions: NgForm) {
-
     if(formQuestions.invalid) {
       Swal.fire(
         'Datos incompletos',
@@ -58,7 +56,7 @@ export class AddLanguageComponent implements OnInit {
         showConfirmButton: false,
         timer: 1500
       }).then(() => {
-        this._router.navigate(["encuestas"]);
+        console.log("Texto actualizado");
       });
     }
   }
