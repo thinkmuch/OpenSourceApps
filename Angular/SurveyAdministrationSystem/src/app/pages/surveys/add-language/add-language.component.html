@@ -25,7 +25,9 @@
                 <span *ngIf="this.languageSelected != undefined && this.languageSelected.id > 0">{{this.languageSelected.language}}</span>
               </button>
               <div class="dropdown-menu w-300px" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" *ngFor="let language of languages" (click)="onSelectLanguage(language)">{{language.language}}</a>
+                <a class="dropdown-item" *ngFor="let language of languages" (click)="onSelectLanguage(language)">
+                  <p>{{language.language}}</p>
+                </a>
               </div>
             </div>
           </th>
@@ -33,8 +35,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let questionText of defaultQuestionsText.questionsText; let i = index;">
-          <td>{{questionText.text}}</td>
-          <td>
+          <td class="w-40">
+            <p class="wsp-pre">{{questionText.text}}</p></td>
+          <td class="w-60">
             <input class="form-control" name="{{i}}" required ngModel>
           </td>
         </tr>

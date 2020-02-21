@@ -145,3 +145,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .c-orange {
     color: #FF8800;
 }
+
+.w-60 {
+    width: 60%;
+}
+
+.w-40 {
+    width: 40%;
+}
+
+.wsp-pre {
+    white-space: pre-line;
+}

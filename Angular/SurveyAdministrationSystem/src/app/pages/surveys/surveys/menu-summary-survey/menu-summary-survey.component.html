@@ -11,9 +11,6 @@
       <a class="dropdown-item" (click)="deleteSurvey(surveyInput.id)"><i class="far fa-trash-alt red"></i>   Eliminar</a>
     </div>
     <div class="pointer item-menu-question">
-      <a class="dropdown-item"><i class="fas fa-user-plus purple"></i>   Delegar</a>
-    </div>
-    <div class="pointer item-menu-question">
       <a class="dropdown-item" [routerLink]="['/encuestas', surveyInput.id, 'idioma']"><i class="fas fa-globe blue-success"></i>   Agregar idioma</a>
     </div>
     <div class="pointer item-menu-question">
