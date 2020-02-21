@@ -18,6 +18,7 @@ export class AddLanguageComponent implements OnInit {
   languages: Array<Language>;
   defaultQuestionsText: QuestionsByLanguage;
   languageSelected: Language;
+  surveyName: string;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -28,6 +29,7 @@ export class AddLanguageComponent implements OnInit {
     this.surveyId = parseInt(this._activatedRoute.snapshot.paramMap.get("id"));
     this.languages = this._languageServices.getAll();
     this.defaultQuestionsText = this._surveyServices.getQuestionsBySurveyId(this.surveyId);
+    this.surveyName = "La Cantina";
   }
 
   ngOnInit() {

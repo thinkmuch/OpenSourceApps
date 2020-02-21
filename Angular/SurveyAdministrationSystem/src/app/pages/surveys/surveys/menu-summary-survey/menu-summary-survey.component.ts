@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { SurveySummary } from 'src/app/models/survey-summary';
 import Swal from 'sweetalert2';
 import { SurveyServices } from 'src/app/services/survey-services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menusummarysurvey',
@@ -13,7 +14,8 @@ export class MenuSummarySurveyComponent implements OnInit {
   @Input() surveyInput: SurveySummary;
 
   constructor(
-    private _surveyServices: SurveyServices
+    private _surveyServices: SurveyServices,
+    private _router: Router
   ) { }
 
   ngOnInit() { }
@@ -41,4 +43,12 @@ export class MenuSummarySurveyComponent implements OnInit {
     });
   }
 
+  goToEditQuestionText(idSurvey: number) {
+    // [routerLink]="['/encuestas', surveyInput.id, 'idioma']"
+
+    console.log(idSurvey);
+    let surveyName = this._surveyServices.getSurveyName(idSurvey);
+    console.log(surveyName);
+    this._router.navigate(["/encuestas", idSurvey, "idioma"]);
+  }
 }

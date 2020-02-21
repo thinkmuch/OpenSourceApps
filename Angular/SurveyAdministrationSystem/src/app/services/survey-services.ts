@@ -18,6 +18,10 @@ export class SurveyServices
         this.questionsByLanguage = new Array<QuestionsByLanguage>();
     }
 
+    getSurveyName(idSurvey: number): string {
+        return "La Cantina";
+    }
+
     getAllSurveysSummary() : Array<SurveySummary>{
         this.surveys = [];
 
