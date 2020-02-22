@@ -30,6 +30,7 @@ import { DropdownPredefinedAnswerComponent } from './pages/surveys/newsurvey/new
 import { QuestionMenuComponent } from './pages/surveys/newsurvey/new-edit-survey/question/question-menu/question-menu.component';
 import { SquareHotelCatalogModalComponent } from './pages/surveys/newsurvey/new-edit-survey/footer/square-hotel-catalog-modal/square-hotel-catalog-modal.component';
 import { AddLanguageComponent } from './pages/surveys/add-language/add-language.component';
+import { CatalogsComponent } from './pages/catalogs/catalogs.component';
 
 @NgModule({
   entryComponents: [
@@ -56,6 +57,7 @@ import { AddLanguageComponent } from './pages/surveys/add-language/add-language.
     QuestionMenuComponent,
     SquareHotelCatalogModalComponent,
     AddLanguageComponent,
+    CatalogsComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SurveysComponent } from './pages/surveys/surveys/surveys.component';
 import { NewEditSurveyComponent } from './pages/surveys/newsurvey/new-edit-survey/new-edit-survey.component';
 import { AddLanguageComponent } from './pages/surveys/add-language/add-language.component';
+import { CatalogsComponent } from './pages/catalogs/catalogs.component';
 
 const routes: Routes = [
   { 
@@ -19,8 +20,16 @@ const routes: Routes = [
     component: NewEditSurveyComponent
   },
   {
+    path: 'encuesta/:id',
+    component: NewEditSurveyComponent
+  },
+  {
     path: 'encuestas/:id/idioma',
     component: AddLanguageComponent
+  },
+  {
+    path: 'catalogos',
+    component: CatalogsComponent
   },
   { 
     path: '**', 

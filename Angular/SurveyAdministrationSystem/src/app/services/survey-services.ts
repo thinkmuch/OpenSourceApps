@@ -18,10 +18,6 @@ export class SurveyServices
         this.questionsByLanguage = new Array<QuestionsByLanguage>();
     }
 
-    getSurveyName(idSurvey: number): string {
-        return "La Cantina";
-    }
-
     getAllSurveysSummary() : Array<SurveySummary>{
         this.surveys = [];
 
@@ -63,9 +59,21 @@ export class SurveyServices
         this.saveQuestionText(newSurvey);
     }
 
-    saveQuestionTextByLanguage(questionText: QuestionsByLanguage) {
-        let questionsText = JSON.stringify(this.questionsByLanguage);
-        console.log(questionsText);
+    getSurveyById(surveyId: number): Survey {
+
+        if(localStorage.fullSurveys) {
+            this.fullSurveys = JSON.parse(localStorage.fullSurveys);
+
+            if(this.fullSurveys.length > 0){
+                for(let i = 0; i < this.fullSurveys.length; i++) {
+                    if(this.fullSurveys[i].id == surveyId) {
+                        return this.fullSurveys[i];
+                    }
+                }
+            }
+        }
+
+        return new Survey();
     }
 
     saveQuestionText(newSurvey: Survey) {

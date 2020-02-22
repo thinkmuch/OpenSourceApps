@@ -2,9 +2,6 @@
   <mat-icon aria-hidden="false" [matMenuTriggerFor]="menu" class="pointer">more_vert</mat-icon>
   <mat-menu #menu="matMenu">
     <div class="pointer item-menu-question">
-      <a class="dropdown-item" *ngIf="surveyInput.status == 1"><i class="far fa-edit blue-1"></i>   Editar</a>
-    </div>
-    <div class="pointer item-menu-question">
       <a class="dropdown-item" *ngIf="surveyInput.status == 0"><i class="fas fa-power-off text-success"></i>   Activar</a>
     </div>
     <div class="pointer item-menu-question">
@@ -18,7 +15,8 @@
       <i class="fas fa-globe blue-success"></i>   Agregar idioma</a>
     </div>
     <div class="pointer item-menu-question">
-      <a class="dropdown-item"><i class="fas fa-edit c-orange"></i>   Editar</a>
+      <a class="dropdown-item" [routerLink]="['/encuesta', surveyInput.id]">
+        <i class="fas fa-edit c-orange"></i>   Editar</a>
     </div>
   </mat-menu>
 </div>

@@ -3,6 +3,11 @@ import { QuestionServices } from 'src/app/services/question-services';
 import { Question } from 'src/app/models/question';
 import { ViewServices } from 'src/app/services/view-services';
 import { Alerts } from 'src/app/enums/class-enum';
+import { ActivatedRoute } from '@angular/router';
+import { Language } from 'src/app/models/laguage';
+import { Square } from 'src/app/models/square';
+import { Survey } from 'src/app/models/survey';
+import { SurveyServices } from 'src/app/services/survey-services';
 
 @Component({
   selector: 'app-neweditsurvey',
@@ -13,15 +18,16 @@ export class NewEditSurveyComponent implements OnInit, AfterViewInit {
 
   isPredefinedChecked: boolean;
   questions: Array<Question>;
+  private surveyId: number;
   @ViewChild("surveyName", { read: ElementRef }) surveyName: ElementRef;
 
   constructor(
     public _questionServices: QuestionServices,
     private _viewServices: ViewServices,
-    private render: Renderer2
-  ) {
-    this.questions = new Array<Question>();
-  }
+    private render: Renderer2,
+    private _activatedRoute: ActivatedRoute,
+    private _surveyServices: SurveyServices
+  ) { }
 
   ngAfterViewInit() {
     this._viewServices.surveyNameControl = this.surveyName;
@@ -32,11 +38,30 @@ export class NewEditSurveyComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.questions = this._questionServices.getQuestions();
-    document.getElementById("surveyName").focus();
+    this.questions = new Array<Question>();
+
+    this._activatedRoute.params.subscribe(params => {
+      this.surveyId = params['id'];
+
+      if(this.surveyId > 0) {
+        this.loadSurvey(this.surveyId);
+      }
+      else {
+        this.questions = this._questionServices.getQuestions();
+        document.getElementById("surveyName").focus();
+      }
+    });
   }
 
   addQuestion() {
     this._questionServices.addQuestion();
+  }
+
+  loadSurvey(surveyId: number) {
+    let survey: Survey = this._surveyServices.getSurveyById(surveyId);
+    this._questionServices.nameSurvey = survey.name;
+    this._questionServices.language = survey.language;
+    this._questionServices.questions = survey.questions;
+    this._questionServices.squares = survey.squares;
   }
 }

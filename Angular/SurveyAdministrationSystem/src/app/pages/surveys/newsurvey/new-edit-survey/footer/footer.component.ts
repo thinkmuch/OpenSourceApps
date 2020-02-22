@@ -15,7 +15,7 @@ import { Alerts } from 'src/app/enums/class-enum';
 export class FooterComponent implements OnInit, AfterViewInit {
 
   public languages: Array<Language>;
-  public languageSelected: string;
+  public languageSelected: Language;
   @ViewChild("language", { read: ElementRef }) languageControl: ElementRef;
   @ViewChild("squaresAndHotels", { read: ElementRef }) suqaresControl: ElementRef;
 
@@ -26,11 +26,15 @@ export class FooterComponent implements OnInit, AfterViewInit {
     private _viewServices: ViewServices,
     private _render: Renderer2
   ) { 
-    this.languageSelected = "";
+    this.languageSelected = new Language();
     this.languages = this._languageServices.getAll();
   }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    if(this._questionServices.language && this._questionServices.language.id > 0) {
+      this.languageSelected = this._questionServices.language;
+    }
+  }
 
   ngAfterViewInit() {
     this._viewServices.languageControl = this.languageControl;
@@ -38,7 +42,7 @@ export class FooterComponent implements OnInit, AfterViewInit {
   }
 
   onSelectLanguage(language: Language) {
-    this.languageSelected = language.language;
+    this.languageSelected = language;
     this._questionServices.setLanguage(language);
   }
 

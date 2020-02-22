@@ -169,7 +169,6 @@ export class AnswerTypesCatalogComponent implements OnInit, AfterViewInit {
   }
 
   setArea(question: Question) {
-    console.log(question.area);
     this.areaSelected = question.area;
   }
 
