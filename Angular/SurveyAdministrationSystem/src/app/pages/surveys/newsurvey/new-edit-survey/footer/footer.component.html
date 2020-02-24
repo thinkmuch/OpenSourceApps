@@ -22,14 +22,16 @@
                 <button 
                 type="button" 
                 class="btn btn-secondary dropdown-toggle btn-sm w-150px" 
-                [ngClass]="{'btn-info':languageSelected.length > 0}" 
+                [ngClass]="{ 'btn-info': languageSelected != undefined && languageSelected.id > 0}" 
                 data-toggle="dropdown" 
                 aria-haspopup="true" 
                 aria-expanded="false"
                 (click)="onClickLanguage()"
                 #language>
-                    <span *ngIf="languageSelected.length == 0">Seleccione Idioma</span>
-                    <span *ngIf="languageSelected.length > 0">{{languageSelected}}</span>
+                    <span *ngIf="languageSelected && languageSelected.id > 0; else elseLenguageSelected;">{{ languageSelected.language }}</span>
+                    <ng-template #elseLenguageSelected>
+                        <span>Seleccione Idioma</span>
+                    </ng-template>
                 </button>
                 <div class="dropdown-menu">
                     <a 

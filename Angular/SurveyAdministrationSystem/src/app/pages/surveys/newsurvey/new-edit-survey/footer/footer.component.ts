@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild, AfterViewInit, Renderer2 } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, AfterViewInit, Renderer2, Input } from '@angular/core';
 import { QuestionServices } from 'src/app/services/question-services';
 import { LanguageServices } from 'src/app/services/language-services';
 import { Language } from 'src/app/models/laguage';
@@ -16,6 +16,7 @@ export class FooterComponent implements OnInit, AfterViewInit {
 
   public languages: Array<Language>;
   public languageSelected: Language;
+  @Input('isNewSurveyInput') isNewSurvey: boolean;
   @ViewChild("language", { read: ElementRef }) languageControl: ElementRef;
   @ViewChild("squaresAndHotels", { read: ElementRef }) suqaresControl: ElementRef;
 
@@ -31,8 +32,10 @@ export class FooterComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() { 
-    if(this._questionServices.language && this._questionServices.language.id > 0) {
-      this.languageSelected = this._questionServices.language;
+    if(!this.isNewSurvey) {
+      if(this._questionServices.language.id > 0) {
+        this.languageSelected = this._questionServices.language;
+      }
     }
   }
 

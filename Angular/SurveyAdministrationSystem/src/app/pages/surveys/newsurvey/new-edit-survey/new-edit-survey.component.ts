@@ -19,6 +19,7 @@ export class NewEditSurveyComponent implements OnInit, AfterViewInit {
   isPredefinedChecked: boolean;
   questions: Array<Question>;
   private surveyId: number;
+  public isNewSurvey: boolean;
   @ViewChild("surveyName", { read: ElementRef }) surveyName: ElementRef;
 
   constructor(
@@ -44,9 +45,11 @@ export class NewEditSurveyComponent implements OnInit, AfterViewInit {
       this.surveyId = params['id'];
 
       if(this.surveyId > 0) {
+        this.isNewSurvey = false;
         this.loadSurvey(this.surveyId);
       }
       else {
+        this.isNewSurvey = true;
         this.questions = this._questionServices.getQuestions();
         document.getElementById("surveyName").focus();
       }
