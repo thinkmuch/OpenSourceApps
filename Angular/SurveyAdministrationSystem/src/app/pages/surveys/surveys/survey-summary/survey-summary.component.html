@@ -17,7 +17,8 @@
   </div>
   <div class="col text-center">
     <label class="mb-0 fw-600">{{summaryInput.totalQuestions}}</label>
-    <small class="form-text text-muted">Preguntas</small>
+    <small class="form-text text-muted" *ngIf="summaryInput.totalQuestions > 1;">Preguntas</small>
+    <small class="form-text text-muted" *ngIf="summaryInput.totalQuestions == 1;">Pregunta</small>
   </div>
   <div class="col text-center">
     <label class="mb-0 fw-600">{{summaryInput.lenguages}}</label>

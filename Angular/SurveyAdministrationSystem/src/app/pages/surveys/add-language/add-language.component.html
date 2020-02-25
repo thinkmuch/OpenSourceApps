@@ -2,9 +2,7 @@
   <form #formQuestions="ngForm" (ngSubmit)="saveQuestions(formQuestions)" novalidate="novalidate" name="formQuestions">
     <div class="row">
       <div class="col">
-        <label><strong>ID: </strong>{{surveyId}}</label>
-        <br>
-        <label><strong>Encuesta: </strong>{{surveyName}}</label>
+        <h1 class="display-4" id="surveyName">{{surveyName}}</h1>
       </div>
       <div class="col">
         <div class="row d-flex justify-content-end">

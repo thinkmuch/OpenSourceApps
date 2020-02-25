@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Renderer2 } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Renderer2, OnDestroy } from '@angular/core';
 import { QuestionServices } from 'src/app/services/question-services';
 import { Question } from 'src/app/models/question';
 import { ViewServices } from 'src/app/services/view-services';
@@ -14,7 +14,7 @@ import { SurveyServices } from 'src/app/services/survey-services';
   templateUrl: './new-edit-survey.component.html',
   styleUrls: ['./new-edit-survey.component.css']
 })
-export class NewEditSurveyComponent implements OnInit, AfterViewInit {
+export class NewEditSurveyComponent implements OnInit, AfterViewInit, OnDestroy {
 
   isPredefinedChecked: boolean;
   questions: Array<Question>;
@@ -51,9 +51,13 @@ export class NewEditSurveyComponent implements OnInit, AfterViewInit {
       else {
         this.isNewSurvey = true;
         this.questions = this._questionServices.getQuestions();
-        document.getElementById("surveyName").focus();
+        this.surveyName.nativeElement.focus();
       }
     });
+  }
+
+  ngOnDestroy() {
+    this._questionServices.initialize();
   }
 
   addQuestion() {
@@ -62,9 +66,13 @@ export class NewEditSurveyComponent implements OnInit, AfterViewInit {
 
   loadSurvey(surveyId: number) {
     let survey: Survey = this._surveyServices.getSurveyById(surveyId);
+
     this._questionServices.nameSurvey = survey.name;
     this._questionServices.language = survey.language;
     this._questionServices.questions = survey.questions;
     this._questionServices.squares = survey.squares;
+    this._questionServices.hotels = survey.hotels;
+
+    this.questions = this._questionServices.questions;
   }
 }
