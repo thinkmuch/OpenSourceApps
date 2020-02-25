@@ -1,27 +1,30 @@
 <div class="animated fadeIn faster">
   <div class="row">
-    <div class="btn-group w-150px">
+    <div class="btn-group minw-150px mr-15px">
       <button class="btn btn-info btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Plaza
+        <span *ngIf="squareSelected == undefined">Plaza</span>
+        <span *ngIf="squareSelected && squareSelected.id > 0">{{squareSelected.name}}</span>
       </button>
       <div class="dropdown-menu">
-        <a class="dropdown-item" *ngFor="let square of squares">{{square.name}}</a>
+        <a class="dropdown-item pointer" *ngFor="let square of squares" (click)="onClickSquare(square)">{{square.name}}</a>
       </div>
     </div>
-    <div class="btn-group w-150px">
+    <div class="btn-group minw-150px mr-15px">
       <button class="btn btn-info btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Hotel
+        <span *ngIf="hotelSelected == undefined">Hotel</span>
+        <span *ngIf="hotelSelected && hotelSelected.id > 0">{{hotelSelected.name}}</span>
       </button>
       <div class="dropdown-menu">
-        <a class="dropdown-item" *ngFor="let hotel of hotels">{{hotel.name}}</a>
+        <a class="dropdown-item pointer" *ngFor="let hotel of hotels" (click)="onClickHotel(hotel)">{{hotel.name}}</a>
       </div>
     </div>
-    <div class="btn-group w-150px">
+    <div class="btn-group minw-150px">
       <button class="btn btn-info btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Area
+        <span *ngIf="areaSelected == undefined">Area</span>
+        <span *ngIf="areaSelected && areaSelected.id > 0">{{areaSelected.area}}</span>
       </button>
-      <div class="dropdown-menu scrollable-menu w-100 mh-374px pointer">
-        <a class="dropdown-item" *ngFor="let area of areas">{{area.area}}</a>
+      <div class="dropdown-menu scrollable-menu mh-374px pointer">
+        <a class="dropdown-item pointer" *ngFor="let area of areas" (click)="onClickArea(area)">{{area.area}}</a>
       </div>
     </div>
   </div>

@@ -15,6 +15,9 @@ export class DashboardComponent implements OnInit {
   squares: Array<Square>;
   hotels: Array<Hotel>;
   areas: Array<Area>;
+  squareSelected: Square;
+  hotelSelected: Hotel;
+  areaSelected: Area;
 
   constructor(
     private _squaresServices: SquareServices,
@@ -25,5 +28,17 @@ export class DashboardComponent implements OnInit {
     this.squares = this._squaresServices.getAllSquares();
     this.hotels = this._squaresServices.getAllHotels();
     this.areas = this._areasServices.getAllAreas();
+  }
+
+  onClickSquare(square: Square) {
+    this.squareSelected = square;
+  }
+
+  onClickHotel(hotel: Hotel) {
+    this.hotelSelected = hotel;
+  }
+
+  onClickArea(area: Area) {
+    this.areaSelected = area;
   }
 }
