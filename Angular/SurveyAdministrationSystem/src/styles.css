@@ -171,3 +171,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mh-374px {
     max-height: 374px;
 }
+
+.w-150px {
+    width: 150px;
+}

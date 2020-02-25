@@ -1,5 +1,29 @@
 <div class="animated fadeIn faster">
   <div class="row">
+    <div class="btn-group w-150px">
+      <button class="btn btn-info btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Plaza
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" *ngFor="let square of squares">{{square.name}}</a>
+      </div>
+    </div>
+    <div class="btn-group w-150px">
+      <button class="btn btn-info btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Hotel
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" *ngFor="let hotel of hotels">{{hotel.name}}</a>
+      </div>
+    </div>
+    <div class="btn-group w-150px">
+      <button class="btn btn-info btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Area
+      </button>
+      <div class="dropdown-menu scrollable-menu w-100 mh-374px pointer">
+        <a class="dropdown-item" *ngFor="let area of areas">{{area.area}}</a>
+      </div>
+    </div>
   </div>
   <hr>
   <div class="row">
