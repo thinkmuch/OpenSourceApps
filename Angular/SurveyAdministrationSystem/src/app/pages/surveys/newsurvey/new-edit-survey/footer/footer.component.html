@@ -1,9 +1,9 @@
 <nav class="navbar fixed-bottom navbar-expand-lg navbar-light bg-light">
     <div class="row w-100">
         <div class="col">
-            <label *ngIf="_questionServices">Total preguntas: {{ _questionServices.questions.length }}</label>
-            <label class="ml-20px">Plazas: {{ _questionServices.squares.length }}</label>
-            <label class="ml-20px">Hoteles: {{ _questionServices.hotels.length }}</label>
+            <label *ngIf="_surveyCaprureServices">Total preguntas: {{ _surveyCaprureServices.questions.length }}</label>
+            <label class="ml-20px">Plazas: {{ _surveyCaprureServices.squares.length }}</label>
+            <label class="ml-20px">Hoteles: {{ _surveyCaprureServices.hotels.length }}</label>
         </div>
         <div class="col text-right">
             <button 
@@ -11,8 +11,8 @@
             (click)="onClickConfigSquareHotel()"
             [ngClass]="{
                 'btn-info': 
-                    _questionServices.squares.length > 0 && 
-                    _questionServices.hotels.length > 0
+                _surveyCaprureServices.squares.length > 0 && 
+                _surveyCaprureServices.hotels.length > 0
             }"
             #squaresAndHotels>
                 <i class="fas fa-wrench"></i>

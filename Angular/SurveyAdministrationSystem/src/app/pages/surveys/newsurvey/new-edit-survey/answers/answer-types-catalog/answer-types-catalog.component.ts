@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Renderer2 } from '@angular/core';
 import { Answer } from 'src/app/models/answer';
-import { QuestionServices, AnswerType } from 'src/app/services/question-services';
 import { AnswerServices } from 'src/app/services/answer-services';
 import { Question } from 'src/app/models/question';
 import { AreasServices } from 'src/app/services/areas-services';
 import { Area } from 'src/app/models/area';
+import { SurveyCaptureServices } from 'src/app/services/survey-capture.services';
+import { AnswerType } from 'src/app/enums/class-enum';
 
 @Component({
   selector: 'app-answer-types-catalog',
@@ -32,7 +33,7 @@ export class AnswerTypesCatalogComponent implements OnInit, AfterViewInit {
   @ViewChild("justifyAnswerInput", {read: ElementRef }) checkJustifyAnswer: ElementRef;
 
   constructor(
-    private _questionServices: QuestionServices,
+    private _surveyCaptureServices: SurveyCaptureServices,
     private _answerServices: AnswerServices,
     private _areasServices: AreasServices,
     private _renderer: Renderer2
@@ -48,12 +49,12 @@ export class AnswerTypesCatalogComponent implements OnInit, AfterViewInit {
     this.answers = new Array<Answer>();
     this.areaSelected = new Area();
 
-    this._questionServices.rowSelected.subscribe(idQuestion => {
+    this._surveyCaptureServices.rowSelected.subscribe(idQuestion => {
       this.idQuestionSelected = idQuestion;
     })
 
     this._answerServices.answerSelected.subscribe((idQuestion: number) => {
-      let question: Question = this._questionServices.getQuestionById(idQuestion);
+      let question: Question = this._surveyCaptureServices.getQuestionById(idQuestion);
       this.setSelectedAnswer(question);
     });
 
@@ -62,7 +63,7 @@ export class AnswerTypesCatalogComponent implements OnInit, AfterViewInit {
     })
 
     this.areas = this._areasServices.getAllAreas();
-    this.answers = this._questionServices.getAnswers();
+    this.answers = this._surveyCaptureServices.getAnswers();
   }
 
   ngAfterViewInit() {
@@ -74,7 +75,7 @@ export class AnswerTypesCatalogComponent implements OnInit, AfterViewInit {
   }
 
   onChangeJustifyAnswer(checked: boolean) {
-    this._questionServices.setJustifyAnswer(this.idQuestionSelected, checked);
+    this._surveyCaptureServices.setJustifyAnswer(this.idQuestionSelected, checked);
   }
 
   selectDefaultOption() {
@@ -180,10 +181,10 @@ export class AnswerTypesCatalogComponent implements OnInit, AfterViewInit {
     if(this.isQuestionSelected()) {
 
       this.disablePredefined = (answerType != AnswerType.SingleAnswer);
-      this._questionServices.initializeAnswerObject(this.idQuestionSelected, answerType);
+      this._surveyCaptureServices.initializeAnswerObject(this.idQuestionSelected, answerType);
 
       if(answerType == AnswerType.MultipleChoises) {
-        this._questionServices.initializeAnswerOptions(this.idQuestionSelected)
+        this._surveyCaptureServices.initializeAnswerOptions(this.idQuestionSelected)
       }
 
       this.justifyAnswerVisible = false;
@@ -192,18 +193,18 @@ export class AnswerTypesCatalogComponent implements OnInit, AfterViewInit {
 
   onChangeForceResponse(checked: boolean) {
     if(this.isQuestionSelected()) {
-      this._questionServices.setResponseAnswer(this.idQuestionSelected, checked);
+      this._surveyCaptureServices.setResponseAnswer(this.idQuestionSelected, checked);
     }
   }
 
   onChangeAcceptNA(checked: boolean) {
     if(this.isQuestionSelected()) {
-      this._questionServices.setAcceptNA(this.idQuestionSelected, checked);
+      this._surveyCaptureServices.setAcceptNA(this.idQuestionSelected, checked);
     }
   }
 
   onSelectArea(area: Area) {
     this.areaSelected = area;
-    this._questionServices.setArea(this.idQuestionSelected, area);
+    this._surveyCaptureServices.setArea(this.idQuestionSelected, area);
   }
 }

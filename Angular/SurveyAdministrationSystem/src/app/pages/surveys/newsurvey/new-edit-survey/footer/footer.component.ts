@@ -1,11 +1,11 @@
 import { Component, OnInit, ElementRef, ViewChild, AfterViewInit, Renderer2, Input } from '@angular/core';
-import { QuestionServices } from 'src/app/services/question-services';
 import { LanguageServices } from 'src/app/services/language-services';
 import { Language } from 'src/app/models/laguage';
 import { MatDialog } from '@angular/material';
 import { SquareHotelCatalogModalComponent } from './square-hotel-catalog-modal/square-hotel-catalog-modal.component';
 import { ViewServices } from 'src/app/services/view-services';
 import { Alerts } from 'src/app/enums/class-enum';
+import { SurveyCaptureServices } from 'src/app/services/survey-capture.services';
 
 @Component({
   selector: 'app-footer',
@@ -21,7 +21,7 @@ export class FooterComponent implements OnInit, AfterViewInit {
   @ViewChild("squaresAndHotels", { read: ElementRef }) suqaresControl: ElementRef;
 
   constructor(
-    public _questionServices: QuestionServices,
+    public _surveyCaprureServices: SurveyCaptureServices,
     private _languageServices: LanguageServices,
     public _matDialog: MatDialog,
     private _viewServices: ViewServices,
@@ -33,8 +33,8 @@ export class FooterComponent implements OnInit, AfterViewInit {
 
   ngOnInit() { 
     if(!this.isNewSurvey) {
-      if(this._questionServices.language.id > 0) {
-        this.languageSelected = this._questionServices.language;
+      if(this._surveyCaprureServices.language.id > 0) {
+        this.languageSelected = this._surveyCaprureServices.language;
       }
     }
   }
@@ -46,7 +46,7 @@ export class FooterComponent implements OnInit, AfterViewInit {
 
   onSelectLanguage(language: Language) {
     this.languageSelected = language;
-    this._questionServices.setLanguage(language);
+    this._surveyCaprureServices.setLanguage(language);
   }
 
   onClickConfigSquareHotel() {

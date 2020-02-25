@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { QuestionServices } from 'src/app/services/question-services';
 import { AnswerOption } from 'src/app/models/answer-option';
+import { SurveyCaptureServices } from 'src/app/services/survey-capture.services';
 
 @Component({
   selector: 'app-multiple-choises',
@@ -12,7 +12,7 @@ export class MultipleChoisesPreviewComponent implements OnInit {
   @Input() idQuestionInput: number;
 
   constructor(
-    public _questionServices: QuestionServices
+    public _surveyCaptureServices: SurveyCaptureServices
   ) { }
 
   ngOnInit() {
@@ -20,7 +20,7 @@ export class MultipleChoisesPreviewComponent implements OnInit {
   }
 
   addOption() {
-    this._questionServices.questions[this.idQuestionInput - 1].answer.answerOptions.push(new AnswerOption());
+    this._surveyCaptureServices.questions[this.idQuestionInput - 1].answer.answerOptions.push(new AnswerOption());
   }
 
   updateTextOption(idOption: number, text: string) {
@@ -28,6 +28,6 @@ export class MultipleChoisesPreviewComponent implements OnInit {
   }
 
   removeOption(idOption: number) {
-    this._questionServices.removeOptionOfQuestion(this.idQuestionInput, idOption);
+    this._surveyCaptureServices.removeOptionOfQuestion(this.idQuestionInput, idOption);
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { QuestionServices } from 'src/app/services/question-services';
 import { AnswerServices } from 'src/app/services/answer-services';
+import { SurveyCaptureServices } from 'src/app/services/survey-capture.services';
 
 @Component({
   selector: 'app-question-menu',
@@ -13,7 +13,7 @@ export class QuestionMenuComponent implements OnInit {
   @Input('totalQuestionsInput') totalQuestions: number;
 
   constructor(
-    private _questionServices: QuestionServices,
+    private _surveyCaptureServices: SurveyCaptureServices,
     private _answerServices: AnswerServices
   ) { }
 
@@ -21,15 +21,15 @@ export class QuestionMenuComponent implements OnInit {
   }
 
   moveUp(idQuestion: number) {
-    this._questionServices.moveUp(idQuestion);
+    this._surveyCaptureServices.moveUp(idQuestion);
   }
 
   moveDown(idQuestion:number) {
-    this._questionServices.moveDown(idQuestion);
+    this._surveyCaptureServices.moveDown(idQuestion);
   }
 
   remove(idQuestion: number) {
-    this._questionServices.removeQuestion(idQuestion);
+    this._surveyCaptureServices.removeQuestion(idQuestion);
     this._answerServices.showOptions.emit(false);
   }
 }

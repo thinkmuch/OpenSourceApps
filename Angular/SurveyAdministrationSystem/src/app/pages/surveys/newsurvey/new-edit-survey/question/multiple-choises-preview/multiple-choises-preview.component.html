@@ -1,5 +1,5 @@
 <div class="row animated fadeIn faster align-items-baseline" 
-*ngFor="let option of this._questionServices.questions[this.idQuestionInput - 1].answer.answerOptions; let i = index;">
+*ngFor="let option of _surveyCaptureServices.questions[this.idQuestionInput - 1].answer.answerOptions; let i = index;">
     <mat-checkbox class="d-inline pr-2"></mat-checkbox>
     <div class="input-group input-group-sm mb-1 w-auto">
         <input 
@@ -12,6 +12,6 @@
     </div>
     <i class="fas fa-plus pointer c-green-success pl-2" 
     (click)="addOption()"
-    *ngIf="i == (this._questionServices.questions[this.idQuestionInput - 1].answer.answerOptions.length - 1)"></i>
+    *ngIf="i == (_surveyCaptureServices.questions[this.idQuestionInput - 1].answer.answerOptions.length - 1)"></i>
     <i class="fas fa-minus pointer c-red-danger pl-2" (click)="removeOption(i)"></i>
 </div>

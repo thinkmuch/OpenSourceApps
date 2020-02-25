@@ -3,7 +3,7 @@ import { MatDialogRef } from '@angular/material';
 import { SquareServices } from 'src/app/services/square-services';
 import { Square } from 'src/app/models/square';
 import { Hotel } from 'src/app/models/hotel';
-import { QuestionServices } from 'src/app/services/question-services';
+import { SurveyCaptureServices } from 'src/app/services/survey-capture.services';
 
 @Component({
   selector: 'app-square-hotel-catalog-modal',
@@ -20,7 +20,7 @@ export class SquareHotelCatalogModalComponent implements OnInit {
 
   constructor(
     private _squareServices: SquareServices,
-    private _questionServices: QuestionServices,
+    private _surveyCaprureServices: SurveyCaptureServices,
     public dialogRef: MatDialogRef<SquareHotelCatalogModalComponent>,
   ) { 
     this.squares = this._squareServices.getAllSquares();
@@ -48,16 +48,16 @@ export class SquareHotelCatalogModalComponent implements OnInit {
   }
 
   addSquare(square: Square) {
-    this._questionServices.addSquare(square);
+    this._surveyCaprureServices.addSquare(square);
     this.filterHotels();
   }
 
   filterHotels() {
-    if(this._questionServices.squares.length == 0) {
+    if(this._surveyCaprureServices.squares.length == 0) {
       this.hotels = [];
     }
     else {
-      this._questionServices.squares.forEach(square => {
+      this._surveyCaprureServices.squares.forEach(square => {
         square.hotels.forEach(hotel => {
           const hotelFound = this.hotels.find(item => item.id == hotel.id);
           if(hotelFound == undefined) {
@@ -69,16 +69,16 @@ export class SquareHotelCatalogModalComponent implements OnInit {
   }
 
   removeSquare(square: Square) {
-    this._questionServices.removeSquare(square);
+    this._surveyCaprureServices.removeSquare(square);
     this.filterHotels();
   }
 
   onChangeHotel(hotel: Hotel, checked: boolean) {
     if(checked) {
-      this._questionServices.addHotel(hotel);
+      this._surveyCaprureServices.addHotel(hotel);
     }
     else {
-      this._questionServices.removeHotel(hotel);
+      this._surveyCaprureServices.removeHotel(hotel);
     }
   }
 
@@ -94,12 +94,12 @@ export class SquareHotelCatalogModalComponent implements OnInit {
     this.allSquares = !this.allSquares;
     
     if(!this.allSquares) {
-      this._questionServices.removeAllSquares();
+      this._surveyCaprureServices.removeAllSquares();
       this.filterHotels();
     }
     else {
       this._squareServices.getAllSquares().forEach(square => {
-        this._questionServices.addSquare(square);
+        this._surveyCaprureServices.addSquare(square);
       });
       
       this.filterHotels();
@@ -107,22 +107,22 @@ export class SquareHotelCatalogModalComponent implements OnInit {
   }
 
   isSquareSelected(square: Square): boolean {
-    return ((this._questionServices.squares.find(p => p.id == square.id)) != undefined);
+    return ((this._surveyCaprureServices.squares.find(p => p.id == square.id)) != undefined);
   }
 
   isHotelSelected(hotel: Hotel) {
-    return ((this._questionServices.hotels.find(p => p.id == hotel.id)) != undefined);
+    return ((this._surveyCaprureServices.hotels.find(p => p.id == hotel.id)) != undefined);
   }
 
   onClickAllHotels() {
     this.allHotels = !this.allHotels;
 
     if(!this.allHotels) {
-      this._questionServices.removeAllHotels();
+      this._surveyCaprureServices.removeAllHotels();
     }
     else {
       this.hotels.forEach(hotel => {
-        this._questionServices.addHotel(hotel);
+        this._surveyCaprureServices.addHotel(hotel);
       });
     }
   }

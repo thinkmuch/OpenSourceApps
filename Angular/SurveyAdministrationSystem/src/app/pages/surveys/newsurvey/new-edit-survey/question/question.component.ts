@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, AfterViewInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
-import { QuestionServices } from 'src/app/services/question-services';
 import { Question } from 'src/app/models/question';
 import { AnswerServices } from 'src/app/services/answer-services';
 import { Answer } from 'src/app/models/answer';
@@ -7,6 +6,7 @@ import { MatDialog } from '@angular/material';
 import { SitesCatalogModalComponent } from "./sites-catalog-modal/sites-catalog-modal.component";
 import { ViewServices } from 'src/app/services/view-services';
 import { Alerts } from 'src/app/enums/class-enum';
+import { SurveyCaptureServices } from 'src/app/services/survey-capture.services';
 
 @Component({
   selector: 'app-question',
@@ -26,7 +26,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
   selected: boolean;
 
   constructor(
-    private _questionServices: QuestionServices,
+    private _surveyCaptureServices: SurveyCaptureServices,
     private _answerServices: AnswerServices,
     public _matDialog: MatDialog,
     private _viewServices: ViewServices,
@@ -46,7 +46,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
   }
 
   updateQuestionText(text: string, idQuestion: number) {
-    this._questionServices.updateQuestionText(idQuestion, text);
+    this._surveyCaptureServices.updateQuestionText(idQuestion, text);
   }
 
   deselectCurrentRow() {
@@ -60,7 +60,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
     this.deselectCurrentRow();
     this.selectNewRow();
 
-    this._questionServices.rowSelected.emit(idQuestion);
+    this._surveyCaptureServices.rowSelected.emit(idQuestion);
     this._answerServices.showOptions.emit(true);
     this._answerServices.answerSelected.emit(idQuestion);
   }

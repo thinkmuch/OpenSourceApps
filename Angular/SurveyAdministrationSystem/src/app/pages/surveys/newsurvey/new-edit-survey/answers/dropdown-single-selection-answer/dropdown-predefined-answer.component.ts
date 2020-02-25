@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { QuestionServices } from 'src/app/services/question-services';
 import { Answer } from 'src/app/models/answer';
+import { SurveyCaptureServices } from 'src/app/services/survey-capture.services';
 
 @Component({
   selector: 'app-dropdown-predefined-answer',
@@ -16,7 +16,7 @@ export class DropdownPredefinedAnswerComponent implements OnInit {
   @Output('selectPredefinedAnswerOutput') onSelectPredefinedAnswerEmitter: EventEmitter<boolean>;
 
   constructor(
-    private _questionServices: QuestionServices
+    private _surveyCaptureServices: SurveyCaptureServices
   ) { 
     this.onSelectPredefinedAnswerEmitter = new EventEmitter<boolean>();
   }
@@ -31,7 +31,7 @@ export class DropdownPredefinedAnswerComponent implements OnInit {
   onSelectPredefinedAnswer(answer: Answer) {
     if(this.isQuestionSelected()) {
       this.answerName = answer.resumeName;
-      this._questionServices.setPredefinedAnswer(this.idQuestionSelected, answer);
+      this._surveyCaptureServices.setPredefinedAnswer(this.idQuestionSelected, answer);
       this.onSelectPredefinedAnswerEmitter.emit(true);
     }
   }

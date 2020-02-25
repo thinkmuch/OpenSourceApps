@@ -1,6 +1,6 @@
 import { Injectable, ElementRef, Renderer2, RendererFactory2 } from '@angular/core';
-import { QuestionServices } from './question-services';
 import { Alerts } from '../enums/class-enum';
+import { SurveyCaptureServices } from './survey-capture.services';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class ViewServices {
   private _renderer: Renderer2;
 
   constructor(
-    private _questionServices: QuestionServices,
+    private _surveyCaptureServices: SurveyCaptureServices,
     private _rendererFactory: RendererFactory2,
   ) { 
     this._questionControls = new Array<ElementRef>();
@@ -64,7 +64,7 @@ export class ViewServices {
 
   isLanguageSelected(): boolean {
     let result = true;
-    let language = this._questionServices.getLanguageSelected();
+    let language = this._surveyCaptureServices.getLanguageSelected();
 
     if (language == undefined) {
       result = false;
@@ -88,7 +88,7 @@ export class ViewServices {
   isSquaresAndHotelsSelected(): boolean {
     let result: boolean = true;
 
-    if(this._questionServices.squares.length == 0 || this._questionServices.hotels.length == 0) {
+    if(this._surveyCaptureServices.squares.length == 0 || this._surveyCaptureServices.hotels.length == 0) {
       result = false;
       this.setInvalidControl(this.SquaresControl);
     }

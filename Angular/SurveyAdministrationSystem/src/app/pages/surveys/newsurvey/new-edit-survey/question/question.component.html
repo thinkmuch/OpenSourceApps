@@ -19,9 +19,9 @@
                     <i 
                     class="fas fa-map-marker-alt pointer red-danger"
                     [ngClass]="{
-                        'red-danger': this._questionServices.questions[index - 1] &&
-                                      this._questionServices.questions[index - 1].site &&
-                                      this._questionServices.questions[index - 1].site.id > 0
+                        'red-danger': _surveyCaptureServices.questions[index - 1] &&
+                                      _surveyCaptureServices.questions[index - 1].site &&
+                                      _surveyCaptureServices.questions[index - 1].site.id > 0
                     }"
                     id="iconSite"
                     (click)="openCatalogSitesModal(index)"></i>

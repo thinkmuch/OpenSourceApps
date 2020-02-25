@@ -1,13 +1,11 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Renderer2, OnDestroy } from '@angular/core';
-import { QuestionServices } from 'src/app/services/question-services';
 import { Question } from 'src/app/models/question';
 import { ViewServices } from 'src/app/services/view-services';
 import { Alerts } from 'src/app/enums/class-enum';
 import { ActivatedRoute } from '@angular/router';
-import { Language } from 'src/app/models/laguage';
-import { Square } from 'src/app/models/square';
 import { Survey } from 'src/app/models/survey';
 import { SurveyServices } from 'src/app/services/survey-services';
+import { SurveyCaptureServices } from 'src/app/services/survey-capture.services';
 
 @Component({
   selector: 'app-neweditsurvey',
@@ -23,7 +21,7 @@ export class NewEditSurveyComponent implements OnInit, AfterViewInit, OnDestroy 
   @ViewChild("surveyName", { read: ElementRef }) surveyName: ElementRef;
 
   constructor(
-    public _questionServices: QuestionServices,
+    public _surveyCaptureServices: SurveyCaptureServices,
     private _viewServices: ViewServices,
     private render: Renderer2,
     private _activatedRoute: ActivatedRoute,
@@ -50,29 +48,29 @@ export class NewEditSurveyComponent implements OnInit, AfterViewInit, OnDestroy 
       }
       else {
         this.isNewSurvey = true;
-        this.questions = this._questionServices.getQuestions();
+        this.questions = this._surveyCaptureServices.getQuestions();
         this.surveyName.nativeElement.focus();
       }
     });
   }
 
   ngOnDestroy() {
-    this._questionServices.initialize();
+    this._surveyCaptureServices.initialize();
   }
 
   addQuestion() {
-    this._questionServices.addQuestion();
+    this._surveyCaptureServices.addQuestion();
   }
 
   loadSurvey(surveyId: number) {
     let survey: Survey = this._surveyServices.getSurveyById(surveyId);
 
-    this._questionServices.nameSurvey = survey.name;
-    this._questionServices.language = survey.language;
-    this._questionServices.questions = survey.questions;
-    this._questionServices.squares = survey.squares;
-    this._questionServices.hotels = survey.hotels;
+    this._surveyCaptureServices.nameSurvey = survey.name;
+    this._surveyCaptureServices.language = survey.language;
+    this._surveyCaptureServices.questions = survey.questions;
+    this._surveyCaptureServices.squares = survey.squares;
+    this._surveyCaptureServices.hotels = survey.hotels;
 
-    this.questions = this._questionServices.questions;
+    this.questions = this._surveyCaptureServices.questions;
   }
 }

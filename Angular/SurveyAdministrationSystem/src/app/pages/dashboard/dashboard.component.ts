@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SquareServices } from 'src/app/services/square-services';
 import { Square } from 'src/app/models/square';
-import { Hotel } from 'src/app/models/hotel';
 
 @Component({
   selector: 'app-dashboard',

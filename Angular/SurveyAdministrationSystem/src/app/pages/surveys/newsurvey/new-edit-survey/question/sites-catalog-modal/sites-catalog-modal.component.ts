@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { QuestionServices } from 'src/app/services/question-services';
 import { Site } from 'src/app/models/site';
 import { SitesServices } from 'src/app/services/sites-service';
+import { SurveyCaptureServices } from 'src/app/services/survey-capture.services';
 
 @Component({
   selector: 'app-sitescatalogmodal',
@@ -17,7 +17,7 @@ export class SitesCatalogModalComponent implements OnInit, AfterViewInit {
 
   constructor(
     public _matDialog: MatDialog,
-    private _questionServices: QuestionServices,
+    private _surveyCaptureServices: SurveyCaptureServices,
     private _sitesServices: SitesServices,
     public dialogRef: MatDialogRef<SitesCatalogModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -30,7 +30,7 @@ export class SitesCatalogModalComponent implements OnInit, AfterViewInit {
   ngOnInit() { }
 
   ngAfterViewInit() {
-    let site = this._questionServices.getSite(this.idQuestion);
+    let site = this._surveyCaptureServices.getSite(this.idQuestion);
 
     if(site != undefined && site.id > 0) {
       this.selectSite(site, true);
@@ -40,7 +40,7 @@ export class SitesCatalogModalComponent implements OnInit, AfterViewInit {
 
   close(accept: boolean) {
     if(accept) {
-      this._questionServices.setSiteToAnswer(this.idQuestion, this.siteSelected);
+      this._surveyCaptureServices.setSiteToAnswer(this.idQuestion, this.siteSelected);
     }
     this._matDialog.closeAll();
   }

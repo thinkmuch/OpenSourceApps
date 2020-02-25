@@ -1,5 +1,5 @@
 import { AnswerOption } from './answer-option';
-import { AnswerType } from '../services/question-services';
+import { AnswerType } from '../enums/class-enum';
 
 export class Answer {
     id: number;

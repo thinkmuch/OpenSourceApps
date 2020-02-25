@@ -8,11 +8,12 @@ import { Square } from '../models/square';
 import { Hotel } from '../models/hotel';
 import { Survey } from '../models/survey';
 import { Area } from '../models/area';
+import { AnswerType } from '../enums/class-enum';
 
 @Injectable({
     providedIn: 'root'
 })
-export class QuestionServices
+export class SurveyCaptureServices
 {
     public language: Language;
     public squares: Array<Square>;
@@ -1027,10 +1028,4 @@ export class QuestionServices
 
         return this.answers;
     }
-}
-
-export enum AnswerType {
-    SingleAnswer = 1,
-    FreeText = 2,
-    MultipleChoises = 3
 }
