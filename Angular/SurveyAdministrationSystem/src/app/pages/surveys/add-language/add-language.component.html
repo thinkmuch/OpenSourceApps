@@ -32,8 +32,8 @@
                 <span *ngIf="this.languageSelected != undefined && this.languageSelected.id > 0">{{this.languageSelected.language}}</span>
               </button>
               <div class="dropdown-menu w-300px" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" *ngFor="let language of languages" (click)="onSelectLanguage(language)">
-                  <p>{{language.language}}</p>
+                <a class="dropdown-item pointer" *ngFor="let language of languages" (click)="onSelectLanguage(language)">
+                  <span>{{language.language}}</span>
                 </a>
               </div>
             </div>
