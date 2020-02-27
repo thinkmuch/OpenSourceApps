@@ -35,6 +35,8 @@ import { ChartsModule } from 'ng2-charts';
 import { SurveysNameListComponent } from './pages/dashboard/surveys-name-list/surveys-name-list.component';
 import { QuestionListComponent } from './pages/dashboard/question-list/question-list.component';
 import { SearchButtonsComponent } from './pages/dashboard/search-buttons/search-buttons.component';
+import { SatisfactionBarComponent } from './pages/dashboard/satisfaction-bar/satisfaction-bar.component';
+import { PercentageBarComponent } from './pages/dashboard/percentage-bar/percentage-bar.component';
 
 @NgModule({
   entryComponents: [
@@ -65,6 +67,8 @@ import { SearchButtonsComponent } from './pages/dashboard/search-buttons/search-
     SurveysNameListComponent,
     QuestionListComponent,
     SearchButtonsComponent,
+    SatisfactionBarComponent,
+    PercentageBarComponent,
   ],
   imports: [
     BrowserModule,
