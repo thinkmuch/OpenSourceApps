@@ -1,6 +1,7 @@
 import { Answer } from './answer';
 import { Site } from './site'
 import { Area } from './area';
+import { Department } from './department';
 
 export class Question {
     id: number;
@@ -11,4 +12,5 @@ export class Question {
     acceptNA: boolean;
     justifyAnswer: boolean;
     area: Area;
+    department: Department;
 }

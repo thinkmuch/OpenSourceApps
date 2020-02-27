@@ -76,6 +76,18 @@
     <div class="row">
         <div class="btn-group w-100">
             <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span *ngIf="departmentSelected == undefined">Seleccione el departamento</span>
+              <span *ngIf="departmentSelected != undefined && departmentSelected.id > 0">{{departmentSelected.name}}</span>
+            </button>
+            <div class="dropdown-menu scrollable-menu w-100 mh-374px pointer">
+                <a class="dropdown-item" *ngFor="let department of departments" (click)="onSelectDepartment(department)">{{department.name}}</a>
+            </div>
+          </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="btn-group w-100">
+            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <span *ngIf="areaSelected == undefined">Seleccione el área</span>
               <span *ngIf="areaSelected != undefined && areaSelected.id > 0">{{areaSelected.area}}</span>
             </button>

@@ -6,6 +6,8 @@ import { AreasServices } from 'src/app/services/areas-services';
 import { Area } from 'src/app/models/area';
 import { SurveyCaptureServices } from 'src/app/services/survey-capture.services';
 import { AnswerType } from 'src/app/enums/class-enum';
+import { DepartmentsServices } from 'src/app/services/departments.services';
+import { Department } from 'src/app/models/department';
 
 @Component({
   selector: 'app-answer-types-catalog',
@@ -24,6 +26,8 @@ export class AnswerTypesCatalogComponent implements OnInit, AfterViewInit {
   public checkedForceResponse: boolean;
   public justifyAnswerVisible: boolean;
   public areaSelected: Area;
+  public departmentSelected: Department;
+  public departments: Array<Department>;
 
   @ViewChild("checkPredefinedAnswer", {read: ElementRef }) checkSingeAnswer: ElementRef;
   @ViewChild("checkFreeText", {read: ElementRef }) checkFreeText: ElementRef;
@@ -36,7 +40,8 @@ export class AnswerTypesCatalogComponent implements OnInit, AfterViewInit {
     private _surveyCaptureServices: SurveyCaptureServices,
     private _answerServices: AnswerServices,
     private _areasServices: AreasServices,
-    private _renderer: Renderer2
+    private _renderer: Renderer2,
+    private _departmentsServices: DepartmentsServices
   ) { }
 
   ngOnInit() {
@@ -64,6 +69,7 @@ export class AnswerTypesCatalogComponent implements OnInit, AfterViewInit {
 
     this.areas = this._areasServices.getAllAreas();
     this.answers = this._surveyCaptureServices.getAnswers();
+    this.departments = this._departmentsServices.getAll();
   }
 
   ngAfterViewInit() {
@@ -206,5 +212,10 @@ export class AnswerTypesCatalogComponent implements OnInit, AfterViewInit {
   onSelectArea(area: Area) {
     this.areaSelected = area;
     this._surveyCaptureServices.setArea(this.idQuestionSelected, area);
+  }
+
+  onSelectDepartment(department: Department) {
+    this.departmentSelected = department;
+    this._surveyCaptureServices.setDepartment(this.idQuestionSelected, department);
   }
 }

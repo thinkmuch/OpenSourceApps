@@ -9,6 +9,7 @@ import { Hotel } from '../models/hotel';
 import { Survey } from '../models/survey';
 import { Area } from '../models/area';
 import { AnswerType } from '../enums/class-enum';
+import { Department } from '../models/department';
 
 @Injectable({
     providedIn: 'root'
@@ -199,6 +200,11 @@ export class SurveyCaptureServices
     setArea(idQuestion: number, area: Area) {
         let index = idQuestion - 1;
         this.questions[index].area = area;
+    }
+
+    setDepartment(idQuestion: number, department: Department) {
+        let index = idQuestion - 1;
+        this.questions[index].department = department;
     }
 
     getAnswers() : Array<Answer> {

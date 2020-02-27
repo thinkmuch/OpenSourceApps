@@ -5,11 +5,17 @@ import { SurveysComponent } from './pages/surveys/surveys/surveys.component';
 import { NewEditSurveyComponent } from './pages/surveys/newsurvey/new-edit-survey/new-edit-survey.component';
 import { AddLanguageComponent } from './pages/surveys/add-language/add-language.component';
 import { CatalogsComponent } from './pages/catalogs/catalogs.component';
+import { SurveyServices } from './services/survey-services';
 
 const routes: Routes = [
   { 
     path: 'dashboard', 
     component: DashboardComponent 
+  },
+  {
+    path: '',
+    redirectTo: 'encuestas',
+    pathMatch: 'full'
   },
   { 
     path: 'encuestas', 
