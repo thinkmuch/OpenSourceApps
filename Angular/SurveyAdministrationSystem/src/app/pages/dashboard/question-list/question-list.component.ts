@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SurveyServices } from 'src/app/services/survey-services';
 import { QuestionSummary } from 'src/app/models/question-summary';
 
@@ -15,7 +15,9 @@ export class QuestionListComponent implements OnInit {
     private _surveyServices: SurveyServices
   ) { }
 
-  ngOnInit() {
-    this.questions = this._surveyServices.getQuestionsDetailBySurveyId();
+  ngOnInit() { 
+    this._surveyServices.questionsSummary.subscribe(questions => {
+      this.questions = questions;
+    });
   }
 }

@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { SurveySummary } from 'src/app/models/survey-summary';
+import { SurveyServices } from 'src/app/services/survey-services';
+import { QuestionSummary } from 'src/app/models/question-summary';
 
 @Component({
   selector: 'app-surveys-name-list',
@@ -9,10 +11,18 @@ import { SurveySummary } from 'src/app/models/survey-summary';
 export class SurveysNameListComponent implements OnInit {
 
   @Input('surveysInput') surveys: Array<SurveySummary>;
+  questions: Array<QuestionSummary>;
   
-  constructor() { }
+  constructor(
+    private _surveyServices: SurveyServices
+  ) { }
 
   ngOnInit() {
+    this.questions = new Array<QuestionSummary>();
   }
 
+  onClickSurvey(survey: SurveySummary){
+    this.questions = this._surveyServices.getQuestionsSummary(survey.id);
+    this._surveyServices.questionsSummary.emit(this.questions);
+  }
 }

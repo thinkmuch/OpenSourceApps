@@ -1,5 +1,5 @@
 <ul class="list-group">
-  <li class="list-group-item pointer fz-14px" *ngFor="let survey of surveys">
+  <li class="list-group-item pointer fz-14px" *ngFor="let survey of surveys" (click)="onClickSurvey(survey)">
     <div class="row">
       <div class="col-9">
         <span>{{survey.name}}</span>
