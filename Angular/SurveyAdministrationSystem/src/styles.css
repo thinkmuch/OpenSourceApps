@@ -183,3 +183,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .fz-14px {
     font-size: 14px;
 }
+
+.selected {
+    background: #E1F5FE;
+}
