@@ -34,6 +34,7 @@ import { CatalogsComponent } from './pages/catalogs/catalogs.component';
 import { ChartsModule } from 'ng2-charts';
 import { SurveysNameListComponent } from './pages/dashboard/surveys-name-list/surveys-name-list.component';
 import { QuestionListComponent } from './pages/dashboard/question-list/question-list.component';
+import { SearchButtonsComponent } from './pages/dashboard/search-buttons/search-buttons.component';
 
 @NgModule({
   entryComponents: [
@@ -63,6 +64,7 @@ import { QuestionListComponent } from './pages/dashboard/question-list/question-
     CatalogsComponent,
     SurveysNameListComponent,
     QuestionListComponent,
+    SearchButtonsComponent,
   ],
   imports: [
     BrowserModule,
