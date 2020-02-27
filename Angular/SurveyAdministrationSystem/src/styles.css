@@ -175,3 +175,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .minw-150px {
     min-width: 150px;
 }
+
+.pd-5px {
+    padding: 5px;
+}

@@ -40,22 +40,75 @@
       <div class="progress m-b-5px">
         <div class="progress-bar bg-success pointer" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
       </div>
+      <hr>
+      <div>
+        <div>
+          <div style="display: block">
+            <canvas baseChart
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [plugins]="barChartPlugins"
+              [legend]="barChartLegend"
+              [chartType]="barChartType">
+            </canvas>
+          </div>
+          <button mat-button mat-raised-button color="primary" (click)="randomize()">Update</button>
+        </div>
+      </div>
     </div>
     <div class="col-8">
       <div class="row">
         <div class="col-3">
           <ul class="list-group">
-            <li class="list-group-item pointer">La Cantina</li>
-            <li class="list-group-item pointer">Tramonto</li>
-            <li class="list-group-item pointer">Zamba</li>
-            <li class="list-group-item pointer">Check In</li>
-            <li class="list-group-item pointer">Joy Squad</li>
-            <li class="list-group-item pointer">Estacionamiento</li>
-            <li class="list-group-item pointer">Azure</li>
-            <li class="list-group-item pointer">Consierge</li>
+            <li class="list-group-item pointer" *ngFor="let survey of surveys">
+              <div class="row">
+                <div class="col">
+                  <span>{{survey.name}}</span>
+                </div>
+                <div class="col text-right">
+                  <span class="badge badge-primary">{{survey.answeredCount}}</span>
+                </div>
+              </div>
+            </li>
           </ul>
         </div>
-        <div class="col-9">asd</div>
+        <div class="col-9" id="questions">
+          <ul class="list-group">
+            <li class="list-group-item pointer pd-5px">¿Su experiencia en general del espectáculo Cirque du Soleil JOYÀ?</li>
+            <li class="list-group-item pointer pd-5px">¿Cómo fue su experiencia en general de Jungala Aqua Experience?</li>
+            <li class="list-group-item pointer pd-5px">Atención y eficiencia del personal</li>
+            <li class="list-group-item pointer pd-5px">Reservación correcta</li>
+            <li class="list-group-item pointer pd-5px">Rapidez</li>
+            <li class="list-group-item pointer pd-5px">Servicio de Valet parking</li>
+            <li class="list-group-item pointer pd-5px">Servicio de Bell boys</li>
+            <li class="list-group-item pointer pd-5px">Actitud del Personal de Recepción</li>
+            <li class="list-group-item pointer pd-5px">Rapidez en el Registro</li>
+            <li class="list-group-item pointer pd-5px">Rapidez en la Salida</li>
+            <li class="list-group-item pointer pd-5px">Operadoras de Teléfonos del Hotel</li>
+            <li class="list-group-item pointer pd-5px">Atención y Eficiencia del Concierge</li>
+            <li class="list-group-item pointer pd-5px">Limpieza al Momento de llegar</li>
+            <li class="list-group-item pointer pd-5px">Limpieza del baño</li>
+            <li class="list-group-item pointer pd-5px">Limpieza General de la Habitación</li>
+            <li class="list-group-item pointer pd-5px">Servicio de Camaristas</li>
+            <li class="list-group-item pointer pd-5px">Condiciones del Mobiliario</li>
+            <li class="list-group-item pointer pd-5px">Mantenimiento General de la Habitación</li>
+            <li class="list-group-item pointer pd-5px">Presentación de Buffets</li>
+            <li class="list-group-item pointer pd-5px">Calidad de Alimentos en Buffets</li>
+            <li class="list-group-item pointer pd-5px">Calidad de alimentos en General</li>
+            <li class="list-group-item pointer pd-5px">Calidad de Bebidas en General</li>
+            <li class="list-group-item pointer pd-5px">Apariencia y Cortesía de meseros</li>
+            <li class="list-group-item pointer pd-5px">Limpieza de las Albercas</li>
+            <li class="list-group-item pointer pd-5px">Atención y Servicio en Boutique</li>
+            <li class="list-group-item pointer pd-5px">Calidad del Spa</li>
+            <li class="list-group-item pointer pd-5px">Atención y Servicios del Spa</li>
+            <li class="list-group-item pointer pd-5px">Calidad del Gimnasio</li>
+            <li class="list-group-item pointer pd-5px">Atención y Servicio del Gimnasio</li>
+            <li class="list-group-item pointer pd-5px">Actividades Jöy Squad</li>
+            <li class="list-group-item pointer pd-5px">Ambiente de Seguridad</li>
+            <li class="list-group-item pointer pd-5px">Limpieza y Mantenimiento en General</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

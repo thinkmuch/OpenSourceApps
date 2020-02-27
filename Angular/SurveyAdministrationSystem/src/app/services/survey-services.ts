@@ -39,6 +39,7 @@ export class SurveyServices
             surveySummary.plazas = survey.squares.length;
             surveySummary.hoteles = survey.hotels.length;
             surveySummary.owner = true;
+            surveySummary.answeredCount = 34;
             
             this.surveys.push(surveySummary);
         }

@@ -31,6 +31,7 @@ import { QuestionMenuComponent } from './pages/surveys/newsurvey/new-edit-survey
 import { SquareHotelCatalogModalComponent } from './pages/surveys/newsurvey/new-edit-survey/footer/square-hotel-catalog-modal/square-hotel-catalog-modal.component';
 import { AddLanguageComponent } from './pages/surveys/add-language/add-language.component';
 import { CatalogsComponent } from './pages/catalogs/catalogs.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   entryComponents: [
@@ -72,7 +73,8 @@ import { CatalogsComponent } from './pages/catalogs/catalogs.component';
     MatTooltipModule,
     MatButtonModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

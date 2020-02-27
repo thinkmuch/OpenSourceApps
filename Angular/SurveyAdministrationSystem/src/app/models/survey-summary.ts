@@ -10,4 +10,5 @@ export class SurveySummary
     plazas: number;
     hoteles: number;
     owner: boolean;
+    answeredCount: number;
 }
