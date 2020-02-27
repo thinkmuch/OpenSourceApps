@@ -1,0 +1,12 @@
+<ul class="list-group">
+  <li class="list-group-item pointer" *ngFor="let survey of surveys">
+    <div class="row">
+      <div class="col">
+        <span>{{survey.name}}</span>
+      </div>
+      <div class="col text-right">
+        <span class="badge badge-primary">{{survey.answeredCount}}</span>
+      </div>
+    </div>
+  </li>
+</ul>

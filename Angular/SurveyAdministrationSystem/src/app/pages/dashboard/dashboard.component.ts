@@ -27,7 +27,6 @@ export class DashboardComponent implements OnInit {
 
   public barChartOptions: ChartOptions = {
     responsive: true,
-    // We use these empty structures as placeholders for dynamic theming.
     scales: { xAxes: [{}], yAxes: [{}] },
     plugins: {
       datalabels: {
@@ -43,7 +42,7 @@ export class DashboardComponent implements OnInit {
   public barChartPlugins = [pluginDataLabels];
 
   public barChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56], label: 'Series A' }
+    { data: [65, 59, 80, 81, 56], label: 'Hotel' }
   ];
 
   constructor(
@@ -86,9 +85,7 @@ export class DashboardComponent implements OnInit {
       59,
       80,
       (Math.random() * 100),
-      56,
-      (Math.random() * 100),
-      40];
+      56];
     this.barChartData[0].data = data;
   }
 }

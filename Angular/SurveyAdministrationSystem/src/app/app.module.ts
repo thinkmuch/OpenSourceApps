@@ -32,6 +32,8 @@ import { SquareHotelCatalogModalComponent } from './pages/surveys/newsurvey/new-
 import { AddLanguageComponent } from './pages/surveys/add-language/add-language.component';
 import { CatalogsComponent } from './pages/catalogs/catalogs.component';
 import { ChartsModule } from 'ng2-charts';
+import { SurveysNameListComponent } from './pages/dashboard/surveys-name-list/surveys-name-list.component';
+import { QuestionListComponent } from './pages/dashboard/question-list/question-list.component';
 
 @NgModule({
   entryComponents: [
@@ -59,6 +61,8 @@ import { ChartsModule } from 'ng2-charts';
     SquareHotelCatalogModalComponent,
     AddLanguageComponent,
     CatalogsComponent,
+    SurveysNameListComponent,
+    QuestionListComponent,
   ],
   imports: [
     BrowserModule,
