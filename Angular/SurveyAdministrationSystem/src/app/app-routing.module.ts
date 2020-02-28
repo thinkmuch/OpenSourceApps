@@ -5,7 +5,12 @@ import { SurveysComponent } from './pages/surveys/surveys/surveys.component';
 import { NewEditSurveyComponent } from './pages/surveys/newsurvey/new-edit-survey/new-edit-survey.component';
 import { AddLanguageComponent } from './pages/surveys/add-language/add-language.component';
 import { CatalogsComponent } from './pages/catalogs/catalogs.component';
-import { SurveyServices } from './services/survey-services';
+import { SquaresComponent } from './pages/catalogs/squares/squares.component';
+import { HotelsComponent } from './pages/catalogs/hotels/hotels.component';
+import { SitesComponent } from './pages/catalogs/sites/sites.component';
+import { DepartmentsComponent } from './pages/catalogs/departments/departments.component';
+import { AreasComponent } from './pages/catalogs/areas/areas.component';
+import { LanguagesComponent } from './pages/catalogs/languages/languages.component';
 
 const routes: Routes = [
   { 
@@ -35,7 +40,34 @@ const routes: Routes = [
   },
   {
     path: 'catalogos',
-    component: CatalogsComponent
+    component: CatalogsComponent,
+    children: 
+    [
+      {
+        path: 'plazas',
+        component: SquaresComponent
+      },
+      {
+        path: 'hoteles',
+        component: HotelsComponent
+      },
+      {
+        path: 'sitios',
+        component: SitesComponent
+      },
+      {
+        path: 'departamentos',
+        component: DepartmentsComponent
+      },
+      {
+        path: 'areas',
+        component: AreasComponent
+      },
+      {
+        path: 'idiomas',
+        component: LanguagesComponent
+      }
+    ]
   },
   { 
     path: '**', 
