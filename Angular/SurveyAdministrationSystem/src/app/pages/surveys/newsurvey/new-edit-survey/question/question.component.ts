@@ -26,7 +26,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
   selected: boolean;
 
   constructor(
-    private _surveyCaptureServices: SurveyCaptureServices,
+    public _surveyCaptureServices: SurveyCaptureServices,
     private _answerServices: AnswerServices,
     public _matDialog: MatDialog,
     private _viewServices: ViewServices,

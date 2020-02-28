@@ -37,6 +37,12 @@ import { QuestionListComponent } from './pages/dashboard/question-list/question-
 import { SearchButtonsComponent } from './pages/dashboard/search-buttons/search-buttons.component';
 import { SatisfactionBarComponent } from './pages/dashboard/satisfaction-bar/satisfaction-bar.component';
 import { PercentageBarComponent } from './pages/dashboard/percentage-bar/percentage-bar.component';
+import { SquaresComponent } from './pages/catalogs/squares/squares.component';
+import { HotelsComponent } from './pages/catalogs/hotels/hotels.component';
+import { SitesComponent } from './pages/catalogs/sites/sites.component';
+import { DepartmentsComponent } from './pages/catalogs/departments/departments.component';
+import { AreasComponent } from './pages/catalogs/areas/areas.component';
+import { LanguagesComponent } from './pages/catalogs/languages/languages.component';
 
 @NgModule({
   entryComponents: [
@@ -69,6 +75,12 @@ import { PercentageBarComponent } from './pages/dashboard/percentage-bar/percent
     SearchButtonsComponent,
     SatisfactionBarComponent,
     PercentageBarComponent,
+    SquaresComponent,
+    HotelsComponent,
+    SitesComponent,
+    DepartmentsComponent,
+    AreasComponent,
+    LanguagesComponent,
   ],
   imports: [
     BrowserModule,
