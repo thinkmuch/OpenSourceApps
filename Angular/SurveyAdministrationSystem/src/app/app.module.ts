@@ -80,7 +80,7 @@ import { LanguagesComponent } from './pages/catalogs/languages/languages.compone
     SitesComponent,
     DepartmentsComponent,
     AreasComponent,
-    LanguagesComponent,
+    LanguagesComponent
   ],
   imports: [
     BrowserModule,

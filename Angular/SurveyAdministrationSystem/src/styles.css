@@ -187,3 +187,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .selected {
     background: #E1F5FE;
 }
+
+.w-20p {
+    width: 20%;
+}
