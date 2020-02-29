@@ -122,12 +122,24 @@ export class SquareServices {
 
         square6.hotels.push(hotel1Square6);
 
+        let square7 = new Square();
+        square7.id = 6;
+        square7.name = "Cruises";
+        square7.hotels = new Array<Hotel>();
+
+            let hotel1Square7 = new Hotel();
+            hotel1Square7.id = 3;
+            hotel1Square7.name = "Vidanta Elegant";
+
+        square6.hotels.push(hotel1Square6);
+
         squares.push(square1);
         squares.push(square2);
         squares.push(square3);
         squares.push(square4);
         squares.push(square5);
         squares.push(square6);
+        squares.push(square7);
 
         return squares;
     }
