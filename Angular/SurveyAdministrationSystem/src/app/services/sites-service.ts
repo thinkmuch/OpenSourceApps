@@ -144,6 +144,18 @@ export class SitesServices {
     site33.id = 33;
     site33.name = "Spatium";
 
+    let site34 = new Site();
+    site34.id = 34;
+    site34.name = "Jungala";
+
+    let site35 = new Site();
+    site35.id = 35;
+    site35.name = "Cirque Du Soleil JOYÀ";
+
+    let site36 = new Site();
+    site36.id = 36;
+    site36.name = "Jade Boutique";
+
     sites.push(site1);
     sites.push(site2);
     sites.push(site3);
@@ -177,6 +189,9 @@ export class SitesServices {
     sites.push(site31);
     sites.push(site32);
     sites.push(site33);
+    sites.push(site34);
+    sites.push(site35);
+    sites.push(site36);
 
     return sites;
   }

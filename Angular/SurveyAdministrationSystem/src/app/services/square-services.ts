@@ -32,10 +32,20 @@ export class SquareServices {
             hotel4Square1.id = 4;
             hotel4Square1.name = "The Grand Mayan";
 
+            let hotel5Square1 = new Hotel();
+            hotel5Square1.id = 5;
+            hotel5Square1.name = "The Cascades";
+
+            let hotel6Square1 = new Hotel();
+            hotel6Square1.id = 6;
+            hotel6Square1.name = "Kingdom of the Sun";
+
         square1.hotels.push(hotel1Square1);
         square1.hotels.push(hotel2Square1);
         square1.hotels.push(hotel3Square1);
         square1.hotels.push(hotel4Square1);
+        square1.hotels.push(hotel5Square1);
+        square1.hotels.push(hotel6Square1);
 
         let square2 = new Square();
         square2.id = 2;
@@ -74,7 +84,7 @@ export class SquareServices {
         square3.hotels = new Array<Hotel>();
 
             let hotel1Square3 = new Hotel();
-            hotel1Square3.id = 4;
+            hotel1Square3.id = 1;
             hotel1Square3.name = "The Grand Mayan";
 
         square3.hotels.push(hotel1Square3);
@@ -85,11 +95,11 @@ export class SquareServices {
         square4.hotels = new Array<Hotel>();
 
             let hotel1Square4 = new Hotel();
-            hotel1Square4.id = 3;
+            hotel1Square4.id = 1;
             hotel1Square4.name = "Mayan Palace";
 
             let hotel2Square4 = new Hotel();
-            hotel2Square4.id = 4;
+            hotel2Square4.id = 2;
             hotel2Square4.name = "The Grand Mayan";
 
         square4.hotels.push(hotel1Square4);
@@ -101,11 +111,11 @@ export class SquareServices {
         square5.hotels = new Array<Hotel>();
 
             let hotel1Square5 = new Hotel();
-            hotel1Square5.id = 3;
+            hotel1Square5.id = 1;
             hotel1Square5.name = "Mayan Palace";
 
             let hotel2Square5 = new Hotel();
-            hotel2Square5.id = 4;
+            hotel2Square5.id = 2;
             hotel2Square5.name = "The Grand Mayan";
 
         square5.hotels.push(hotel1Square5);
@@ -117,21 +127,15 @@ export class SquareServices {
         square6.hotels = new Array<Hotel>();
 
             let hotel1Square6 = new Hotel();
-            hotel1Square6.id = 3;
+            hotel1Square6.id = 1;
             hotel1Square6.name = "Mayan Palace";
 
-        square6.hotels.push(hotel1Square6);
-
-        let square7 = new Square();
-        square7.id = 6;
-        square7.name = "Cruises";
-        square7.hotels = new Array<Hotel>();
-
-            let hotel1Square7 = new Hotel();
-            hotel1Square7.id = 3;
-            hotel1Square7.name = "Vidanta Elegant";
+            let hotel2Square6 = new Hotel();
+            hotel2Square6.id = 2;
+            hotel2Square6.name = "The Estates";
 
         square6.hotels.push(hotel1Square6);
+        square6.hotels.push(hotel2Square6);
 
         squares.push(square1);
         squares.push(square2);
@@ -139,7 +143,6 @@ export class SquareServices {
         squares.push(square4);
         squares.push(square5);
         squares.push(square6);
-        squares.push(square7);
 
         return squares;
     }
@@ -170,7 +173,19 @@ export class SquareServices {
 
         let hotel6 = new Hotel();
         hotel6.id = 6;
-        hotel6.name = "Mayan Palace"
+        hotel6.name = "Mayan Palace";
+
+        let hotel7 = new Hotel();
+        hotel7.id = 7;
+        hotel7.name = "Kingdom of the Sun";
+
+        let hotel8 = new Hotel();
+        hotel8.id = 8;
+        hotel8.name = "The Cascades";
+
+        let hotel9 = new Hotel();
+        hotel9.id = 9;
+        hotel9.name = "The States";
 
         hotels.push(hotel1);
         hotels.push(hotel2);
@@ -178,6 +193,9 @@ export class SquareServices {
         hotels.push(hotel4);
         hotels.push(hotel5);
         hotels.push(hotel6);
+        hotels.push(hotel7);
+        hotels.push(hotel8);
+        hotels.push(hotel9);
 
         return hotels;
     }
