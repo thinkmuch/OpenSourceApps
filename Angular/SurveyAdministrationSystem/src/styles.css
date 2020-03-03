@@ -191,3 +191,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .w-20p {
     width: 20%;
 }
+
+.mt-20px {
+    margin-top: 20px;
+}
+
+.mt-31px {
+    margin-top: 31px;
+}

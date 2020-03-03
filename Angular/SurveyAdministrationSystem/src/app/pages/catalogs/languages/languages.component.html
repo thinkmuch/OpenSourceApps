@@ -1,1 +1,75 @@
-<label>Alta y baja de idiomas</label>
+<div class="content mt-20px">
+    <div class="row">
+        <div class="col-2">
+            <div class="form-group">
+                <label for="inputLanguageName" class="fw-500">Idioma</label>
+                <input 
+                type="text" 
+                class="form-control" 
+                id="inputLanguageName" 
+                [(ngModel)]="languageSelected.language"
+                [disabled]="inputNameDisabled" 
+                #languageName>
+            </div>
+        </div>
+        <div class="col-10">
+            <button
+            type="button"
+            class="btn btn-primary mt-31px"
+            [hidden]="newButtonHidden"
+            (click)="setNew()">Nuevo</button>
+            <button 
+            type="button" 
+            class="btn btn-primary mt-31px" 
+            id="saveButton"
+            [hidden]="saveButtonHidden"
+            [ngClass]="{'cursorDefault': saveButtonDisabled}"
+            (click)="save()">Guardar</button>
+            <button 
+            type="button" 
+            class="btn btn-warning mt-31px" 
+            id="cancelButton" 
+            [disabled]="cancelButtonDisabled" 
+            [ngClass]="{'cursorDefault': cancelButtonDisabled}"
+            (click)="cancel()">Cancelar</button>
+        </div>
+    </div>
+    <div class="row" id="tableContainer">
+        <table class="table table-hover text-center">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Idioma</th>
+                    <th scope="col">Estatus</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let language of languages" class="pointer">
+                    <th scope="row">{{language.id}}</th>
+                    <td>{{language.language}}</td>
+                    <td>
+                        <span *ngIf="language.status == 0">Inactivo</span>
+                        <span *ngIf="language.status == 1">Activo</span>
+                    </td>
+                    <td>
+                        <div class="btn-group dropleft">
+                            <mat-icon aria-hidden="false" [matMenuTriggerFor]="menu" class="pointer">more_vert</mat-icon>
+                            <mat-menu #menu="matMenu">
+                                <div class="pointer item-menu-question" *ngIf="language.status == 0" (click)="enable(language)">
+                                    <a class="dropdown-item"><i class="fas fa-power-off text-success"></i>   Activar</a>
+                                </div>
+                                <div class="pointer item-menu-question" *ngIf="language.status == 1" (click)="disable(language)">
+                                    <a class="dropdown-item"><i class="fas fa-power-off text-secondary"></i>   Desactivar</a>
+                                </div>
+                                <div class="pointer item-menu-question" (click)="edit(language)">
+                                    <a class="dropdown-item"><i class="fas fa-edit c-orange"></i>   Editar</a>
+                                </div>
+                            </mat-menu>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

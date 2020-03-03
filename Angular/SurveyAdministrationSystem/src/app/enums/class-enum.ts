@@ -7,3 +7,8 @@ export enum AnswerType {
     FreeText = 2,
     MultipleChoises = 3
 }
+
+export enum Status {
+    Inactive = 0,
+    Active = 1
+}
