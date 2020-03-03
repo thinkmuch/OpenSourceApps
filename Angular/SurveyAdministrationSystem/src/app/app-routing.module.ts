@@ -11,6 +11,7 @@ import { SitesComponent } from './pages/catalogs/sites/sites.component';
 import { DepartmentsComponent } from './pages/catalogs/departments/departments.component';
 import { AreasComponent } from './pages/catalogs/areas/areas.component';
 import { LanguagesComponent } from './pages/catalogs/languages/languages.component';
+import { CruisesComponent } from './pages/catalogs/cruises/cruises.component';
 
 const routes: Routes = [
   { 
@@ -50,6 +51,10 @@ const routes: Routes = [
       {
         path: 'hoteles',
         component: HotelsComponent
+      },
+      {
+        path: 'cruseros',
+        component: CruisesComponent
       },
       {
         path: 'sitios',

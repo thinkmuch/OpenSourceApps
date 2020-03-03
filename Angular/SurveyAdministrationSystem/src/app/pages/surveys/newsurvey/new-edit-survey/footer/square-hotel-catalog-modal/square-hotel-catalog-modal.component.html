@@ -48,6 +48,9 @@
         (change)="onChangeHotel(hotel, checkHotel.checked)" 
         #checkHotel>{{hotel.name}}</mat-checkbox>
       </li>
+      <div class="alert alert-warning" role="alert" *ngIf="hotels.length == 0">
+        Seleccione al menos una plaza
+      </div>
     </div>
     <div class="tab-pane fade" id="nav-cruises" role="tabpanel" aria-labelledby="nav-profile-tab">
       <li class="list-group-item">
