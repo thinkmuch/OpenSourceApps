@@ -10,6 +10,7 @@ import { Survey } from '../models/survey';
 import { Area } from '../models/area';
 import { AnswerType } from '../enums/class-enum';
 import { Department } from '../models/department';
+import { Cruise } from '../models/cruise';
 
 @Injectable({
     providedIn: 'root'
@@ -19,6 +20,7 @@ export class SurveyCaptureServices
     public language: Language;
     public squares: Array<Square>;
     public hotels: Array<Hotel>;
+    public cruises: Array<Cruise>;
     public questions: Array<Question>;
     private answers: Array<Answer>;
     public nameSurvey: string;
@@ -30,12 +32,14 @@ export class SurveyCaptureServices
         this.rowSelected = new EventEmitter<number>();
         this.squares = new Array<Square>();
         this.hotels = new Array<Hotel>();
+        this.cruises = new Array<Cruise>();
     }
 
     initialize() {
         this.language = new Language();
         this.squares = new Array<Square>();
         this.hotels = new Array<Hotel>();
+        this.cruises = new Array<Cruise>();
         this.questions = new Array<Question>();
         this.answers = new Array<Answer>();
         this.nameSurvey = "";
@@ -179,6 +183,10 @@ export class SurveyCaptureServices
         this.hotels = [];
     }
 
+    removeAllCruises() {
+        this.cruises = [];
+    }
+
     removeHotel(hotel: Hotel) {
         for(let i = 0; i < this.hotels.length; i++) {
             if(this.hotels[i].id == hotel.id) {
@@ -205,6 +213,18 @@ export class SurveyCaptureServices
     setDepartment(idQuestion: number, department: Department) {
         let index = idQuestion - 1;
         this.questions[index].department = department;
+    }
+
+    addCruise(cruise: Cruise) {
+        this.cruises.push(cruise);
+    }
+
+    removeCruise(cruise: Cruise) {
+        for(let i = 0; i < this.cruises.length; i++) {
+            if(this.cruises[i].id == cruise.id) {
+                this.cruises.splice(i, 1);
+            }
+        }
     }
 
     getAnswers() : Array<Answer> {

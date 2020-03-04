@@ -14,14 +14,15 @@ import { CruisesService } from 'src/app/services/cruises.service';
 })
 export class SquareHotelCatalogModalComponent implements OnInit {
 
-  public squares: Array<Square>;
-  public hotels: Array<Hotel>;
-  public cruises: Array<Cruise>;
-  public squareHidden: boolean;
-  public hotelsHidden: boolean;
-  public cruisesHidden: boolean;
-  public allSquares: boolean;
-  public allHotels: boolean;
+  squares: Array<Square>;
+  hotels: Array<Hotel>;
+  cruises: Array<Cruise>;
+  squareHidden: boolean;
+  hotelsHidden: boolean;
+  cruisesHidden: boolean;
+  allSquares: boolean;
+  allHotels: boolean;
+  allCruises: boolean;
 
   constructor(
     private _squareServices: SquareServices,
@@ -31,14 +32,17 @@ export class SquareHotelCatalogModalComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.hotels = new Array<Hotel>();
     this.squares = this._squareServices.getAllSquares();
     this.cruises = this._cruisesServices.getAll();
-    this.squareCatalog = true;
-    this.cruisesCatalog = false;
-    this.hotelsCatalog = false;
+    
     this.allSquares = false;
     this.allHotels = false;
-    this.hotels = new Array<Hotel>();
+    this.allCruises = false;
+
+    this.squareHidden = false;
+    this.cruisesHidden = true;
+    this.hotelsHidden = true;
 
     this.filterHotels();
   }
@@ -92,46 +96,30 @@ export class SquareHotelCatalogModalComponent implements OnInit {
   }
 
   onChangeCruise(cruise: Cruise, checked: boolean) {
-    console.log(`checked = ${checked}`);
-    console.log(cruise);
+    if(checked) {
+      this._surveyCaprureServices.addCruise(cruise);
+    }
+    else {
+      this._surveyCaprureServices.removeCruise(cruise);
+    }
   }
 
   onClickTabSquares() {
-    this.squareCatalog = true;
-    this.hotelsCatalog = false;
-    this.cruisesCatalog = false;
+    this.squareHidden = false;
+    this.hotelsHidden = true;
+    this.cruisesHidden = true;
   }
 
   onClickTabHotels() {
-    this.hotelsCatalog = true;
-    this.squareCatalog = false;
-    this.cruisesCatalog = false;
+    this.hotelsHidden = false;
+    this.squareHidden = true;
+    this.cruisesHidden = true;
   }
 
   onClickTabCruises() {
-    this.cruisesCatalog = true;
-    this.squareCatalog = false;
-    this.hotelsCatalog = false;
-  }
-
-  onClickAllSquares() {
-    this.allSquares = !this.allSquares;
-    
-    if(!this.allSquares) {
-      this._surveyCaprureServices.removeAllSquares();
-      this.filterHotels();
-    }
-    else {
-      this._squareServices.getAllSquares().forEach(square => {
-        this._surveyCaprureServices.addSquare(square);
-      });
-      
-      this.filterHotels();
-    }
-  }
-
-  onClickAllCruises() {
-    console.log('onClickAllCruises');
+    this.cruisesHidden = false;
+    this.squareHidden = true;
+    this.hotelsHidden = true;
   }
 
   isSquareSelected(square: Square): boolean {
@@ -140,6 +128,10 @@ export class SquareHotelCatalogModalComponent implements OnInit {
 
   isHotelSelected(hotel: Hotel) {
     return ((this._surveyCaprureServices.hotels.find(p => p.id == hotel.id)) != undefined);
+  }
+
+  isCruiseSelected(cruise: Cruise) {
+    return ((this._surveyCaprureServices.cruises.find(c => c.id == cruise.id)) != undefined);
   }
 
   onClickAllHotels() {
@@ -151,6 +143,30 @@ export class SquareHotelCatalogModalComponent implements OnInit {
     else {
       this.hotels.forEach(hotel => {
         this._surveyCaprureServices.addHotel(hotel);
+      });
+    }
+  }
+
+  onClickAllSquares() {
+    this.allSquares = !this.allSquares;
+    this._surveyCaprureServices.removeAllSquares();
+
+    if(this.allSquares) {
+      this.squares.forEach(square => {
+        this._surveyCaprureServices.addSquare(square);
+      });
+      
+      this.filterHotels();
+    }
+  }
+
+  onClickAllCruises() {
+    this.allCruises = !this.allCruises;
+    this._surveyCaprureServices.removeAllCruises();
+
+    if(this.allCruises) {
+      this.cruises.forEach(cruise => {
+        this._surveyCaprureServices.addCruise(cruise);
       });
     }
   }

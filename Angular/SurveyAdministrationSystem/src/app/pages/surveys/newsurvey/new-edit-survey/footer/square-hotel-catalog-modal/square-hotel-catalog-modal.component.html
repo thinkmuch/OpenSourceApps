@@ -59,6 +59,7 @@
     <div class="tab-pane fade" id="nav-cruises" role="tabpanel" aria-labelledby="nav-profile-tab">
       <li class="list-group-item" *ngFor="let cruise of cruises">
         <mat-checkbox
+        [checked]="allCruises || isCruiseSelected(cruise)"
         (change)="onChangeCruise(cruise, checkCruise.checked)"
         #checkCruise>{{cruise.name}}</mat-checkbox>
       </li>
@@ -71,9 +72,9 @@
   <div class="container text-right">
     <div class="row">
       <div class="col text-left">
-        <mat-checkbox [hidden]="squareCatalog" (click)="onClickAllSquares()" #checkAllSquares>Todas las Plazas</mat-checkbox>
-        <mat-checkbox [hidden]="squareCatalog" (click)="onClickAllHotels()">Todos los Hoteles</mat-checkbox>
-        <mat-checkbox [hidden]="cruisesCatalog" (click)="onClickAllCruises()">Todos los Cruceros</mat-checkbox>
+        <mat-checkbox [hidden]="squareHidden" (click)="onClickAllSquares()" #checkAllSquares>Todas las Plazas</mat-checkbox>
+        <mat-checkbox [hidden]="hotelsHidden" (click)="onClickAllHotels()">Todos los Hoteles</mat-checkbox>
+        <mat-checkbox [hidden]="cruisesHidden" (click)="onClickAllCruises()">Todos los Cruceros</mat-checkbox>
       </div>
       <div class="col">
         <button type="button" class="btn btn-secondary" (click)="close()">Cerrar</button>
