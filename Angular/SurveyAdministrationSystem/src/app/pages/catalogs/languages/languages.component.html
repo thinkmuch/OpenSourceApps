@@ -24,12 +24,12 @@
             class="btn btn-primary mt-31px" 
             id="saveButton"
             [hidden]="saveButtonHidden"
-            (click)="save()">Guardar</button>
+            (click)="save(languageName.value)">Guardar</button>
             <button 
             type="button" 
             class="btn btn-warning mt-31px" 
             id="cancelButton" 
-            [disabled]="cancelButtonDisabled" 
+            [hidden]="cancelButtonDisabled" 
             [ngClass]="{'cursorDefault': cancelButtonDisabled}"
             (click)="cancel()">Cancelar</button>
         </div>

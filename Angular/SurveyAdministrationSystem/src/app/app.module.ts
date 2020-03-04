@@ -44,6 +44,7 @@ import { DepartmentsComponent } from './pages/catalogs/departments/departments.c
 import { AreasComponent } from './pages/catalogs/areas/areas.component';
 import { LanguagesComponent } from './pages/catalogs/languages/languages.component';
 import { CruisesComponent } from './pages/catalogs/cruises/cruises.component';
+import { AnswersComponent } from './pages/catalogs/answers/answers.component';
 
 @NgModule({
   entryComponents: [
@@ -82,7 +83,8 @@ import { CruisesComponent } from './pages/catalogs/cruises/cruises.component';
     DepartmentsComponent,
     AreasComponent,
     LanguagesComponent,
-    CruisesComponent
+    CruisesComponent,
+    AnswersComponent
   ],
   imports: [
     BrowserModule,
