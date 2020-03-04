@@ -17,13 +17,12 @@
             type="button"
             class="btn btn-primary mt-31px"
             [hidden]="newButtonHidden"
-            (click)="setNew()">Nuevo</button>
+            (click)="setNew(languageName)">Nuevo</button>
             <button 
             type="button" 
             class="btn btn-primary mt-31px" 
             id="saveButton"
             [hidden]="saveButtonHidden"
-            [ngClass]="{'cursorDefault': saveButtonDisabled}"
             (click)="save()">Guardar</button>
             <button 
             type="button" 

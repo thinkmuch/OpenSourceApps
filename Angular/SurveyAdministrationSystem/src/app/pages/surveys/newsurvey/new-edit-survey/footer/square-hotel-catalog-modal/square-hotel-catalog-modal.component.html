@@ -27,7 +27,8 @@
       href="#nav-cruises" 
       role="tab" 
       aria-controls="nav-cruises" 
-      aria-selected="false">Cruises</a>
+      aria-selected="false"
+      (click)="onClickTabCruises()">Cruises</a>
     </div>
   </nav>
   <div class="tab-content" id="nav-tabContent" id="squaresCatalog">
@@ -39,6 +40,9 @@
           (change)="onChangeSquare(square, checkSquare.checked)" 
           #checkSquare>{{square.name}}</mat-checkbox>
         </li>
+        <div class="alert alert-warning" role="alert" *ngIf="squares.length == 0">
+          No se encontraron plazas registradas
+        </div>
       </ul>
     </div>
     <div class="tab-pane fade" id="nav-hotels" role="tabpanel" aria-labelledby="nav-hotels-tab">
@@ -53,17 +57,23 @@
       </div>
     </div>
     <div class="tab-pane fade" id="nav-cruises" role="tabpanel" aria-labelledby="nav-profile-tab">
-      <li class="list-group-item">
-        <mat-checkbox>Vidanta Elegant</mat-checkbox>
+      <li class="list-group-item" *ngFor="let cruise of cruises">
+        <mat-checkbox
+        (change)="onChangeCruise(cruise, checkCruise.checked)"
+        #checkCruise>{{cruise.name}}</mat-checkbox>
       </li>
+      <div class="alert alert-warning" role="alert" *ngIf="cruises.length == 0">
+        No se encontraron cruceros registrados
+      </div>
     </div>
   </div>
   <br>
   <div class="container text-right">
     <div class="row">
       <div class="col text-left">
-        <mat-checkbox [hidden]="!squareCatalog" (click)="onClickAllSquares()" #checkAllSquares>Todas las Plazas</mat-checkbox>
+        <mat-checkbox [hidden]="squareCatalog" (click)="onClickAllSquares()" #checkAllSquares>Todas las Plazas</mat-checkbox>
         <mat-checkbox [hidden]="squareCatalog" (click)="onClickAllHotels()">Todos los Hoteles</mat-checkbox>
+        <mat-checkbox [hidden]="cruisesCatalog" (click)="onClickAllCruises()">Todos los Cruceros</mat-checkbox>
       </div>
       <div class="col">
         <button type="button" class="btn btn-secondary" (click)="close()">Cerrar</button>

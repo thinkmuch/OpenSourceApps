@@ -31,4 +31,8 @@ export class LanguageServices {
     update(language: Language) {
 
     }
+
+    save(name: string) {
+        
+    }
 }

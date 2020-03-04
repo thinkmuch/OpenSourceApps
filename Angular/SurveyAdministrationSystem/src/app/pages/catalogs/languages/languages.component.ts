@@ -91,9 +91,14 @@ export class LanguagesComponent implements OnInit {
     this.restartScreen();
   }
 
-  save() {
-    this._languageServices.update(this.languageSelected);
+  save(name: string) {
+    this._languageServices.save(name)
     this.restartScreen();
+    
+    Swal.fire({
+      title: 'Idioma registrado',
+      icon: 'success'
+    });
   }
 
   restartScreen() {

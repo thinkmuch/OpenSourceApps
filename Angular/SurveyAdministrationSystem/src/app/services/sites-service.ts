@@ -193,6 +193,14 @@ export class SitesServices {
     sites.push(site35);
     sites.push(site36);
 
-    return sites;
+    return sites.sort((a, b) => {
+      if (a.name > b.name) {
+          return 1;
+      }
+      if (b.name > a.name) {
+          return -1;
+      }
+      return 0;
+  });
   }
 }
