@@ -8,6 +8,10 @@ export class AreasServices {
     
     constructor() {}
 
+    update(area: Area) {
+        
+    }
+
     getAllAreas(): Array<Area> {
         let areas = new Array<Area>();
 

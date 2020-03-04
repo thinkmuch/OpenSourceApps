@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild, Renderer2 } from '@angular/co
 import { Area } from 'src/app/models/area';
 import { AreasServices } from 'src/app/services/areas-services';
 import Swal from 'sweetalert2';
+import { Status } from 'src/app/enums/class-enum';
 
 @Component({
   selector: 'app-areas',
@@ -81,5 +82,53 @@ export class AreasComponent implements OnInit {
         icon: 'success'
       });
     }
+  }
+
+  enable(area: Area) {
+
+    Swal.fire({
+      title: 'Activar',
+      text: `¿Seguro que desea activar el idioma ${area.area}?`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Si, activar',
+      cancelButtonText: 'Cancelar'
+    }).then((response) => {
+      
+      if(response.value) {
+
+        area.status = Status.Active;
+        this._areasServices.update(area);
+
+        Swal.fire({
+          title: 'Area activada',
+          icon: 'success'
+        });
+      }
+    });
+  }
+
+  disable(area: Area) {
+
+    Swal.fire({
+      title: 'Desactivar',
+      text: `¿Seguro que desea desactivar el área ${area.area}?`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Si, desactivar',
+      cancelButtonText: 'Cancelar'
+    }).then((response) => {
+      
+      if(response.value) {
+
+        area.status = Status.Inactive;
+        this._areasServices.update(area);
+        
+        Swal.fire({
+          title: 'Area desactivada',
+          icon: 'success'
+        });
+      }
+    });
   }
 }
