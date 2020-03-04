@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Renderer2 } from '@angular/core';
 import { Language } from 'src/app/models/laguage';
 import { LanguageServices } from 'src/app/services/language-services';
 import { Status } from 'src/app/enums/class-enum';
@@ -17,9 +17,11 @@ export class LanguagesComponent implements OnInit {
   saveButtonHidden: boolean;
   cancelButtonDisabled: boolean;
   newButtonHidden: boolean;
+  @ViewChild('languageName', { read: ElementRef }) languageName: ElementRef;
 
   constructor(
-    private _languageServices: LanguageServices
+    private _languageServices: LanguageServices,
+    private _renderer: Renderer2
   ) { }
 
   ngOnInit() {
@@ -79,26 +81,44 @@ export class LanguagesComponent implements OnInit {
     });
   }
 
-  edit(language: Language) {
+  edit(language: Language, row: HTMLElement) {
     this.languageSelected = language;
     this.inputNameDisabled = false;
     this.cancelButtonDisabled = false;
     this.saveButtonHidden = false;
     this.newButtonHidden = true;
+
+    row.classList.add("selected");
   }
 
   cancel() {
     this.restartScreen();
   }
 
+  onClickLanguageName() {
+    this._renderer.removeClass(this.languageName.nativeElement, "alert-danger");
+  }
+
   save(name: string) {
-    this._languageServices.save(name)
-    this.restartScreen();
-    
-    Swal.fire({
-      title: 'Idioma registrado',
-      icon: 'success'
-    });
+
+    if(name == undefined) {
+      this._renderer.addClass(this.languageName.nativeElement, "alert-danger");
+
+      Swal.fire({
+        title: 'Datos incompletos',
+        text: 'Debe capturar el nombre del idioma',
+        icon: 'warning'
+      });
+    }
+    else {
+      this._languageServices.save(name)
+      this.restartScreen();
+      
+      Swal.fire({
+        title: 'Idioma registrado',
+        icon: 'success'
+      });
+    }
   }
 
   restartScreen() {
@@ -107,6 +127,11 @@ export class LanguagesComponent implements OnInit {
     this.cancelButtonDisabled = true;
     this.saveButtonHidden = true;
     this.newButtonHidden = false;
+
+    let row = document.getElementsByClassName("selected");
+    if(row.length > 0) {
+      row[0].classList.remove("selected");
+    }
   }
 
   setNew() {
