@@ -12,6 +12,43 @@ export class AreasServices {
         
     }
 
+    getAreasByDepartmentId(departmentId: number) {
+        let areas = new Array<Area>();
+
+        let area1 = new Area();
+        area1.id = 1;
+        area1.area = "Spa, Salón y Fitness - Fitness Grand Luxxe";
+        area1.status = 1;
+
+        let area4 = new Area();
+        area4.id = 4;
+        area4.area = "Golf y Tenis - Campo de golf";
+        area4.status = 1;
+
+        let area9 = new Area();
+        area9.id = 9;
+        area9.area = "Retail - Sun Market";
+        area9.status = 1;
+
+        let area10 = new Area();
+        area10.id = 10;
+        area10.area = "Spa, Salón & Fitness - Brio Spa";
+        area10.status = 1;
+
+        let area11 = new Area();
+        area11.id = 11;
+        area11.area = "Registro (Atención)";
+        area11.status = 1;
+
+        areas.push(area1);
+        areas.push(area4);
+        areas.push(area9);
+        areas.push(area10);
+        areas.push(area11);
+
+        return areas;
+    }
+
     getAllAreas(): Array<Area> {
         let areas = new Array<Area>();
 

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Department } from '../models/department';
+import { Area } from '../models/area';
 
 @Injectable({
     providedIn: 'root'
@@ -7,6 +8,14 @@ import { Department } from '../models/department';
 export class DepartmentsServices {
 
     constructor() {
+        
+    }
+
+    addArea(area: Area, department: Department) {
+
+    }
+
+    removeArea(area: Area, department: Department) {
         
     }
 

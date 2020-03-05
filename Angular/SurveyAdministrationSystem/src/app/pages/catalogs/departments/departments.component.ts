@@ -2,6 +2,9 @@ import { Component, OnInit, ElementRef, ViewChild, Renderer2 } from '@angular/co
 import { Department } from 'src/app/models/department';
 import { DepartmentsServices } from 'src/app/services/departments.services';
 import Swal from 'sweetalert2';
+import { AreasServices } from 'src/app/services/areas-services';
+import { Area } from 'src/app/models/area';
+import { MatCheckbox } from '@angular/material';
 
 @Component({
   selector: 'app-departments',
@@ -15,23 +18,27 @@ export class DepartmentsComponent implements OnInit {
   inputNameDisabled: boolean;
   newButtonHidden: boolean;
   departments: Array<Department>;
+  areas: Array<Area>;
+  areasSelected: Array<Area>;
   departmentSelected: Department;
   originalName: string;
   @ViewChild('departmentName', { read: ElementRef }) departmentName: ElementRef;
 
   constructor(
     private _departmentsServices: DepartmentsServices,
-    private _renderer: Renderer2
+    private _renderer: Renderer2,
+    private _areasServices: AreasServices
   ) { }
 
   ngOnInit() {
+    this.originalName = "";
     this.saveButtonHidden = true;
     this.cancelButtonHidden = true;
     this.inputNameDisabled = true;
     this.newButtonHidden = false;
-    this.originalName = "";
+    this.areas = new Array<Area>();
+    this.areasSelected = new Array<Area>();
     this.departmentSelected = new Department();
-
     this.departments = this._departmentsServices.getAll();
   }
 
@@ -63,8 +70,29 @@ export class DepartmentsComponent implements OnInit {
     }
   }
 
-  onClickRow(row: HTMLElement) {
+  onClickRow(row: HTMLElement, department: Department) {
     this.selectRow(row);
+    this.areasSelected = this._areasServices.getAreasByDepartmentId(department.id);
+    this.areas = this._areasServices.getAllAreas();
+  }
+
+  isAreaAssigned(area: Area) {
+    for(let i = 0; i < this.areasSelected.length; i++) {
+      if(this.areasSelected[i].id == area.id) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  onClickArea(area: Area, checked: boolean) {
+    if(checked) {
+      this._departmentsServices.addArea(area, this.departmentSelected);
+    }
+    else {
+      this._departmentsServices.removeArea(area, this.departmentSelected);
+    }
   }
 
   edit(department: Department, row: HTMLElement) {
