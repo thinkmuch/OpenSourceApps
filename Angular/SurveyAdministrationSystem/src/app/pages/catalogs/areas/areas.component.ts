@@ -52,11 +52,21 @@ export class AreasComponent implements OnInit {
     this.cancelButtonHidden = true;
     this.inputNameDisabled = true;
     this.newButtonHidden = false;
+
+    let row = document.getElementsByClassName("selected");
+    if(row.length > 0) {
+      row[0].classList.remove("selected");
+    }
   }
 
   edit(area: Area, row: HTMLElement) {
     this.areaSelected = area;
     this.enableEditControls();
+
+    let rows = document.getElementsByClassName("selected");
+    if(rows.length > 0) {
+      rows[0].classList.remove("selected");
+    }
     row.classList.add("selected");
   }
 

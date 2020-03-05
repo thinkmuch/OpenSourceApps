@@ -88,6 +88,10 @@ export class LanguagesComponent implements OnInit {
     this.saveButtonHidden = false;
     this.newButtonHidden = true;
 
+    let rows = document.getElementsByClassName("selected");
+    if(rows.length > 0) {
+      rows[0].classList.remove("selected");
+    }
     row.classList.add("selected");
   }
 
