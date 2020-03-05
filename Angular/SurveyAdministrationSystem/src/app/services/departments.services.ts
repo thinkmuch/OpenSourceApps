@@ -12,10 +12,18 @@ export class DepartmentsServices {
     }
 
     addArea(area: Area, department: Department) {
-
+        
     }
 
     removeArea(area: Area, department: Department) {
+
+    }
+
+    update(department: Department) {
+
+    }
+
+    save(name: string) {
         
     }
 

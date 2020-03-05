@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { AreasServices } from 'src/app/services/areas-services';
 import { Area } from 'src/app/models/area';
 import { MatCheckbox } from '@angular/material';
+import { Status } from 'src/app/enums/class-enum';
 
 @Component({
   selector: 'app-departments',
@@ -95,6 +96,54 @@ export class DepartmentsComponent implements OnInit {
     }
   }
 
+  enable(department: Department) {
+    
+    Swal.fire({
+      title: 'Activar',
+      text: `¿Seguro que desea activar el departamento ${department.name}?`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Si, desactivar',
+      cancelButtonText: 'Cancelar'
+    }).then((response) => {
+      
+      if(response.value) {
+
+        department.status = Status.Active;
+        this._departmentsServices.update(department);
+        
+        Swal.fire({
+          title: 'Departamento activado',
+          icon: 'success'
+        });
+      }
+    });
+  }
+
+  disabled(department: Department) {
+    
+    Swal.fire({
+      title: 'Desactivar',
+      text: `¿Seguro que desea desactivar el departamento ${department.name}?`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Si, desactivar',
+      cancelButtonText: 'Cancelar'
+    }).then((response) => {
+      
+      if(response.value) {
+
+        department.status = Status.Inactive;
+        this._departmentsServices.update(department);
+        
+        Swal.fire({
+          title: 'Departamento desactivado',
+          icon: 'success'
+        });
+      }
+    });
+  }
+
   edit(department: Department, row: HTMLElement) {
     this.departmentSelected = department;
     this.enableEditControls();
@@ -125,7 +174,20 @@ export class DepartmentsComponent implements OnInit {
       });
     }
     else {
-
+      if(this.departmentSelected.id > 0) {
+        this._departmentsServices.update(this.departmentSelected);
+      }
+      else {
+        this._departmentsServices.save(name);
+      }
+      
+      this.departments = this._departmentsServices.getAll();
+      this.restartScreen();
+      
+      Swal.fire({
+        title: 'Departamento registrado',
+        icon: 'success'
+      });
     }
   }
 }

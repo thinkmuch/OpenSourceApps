@@ -65,10 +65,10 @@
                                 <div class="btn-group dropleft">
                                     <mat-icon aria-hidden="false" [matMenuTriggerFor]="menu" class="pointer">more_vert</mat-icon>
                                     <mat-menu #menu="matMenu">
-                                        <div class="pointer item-menu-question" *ngIf="department.status == 0">
+                                        <div class="pointer item-menu-question" *ngIf="department.status == 0" (click)="enable(department)">
                                             <a class="dropdown-item"><i class="fas fa-power-off text-success"></i>   Activar</a>
                                         </div>
-                                        <div class="pointer item-menu-question" *ngIf="department.status == 1">
+                                        <div class="pointer item-menu-question" *ngIf="department.status == 1" (click)="disabled(department)">
                                             <a class="dropdown-item"><i class="fas fa-power-off text-secondary"></i>   Desactivar</a>
                                         </div>
                                         <div class="pointer item-menu-question" (click)="edit(department, row)">
