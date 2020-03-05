@@ -17,6 +17,8 @@ export class LanguagesComponent implements OnInit {
   saveButtonHidden: boolean;
   cancelButtonDisabled: boolean;
   newButtonHidden: boolean;
+  languageExist: boolean;
+  originalName: string;
   @ViewChild('languageName', { read: ElementRef }) languageName: ElementRef;
 
   constructor(
@@ -93,6 +95,8 @@ export class LanguagesComponent implements OnInit {
       rows[0].classList.remove("selected");
     }
     row.classList.add("selected");
+
+    this.originalName = language.language;
   }
 
   cancel() {
@@ -103,9 +107,18 @@ export class LanguagesComponent implements OnInit {
     this._renderer.removeClass(this.languageName.nativeElement, "alert-danger");
   }
 
+  onKeyUpLanguageName(name: string) {
+    if(name.length > 0) {
+      this.languageExist = this._languageServices.exist(name);
+    }
+    else {
+      this.languageExist = false;
+    }
+  }
+
   save(name: string) {
 
-    if(name == undefined) {
+    if(name == undefined || name.length == 0) {
       this._renderer.addClass(this.languageName.nativeElement, "alert-danger");
 
       Swal.fire({
@@ -115,7 +128,14 @@ export class LanguagesComponent implements OnInit {
       });
     }
     else {
-      this._languageServices.save(name)
+      if(this.languageSelected.id > 0) {
+        this._languageServices.update(this.languageSelected);
+      }
+      else {
+        this._languageServices.save(name);
+      }
+      
+      this.languages = this._languageServices.getAll();
       this.restartScreen();
       
       Swal.fire({
@@ -126,11 +146,17 @@ export class LanguagesComponent implements OnInit {
   }
 
   restartScreen() {
+
+    if(this.languageSelected.id > 0) {
+      this.languageSelected.language = this.originalName;
+    }
+
     this.languageSelected = new Language();
     this.inputNameDisabled = true;
     this.cancelButtonDisabled = true;
     this.saveButtonHidden = true;
     this.newButtonHidden = false;
+    this.languageExist = false;
 
     let row = document.getElementsByClassName("selected");
     if(row.length > 0) {

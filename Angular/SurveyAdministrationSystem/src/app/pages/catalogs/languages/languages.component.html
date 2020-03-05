@@ -1,7 +1,7 @@
 <div class="content mt-20px animated fadeIn faster">
     <div class="row">
         <div class="col-2">
-            <div class="form-group">
+            <div class="form-group mb-0">
                 <label for="inputLanguageName" class="fw-500">Idioma</label>
                 <input 
                 type="text" 
@@ -9,9 +9,11 @@
                 id="inputLanguageName" 
                 [(ngModel)]="languageSelected.language"
                 [disabled]="inputNameDisabled" 
+                (keyup)="onKeyUpLanguageName(languageName.value)"
                 (click)="onClickLanguageName()"
                 #languageName>
             </div>
+            <small class="form-text red" *ngIf="languageExist">Este nombre ya está regitrado</small>
         </div>
         <div class="col-10">
             <button
@@ -35,7 +37,7 @@
         </div>
     </div>
     <div class="row" id="tableContainer">
-        <table class="table table-hover text-center">
+        <table class="table table-hover text-center mt-15px">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
