@@ -67,7 +67,7 @@ export class AnswerTypesCatalogComponent implements OnInit, AfterViewInit {
       this.isAnswerTypeCatalogsVisible = visible;
     })
 
-    this.areas = this._areasServices.getAllAreas();
+    this.areas = this._areasServices.getAll();
     this.answers = this._surveyCaptureServices.getAnswers();
     this.departments = this._departmentsServices.getAll();
   }

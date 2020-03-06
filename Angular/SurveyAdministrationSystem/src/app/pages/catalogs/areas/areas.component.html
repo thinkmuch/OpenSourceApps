@@ -10,8 +10,10 @@
                 [(ngModel)]="areaSelected.area"
                 [disabled]="inputNameDisabled"
                 (click)="onClickAreaName()"
+                (keyup)="onKeyUpAreaName(areaName.value)"
                 #areaName>
             </div>
+            <small class="form-text red" *ngIf="areaExist">Esta área ya está regitrada</small>
         </div>
         <div class="col-9">
             <button
@@ -24,7 +26,7 @@
             class="btn btn-primary mt-31px" 
             id="saveButton"
             [hidden]="saveButtonHidden"
-            (click)="save()">Guardar</button>
+            (click)="save(areaName.value)">Guardar</button>
             <button 
             type="button" 
             class="btn btn-warning mt-31px" 

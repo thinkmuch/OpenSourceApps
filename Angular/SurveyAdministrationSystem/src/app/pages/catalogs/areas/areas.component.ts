@@ -17,6 +17,7 @@ export class AreasComponent implements OnInit {
   cancelButtonHidden: boolean;
   inputNameDisabled: boolean;
   newButtonHidden: boolean;
+  areaExist: boolean;
   @ViewChild('areaName', { read: ElementRef }) areaName: ElementRef;
 
   constructor(
@@ -29,10 +30,10 @@ export class AreasComponent implements OnInit {
     this.cancelButtonHidden = true;
     this.inputNameDisabled = true;
     this.newButtonHidden = false;
-
+    this.areaExist = false;
     this.areaSelected = new Area();
 
-    this.areas = this._areasServices.getAllAreas();
+    this.areas = this._areasServices.getAll();
   }
 
   enableEditControls() {
@@ -52,6 +53,7 @@ export class AreasComponent implements OnInit {
     this.cancelButtonHidden = true;
     this.inputNameDisabled = true;
     this.newButtonHidden = false;
+    this.areaExist = false;
 
     let selected = document.getElementsByClassName("selected");
     if(selected.length > 0) {
@@ -61,6 +63,15 @@ export class AreasComponent implements OnInit {
     let alertDanger = document.getElementsByClassName("alert-danger");
     if(alertDanger.length > 0) {
       alertDanger[0].classList.remove("alert-danger");
+    }
+  }
+
+  onKeyUpAreaName(name: string) {
+    if(name.length > 0) {
+      this.areaExist = this._areasServices.exist(name);
+    }
+    else {
+      this.areaExist = false;
     }
   }
 
@@ -80,7 +91,7 @@ export class AreasComponent implements OnInit {
   }
 
   save(name: string) {
-    if(name == undefined) {
+    if(name == undefined || name.trim().length == 0) {
       this._renderer.addClass(this.areaName.nativeElement, "alert-danger");
       
       Swal.fire({
@@ -90,6 +101,14 @@ export class AreasComponent implements OnInit {
       });
     }
     else {
+      if(this.areaSelected.id > 0) {
+        this._areasServices.update(this.areaSelected);
+      }
+      else {
+        this._areasServices.save(name);
+      }
+      
+      this.areas = this._areasServices.getAll();
       this.restartScreen();
 
       Swal.fire({

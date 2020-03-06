@@ -1,57 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Area } from '../models/area';
+import { Status } from '../enums/class-enum';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AreasServices {
-    
-    constructor() {}
 
-    update(area: Area) {
-        
-    }
+    areas = new Array<Area>();
 
-    getAreasByDepartmentId(departmentId: number) {
-        let areas = new Array<Area>();
-
-        let area1 = new Area();
-        area1.id = 1;
-        area1.area = "Spa, Salón y Fitness - Fitness Grand Luxxe";
-        area1.status = 1;
-
-        let area4 = new Area();
-        area4.id = 4;
-        area4.area = "Golf y Tenis - Campo de golf";
-        area4.status = 1;
-
-        let area9 = new Area();
-        area9.id = 9;
-        area9.area = "Retail - Sun Market";
-        area9.status = 1;
-
-        let area10 = new Area();
-        area10.id = 10;
-        area10.area = "Spa, Salón & Fitness - Brio Spa";
-        area10.status = 1;
-
-        let area11 = new Area();
-        area11.id = 11;
-        area11.area = "Registro (Atención)";
-        area11.status = 1;
-
-        areas.push(area1);
-        areas.push(area4);
-        areas.push(area9);
-        areas.push(area10);
-        areas.push(area11);
-
-        return areas;
-    }
-
-    getAllAreas(): Array<Area> {
-        let areas = new Array<Area>();
-
+    constructor() {
         let area1 = new Area();
         area1.id = 1;
         area1.area = "Spa, Salón y Fitness - Fitness Grand Luxxe";
@@ -342,56 +300,118 @@ export class AreasServices {
         area58.area = "Spa, Salón y Fitness - Fitness Grand Mayan";
         area58.status = 1;
 
-        areas.push(area1);
-        areas.push(area2);
-        areas.push(area3);
-        areas.push(area4);
-        areas.push(area5);
-        areas.push(area6);
-        areas.push(area7);
-        areas.push(area8);
-        areas.push(area9);
-        areas.push(area10);
-        areas.push(area11);
-        areas.push(area12);
-        areas.push(area13);
-        areas.push(area14);
-        areas.push(area15);
-        areas.push(area16);
-        areas.push(area17);
-        areas.push(area18);
-        areas.push(area19);
-        areas.push(area20);
-        areas.push(area31);
-        areas.push(area32);
-        areas.push(area33);
-        areas.push(area34);
-        areas.push(area35);
-        areas.push(area36);
-        areas.push(area37);
-        areas.push(area38);
-        areas.push(area39);
-        areas.push(area40);
-        areas.push(area41);
-        areas.push(area42);
-        areas.push(area43);
-        areas.push(area44);
-        areas.push(area45);
-        areas.push(area46);
-        areas.push(area47);
-        areas.push(area48);
-        areas.push(area49);
-        areas.push(area50);
-        areas.push(area51);
-        areas.push(area52);
-        areas.push(area53);
-        areas.push(area54);
-        areas.push(area55);
-        areas.push(area56);
-        areas.push(area57);
-        areas.push(area58);
+        this.areas.push(area1);
+        this.areas.push(area2);
+        this.areas.push(area3);
+        this.areas.push(area4);
+        this.areas.push(area5);
+        this.areas.push(area6);
+        this.areas.push(area7);
+        this.areas.push(area8);
+        this.areas.push(area9);
+        this.areas.push(area10);
+        this.areas.push(area11);
+        this.areas.push(area12);
+        this.areas.push(area13);
+        this.areas.push(area14);
+        this.areas.push(area15);
+        this.areas.push(area16);
+        this.areas.push(area17);
+        this.areas.push(area18);
+        this.areas.push(area19);
+        this.areas.push(area20);
+        this.areas.push(area31);
+        this.areas.push(area32);
+        this.areas.push(area33);
+        this.areas.push(area34);
+        this.areas.push(area35);
+        this.areas.push(area36);
+        this.areas.push(area37);
+        this.areas.push(area38);
+        this.areas.push(area39);
+        this.areas.push(area40);
+        this.areas.push(area41);
+        this.areas.push(area42);
+        this.areas.push(area43);
+        this.areas.push(area44);
+        this.areas.push(area45);
+        this.areas.push(area46);
+        this.areas.push(area47);
+        this.areas.push(area48);
+        this.areas.push(area49);
+        this.areas.push(area50);
+        this.areas.push(area51);
+        this.areas.push(area52);
+        this.areas.push(area53);
+        this.areas.push(area54);
+        this.areas.push(area55);
+        this.areas.push(area56);
+        this.areas.push(area57);
+        this.areas.push(area58);
+    }
 
-        return areas.sort((a, b) => {
+    update(area: Area) {
+        
+    }
+
+    exist(name: string): boolean {
+        for(let i = 0; i < this.areas.length; i++) {
+            if(this.areas[i].area.trim() == name.trim()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    save(name: string) {
+        let area = new Area();
+        area.id = this.areas.length + 1;
+        area.area = name;
+        area.status = Status.Inactive;
+
+        this.areas.push(area);
+    }
+
+    getAreasByDepartmentId(departmentId: number) {
+        let areasBtDepartment = new Array<Area>();
+
+        let area1 = new Area();
+        area1.id = 1;
+        area1.area = "Spa, Salón y Fitness - Fitness Grand Luxxe";
+        area1.status = 1;
+
+        let area4 = new Area();
+        area4.id = 4;
+        area4.area = "Golf y Tenis - Campo de golf";
+        area4.status = 1;
+
+        let area9 = new Area();
+        area9.id = 9;
+        area9.area = "Retail - Sun Market";
+        area9.status = 1;
+
+        let area10 = new Area();
+        area10.id = 10;
+        area10.area = "Spa, Salón & Fitness - Brio Spa";
+        area10.status = 1;
+
+        let area11 = new Area();
+        area11.id = 11;
+        area11.area = "Registro (Atención)";
+        area11.status = 1;
+
+        areasBtDepartment.push(area1);
+        areasBtDepartment.push(area4);
+        areasBtDepartment.push(area9);
+        areasBtDepartment.push(area10);
+        areasBtDepartment.push(area11);
+
+        return areasBtDepartment;
+    }
+
+    getAll(): Array<Area> {
+        return this.areas.sort((a, b) => {
             if (a.id > b.id) {
                 return 1;
             }

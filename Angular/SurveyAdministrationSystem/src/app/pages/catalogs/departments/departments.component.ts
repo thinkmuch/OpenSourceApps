@@ -79,7 +79,7 @@ export class DepartmentsComponent implements OnInit {
   onClickRow(row: HTMLElement, department: Department) {
     this.selectRow(row);
     this.areasSelected = this._areasServices.getAreasByDepartmentId(department.id);
-    this.areas = this._areasServices.getAllAreas();
+    this.areas = this._areasServices.getAll();
   }
 
   isAreaAssigned(area: Area) {

@@ -150,7 +150,20 @@ export class SitesComponent implements OnInit {
       });
     }
     else {
-
+      if(this.siteSelected.id > 0) {
+        this._sitesServices.update(this.siteSelected);
+      }
+      else {
+        this._sitesServices.save(name);
+      }
+      
+      this.sites = this._sitesServices.getAll();
+      this.restartScreen();
+      
+      Swal.fire({
+        title: 'Sitio registrado',
+        icon: 'success'
+      });
     }
   }
 }

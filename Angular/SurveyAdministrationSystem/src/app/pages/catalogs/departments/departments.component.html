@@ -83,7 +83,10 @@
             </div>
         </div>
         <div class="col-6">
-            <ul class="list-group">
+            <div class="alert alert-warning" role="alert" *ngIf="areas.length == 0">
+                Selecciona un departamento para configurar sus áreas
+              </div>
+            <ul class="list-group" *ngIf="areas.length > 0">
                 <li class="list-group-item pointer animated fadeIn faster" aria-disabled="true" *ngFor="let area of areas">
                     <mat-checkbox 
                     [checked]="isAreaAssigned(area)"

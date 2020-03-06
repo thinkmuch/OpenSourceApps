@@ -9,6 +9,10 @@ export class SitesServices {
   constructor() { }
 
   update(site: Site) {
+
+  }
+
+  save(name: string) {
     
   }
 
