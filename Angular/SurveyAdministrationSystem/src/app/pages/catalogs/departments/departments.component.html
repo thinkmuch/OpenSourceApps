@@ -12,8 +12,10 @@
                         [(ngModel)]="departmentSelected.name"
                         [disabled]="inputNameDisabled"
                         (click)="onClickDepartmentName()"
+                        (keyup)="onKeyUpDepartmentName(departmentName.value)"
                         #departmentName>
                     </div>
+                    <small class="form-text red animated fadeIn faster" *ngIf="departmentExist">Este departamento ya está regitrado</small>
                 </div>
                 <div class="col-8">
                     <button
@@ -91,7 +93,7 @@
                     <mat-checkbox 
                     [checked]="isAreaAssigned(area)"
                     (click)="onClickArea(area, !checkArea.value)"
-                    #checkArea>{{area.area}}</mat-checkbox>
+                    #checkArea>{{area.name}}</mat-checkbox>
                 </li>
             </ul>
         </div>

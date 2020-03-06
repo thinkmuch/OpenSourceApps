@@ -1,35 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Department } from '../models/department';
 import { Area } from '../models/area';
+import { Status } from '../enums/class-enum';
 
 @Injectable({
     providedIn: 'root'
 })
 export class DepartmentsServices {
 
+    private departments = new Array<Department>();
+
     constructor() {
-        
-    }
-
-    addArea(area: Area, department: Department) {
-        
-    }
-
-    removeArea(area: Area, department: Department) {
-
-    }
-
-    update(department: Department) {
-
-    }
-
-    save(name: string) {
-        
-    }
-
-    getAll(): Array<Department> {
-        let departments = new Array<Department>();
-
         let department1 = new Department();
         department1.id = 1;
         department1.name = "Ama de llaves";
@@ -150,31 +131,68 @@ export class DepartmentsServices {
         department24.name = "Entretenimiento";
         department24.status = 1;
 
-        departments.push(department1);
-        departments.push(department2);
-        departments.push(department3);
-        departments.push(department4);
-        departments.push(department5);
-        departments.push(department6);
-        departments.push(department7);
-        departments.push(department8);
-        departments.push(department9);
-        departments.push(department10);
-        departments.push(department11);
-        departments.push(department12);
-        departments.push(department13);
-        departments.push(department14);
-        departments.push(department15);
-        departments.push(department16);
-        departments.push(department17);
-        departments.push(department18);
-        departments.push(department19);
-        departments.push(department20);
-        departments.push(department21);
-        departments.push(department22);
-        departments.push(department23);
-        departments.push(department24);
+        this.departments.push(department1);
+        this.departments.push(department2);
+        this.departments.push(department3);
+        this.departments.push(department4);
+        this.departments.push(department5);
+        this.departments.push(department6);
+        this.departments.push(department7);
+        this.departments.push(department8);
+        this.departments.push(department9);
+        this.departments.push(department10);
+        this.departments.push(department11);
+        this.departments.push(department12);
+        this.departments.push(department13);
+        this.departments.push(department14);
+        this.departments.push(department15);
+        this.departments.push(department16);
+        this.departments.push(department17);
+        this.departments.push(department18);
+        this.departments.push(department19);
+        this.departments.push(department20);
+        this.departments.push(department21);
+        this.departments.push(department22);
+        this.departments.push(department23);
+        this.departments.push(department24);
+    }
 
-        return departments;
+    addArea(area: Area, department: Department) {
+        
+    }
+
+    removeArea(area: Area, department: Department) {
+
+    }
+
+    exist(name: string) {
+        for(let i = 0; i < this.departments.length; i++) {
+            if(this.departments[i].name.trim() == name.trim()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    update(department: Department) {
+        for(let i = 0; i < this.departments.length; i++) {
+            if(this.departments[i].id == department.id) {
+                this.departments[i].name = department.name;
+                break;
+            }
+        }
+    }
+
+    save(name: string) {
+        let department = new Department();
+        department.id = this.departments.length + 1;
+        department.name = name;
+        department.status = Status.Inactive;
+
+        this.departments.push(department);
+    }
+
+    getAll(): Array<Department> {
+        return this.departments;
     }
 }

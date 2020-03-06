@@ -17,11 +17,11 @@ export class DepartmentsComponent implements OnInit {
   cancelButtonHidden: boolean;
   inputNameDisabled: boolean;
   newButtonHidden: boolean;
+  departmentExist: boolean;
   departments: Array<Department>;
   areas: Array<Area>;
   areasSelected: Array<Area>;
   departmentSelected: Department;
-  originalName: string;
   @ViewChild('departmentName', { read: ElementRef }) departmentName: ElementRef;
 
   constructor(
@@ -31,15 +31,44 @@ export class DepartmentsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.originalName = "";
-    this.saveButtonHidden = true;
-    this.cancelButtonHidden = true;
-    this.inputNameDisabled = true;
-    this.newButtonHidden = false;
+    this.restartScreen();
+
     this.areas = new Array<Area>();
     this.areasSelected = new Array<Area>();
     this.departmentSelected = new Department();
     this.departments = this._departmentsServices.getAll();
+  }
+
+  restartScreen() {
+    this.departmentSelected = new Department();
+    this.saveButtonHidden = true;
+    this.cancelButtonHidden = true;
+    this.inputNameDisabled = true;
+    this.newButtonHidden = false;
+    this.departmentExist = false;
+
+    this.deselectAllRows();
+
+    let alertDanger = document.getElementsByClassName(Alerts.Danger);
+    if(alertDanger.length > 0) {
+      alertDanger[0].classList.remove(Alerts.Danger);
+    }
+  }
+
+  onKeyUpDepartmentName(name: string) {
+    if(name.length > 0) {
+      this.departmentExist = this._departmentsServices.exist(name);
+    }
+    else {
+      this.departmentExist = false;
+    }
+  }
+
+  deselectAllRows() {
+    let selected = document.getElementsByClassName("selected");
+    if(selected.length > 0) {
+      selected[0].classList.remove("selected");
+    }
   }
 
   enableEditControls() {
@@ -53,29 +82,8 @@ export class DepartmentsComponent implements OnInit {
     this.restartScreen();
   }
 
-  restartScreen() {
-    if(this.departmentSelected.id > 0) {
-      this.departmentSelected.name = this.originalName;
-    }
-
-    this.departmentSelected = new Department();
-    this.saveButtonHidden = true;
-    this.cancelButtonHidden = true;
-    this.inputNameDisabled = true;
-    this.newButtonHidden = false;
-
-    let selected = document.getElementsByClassName("selected");
-    if(selected.length > 0) {
-      selected[0].classList.remove("selected");
-    }
-
-    let alertDanger = document.getElementsByClassName(Alerts.Danger);
-    if(alertDanger.length > 0) {
-      alertDanger[0].classList.remove(Alerts.Danger);
-    }
-  }
-
   onClickRow(row: HTMLElement, department: Department) {
+    this.deselectAllRows();
     this.selectRow(row);
     this.areasSelected = this._areasServices.getAreasByDepartmentId(department.id);
     this.areas = this._areasServices.getAll();
@@ -101,7 +109,6 @@ export class DepartmentsComponent implements OnInit {
   }
 
   enable(department: Department) {
-    
     Swal.fire({
       title: 'Activar',
       text: `¿Seguro que desea activar el departamento ${department.name}?`,
@@ -125,7 +132,6 @@ export class DepartmentsComponent implements OnInit {
   }
 
   disabled(department: Department) {
-    
     Swal.fire({
       title: 'Desactivar',
       text: `¿Seguro que desea desactivar el departamento ${department.name}?`,
@@ -149,26 +155,21 @@ export class DepartmentsComponent implements OnInit {
   }
 
   edit(department: Department, row: HTMLElement) {
-    this.departmentSelected = department;
+    this.departmentSelected = JSON.parse(JSON.stringify(department));
     this.enableEditControls();
     this.selectRow(row);
-    this.originalName = this.departmentSelected.name;
   }
 
-  selectRow(currentCow: HTMLElement) {
-    let rows = document.getElementsByClassName("selected");
-    if(rows.length > 0) {
-      rows[0].classList.remove("selected");
-    }
-    currentCow.classList.add("selected");
+  selectRow(row: HTMLElement) {
+    row.classList.add("selected");
   }
 
   onClickDepartmentName() {
     this._renderer.removeClass(this.departmentName.nativeElement, Alerts.Danger);
   }
 
-  save(departmentName: string) {
-    if(departmentName.length == 0) {
+  save(name: string) {
+    if(name.length == 0) {
       this._renderer.addClass(this.departmentName.nativeElement, Alerts.Danger);
 
       Swal.fire({
