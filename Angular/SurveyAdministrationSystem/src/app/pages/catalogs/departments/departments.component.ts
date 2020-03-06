@@ -65,9 +65,14 @@ export class DepartmentsComponent implements OnInit {
     this.inputNameDisabled = true;
     this.newButtonHidden = false;
 
-    let row = document.getElementsByClassName("selected");
-    if(row.length > 0) {
-      row[0].classList.remove("selected");
+    let selected = document.getElementsByClassName("selected");
+    if(selected.length > 0) {
+      selected[0].classList.remove("selected");
+    }
+
+    let alertDanger = document.getElementsByClassName("alert-danger");
+    if(alertDanger.length > 0) {
+      alertDanger[0].classList.remove("alert-danger");
     }
   }
 

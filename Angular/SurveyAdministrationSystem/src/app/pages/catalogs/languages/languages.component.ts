@@ -117,7 +117,6 @@ export class LanguagesComponent implements OnInit {
   }
 
   save(name: string) {
-
     if(name == undefined || name.length == 0) {
       this._renderer.addClass(this.languageName.nativeElement, "alert-danger");
 
@@ -146,7 +145,6 @@ export class LanguagesComponent implements OnInit {
   }
 
   restartScreen() {
-
     if(this.languageSelected.id > 0) {
       this.languageSelected.language = this.originalName;
     }
@@ -158,9 +156,14 @@ export class LanguagesComponent implements OnInit {
     this.newButtonHidden = false;
     this.languageExist = false;
 
-    let row = document.getElementsByClassName("selected");
-    if(row.length > 0) {
-      row[0].classList.remove("selected");
+    let selected = document.getElementsByClassName("selected");
+    if(selected.length > 0) {
+      selected[0].classList.remove("selected");
+    }
+
+    let alertDanger = document.getElementsByClassName("alert-danger");
+    if(alertDanger.length > 0) {
+      alertDanger[0].classList.remove("alert-danger");
     }
   }
 
