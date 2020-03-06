@@ -56,7 +56,7 @@ export class LanguagesComponent implements OnInit {
   enable(language: Language) {
     Swal.fire({
       title: 'Activar',
-      text: `¿Seguro que desea activar el idioma ${language.language}?`,
+      text: `¿Seguro que desea activar el idioma ${language.name}?`,
       icon: 'question',
       showCancelButton: true,
       confirmButtonText: 'Si, activar',
@@ -79,7 +79,7 @@ export class LanguagesComponent implements OnInit {
   disable(language: Language) {
     Swal.fire({
       title: 'Desactivar',
-      text: `¿Seguro que desea desactivar el idioma ${language.language}?`,
+      text: `¿Seguro que desea desactivar el idioma ${language.name}?`,
       icon: 'question',
       showCancelButton: true,
       confirmButtonText: 'Si, desactivar',

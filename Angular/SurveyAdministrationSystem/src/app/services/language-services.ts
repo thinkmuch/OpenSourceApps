@@ -12,12 +12,12 @@ export class LanguageServices {
     constructor() {
         let language1 = new Language();
         language1.id = 1;
-        language1.language = "Español";
+        language1.name = "Español";
         language1.status = 1;
 
         let language2 = new Language();
         language2.id = 2;
-        language2.language = "Inglés";
+        language2.name = "Inglés";
         language2.status = 1;
 
         this.languages.push(language1);
@@ -31,7 +31,7 @@ export class LanguageServices {
     update(language: Language) {
         for(let i = 0; i < this.languages.length; i++) {
             if(this.languages[i].id == language.id) {
-                this.languages[i].language = language.language;
+                this.languages[i].name = language.name;
                 break;
             }
         }
@@ -40,7 +40,7 @@ export class LanguageServices {
     exist(name: string): boolean {
 
         for(let i = 0; i < this.languages.length; i++) {
-            if(this.languages[i].language.trim() == name.trim()) {
+            if(this.languages[i].name.trim() == name.trim()) {
                 return true;
             }
         }
@@ -54,7 +54,7 @@ export class LanguageServices {
         let language = new Language();
 
         language.id = id;
-        language.language = name;
+        language.name = name;
         language.status = Status.Inactive;
 
         this.languages.push(language);
