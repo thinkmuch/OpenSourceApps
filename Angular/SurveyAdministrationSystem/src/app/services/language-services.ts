@@ -29,7 +29,12 @@ export class LanguageServices {
     }
 
     update(language: Language) {
-
+        for(let i = 0; i < this.languages.length; i++) {
+            if(this.languages[i].id == language.id) {
+                this.languages[i].language = language.language;
+                break;
+            }
+        }
     }
 
     exist(name: string): boolean {

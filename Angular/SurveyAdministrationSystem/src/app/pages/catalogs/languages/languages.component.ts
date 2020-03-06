@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild, Renderer2 } from '@angular/core';
 import { Language } from 'src/app/models/laguage';
 import { LanguageServices } from 'src/app/services/language-services';
-import { Status } from 'src/app/enums/class-enum';
+import { Status, Alerts } from 'src/app/enums/class-enum';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -40,9 +40,9 @@ export class LanguagesComponent implements OnInit {
 
     this.deselectAllRows();
 
-    let alertDanger = document.getElementsByClassName("alert-danger");
+    let alertDanger = document.getElementsByClassName(Alerts.Danger);
     if(alertDanger.length > 0) {
-      alertDanger[0].classList.remove("alert-danger");
+      alertDanger[0].classList.remove(Alerts.Danger);
     }
   }
 
@@ -105,6 +105,7 @@ export class LanguagesComponent implements OnInit {
 
   edit(language: Language, row: HTMLElement) {
     this.languageSelected = JSON.parse(JSON.stringify(language));
+    
     this.enableEditControls()
     this.deselectAllRows();
     this.selectRow(row);
@@ -122,7 +123,7 @@ export class LanguagesComponent implements OnInit {
   }
 
   onClickLanguageName() {
-    this._renderer.removeClass(this.languageName.nativeElement, "alert-danger");
+    this._renderer.removeClass(this.languageName.nativeElement, Alerts.Danger);
   }
 
   onKeyUpLanguageName(name: string) {
@@ -136,7 +137,7 @@ export class LanguagesComponent implements OnInit {
 
   save(name: string) {
     if(name == undefined || name.length == 0) {
-      this._renderer.addClass(this.languageName.nativeElement, "alert-danger");
+      this._renderer.addClass(this.languageName.nativeElement, Alerts.Danger);
 
       Swal.fire({
         title: 'Datos incompletos',

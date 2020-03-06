@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { Cruise } from 'src/app/models/cruise';
 import { CruisesService } from 'src/app/services/cruises.service';
+import Swal from 'sweetalert2';
+import { Alerts } from 'src/app/enums/class-enum';
 
 @Component({
   selector: 'app-cruises',
@@ -16,10 +18,11 @@ export class CruisesComponent implements OnInit {
   cruiseNameDisabled: boolean;
   cruises: Array<Cruise>;
   cruiseSelected: Cruise;
-  originalName: string;
+  @ViewChild("cruiseName", { read: ElementRef }) cruiseName: ElementRef;
 
   constructor(
-    private _cruisesServices: CruisesService
+    private _cruisesServices: CruisesService,
+    private _renderer: Renderer2
   ) { }
 
   ngOnInit() {
@@ -39,28 +42,31 @@ export class CruisesComponent implements OnInit {
   }
 
   restartScreen() {
-    if(this.cruiseSelected && this.cruiseSelected.id > 0) {
-      this.cruiseSelected.name = this.originalName;
-    }
-
     this.cruiseSelected = new Cruise();
     this.newButtonHidden = false;
     this.saveButtonHidden = true;
     this.cancelButtonHidden = true;
     this.cruiseNameDisabled = true;
-    this.originalName = "";
     this.cruiseExist = false;
 
     this.deselectAllRows();
+
+    let alertDanger = document.getElementsByClassName(Alerts.Danger);
+    if(alertDanger.length > 0) {
+      alertDanger[0].classList.remove(Alerts.Danger);
+    }
+  }
+
+  onClickCruiseName() {
+    this._renderer.removeClass(this.cruiseName.nativeElement, Alerts.Danger);
   }
 
   edit(cruise: Cruise, row: HTMLElement) {
+    this.cruiseSelected = JSON.parse(JSON.stringify(cruise));
+    
     this.enableEditControls();
     this.deselectAllRows();
     this.selectRow(row);
-    
-    this.cruiseSelected = cruise;
-    this.originalName = cruise.name;
   }
 
   deselectAllRows() {
@@ -72,5 +78,33 @@ export class CruisesComponent implements OnInit {
 
   selectRow(row: HTMLElement) {
     row.classList.add("selected");
+  }
+
+  save(name: string) {
+    if(name == undefined || name.trim().length == 0) {
+      this._renderer.addClass(this.cruiseName.nativeElement, Alerts.Danger);
+
+      Swal.fire({
+        title: 'Datos incompletos',
+        text: 'Debe capturar el nombre del crucero',
+        icon: 'warning'
+      });
+    }
+    else {
+      if(this.cruiseSelected.id > 0) {
+        this._cruisesServices.update(this.cruiseSelected);
+      }
+      else {
+        this._cruisesServices.save(name);
+      }
+
+      this.cruises = this._cruisesServices.getAll();
+      this.restartScreen();
+
+      Swal.fire({
+        title: 'Crucero registrado',
+        icon: 'success'
+      });
+    }
   }
 }

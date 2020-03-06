@@ -7,7 +7,7 @@
                 type="text" 
                 class="form-control" 
                 id="inputAreaName"
-                [(ngModel)]="areaSelected.area"
+                [(ngModel)]="areaSelected.name"
                 [disabled]="inputNameDisabled"
                 (click)="onClickAreaName()"
                 (keyup)="onKeyUpAreaName(areaName.value)"
@@ -48,7 +48,7 @@
             <tbody>
                 <tr *ngFor="let area of areas" class="pointer" id="{{area.id}}" #row>
                     <th scope="row">{{area.id}}</th>
-                    <td>{{area.area}}</td>
+                    <td>{{area.name}}</td>
                     <td>
                         <span *ngIf="area.status == 0">
                             <span class="badge badge-dark fw-500">Inactivo</span>

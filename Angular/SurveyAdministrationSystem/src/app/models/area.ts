@@ -1,11 +1,11 @@
 export class Area {
     id: number;
-    area: string;
+    name: string;
     status: number;
 
     constructor() {
         this.id = 0;
-        this.area = "";
+        this.name = "";
         this.status = 0;
     }
 }

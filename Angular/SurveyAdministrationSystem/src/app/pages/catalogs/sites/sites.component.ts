@@ -3,7 +3,7 @@ import { SitesServices } from 'src/app/services/sites-service';
 import { Site } from 'src/app/models/site';
 import Swal from 'sweetalert2';
 import { Area } from 'src/app/models/area';
-import { Status } from 'src/app/enums/class-enum';
+import { Status, Alerts } from 'src/app/enums/class-enum';
 
 @Component({
   selector: 'app-sites',
@@ -66,9 +66,9 @@ export class SitesComponent implements OnInit {
       selected[0].classList.remove("selected");
     }
 
-    let alertDanger = document.getElementsByClassName("alert-danger");
+    let alertDanger = document.getElementsByClassName(Alerts.Danger);
     if(alertDanger.length > 0) {
-      alertDanger[0].classList.remove("alert-danger");
+      alertDanger[0].classList.remove(Alerts.Danger);
     }
   }
 
@@ -120,7 +120,7 @@ export class SitesComponent implements OnInit {
   }
 
   onClickSiteName() {
-    this._renderer.removeClass(this.siteName.nativeElement, "alert-danger");
+    this._renderer.removeClass(this.siteName.nativeElement, Alerts.Danger);
   }
 
   edit(site: Site, row: HTMLElement) {
@@ -141,7 +141,7 @@ export class SitesComponent implements OnInit {
 
   save(name: string) {
     if(name == undefined || name.trim().length == 0) {
-      this._renderer.addClass(this.siteName.nativeElement, "alert-danger");
+      this._renderer.addClass(this.siteName.nativeElement, Alerts.Danger);
 
       Swal.fire({
         title: 'Datos incompletos',
