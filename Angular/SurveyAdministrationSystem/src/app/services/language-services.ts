@@ -33,6 +33,7 @@ export class LanguageServices {
     }
 
     exist(name: string): boolean {
+
         for(let i = 0; i < this.languages.length; i++) {
             if(this.languages[i].language.trim() == name.trim()) {
                 return true;

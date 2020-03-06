@@ -13,14 +13,14 @@
                 (click)="onClickLanguageName()"
                 #languageName>
             </div>
-            <small class="form-text red" *ngIf="languageExist">Este idioma ya está regitrado</small>
+            <small class="form-text red animated fadeIn faster" *ngIf="languageExist">Este idioma ya está regitrado</small>
         </div>
         <div class="col-10">
             <button
             type="button"
             class="btn btn-primary mt-31px"
             [hidden]="newButtonHidden"
-            (click)="setNew()">Nuevo</button>
+            (click)="enableEditControls()">Nuevo</button>
             <button 
             type="button" 
             class="btn btn-primary mt-31px" 
@@ -32,7 +32,6 @@
             class="btn btn-warning mt-31px" 
             id="cancelButton" 
             [hidden]="cancelButtonDisabled" 
-            [ngClass]="{'cursorDefault': cancelButtonDisabled}"
             (click)="cancel()">Cancelar</button>
         </div>
     </div>

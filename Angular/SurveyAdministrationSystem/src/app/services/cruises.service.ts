@@ -14,6 +14,7 @@ export class CruisesService {
     let cruise1 = new Cruise();
     cruise1.id = 1;
     cruise1.name = "Vidanta Elegant";
+    cruise1.status = 1;
 
     cruises.push(cruise1);
 

@@ -18,7 +18,6 @@ export class LanguagesComponent implements OnInit {
   cancelButtonDisabled: boolean;
   newButtonHidden: boolean;
   languageExist: boolean;
-  originalName: string;
   @ViewChild('languageName', { read: ElementRef }) languageName: ElementRef;
 
   constructor(
@@ -27,16 +26,34 @@ export class LanguagesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.saveButtonHidden = true;
-    this.cancelButtonDisabled = true;
-    this.inputNameDisabled = true;
-    this.newButtonHidden = false;
-    this.languageSelected = new Language();
+    this.restartScreen();
     this.languages = this._languageServices.getAll();
   }
 
-  enable(language: Language) {
+  restartScreen() {
+    this.languageSelected = new Language();
+    this.inputNameDisabled = true;
+    this.cancelButtonDisabled = true;
+    this.saveButtonHidden = true;
+    this.newButtonHidden = false;
+    this.languageExist = false;
 
+    this.deselectAllRows();
+
+    let alertDanger = document.getElementsByClassName("alert-danger");
+    if(alertDanger.length > 0) {
+      alertDanger[0].classList.remove("alert-danger");
+    }
+  }
+
+  deselectAllRows() {
+    let selected = document.getElementsByClassName("selected");
+    if(selected.length > 0) {
+      selected[0].classList.remove("selected");
+    }
+  }
+
+  enable(language: Language) {
     Swal.fire({
       title: 'Activar',
       text: `¿Seguro que desea activar el idioma ${language.language}?`,
@@ -60,7 +77,6 @@ export class LanguagesComponent implements OnInit {
   }
 
   disable(language: Language) {
-
     Swal.fire({
       title: 'Desactivar',
       text: `¿Seguro que desea desactivar el idioma ${language.language}?`,
@@ -83,20 +99,22 @@ export class LanguagesComponent implements OnInit {
     });
   }
 
-  edit(language: Language, row: HTMLElement) {
-    this.languageSelected = language;
-    this.inputNameDisabled = false;
-    this.cancelButtonDisabled = false;
-    this.saveButtonHidden = false;
-    this.newButtonHidden = true;
-
-    let rows = document.getElementsByClassName("selected");
-    if(rows.length > 0) {
-      rows[0].classList.remove("selected");
-    }
+  selectRow(row: HTMLElement) {
     row.classList.add("selected");
+  }
 
-    this.originalName = language.language;
+  edit(language: Language, row: HTMLElement) {
+    this.languageSelected = JSON.parse(JSON.stringify(language));
+    this.enableEditControls()
+    this.deselectAllRows();
+    this.selectRow(row);
+  }
+
+  enableEditControls() {
+    this.saveButtonHidden = false;
+    this.cancelButtonDisabled = false;
+    this.newButtonHidden = true;
+    this.inputNameDisabled = false;
   }
 
   cancel() {
@@ -142,35 +160,5 @@ export class LanguagesComponent implements OnInit {
         icon: 'success'
       });
     }
-  }
-
-  restartScreen() {
-    if(this.languageSelected.id > 0) {
-      this.languageSelected.language = this.originalName;
-    }
-
-    this.languageSelected = new Language();
-    this.inputNameDisabled = true;
-    this.cancelButtonDisabled = true;
-    this.saveButtonHidden = true;
-    this.newButtonHidden = false;
-    this.languageExist = false;
-
-    let selected = document.getElementsByClassName("selected");
-    if(selected.length > 0) {
-      selected[0].classList.remove("selected");
-    }
-
-    let alertDanger = document.getElementsByClassName("alert-danger");
-    if(alertDanger.length > 0) {
-      alertDanger[0].classList.remove("alert-danger");
-    }
-  }
-
-  setNew() {
-    this.saveButtonHidden = false;
-    this.cancelButtonDisabled = false;
-    this.newButtonHidden = true;
-    this.inputNameDisabled = false;
   }
 }
