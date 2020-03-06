@@ -19,7 +19,6 @@ export class SitesComponent implements OnInit {
   cancelButtonHidden: boolean;
   inputNameDisabled: boolean;
   siteExist: boolean;
-  originalName: string;
   @ViewChild('siteName', { read: ElementRef }) siteName: ElementRef;
   
   constructor(
@@ -28,15 +27,24 @@ export class SitesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.restartScreen();
+    this.sites = this._sitesServices.getAll();
+  }
+
+  restartScreen() {
     this.siteSelected = new Site();
     this.newButtonHidden = false;
     this.saveButtonHidden = true;
     this.cancelButtonHidden = true;
     this.inputNameDisabled = true;
     this.siteExist = false;
-    this.originalName = "";
 
-    this.sites = this._sitesServices.getAll();
+    this.deselectAllRows();
+
+    let alertDanger = document.getElementsByClassName(Alerts.Danger);
+    if(alertDanger.length > 0) {
+      alertDanger[0].classList.remove(Alerts.Danger);
+    }
   }
 
   enableEditControls() {
@@ -50,30 +58,7 @@ export class SitesComponent implements OnInit {
     this.restartScreen();
   }
 
-  restartScreen() {
-    if(this.siteSelected.id > 0) {
-      this.siteSelected.name = this.originalName;
-    }
-
-    this.siteSelected = new Site();
-    this.newButtonHidden = false;
-    this.saveButtonHidden = true;
-    this.cancelButtonHidden = true;
-    this.inputNameDisabled = true;
-
-    let selected = document.getElementsByClassName("selected");
-    if(selected.length > 0) {
-      selected[0].classList.remove("selected");
-    }
-
-    let alertDanger = document.getElementsByClassName(Alerts.Danger);
-    if(alertDanger.length > 0) {
-      alertDanger[0].classList.remove(Alerts.Danger);
-    }
-  }
-
   enable(site: Site) {
-
     Swal.fire({
       title: 'Activar',
       text: `¿Seguro que desea activar el sitio ${site.name}?`,
@@ -124,19 +109,34 @@ export class SitesComponent implements OnInit {
   }
 
   edit(site: Site, row: HTMLElement) {
-    this.siteSelected = site;
+    this.siteSelected = JSON.parse(JSON.stringify(site));
     this.inputNameDisabled = false;
     this.cancelButtonHidden = false;
     this.saveButtonHidden = false;
     this.newButtonHidden = true;
 
+    this.deselectAllRows();
+    this.selectRow(row);
+  }
+
+  selectRow(row: HTMLElement) {
+    row.classList.add("selected");
+  }
+
+  deselectAllRows() {
     let rows = document.getElementsByClassName("selected");
     if(rows.length > 0) {
       rows[0].classList.remove("selected");
     }
-    row.classList.add("selected");
+  }
 
-    this.originalName = site.name;
+  onKeyUpSiteName(name: string) {
+    if(name.length > 0) {
+      this.siteExist = this._sitesServices.exist(name);
+    }
+    else {
+      this.siteExist = false;
+    }
   }
 
   save(name: string) {

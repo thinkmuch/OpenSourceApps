@@ -1,83 +1,56 @@
 <div class="content mt-20px animated fadeIn faster">
     <div class="row">
-        <div class="col-2">
-            <div class="form-group mb-0">
-                <label for="inputCruiseName" class="fw-500">Crucero</label>
-                <input 
-                type="text" 
-                class="form-control" 
-                id="inputCruiseName"
-                [(ngModel)]="cruiseSelected.name"
-                [disabled]="cruiseNameDisabled"
-                (click)="onClickCruiseName()"
-                #cruiseName>
+        <div class="col-5">
+            <div class="row">
+                <div class="col-5">
+                    <div class="form-group mb-0">
+                        <label for="inputCruiseName" class="fw-500">Crucero</label>
+                        <input 
+                        type="text" 
+                        class="form-control" 
+                        id="inputCruiseName"
+                        [(ngModel)]="cruiseSelected.name"
+                        [disabled]="cruiseNameDisabled"
+                        (click)="onClickCruiseName()"
+                        #cruiseName>
+                    </div>
+                    <small class="form-text red" *ngIf="cruiseExist">Este crucero ya está regitrado</small>
+                </div>
+                <div class="col-7">
+                    <button
+                    type="button"
+                    class="btn btn-primary mt-31px"
+                    [hidden]="newButtonHidden"
+                    (click)="enableEditControls()">Nuevo</button>
+                    <button 
+                    type="button" 
+                    class="btn btn-primary mt-31px" 
+                    id="saveButton"
+                    [hidden]="saveButtonHidden"
+                    (click)="save(cruiseName.value)">Guardar</button>
+                    <button 
+                    type="button" 
+                    class="btn btn-warning mt-31px" 
+                    id="cancelButton"
+                    [hidden]="cancelButtonHidden"
+                    (click)="cancel()">Cancelar</button>
+                </div>
             </div>
-            <small class="form-text red" *ngIf="cruiseExist">Este crucero ya está regitrado</small>
+            <div class="row" id="tableContainer">
+                <app-cruises-table
+                class="w-100"
+                [cruisesInput]="cruises"
+                (editEvent)="edit($event)"
+                (clickRowEvent)="onClickRow($event)"></app-cruises-table>
+            </div>
         </div>
-        <div class="col-10">
-            <button
-            type="button"
-            class="btn btn-primary mt-31px"
-            [hidden]="newButtonHidden"
-            (click)="enableEditControls()">Nuevo</button>
-            <button 
-            type="button" 
-            class="btn btn-primary mt-31px" 
-            id="saveButton"
-            [hidden]="saveButtonHidden"
-            (click)="save(cruiseName.value)">Guardar</button>
-            <button 
-            type="button" 
-            class="btn btn-warning mt-31px" 
-            id="cancelButton"
-            [hidden]="cancelButtonHidden"
-            (click)="cancel()">Cancelar</button>
+        <div class="col-7">
+            <div class="alert alert-warning animated fadeIn faster" role="alert" *ngIf="!cruiseDetailHidden; else cruiseDetail;">
+                Selecciona un crucero para configurar sus departamentos y sitios
+            </div>
+            <ng-template #cruiseDetail>
+                <app-cruise-detail></app-cruise-detail>
+            </ng-template>
         </div>
-    </div>
-    <div class="row" id="tableContainer">
-        <table class="table table-hover text-center mt-15px w-50">
-            <thead>
-                <tr>
-                    <th scope="col">
-                        <span class="pointer">ID</span>
-                    </th>
-                    <th scope="col">
-                        <span class="pointer">Crucero</span>
-                    </th>
-                    <th scope="col">Estatus</th>
-                    <th scope="col">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let cruise of cruises" class="pointer" id="{{cruise.id}}" #row>
-                    <th scope="row">{{cruise.id}}</th>
-                    <td>{{cruise.name}}</td>
-                    <td>
-                        <span *ngIf="cruise.status == 0">
-                            <span class="badge badge-dark fw-500">Inactivo</span>
-                        </span>
-                        <span *ngIf="cruise.status == 1">
-                            <span class="badge badge-success fw-500">Activo</span>
-                        </span>
-                    </td>
-                    <td>
-                        <div class="btn-group dropleft">
-                            <mat-icon aria-hidden="false" [matMenuTriggerFor]="menu" class="pointer">more_vert</mat-icon>
-                            <mat-menu #menu="matMenu">
-                                <div class="pointer item-menu-question" *ngIf="cruise.status == 0">
-                                    <a class="dropdown-item"><i class="fas fa-power-off text-success"></i>   Activar</a>
-                                </div>
-                                <div class="pointer item-menu-question" *ngIf="cruise.status == 1">
-                                    <a class="dropdown-item"><i class="fas fa-power-off text-secondary"></i>   Desactivar</a>
-                                </div>
-                                <div class="pointer item-menu-question" (click)="edit(cruise, row)">
-                                    <a class="dropdown-item"><i class="fas fa-edit c-orange"></i>   Editar</a>
-                                </div>
-                            </mat-menu>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
     </div>
 </div>

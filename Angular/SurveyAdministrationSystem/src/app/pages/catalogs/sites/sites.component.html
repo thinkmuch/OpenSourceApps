@@ -10,10 +10,11 @@
                 id="inputSiteName"
                 [disabled]="inputNameDisabled"
                 [(ngModel)]="siteSelected.name"
+                (keyup)="onKeyUpSiteName(siteName.value)"
                 (click)="onClickSiteName()"
                 #siteName>
             </div>
-            <small class="form-text red" *ngIf="siteExist">Este nombre ya está regitrado</small>
+            <small class="form-text red animated fadeIn faster" *ngIf="siteExist">Este sitio ya está regitrado</small>
         </div>
         <div class="col-10">
             <button

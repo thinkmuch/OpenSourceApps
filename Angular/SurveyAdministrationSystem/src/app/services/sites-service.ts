@@ -1,25 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Site } from '../models/site';
+import { Status } from '../enums/class-enum';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SitesServices {
 
-  constructor() { }
+  private sites: Array<Site> = new Array<Site>();
 
-  update(site: Site) {
-
-  }
-
-  save(name: string) {
-    
-  }
-
-  getAll() : Array<Site> {
-
-    let sites: Array<Site> = new Array<Site>();
-
+  constructor() { 
     let site1 = new Site();
     site1.id = 1;
     site1.name = "Azur";
@@ -200,44 +190,73 @@ export class SitesServices {
     site36.name = "Jade Boutique";
     site36.status = 1;
 
-    sites.push(site1);
-    sites.push(site2);
-    sites.push(site3);
-    sites.push(site4);
-    sites.push(site5);
-    sites.push(site6);
-    sites.push(site7);
-    sites.push(site8);
-    sites.push(site9);
-    sites.push(site10);
-    sites.push(site11);
-    sites.push(site12);
-    sites.push(site13);
-    sites.push(site14);
-    sites.push(site15);
-    sites.push(site16);
-    sites.push(site17);
-    sites.push(site18);
-    sites.push(site19);
-    sites.push(site20);
-    sites.push(site21);
-    sites.push(site22);
-    sites.push(site23);
-    sites.push(site24);
-    sites.push(site25);
-    sites.push(site26);
-    sites.push(site27);
-    sites.push(site28);
-    sites.push(site29);
-    sites.push(site30);
-    sites.push(site31);
-    sites.push(site32);
-    sites.push(site33);
-    sites.push(site34);
-    sites.push(site35);
-    sites.push(site36);
+    this.sites.push(site1);
+    this.sites.push(site2);
+    this.sites.push(site3);
+    this.sites.push(site4);
+    this.sites.push(site5);
+    this.sites.push(site6);
+    this.sites.push(site7);
+    this.sites.push(site8);
+    this.sites.push(site9);
+    this.sites.push(site10);
+    this.sites.push(site11);
+    this.sites.push(site12);
+    this.sites.push(site13);
+    this.sites.push(site14);
+    this.sites.push(site15);
+    this.sites.push(site16);
+    this.sites.push(site17);
+    this.sites.push(site18);
+    this.sites.push(site19);
+    this.sites.push(site20);
+    this.sites.push(site21);
+    this.sites.push(site22);
+    this.sites.push(site23);
+    this.sites.push(site24);
+    this.sites.push(site25);
+    this.sites.push(site26);
+    this.sites.push(site27);
+    this.sites.push(site28);
+    this.sites.push(site29);
+    this.sites.push(site30);
+    this.sites.push(site31);
+    this.sites.push(site32);
+    this.sites.push(site33);
+    this.sites.push(site34);
+    this.sites.push(site35);
+    this.sites.push(site36);
+  }
 
-    return sites.sort((a, b) => {
+  update(site: Site) {
+    for(let i = 0; i < this.sites.length; i++) {
+      if(this.sites[i].id == site.id) {
+        this.sites[i].name = site.name;
+        break;
+      }
+    }
+  }
+
+  exist(name: string) {
+    for(let i = 0; i < this.sites.length; i++) {
+      if(this.sites[i].name == name) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  save(name: string) {
+    let site = new Site();
+    site.id = this.sites.length + 1;
+    site.name = name;
+    site.status = Status.Inactive;
+
+    this.sites.push(site);
+  }
+
+  getAll() : Array<Site> {
+    return this.sites.sort((a, b) => {
       if (a.id > b.id) {
           return 1;
       }

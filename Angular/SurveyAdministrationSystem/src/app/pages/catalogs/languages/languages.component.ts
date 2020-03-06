@@ -15,7 +15,7 @@ export class LanguagesComponent implements OnInit {
   languageSelected: Language;
   inputNameDisabled: boolean;
   saveButtonHidden: boolean;
-  cancelButtonDisabled: boolean;
+  cancelButtonHidden: boolean;
   newButtonHidden: boolean;
   languageExist: boolean;
   @ViewChild('languageName', { read: ElementRef }) languageName: ElementRef;
@@ -33,7 +33,7 @@ export class LanguagesComponent implements OnInit {
   restartScreen() {
     this.languageSelected = new Language();
     this.inputNameDisabled = true;
-    this.cancelButtonDisabled = true;
+    this.cancelButtonHidden = true;
     this.saveButtonHidden = true;
     this.newButtonHidden = false;
     this.languageExist = false;
@@ -113,7 +113,7 @@ export class LanguagesComponent implements OnInit {
 
   enableEditControls() {
     this.saveButtonHidden = false;
-    this.cancelButtonDisabled = false;
+    this.cancelButtonHidden = false;
     this.newButtonHidden = true;
     this.inputNameDisabled = false;
   }
