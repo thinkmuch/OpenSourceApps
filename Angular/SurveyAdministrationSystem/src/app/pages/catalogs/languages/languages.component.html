@@ -36,49 +36,9 @@
         </div>
     </div>
     <div class="row" id="tableContainer">
-        <table class="table table-hover text-center mt-15px">
-            <thead>
-                <tr>
-                    <th scope="col">
-                        <span class="pointer">ID</span>
-                    </th>
-                    <th scope="col">
-                        <span class="pointer">Idioma</span>
-                    </th>
-                    <th scope="col">Estatus</th>
-                    <th scope="col">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let language of languages" class="pointer" id="{{language.id}}" #row>
-                    <th scope="row">{{language.id}}</th>
-                    <td>{{language.name}}</td>
-                    <td>
-                        <span *ngIf="language.status == 0">
-                            <span class="badge badge-dark fw-500">Inactivo</span>
-                        </span>
-                        <span *ngIf="language.status == 1">
-                            <span class="badge badge-success fw-500">Activo</span>
-                        </span>
-                    </td>
-                    <td>
-                        <div class="btn-group dropleft">
-                            <mat-icon aria-hidden="false" [matMenuTriggerFor]="menu" class="pointer">more_vert</mat-icon>
-                            <mat-menu #menu="matMenu">
-                                <div class="pointer item-menu-question" *ngIf="language.status == 0" (click)="enable(language)">
-                                    <a class="dropdown-item"><i class="fas fa-power-off text-success"></i>   Activar</a>
-                                </div>
-                                <div class="pointer item-menu-question" *ngIf="language.status == 1" (click)="disable(language)">
-                                    <a class="dropdown-item"><i class="fas fa-power-off text-secondary"></i>   Desactivar</a>
-                                </div>
-                                <div class="pointer item-menu-question" (click)="edit(language, row)">
-                                    <a class="dropdown-item"><i class="fas fa-edit c-orange"></i>   Editar</a>
-                                </div>
-                            </mat-menu>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <app-languages-table
+        class="w-100"
+        [languagesInput]="languages"
+        (editEvent)="edit($event)"></app-languages-table>
     </div>
 </div>

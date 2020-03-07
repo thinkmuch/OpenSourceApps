@@ -47,6 +47,8 @@ import { CruisesComponent } from './pages/catalogs/cruises/cruises.component';
 import { AnswersComponent } from './pages/catalogs/answers/answers.component';
 import { CruiseDetailComponent } from './pages/catalogs/cruises/cruise-detail/cruise-detail.component';
 import { CruisesTableComponent } from './pages/catalogs/cruises/cruises-table/cruises-table.component';
+import { AreasTableComponent } from './pages/catalogs/areas/areas-table/areas-table.component';
+import { LanguagesTableComponent } from './pages/catalogs/languages/languages-table/languages-table.component';
 
 @NgModule({
   entryComponents: [
@@ -88,7 +90,9 @@ import { CruisesTableComponent } from './pages/catalogs/cruises/cruises-table/cr
     CruisesComponent,
     AnswersComponent,
     CruiseDetailComponent,
-    CruisesTableComponent
+    CruisesTableComponent,
+    AreasTableComponent,
+    LanguagesTableComponent
   ],
   imports: [
     BrowserModule,

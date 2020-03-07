@@ -66,7 +66,10 @@ export class AreasComponent implements OnInit {
     }
   }
 
-  edit(area: Area, row: HTMLElement) {
+  edit($event) {
+    let area = $event['area'];
+    let row = $event['row'];
+
     this.areaSelected = JSON.parse(JSON.stringify(area));
     this.enableEditControls();
     this.deselectAllRows();
@@ -114,53 +117,5 @@ export class AreasComponent implements OnInit {
         icon: 'success'
       });
     }
-  }
-
-  enable(area: Area) {
-
-    Swal.fire({
-      title: 'Activar',
-      text: `¿Seguro que desea activar el idioma ${area.name}?`,
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'Si, activar',
-      cancelButtonText: 'Cancelar'
-    }).then((response) => {
-      
-      if(response.value) {
-
-        area.status = Status.Active;
-        this._areasServices.update(area);
-
-        Swal.fire({
-          title: 'Area activada',
-          icon: 'success'
-        });
-      }
-    });
-  }
-
-  disable(area: Area) {
-
-    Swal.fire({
-      title: 'Desactivar',
-      text: `¿Seguro que desea desactivar el área ${area.name}?`,
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'Si, desactivar',
-      cancelButtonText: 'Cancelar'
-    }).then((response) => {
-      
-      if(response.value) {
-
-        area.status = Status.Inactive;
-        this._areasServices.update(area);
-        
-        Swal.fire({
-          title: 'Area desactivada',
-          icon: 'success'
-        });
-      }
-    });
   }
 }

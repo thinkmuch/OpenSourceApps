@@ -53,57 +53,14 @@ export class LanguagesComponent implements OnInit {
     }
   }
 
-  enable(language: Language) {
-    Swal.fire({
-      title: 'Activar',
-      text: `¿Seguro que desea activar el idioma ${language.name}?`,
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'Si, activar',
-      cancelButtonText: 'Cancelar'
-    }).then((response) => {
-      
-      if(response.value) {
-
-        language.status = Status.Active;
-        this._languageServices.update(language);
-
-        Swal.fire({
-          title: 'Idioma activado',
-          icon: 'success'
-        });
-      }
-    });
-  }
-
-  disable(language: Language) {
-    Swal.fire({
-      title: 'Desactivar',
-      text: `¿Seguro que desea desactivar el idioma ${language.name}?`,
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'Si, desactivar',
-      cancelButtonText: 'Cancelar'
-    }).then((response) => {
-      
-      if(response.value) {
-
-        language.status = Status.Inactive;
-        this._languageServices.update(language);
-        
-        Swal.fire({
-          title: 'Idioma desactivado',
-          icon: 'success'
-        });
-      }
-    });
-  }
-
   selectRow(row: HTMLElement) {
     row.classList.add("selected");
   }
 
-  edit(language: Language, row: HTMLElement) {
+  edit($event) {
+    let language = $event['language'];
+    let row = $event['row'];
+
     this.languageSelected = JSON.parse(JSON.stringify(language));
     
     this.enableEditControls()
