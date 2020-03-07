@@ -58,57 +58,14 @@ export class SitesComponent implements OnInit {
     this.restartScreen();
   }
 
-  enable(site: Site) {
-    Swal.fire({
-      title: 'Activar',
-      text: `¿Seguro que desea activar el sitio ${site.name}?`,
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'Si, activar',
-      cancelButtonText: 'Cancelar'
-    }).then((response) => {
-      
-      if(response.value) {
-
-        site.status = Status.Active;
-        this._sitesServices.update(site);
-
-        Swal.fire({
-          title: 'Sitio activado',
-          icon: 'success'
-        });
-      }
-    });
-  }
-
-  disable(site: Site) {
-    Swal.fire({
-      title: 'Desactivar',
-      text: `¿Seguro que desea desactivar el sitio ${site.name}?`,
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'Si, desactivar',
-      cancelButtonText: 'Cancelar'
-    }).then((response) => {
-      
-      if(response.value) {
-
-        site.status = Status.Inactive;
-        this._sitesServices.update(site);
-        
-        Swal.fire({
-          title: 'Sitio desactivado',
-          icon: 'success'
-        });
-      }
-    });
-  }
-
   onClickSiteName() {
     this._renderer.removeClass(this.siteName.nativeElement, Alerts.Danger);
   }
 
-  edit(site: Site, row: HTMLElement) {
+  edit($event) {
+    let site = $event['site'];
+    let row = $event['row'];
+
     this.siteSelected = JSON.parse(JSON.stringify(site));
     this.inputNameDisabled = false;
     this.cancelButtonHidden = false;
