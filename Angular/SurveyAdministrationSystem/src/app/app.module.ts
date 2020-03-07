@@ -50,6 +50,7 @@ import { CruisesTableComponent } from './pages/catalogs/cruises/cruises-table/cr
 import { AreasTableComponent } from './pages/catalogs/areas/areas-table/areas-table.component';
 import { LanguagesTableComponent } from './pages/catalogs/languages/languages-table/languages-table.component';
 import { SitesTableComponent } from './pages/catalogs/sites/sites-table/sites-table.component';
+import { DepartmentsTableComponent } from './pages/catalogs/departments/departments-table/departments-table.component';
 
 @NgModule({
   entryComponents: [
@@ -94,7 +95,8 @@ import { SitesTableComponent } from './pages/catalogs/sites/sites-table/sites-ta
     CruisesTableComponent,
     AreasTableComponent,
     LanguagesTableComponent,
-    SitesTableComponent
+    SitesTableComponent,
+    DepartmentsTableComponent
   ],
   imports: [
     BrowserModule,

@@ -38,50 +38,8 @@
                 </div>
             </div>
             <div class="row" id="tableContainer">
-                <table class="table table-hover text-center">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Departamento</th>
-                            <th scope="col">Estatus</th>
-                            <th scope="col">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let department of departments" 
-                        class="pointer"
-                        id="{{department.id}}" 
-                        (click)="onClickRow(row, department)"
-                        #row>
-                            <th scope="row">{{department.id}}</th>
-                            <td>{{department.name}}</td>
-                            <td>
-                                <span *ngIf="department.status == 0">
-                                    <span class="badge badge-dark fw-500">Inactivo</span>
-                                </span>
-                                <span *ngIf="department.status == 1">
-                                    <span class="badge badge-success fw-500">Activo</span>
-                                </span>
-                            </td>
-                            <td>
-                                <div class="btn-group dropleft">
-                                    <mat-icon aria-hidden="false" [matMenuTriggerFor]="menu" class="pointer">more_vert</mat-icon>
-                                    <mat-menu #menu="matMenu">
-                                        <div class="pointer item-menu-question" *ngIf="department.status == 0" (click)="enable(department)">
-                                            <a class="dropdown-item"><i class="fas fa-power-off text-success"></i>   Activar</a>
-                                        </div>
-                                        <div class="pointer item-menu-question" *ngIf="department.status == 1" (click)="disabled(department)">
-                                            <a class="dropdown-item"><i class="fas fa-power-off text-secondary"></i>   Desactivar</a>
-                                        </div>
-                                        <div class="pointer item-menu-question" (click)="edit(department, row)">
-                                            <a class="dropdown-item"><i class="fas fa-edit c-orange"></i>   Editar</a>
-                                        </div>
-                                    </mat-menu>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <app-departments-table
+                [departmentsInput]="departmens"></app-departments-table>
             </div>
         </div>
         <div class="col-6">
