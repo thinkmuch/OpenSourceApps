@@ -15,7 +15,9 @@
                         (keyup)="onKeyUpDepartmentName(departmentName.value)"
                         #departmentName>
                     </div>
-                    <small class="form-text red animated fadeIn faster" *ngIf="departmentExist">Este departamento ya está regitrado</small>
+                    <small
+                    class="form-text red animated fadeIn faster"
+                    *ngIf="departmentExist">Este departamento ya está regitrado</small>
                 </div>
                 <div class="col-8">
                     <button
@@ -50,7 +52,10 @@
                 Selecciona un departamento para configurar sus áreas
             </div>
             <ul class="list-group" *ngIf="areas.length > 0">
-                <li class="list-group-item pointer animated fadeIn faster" aria-disabled="true" *ngFor="let area of areas">
+                <li 
+                class="list-group-item pointer animated fadeIn faster" 
+                aria-disabled="true" 
+                *ngFor="let area of areas">
                     <mat-checkbox 
                     [checked]="isAreaAssigned(area)"
                     (click)="onClickArea(area, !checkArea.value)"

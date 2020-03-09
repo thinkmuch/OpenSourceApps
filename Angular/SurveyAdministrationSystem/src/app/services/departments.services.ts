@@ -165,6 +165,10 @@ export class DepartmentsServices {
 
     }
 
+    getDepartmentsByCruiseId(cruiseId: number): Array<Department> {
+        return new Array<Department>();
+    }
+
     exist(name: string) {
         for(let i = 0; i < this.departments.length; i++) {
             if(this.departments[i].name.trim() == name.trim()) {

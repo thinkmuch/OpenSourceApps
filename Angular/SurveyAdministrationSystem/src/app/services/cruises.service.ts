@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Cruise } from '../models/cruise';
 import { Status } from '../enums/class-enum';
 
@@ -8,6 +8,7 @@ import { Status } from '../enums/class-enum';
 export class CruisesService {
 
   private cruises = new Array<Cruise>();
+  public cruiseIdEvent: EventEmitter<number>;
 
   constructor() { 
     let cruise1 = new Cruise();
@@ -16,6 +17,7 @@ export class CruisesService {
     cruise1.status = 1;
 
     this.cruises.push(cruise1);
+    this.cruiseIdEvent = new EventEmitter<number>();
   }
 
   getAll(): Array<Cruise> {

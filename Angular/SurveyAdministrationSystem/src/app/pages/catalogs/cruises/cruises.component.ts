@@ -2,8 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/co
 import { Cruise } from 'src/app/models/cruise';
 import { CruisesService } from 'src/app/services/cruises.service';
 import Swal from 'sweetalert2';
-import { Alerts, Status } from 'src/app/enums/class-enum';
-import { Site } from 'src/app/models/site';
+import { Alerts } from 'src/app/enums/class-enum';
 
 @Component({
   selector: 'app-cruises',
@@ -20,6 +19,7 @@ export class CruisesComponent implements OnInit {
   cruises: Array<Cruise>;
   cruiseSelected: Cruise;
   cruiseDetailHidden: boolean;
+  cruiseIdSelected: number;
   @ViewChild("cruiseName", { read: ElementRef }) cruiseName: ElementRef;
 
   constructor(
@@ -93,8 +93,8 @@ export class CruisesComponent implements OnInit {
 
     this.deselectAllRows();
     this.selectRow(row);
-    this.cruiseSelected = cruise;
     this.cruiseDetailHidden = true;
+    this._cruisesServices.cruiseIdEvent.emit(cruise.id);
   }
 
   save(name: string) {
