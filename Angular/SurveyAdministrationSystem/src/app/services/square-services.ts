@@ -2,6 +2,7 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Square } from '../models/square';
 import { Hotel } from '../models/hotel';
 import { Status } from '../enums/class-enum';
+import { Site } from '../models/site';
 
 @Injectable({
     providedIn: 'root'
@@ -175,6 +176,22 @@ export class SquareServices {
 
     getAllSquares(): Array<Square> {
         return this.squares;
+    }
+
+    addHotel(hotel: Hotel) {
+
+    }
+
+    removeHotel(hotel: Hotel) {
+
+    }
+
+    addSite(site: Site) {
+        
+    }
+
+    removeSite(site: Site) {
+        
     }
 
     getAllHotels(): Array<Hotel> {
