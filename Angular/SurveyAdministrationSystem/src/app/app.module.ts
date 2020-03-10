@@ -53,6 +53,7 @@ import { SitesTableComponent } from './pages/catalogs/sites/sites-table/sites-ta
 import { HotelsTableComponent } from './pages/catalogs/hotels/hotels-table/hotels-table.component';
 import { HotelDetailComponent } from './pages/catalogs/hotels/hotel-detail/hotel-detail.component';
 import { SquaresTableComponent } from './pages/catalogs/squares/squares-table/squares-table.component';
+import { SquareDetailComponent } from './pages/catalogs/squares/square-detail/square-detail.component';
 
 @NgModule({
   entryComponents: [
@@ -100,7 +101,8 @@ import { SquaresTableComponent } from './pages/catalogs/squares/squares-table/sq
     SitesTableComponent,
     HotelsTableComponent,
     HotelDetailComponent,
-    SquaresTableComponent
+    SquaresTableComponent,
+    SquareDetailComponent
   ],
   imports: [
     BrowserModule,

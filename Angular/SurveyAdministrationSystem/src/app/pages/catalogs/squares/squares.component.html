@@ -37,19 +37,21 @@
                 </div>
             </div>
             <div class="row" id="tableContainer">
-                <div class="alert alert-warning w-100 animated fadeIn faster mt-15px" role="alert" *ngIf="squares.length == 0; else squaresTable;">
+                <div class="alert alert-warning w-100 animated fadeIn faster mt-15px" role="alert"
+                *ngIf="squares.length == 0; else squaresTable;">
                     No hay plazas registrados
                 </div>
                 <ng-template #squaresTable>
                     <app-squares-table
                     class="w-100"
                     [squaresInpue]="squares"
-                    (editEvent)="edit($event)"></app-squares-table>
+                    (editEvent)="edit($event)"
+                    (clickRowEvent)="onClickRow($event)"></app-squares-table>
                 </ng-template>
             </div>
         </div>
         <div class="col-6">
-            <!--<app-square-detail></app-square-detail>-->
+            <app-square-detail></app-square-detail>
         </div>
     </div>
 </div>

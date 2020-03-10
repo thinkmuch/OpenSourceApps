@@ -13,11 +13,13 @@ export class SquaresTableComponent implements OnInit {
 
   @Input("squaresInpue") squares: Array<Square>;
   @Output() editEvent: EventEmitter<{square: Square, row: HTMLElement}>;
-  
+  @Output() clickRowEvent: EventEmitter<{square: Square, row: HTMLElement}>;
+
   constructor(
     private _squareServices: SquareServices
   ) { 
     this.editEvent = new EventEmitter<{square: Square, row: HTMLElement}>();
+    this.clickRowEvent = new EventEmitter<{square: Square, row: HTMLElement}>();
   }
 
   ngOnInit() {
@@ -72,6 +74,13 @@ export class SquaresTableComponent implements OnInit {
 
   edit(square: Square, row: HTMLElement) {
     this.editEvent.emit({
+      square: square,
+      row: row
+    });
+  }
+
+  onClickRow(square: Square, row: HTMLElement) {
+    this.clickRowEvent.emit({
       square: square,
       row: row
     });

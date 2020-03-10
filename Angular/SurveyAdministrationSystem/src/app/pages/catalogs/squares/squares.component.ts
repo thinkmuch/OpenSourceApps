@@ -37,6 +37,7 @@ export class SquaresComponent implements OnInit {
     this.squareExist = false;
     this.squareSelected = new Square();
     this._renderer.removeClass(this.squareName.nativeElement, Alerts.Danger);
+    this.deselectAllRows();
     this.squares = this._squareServices.getAllSquares();
   }
 
@@ -64,6 +65,15 @@ export class SquaresComponent implements OnInit {
     this.enableEditControls();
     this.deselectAllRows();
     this.selectRow(row);
+  }
+
+  onClickRow($event) {
+    let square: Square = $event["square"];
+    let row: HTMLElement = $event["row"];
+
+    this.restarScreen();
+    this.selectRow(row);
+    this._squareServices.squareSelectedEvent.emit(square.id);
   }
 
   deselectAllRows() {
