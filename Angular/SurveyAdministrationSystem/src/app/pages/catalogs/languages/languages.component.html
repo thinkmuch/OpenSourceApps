@@ -36,9 +36,14 @@
         </div>
     </div>
     <div class="row" id="tableContainer">
-        <app-languages-table
-        class="w-100"
-        [languagesInput]="languages"
-        (editEvent)="edit($event)"></app-languages-table>
+        <div class="alert alert-warning w-100 mt-15px" role="alert" *ngIf="languages.length == 0; else languagesTable;">
+            No hay idiomas registrados
+        </div>
+        <ng-template #languagesTable>
+            <app-languages-table
+            class="w-100"
+            [languagesInput]="languages"
+            (editEvent)="edit($event)"></app-languages-table>
+        </ng-template>
     </div>
 </div>

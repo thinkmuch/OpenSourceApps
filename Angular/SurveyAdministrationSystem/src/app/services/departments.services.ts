@@ -161,12 +161,12 @@ export class DepartmentsServices {
         
     }
 
-    removeArea(area: Area, department: Department) {
-
+    getDepartmentsByHotelId(hotelId: number): Array<Department> {
+        return new Array<Department>();
     }
 
-    getDepartmentsByCruiseId(cruiseId: number): Array<Department> {
-        return new Array<Department>();
+    removeArea(area: Area, department: Department) {
+
     }
 
     exist(name: string) {

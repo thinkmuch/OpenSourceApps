@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Site } from '../models/site';
 import { Status } from '../enums/class-enum';
-import { Cruise } from '../models/cruise';
 
 @Injectable({
   providedIn: 'root'
@@ -265,10 +264,6 @@ export class SitesServices {
           return -1;
       }
       return 0;
-    });
-  }
-
-  getSitesByCruiseId(cruiseId: number): Array<Site> {
-    return new Array<Cruise>();
+  });
   }
 }

@@ -37,9 +37,14 @@
         </div>
     </div>
     <div class="row" id="tableContainer">
-        <app-sites-table
-        class="w-100"
-        [sitesInput]="sites"
-        (editEvent)="edit($event)"></app-sites-table>
+        <div class="alert alert-warning w-50 mt-15px" role="alert" *ngIf="sites.length == 0; else sitesTable;">
+            No hay sitios registrados
+        </div>
+        <ng-template #sitesTable>
+            <app-sites-table
+            class="w-100"
+            [sitesInput]="sites"
+            (editEvent)="edit($event)"></app-sites-table>
+        </ng-template>
     </div>
 </div>

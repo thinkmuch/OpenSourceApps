@@ -37,22 +37,25 @@
                 </div>
             </div>
             <div class="row" id="tableContainer">
-                <app-cruises-table
-                class="w-100"
-                [cruisesInput]="cruises"
-                (editEvent)="edit($event)"
-                (clickRowEvent)="onClickRow($event)"></app-cruises-table>
+                <div class="alert alert-warning w-100 animated fadeIn faster mt-15px" role="alert" *ngIf="cruises.length == 0; else cruisesTable;">
+                    No hay cruceros registrados
+                </div>
+                <ng-template #cruisesTable>
+                    <app-cruises-table
+                    class="w-100"
+                    [cruisesInput]="cruises"
+                    (editEvent)="edit($event)"
+                    (clickRowEvent)="onClickRow($event)"></app-cruises-table>
+                </ng-template>
             </div>
         </div>
         <div class="col-7">
-            <div 
-            class="alert alert-warning animated fadeIn faster" 
-            role="alert"
-            *ngIf="!cruiseDetailHidden;">
+            <div class="alert alert-warning animated fadeIn faster" role="alert" *ngIf="!cruiseDetailHidden; else cruiseDetail;">
                 Selecciona un crucero para configurar sus departamentos y sitios
             </div>
-            <app-cruise-detail
-            [hidden]="!cruiseDetailHidden"></app-cruise-detail>
+            <ng-template #cruiseDetail>
+                <app-cruise-detail></app-cruise-detail>
+            </ng-template>
         </div>
     </div>
 </div>

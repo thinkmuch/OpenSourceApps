@@ -82,10 +82,7 @@ export class DepartmentsComponent implements OnInit {
     this.restartScreen();
   }
 
-  onClickRow($event) {
-    let department = $event['department'];
-    let row = $event['row'];
-
+  onClickRow(row: HTMLElement, department: Department) {
     this.deselectAllRows();
     this.selectRow(row);
     this.areasSelected = this._areasServices.getAreasByDepartmentId(department.id);
@@ -111,10 +108,53 @@ export class DepartmentsComponent implements OnInit {
     }
   }
 
-  edit($event) {
-    let department = $event['department'];
-    let row = $event['row'];
+  enable(department: Department) {
+    Swal.fire({
+      title: 'Activar',
+      text: `¿Seguro que desea activar el departamento ${department.name}?`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Si, desactivar',
+      cancelButtonText: 'Cancelar'
+    }).then((response) => {
+      
+      if(response.value) {
 
+        department.status = Status.Active;
+        this._departmentsServices.update(department);
+        
+        Swal.fire({
+          title: 'Departamento activado',
+          icon: 'success'
+        });
+      }
+    });
+  }
+
+  disabled(department: Department) {
+    Swal.fire({
+      title: 'Desactivar',
+      text: `¿Seguro que desea desactivar el departamento ${department.name}?`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Si, desactivar',
+      cancelButtonText: 'Cancelar'
+    }).then((response) => {
+      
+      if(response.value) {
+
+        department.status = Status.Inactive;
+        this._departmentsServices.update(department);
+        
+        Swal.fire({
+          title: 'Departamento desactivado',
+          icon: 'success'
+        });
+      }
+    });
+  }
+
+  edit(department: Department, row: HTMLElement) {
     this.departmentSelected = JSON.parse(JSON.stringify(department));
     this.enableEditControls();
     this.selectRow(row);

@@ -1,1 +1,55 @@
-<label>Alta y baja de plazas</label>
+<div class="content mt-20px animated fadeIn faster">
+    <div class="row">
+        <div class="col-6">
+            <div class="row">
+                <div class="col-4">
+                    <div class="form-group">
+                        <label for="inputSquareName" class="fw-500">Plaza</label>
+                        <input 
+                        type="text" 
+                        class="form-control" 
+                        id="inputSquareName"
+                        [disabled]="squareNameDisabled"
+                        [(ngModel)]="squareSelected.name"
+                        (click)="onClickSquareName()"
+                        #squareName>
+                    </div>
+                    <small class="form-text red" *ngIf="squareExist">Esta plaza ya está regitrada</small>
+                </div>
+                <div class="col-8">
+                    <button
+                    type="button"
+                    class="btn btn-primary mt-31px"
+                    [hidden]="newButtonHidden"
+                    (click)="enableEditControls()">Nuevo</button>
+                    <button 
+                    type="button" 
+                    class="btn btn-primary mt-31px" 
+                    [hidden]="saveButonHidden"
+                    id="saveButton"
+                    (click)="save(squareName.value)">Guardar</button>
+                    <button 
+                    type="button" 
+                    class="btn btn-warning mt-31px" 
+                    id="cancelButton"
+                    [hidden]="cancelButtonHidden"
+                    (click)="cancel()">Cancelar</button>
+                </div>
+            </div>
+            <div class="row" id="tableContainer">
+                <div class="alert alert-warning w-100 animated fadeIn faster mt-15px" role="alert" *ngIf="squares.length == 0; else squaresTable;">
+                    No hay plazas registrados
+                </div>
+                <ng-template #squaresTable>
+                    <app-squares-table
+                    class="w-100"
+                    [squaresInpue]="squares"
+                    (editEvent)="edit($event)"></app-squares-table>
+                </ng-template>
+            </div>
+        </div>
+        <div class="col-6">
+            <!--<app-square-detail></app-square-detail>-->
+        </div>
+    </div>
+</div>

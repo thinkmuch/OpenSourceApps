@@ -1,72 +1,56 @@
 <div class="content mt-20px animated fadeIn faster">
     <div class="row">
-        <div class="col-3">
-            <div class="form-group">
-                <label for="inputHotelName" class="fw-500">Hotel</label>
-                <input 
-                type="text" 
-                class="form-control" 
-                id="inputHotelName"
-                #areaName>
+        <div class="col-6">
+            <div class="row">
+                <div class="col-4">
+                    <div class="form-group">
+                        <label for="inputHotelName" class="fw-500">Hotel</label>
+                        <input 
+                        type="text" 
+                        class="form-control" 
+                        id="inputHotelName"
+                        [disabled]="hotelNameDisabled"
+                        [(ngModel)]="hotelSelected.name"
+                        (click)="onClickHotelName()"
+                        #hotelName>
+                    </div>
+                    <small class="form-text red" *ngIf="hotelExist">Esta hotel ya está regitrado</small>
+                </div>
+                <div class="col-8">
+                    <button
+                    type="button"
+                    class="btn btn-primary mt-31px"
+                    [hidden]="newButtonHidden"
+                    (click)="enableEditControls()">Nuevo</button>
+                    <button 
+                    type="button" 
+                    class="btn btn-primary mt-31px" 
+                    id="saveButton"
+                    [hidden]="saveButtonHidden"
+                    (click)="save(hotelName.value)">Guardar</button>
+                    <button 
+                    type="button" 
+                    class="btn btn-warning mt-31px" 
+                    id="cancelButton"
+                    [hidden]="cancelButtonHidden"
+                    (click)="cancel()">Cancelar</button>
+                </div>
             </div>
-            <small class="form-text red" *ngIf="hotelExist">Este hotel ya está regitrado</small>
+            <div class="row" id="tableContainer">
+                <div class="alert alert-warning w-100 animated fadeIn faster mt-15px" role="alert" *ngIf="hotels.length == 0; else hotelsTable;">
+                    No hay hoteles registrados
+                </div>
+                <ng-template #hotelsTable>
+                    <app-hotels-table
+                    class="w-100"
+                    [hotelsInput]="hotels"
+                    (editEvent)="edit($event)"
+                    (clickRowEvent)="onClickRow($event)"></app-hotels-table>
+                </ng-template>
+            </div>
         </div>
-        <div class="col-9">
-            <button
-            type="button"
-            class="btn btn-primary mt-31px">Nuevo</button>
-            <button 
-            type="button" 
-            class="btn btn-primary mt-31px" 
-            id="saveButton"
-            [hidden]="saveButtonHidden">Guardar</button>
-            <button 
-            type="button" 
-            class="btn btn-warning mt-31px" 
-            id="cancelButton"
-            [hidden]="cancelButtonHidden">Cancelar</button>
+        <div class="col-6">
+            <app-hotel-detail></app-hotel-detail>
         </div>
-    </div>
-    <div class="row" id="tableContainer">
-        <table class="table table-hover text-center w-50">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Hotel</th>
-                    <th scope="col">Estatus</th>
-                    <th scope="col">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let hotel of hotels" class="pointer" id="{{hotel.id}}" #row>
-                    <th scope="row">{{hotel.id}}</th>
-                    <td>{{hotel.name}}</td>
-                    <td>
-                        <span *ngIf="hotel.status == 0">
-                            <span class="badge badge-dark fw-500">Inactivo</span>
-                        </span>
-                        <span *ngIf="hotel.status == 1">
-                            <span class="badge badge-success fw-500">Activo</span>
-                        </span>
-                    </td>
-                    <td>
-                        <div class="btn-group dropleft">
-                            <mat-icon aria-hidden="false" [matMenuTriggerFor]="menu" class="pointer">more_vert</mat-icon>
-                            <mat-menu #menu="matMenu">
-                                <div class="pointer item-menu-question" *ngIf="hotel.status == 0">
-                                    <a class="dropdown-item"><i class="fas fa-power-off text-success"></i>   Activar</a>
-                                </div>
-                                <div class="pointer item-menu-question" *ngIf="hotel.status == 1">
-                                    <a class="dropdown-item"><i class="fas fa-power-off text-secondary"></i>   Desactivar</a>
-                                </div>
-                                <div class="pointer item-menu-question">
-                                    <a class="dropdown-item"><i class="fas fa-edit c-orange"></i>   Editar</a>
-                                </div>
-                            </mat-menu>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-          </table>
     </div>
 </div>

@@ -36,9 +36,14 @@
         </div>
     </div>
     <div class="row" id="tableContainer">
-        <app-areas-table
-        class="w-100"
-        [areasInput]="areas"
-        (editEvent)="edit($event)"></app-areas-table>
+        <div class="alert alert-warning w-50 mt-15px" role="alert" *ngIf="areas.length == 0; else areasTable;">
+            No hay áreas registradas
+        </div>
+        <ng-template #areasTable>
+            <app-areas-table
+            class="w-100"
+            [areasInput]="areas"
+            (editEvent)="edit($event)"></app-areas-table>
+        </ng-template>
     </div>
 </div>

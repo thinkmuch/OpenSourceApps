@@ -7,24 +7,6 @@
   </li>
 </ul>
 <div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="sites" role="tabpanel" aria-labelledby="sites-tab">
-    <ul class="list-group">
-      <li
-      class="list-group-item pointer animated fadeIn faster"
-      aria-disabled="true"
-      *ngFor="let site of sites">
-          <mat-checkbox >{{site.name}}</mat-checkbox>
-      </li>
-    </ul>
-  </div>
-  <div class="tab-pane fade" id="departments" role="tabpanel" aria-labelledby="departments-tab">
-    <ul class="list-group">
-      <li
-      class="list-group-item pointer animated fadeIn faster"
-      aria-disabled="true"
-      *ngFor="let department of departments">
-          <mat-checkbox>{{department.name}}</mat-checkbox>
-      </li>
-    </ul>
-  </div>
+  <div class="tab-pane fade show active" id="sites" role="tabpanel" aria-labelledby="sites-tab">Sitios</div>
+  <div class="tab-pane fade" id="departments" role="tabpanel" aria-labelledby="departments-tab">Departamentos</div>
 </div>

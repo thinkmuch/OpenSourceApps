@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/co
 import { Cruise } from 'src/app/models/cruise';
 import { CruisesService } from 'src/app/services/cruises.service';
 import Swal from 'sweetalert2';
-import { Alerts } from 'src/app/enums/class-enum';
+import { Alerts, Status } from 'src/app/enums/class-enum';
+import { Site } from 'src/app/models/site';
 
 @Component({
   selector: 'app-cruises',
@@ -19,7 +20,6 @@ export class CruisesComponent implements OnInit {
   cruises: Array<Cruise>;
   cruiseSelected: Cruise;
   cruiseDetailHidden: boolean;
-  cruiseIdSelected: number;
   @ViewChild("cruiseName", { read: ElementRef }) cruiseName: ElementRef;
 
   constructor(
@@ -64,18 +64,6 @@ export class CruisesComponent implements OnInit {
     this._renderer.removeClass(this.cruiseName.nativeElement, Alerts.Danger);
   }
 
-  edit($event) {
-    let cruise = $event['cruise'];
-    let row = $event['row'];
-
-    this.cruiseDetailHidden = true;
-    this.cruiseSelected = JSON.parse(JSON.stringify(cruise));
-    
-    this.enableEditControls();
-    this.deselectAllRows();
-    this.selectRow(row);
-  }
-
   deselectAllRows() {
     let rows = document.getElementsByClassName("selected");
     if(rows.length > 0) {
@@ -94,7 +82,18 @@ export class CruisesComponent implements OnInit {
     this.deselectAllRows();
     this.selectRow(row);
     this.cruiseDetailHidden = true;
-    this._cruisesServices.cruiseIdEvent.emit(cruise.id);
+  }
+
+  edit($event) {
+    let cruise = $event['cruise'];
+    let row = $event['row'];
+
+    this.cruiseDetailHidden = true;
+    this.cruiseSelected = JSON.parse(JSON.stringify(cruise));
+    
+    this.enableEditControls();
+    this.deselectAllRows();
+    this.selectRow(row);
   }
 
   save(name: string) {

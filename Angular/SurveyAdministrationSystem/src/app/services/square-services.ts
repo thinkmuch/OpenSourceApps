@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Square } from '../models/square';
 import { Hotel } from '../models/hotel';
+import { Status } from '../enums/class-enum';
 
 @Injectable({
     providedIn: 'root'
 })
 export class SquareServices {
 
-    getAllSquares(): Array<Square> {
-        
-        let squares = new Array<Square>();
+    private squares = new Array<Square>();
 
+    constructor() {
         let square1 = new Square();
         square1.id = 1;
         square1.name = "Nuevo Vallarta";
+        square1.status = 1;
         square1.hotels = new Array<Hotel>();
 
             let hotel1Square1 = new Hotel();
@@ -50,6 +51,7 @@ export class SquareServices {
         let square2 = new Square();
         square2.id = 2;
         square2.name = "Riviera Maya";
+        square2.status = 1;
         square2.hotels = new Array<Hotel>();
 
             let hotel1Square2 = new Hotel();
@@ -81,6 +83,7 @@ export class SquareServices {
         let square3 = new Square();
         square3.id = 3;
         square3.name = "Los Cabos";
+        square3.status = 1;
         square3.hotels = new Array<Hotel>();
 
             let hotel1Square3 = new Hotel();
@@ -92,6 +95,7 @@ export class SquareServices {
         let square4 = new Square();
         square4.id = 4;
         square4.name = "Acapulco";
+        square4.status = 1;
         square4.hotels = new Array<Hotel>();
 
             let hotel1Square4 = new Hotel();
@@ -108,6 +112,7 @@ export class SquareServices {
         let square5 = new Square();
         square5.id = 5;
         square5.name = "Puerto Peñasco";
+        square5.status = 1;
         square5.hotels = new Array<Hotel>();
 
             let hotel1Square5 = new Hotel();
@@ -124,6 +129,7 @@ export class SquareServices {
         let square6 = new Square();
         square6.id = 6;
         square6.name = "Puerto Vallarta";
+        square6.status = 1;
         square6.hotels = new Array<Hotel>();
 
             let hotel1Square6 = new Hotel();
@@ -137,14 +143,34 @@ export class SquareServices {
         square6.hotels.push(hotel1Square6);
         square6.hotels.push(hotel2Square6);
 
-        squares.push(square1);
-        squares.push(square2);
-        squares.push(square3);
-        squares.push(square4);
-        squares.push(square5);
-        squares.push(square6);
+        this.squares.push(square1);
+        this.squares.push(square2);
+        this.squares.push(square3);
+        this.squares.push(square4);
+        this.squares.push(square5);
+        this.squares.push(square6);
+    }
 
-        return squares;
+    update(square: Square) {
+        for(let i = 0; i < this.squares.length; i++) {
+            if(this.squares[i].id == square.id) {
+                this.squares[i].name = square.name;
+                this.squares[i].status = square.status;
+            }
+        }
+    }
+
+    save(name: string) {
+        let square = new Square();
+        square.id = this.squares.length + 1;
+        square.name = name;
+        square.status = Status.Inactive;
+
+        this.squares.push(square);
+    }
+
+    getAllSquares(): Array<Square> {
+        return this.squares;
     }
 
     getAllHotels(): Array<Hotel> {
