@@ -1,6 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Cruise } from '../models/cruise';
 import { Status } from '../enums/class-enum';
+import { Site } from '../models/site';
+import { Department } from '../models/department';
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +10,12 @@ import { Status } from '../enums/class-enum';
 export class CruisesService {
 
   private cruises = new Array<Cruise>();
+  @Output() cruiseSelectedEvent: EventEmitter<Cruise>;
 
   constructor() { 
+
+    this.cruiseSelectedEvent = new EventEmitter<Cruise>();
+
     let cruise1 = new Cruise();
     cruise1.id = 1;
     cruise1.name = "Vidanta Elegant";
@@ -20,6 +26,22 @@ export class CruisesService {
 
   getAll(): Array<Cruise> {
     return this.cruises;
+  }
+
+  addSite(cruise: Cruise, site: Site) {
+
+  }
+
+  removeSite(cruise: Cruise, site: Site) {
+
+  }
+
+  addDepartment(cruise: Cruise, department: Department) {
+
+  }
+
+  removeDepartment(cruise: Cruise, department: Department) {
+
   }
 
   update(cruise: Cruise) {
