@@ -83,7 +83,7 @@ export class DepartmentsComponent implements OnInit {
   }
 
   onClickRow(row: HTMLElement, department: Department) {
-    this.deselectAllRows();
+    this.restartScreen();
     this.selectRow(row);
     this.areasSelected = this._areasServices.getAreasByDepartmentId(department.id);
     this.areas = this._areasServices.getAll();

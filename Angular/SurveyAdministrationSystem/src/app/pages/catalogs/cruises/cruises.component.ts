@@ -79,7 +79,7 @@ export class CruisesComponent implements OnInit {
     let row = $event['row'];
     let cruise = $event['cruise'];
 
-    this.deselectAllRows();
+    this.restartScreen();
     this.selectRow(row);
     this.cruiseDetailHidden = true;
   }

@@ -37,6 +37,7 @@ export class SquaresComponent implements OnInit {
     this.squareExist = false;
     this.squareSelected = new Square();
     this._renderer.removeClass(this.squareName.nativeElement, Alerts.Danger);
+    this.deselectAllRows();
     this.squares = this._squareServices.getAllSquares();
   }
 
@@ -77,6 +78,15 @@ export class SquaresComponent implements OnInit {
     row.classList.add("selected");
   }
 
+  onClickRow($event) {
+    let square: Square = $event["square"];
+    let row: HTMLElement = $event["row"];
+
+    this.restarScreen();
+    this.selectRow(row);
+    this._squareServices.squareSelectedEvent.emit(square.id);
+  }
+
   save(name: string) {
     if(name == undefined || name.trim().length == 0) {
       this._renderer.addClass(this.squareName.nativeElement, Alerts.Danger);
@@ -98,6 +108,11 @@ export class SquaresComponent implements OnInit {
 
       this.squares = this._squareServices.getAllSquares();
       this.restarScreen();
+
+      Swal.fire({
+        title: 'Plaza registrada',
+        icon: 'success'
+      });
     }
   }
 }

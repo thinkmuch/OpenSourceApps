@@ -8,7 +8,7 @@
       </tr>
   </thead>
   <tbody>
-      <tr *ngFor="let square of squares" class="pointer" id="{{square.id}}" #row>
+      <tr *ngFor="let square of squares" class="pointer" id="{{square.id}}" (click)="onClickRow(square, row)" #row>
           <th scope="row">{{square.id}}</th>
           <td>{{square.name}}</td>
           <td>

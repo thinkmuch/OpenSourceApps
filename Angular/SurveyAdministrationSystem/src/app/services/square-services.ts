@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter, Output } from '@angular/core';
 import { Square } from '../models/square';
 import { Hotel } from '../models/hotel';
 import { Status } from '../enums/class-enum';
@@ -9,8 +9,11 @@ import { Status } from '../enums/class-enum';
 export class SquareServices {
 
     private squares = new Array<Square>();
+    @Output() squareSelectedEvent: EventEmitter<number>;
 
     constructor() {
+        this.squareSelectedEvent = new EventEmitter<number>();
+
         let square1 = new Square();
         square1.id = 1;
         square1.name = "Nuevo Vallarta";

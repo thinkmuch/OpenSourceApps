@@ -37,6 +37,7 @@ export class HotelsComponent implements OnInit {
     this.newButtonHidden = false;
     this.hotelExist = false;
     this.hotelSelected = new Hotel();
+    this.deselectAllRows();
     this._renderer.removeClass(this.hotelName.nativeElement, Alerts.Danger);
   }
 
@@ -55,7 +56,7 @@ export class HotelsComponent implements OnInit {
     let hotel: Hotel = $event['hotel'];
     let row: HTMLElement = $event['row'];
 
-    this.deselectAllRows();
+    this.restartScreen();
     this.selectRow(row);
     this._hotelServices.hotelSelectedEvent.emit(hotel.id);
   }
@@ -106,12 +107,12 @@ export class HotelsComponent implements OnInit {
       }
 
       this.hotels = this._hotelServices.getAll();
-        this.restartScreen();
+      this.restartScreen();
 
-        Swal.fire({
-          title: 'Hotel registrado',
-          icon: 'success'
-        });
+      Swal.fire({
+        title: 'Hotel registrado',
+        icon: 'success'
+      });
     }
   }
 }
