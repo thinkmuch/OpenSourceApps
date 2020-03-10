@@ -1,8 +1,17 @@
 <div class="alert alert-warning" role="alert" *ngIf="departments.length == 0">
   Selecciona un hotel para configurar sus departamentos
 </div>
-<ul class="list-group">
-  <li class="list-group-item pointer animated fadeIn faster" aria-disabled="true" *ngFor="let department of departments">
-    <mat-checkbox (click)="onClickDepartment(department, !checkDepartment.value)" #checkDepartment>{{department.name}}</mat-checkbox>
+<ul class="nav nav-tabs animated fadeIn faster" id="cruiseDetail" role="tablist" *ngIf="departments.length > 0">
+  <li class="nav-item">
+    <a class="nav-link active" id="sites-tab" data-toggle="tab" href="#departments" role="tab" aria-controls="sites" aria-selected="true">Departamentos</a>
   </li>
 </ul>
+<div class="tab-content" id="departmentsContainer">
+  <div class="tab-pane fade show active" id="departments" role="tabpanel" aria-labelledby="sites-tab">
+    <ul class="list-group">
+      <li class="list-group-item pointer animated fadeIn faster" aria-disabled="true" *ngFor="let department of departments">
+        <mat-checkbox (click)="onClickDepartment(department, !checkDepartment.value)" #checkDepartment>{{department.name}}</mat-checkbox>
+      </li>
+    </ul>
+  </div>
+</div>
