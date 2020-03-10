@@ -14,7 +14,7 @@ export class SquaresTableComponent implements OnInit {
   @Input("squaresInpue") squares: Array<Square>;
   @Output() editEvent: EventEmitter<{square: Square, row: HTMLElement}>;
   @Output() clickRowEvent: EventEmitter<{square: Square, row: HTMLElement}>;
-
+  
   constructor(
     private _squareServices: SquareServices
   ) { 
@@ -79,7 +79,7 @@ export class SquaresTableComponent implements OnInit {
     });
   }
 
-  onClickRow(square: Square, row: HTMLElement) {
+  onClickRow(square, row) {
     this.clickRowEvent.emit({
       square: square,
       row: row

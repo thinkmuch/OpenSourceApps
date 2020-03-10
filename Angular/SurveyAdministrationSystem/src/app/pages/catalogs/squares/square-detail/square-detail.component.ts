@@ -17,6 +17,7 @@ export class SquareDetailComponent implements OnInit {
 
   constructor(
     private _squareServices: SquareServices,
+
     private _hotelServices: HotelServices,
     private _sitesServices: SitesServices
   ) { }

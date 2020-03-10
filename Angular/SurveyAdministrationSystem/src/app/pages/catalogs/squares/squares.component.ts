@@ -108,6 +108,11 @@ export class SquaresComponent implements OnInit {
 
       this.squares = this._squareServices.getAllSquares();
       this.restarScreen();
+
+      Swal.fire({
+        title: 'Plaza registrada',
+        icon: 'success'
+      });
     }
   }
 }

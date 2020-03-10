@@ -37,7 +37,8 @@
                 </div>
             </div>
             <div class="row" id="tableContainer">
-                <div class="alert alert-warning w-100 animated fadeIn faster mt-15px" role="alert"
+                <div class="alert alert-warning w-100 animated fadeIn faster mt-15px"
+                role="alert"
                 *ngIf="squares.length == 0; else squaresTable;">
                     No hay plazas registrados
                 </div>
@@ -51,7 +52,7 @@
             </div>
         </div>
         <div class="col-6">
-            <app-square-detail></app-square-detail>
+            <app-square-detail *ngIf="squareSelected"></app-square-detail>
         </div>
     </div>
 </div>
