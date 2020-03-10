@@ -14,6 +14,7 @@ export class HotelsComponent implements OnInit {
   cancelButtonHidden: boolean;
   saveButtonHidden: boolean;
   hotelNameDisabled: boolean;
+  shortNameDisabled: boolean;
   newButtonHidden: boolean;
   hotelExist: boolean;
   hotels: Array<Hotel>;
@@ -34,6 +35,7 @@ export class HotelsComponent implements OnInit {
     this.cancelButtonHidden = true;
     this.saveButtonHidden = true;
     this.hotelNameDisabled = true;
+    this.shortNameDisabled = true;
     this.newButtonHidden = false;
     this.hotelExist = false;
     this.hotelSelected = new Hotel();
@@ -63,6 +65,7 @@ export class HotelsComponent implements OnInit {
 
   enableEditControls() {
     this.hotelNameDisabled = false;
+    this.shortNameDisabled = false;
     this.cancelButtonHidden = false;
     this.saveButtonHidden = false;
     this.newButtonHidden = true;

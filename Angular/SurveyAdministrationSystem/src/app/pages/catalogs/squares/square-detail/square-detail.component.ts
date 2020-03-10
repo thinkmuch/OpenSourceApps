@@ -17,12 +17,14 @@ export class SquareDetailComponent implements OnInit {
 
   constructor(
     private _squareServices: SquareServices,
-
     private _hotelServices: HotelServices,
     private _sitesServices: SitesServices
   ) { }
 
   ngOnInit() {
+    this.hotels = new Array<Hotel>();
+    this.sites = new Array<Site>();
+
     this._squareServices.squareSelectedEvent.subscribe(squareId => {
       this.hotels = this._hotelServices.getAll();
       this.sites = this._sitesServices.getAll();
