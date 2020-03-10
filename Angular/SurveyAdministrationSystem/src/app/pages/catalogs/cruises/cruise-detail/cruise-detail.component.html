@@ -1,4 +1,7 @@
-<ul class="nav nav-tabs animated fadeIn faster" id="cruiseDetail" role="tablist">
+<div class="alert alert-warning" role="alert" *ngIf="departments.length == 0">
+  Selecciona un crucero para configurar sus sitios y departamentos
+</div>
+<ul class="nav nav-tabs animated fadeIn faster" id="cruiseDetail" role="tablist" *ngIf="departments.length > 0">
   <li class="nav-item">
     <a class="nav-link active" id="sites-tab" data-toggle="tab" href="#sites" role="tab" aria-controls="sites" aria-selected="true">Sitios</a>
   </li>

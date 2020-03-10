@@ -76,12 +76,14 @@ export class CruisesComponent implements OnInit {
   }
 
   onClickRow($event) {
+
     let row = $event['row'];
     let cruise = $event['cruise'];
 
     this.restartScreen();
     this.selectRow(row);
     this.cruiseDetailHidden = true;
+    this._cruisesServices.cruiseSelectedEvent.emit(cruise);
   }
 
   edit($event) {

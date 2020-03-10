@@ -21,10 +21,17 @@ export class CruiseDetailComponent implements OnInit {
     private _siteServices: SitesServices,
     private _departmentServices: DepartmentsServices,
     private _cruiseServices: CruisesService
-  ) { }
+  ) {
+    this.sites = new Array<Site>();
+    this.departments = new Array<Department>();
+    this.cruiseSelected = new Cruise();
+  }
 
   ngOnInit() {
     this._cruiseServices.cruiseSelectedEvent.subscribe(cruise => {
+
+      console.log(cruise);
+
       this.cruiseSelected = cruise;
       this.sites = this._siteServices.getAll();
       this.departments = this._departmentServices.getAll();

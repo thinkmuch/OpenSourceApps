@@ -50,12 +50,7 @@
             </div>
         </div>
         <div class="col-7">
-            <div class="alert alert-warning animated fadeIn faster" role="alert" *ngIf="!cruiseDetailHidden; else cruiseDetail;">
-                Selecciona un crucero para configurar sus departamentos y sitios
-            </div>
-            <ng-template #cruiseDetail>
-                <app-cruise-detail></app-cruise-detail>
-            </ng-template>
+            <app-cruise-detail></app-cruise-detail>
         </div>
     </div>
 </div>
