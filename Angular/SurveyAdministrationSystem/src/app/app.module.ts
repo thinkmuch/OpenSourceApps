@@ -54,6 +54,8 @@ import { HotelsTableComponent } from './pages/catalogs/hotels/hotels-table/hotel
 import { HotelDetailComponent } from './pages/catalogs/hotels/hotel-detail/hotel-detail.component';
 import { SquaresTableComponent } from './pages/catalogs/squares/squares-table/squares-table.component';
 import { SquareDetailComponent } from './pages/catalogs/squares/square-detail/square-detail.component';
+import { DepartmentDetailComponent } from './pages/catalogs/departments/department-detail/department-detail.component';
+import { DepartmentsTableComponent } from './pages/catalogs/departments/departments-table/departments-table.component';
 
 @NgModule({
   entryComponents: [
@@ -102,7 +104,9 @@ import { SquareDetailComponent } from './pages/catalogs/squares/square-detail/sq
     HotelsTableComponent,
     HotelDetailComponent,
     SquaresTableComponent,
-    SquareDetailComponent
+    SquareDetailComponent,
+    DepartmentDetailComponent,
+    DepartmentsTableComponent
   ],
   imports: [
     BrowserModule,
