@@ -82,14 +82,20 @@ export class DepartmentsComponent implements OnInit {
     this.restartScreen();
   }
 
-  onClickRow(row: HTMLElement, department: Department) {
+  onClickRow($event) {
+    let department = $event["department"];
+    let row = $event["row"];
+    
     this.restartScreen();
     this.selectRow(row);
     this.areasSelected = this._areasServices.getAreasByDepartmentId(department.id);
     this.areas = this._areasServices.getAll();
   }
 
-  edit(department: Department, row: HTMLElement) {
+  edit($event) {
+    let department = $event["department"];
+    let row = $event["row"];
+
     this.departmentSelected = JSON.parse(JSON.stringify(department));
     this.enableEditControls();
     this.selectRow(row);

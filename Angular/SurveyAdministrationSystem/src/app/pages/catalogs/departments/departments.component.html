@@ -39,7 +39,10 @@
             </div>
             <div class="row" id="tableContainer">
                 <app-departments-table
-                [departmentsInpud]="departments"></app-departments-table>
+                class="w-100"
+                [departmentsInpud]="departments"
+                (editEvent)="edit($event)"
+                (clickRowEvent)="onClickRow($event)"></app-departments-table>
             </div>
         </div>
         <div class="col-6">
