@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Department } from '../models/department';
 import { Area } from '../models/area';
 import { Status } from '../enums/class-enum';
@@ -9,8 +9,11 @@ import { Status } from '../enums/class-enum';
 export class DepartmentsServices {
 
     private departments = new Array<Department>();
+    @Output() deparmentEvent: EventEmitter<Department>;
 
     constructor() {
+        this.deparmentEvent = new EventEmitter<Department>();
+
         let department1 = new Department();
         department1.id = 1;
         department1.name = "Ama de llaves";

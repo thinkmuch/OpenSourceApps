@@ -17,10 +17,15 @@ export class DepartmentDetailComponent implements OnInit {
   constructor(
     private _departmentsServices: DepartmentsServices,
     private _areasServices: AreasServices
-  ) { }
+  ) { 
+    this.areas = new Array<Area>();
+  }
 
   ngOnInit() {
-    this.areas = this._areasServices.getAll();
+    this._departmentsServices.deparmentEvent.subscribe(department => {
+      this.departmentSelected = department;
+      this.areas = this._areasServices.getAll();
+    });
   }
 
   onClickArea(area: Area, checked: boolean) {

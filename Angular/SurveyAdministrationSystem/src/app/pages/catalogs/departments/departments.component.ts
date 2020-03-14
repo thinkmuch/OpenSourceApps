@@ -4,7 +4,7 @@ import { DepartmentsServices } from 'src/app/services/departments.services';
 import Swal from 'sweetalert2';
 import { AreasServices } from 'src/app/services/areas-services';
 import { Area } from 'src/app/models/area';
-import { Status, Alerts } from 'src/app/enums/class-enum';
+import { Alerts } from 'src/app/enums/class-enum';
 
 @Component({
   selector: 'app-departments',
@@ -19,7 +19,6 @@ export class DepartmentsComponent implements OnInit {
   newButtonHidden: boolean;
   departmentExist: boolean;
   departments: Array<Department>;
-  areas: Array<Area>;
   areasSelected: Array<Area>;
   departmentSelected: Department;
   @ViewChild('departmentName', { read: ElementRef }) departmentName: ElementRef;
@@ -32,8 +31,6 @@ export class DepartmentsComponent implements OnInit {
 
   ngOnInit() {
     this.restartScreen();
-
-    this.areas = new Array<Area>();
     this.areasSelected = new Array<Area>();
     this.departmentSelected = new Department();
     this.departments = this._departmentsServices.getAll();
@@ -89,7 +86,7 @@ export class DepartmentsComponent implements OnInit {
     this.restartScreen();
     this.selectRow(row);
     this.areasSelected = this._areasServices.getAreasByDepartmentId(department.id);
-    this.areas = this._areasServices.getAll();
+    this._departmentsServices.deparmentEvent.emit(department);
   }
 
   edit($event) {
