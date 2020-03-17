@@ -203,3 +203,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mb-0 {
     margin-bottom: 0;
 }
+
+.mt-20px {
+    margin-top: 20px;
+}
+
+.sticky {
+    top: 0;
+    position: sticky;
+}
+
+.ml-5px {
+    margin-left: 5px;
+}

@@ -379,40 +379,7 @@ export class AreasServices {
     }
 
     getAreasByDepartmentId(departmentId: number) {
-        let areasBtDepartment = new Array<Area>();
-
-        let area1 = new Area();
-        area1.id = 1;
-        area1.name = "Spa, Salón y Fitness - Fitness Grand Luxxe";
-        area1.status = 1;
-
-        let area4 = new Area();
-        area4.id = 4;
-        area4.name = "Golf y Tenis - Campo de golf";
-        area4.status = 1;
-
-        let area9 = new Area();
-        area9.id = 9;
-        area9.name = "Retail - Sun Market";
-        area9.status = 1;
-
-        let area10 = new Area();
-        area10.id = 10;
-        area10.name = "Spa, Salón & Fitness - Brio Spa";
-        area10.status = 1;
-
-        let area11 = new Area();
-        area11.id = 11;
-        area11.name = "Registro (Atención)";
-        area11.status = 1;
-
-        areasBtDepartment.push(area1);
-        areasBtDepartment.push(area4);
-        areasBtDepartment.push(area9);
-        areasBtDepartment.push(area10);
-        areasBtDepartment.push(area11);
-
-        return areasBtDepartment;
+        return this.areas;
     }
 
     getAll(): Array<Area> {

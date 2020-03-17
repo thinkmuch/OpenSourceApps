@@ -56,6 +56,9 @@ import { SquaresTableComponent } from './pages/catalogs/squares/squares-table/sq
 import { SquareDetailComponent } from './pages/catalogs/squares/square-detail/square-detail.component';
 import { DepartmentDetailComponent } from './pages/catalogs/departments/department-detail/department-detail.component';
 import { DepartmentsTableComponent } from './pages/catalogs/departments/departments-table/departments-table.component';
+import { AnswersTableComponent } from './pages/catalogs/answers/answers-table/answers-table.component';
+import { ReportesComponent } from './pages/reportes/reportes.component';
+import { ConfigOptionsComponent } from './pages/surveys/newsurvey/new-edit-survey/answers/config-options/config-options.component';
 
 @NgModule({
   entryComponents: [
@@ -106,7 +109,10 @@ import { DepartmentsTableComponent } from './pages/catalogs/departments/departme
     SquaresTableComponent,
     SquareDetailComponent,
     DepartmentDetailComponent,
-    DepartmentsTableComponent
+    DepartmentsTableComponent,
+    AnswersTableComponent,
+    ReportesComponent,
+    ConfigOptionsComponent
   ],
   imports: [
     BrowserModule,

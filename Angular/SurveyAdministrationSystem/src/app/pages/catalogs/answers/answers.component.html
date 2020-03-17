@@ -1,3 +1,45 @@
-<p>
-  answers works!
-</p>
+<div class="content mt-20px animated fadeIn faster">
+    <div class="row">
+        <div class="col-6">
+            <div class="row">
+                <div class="col-7">
+                    <div class="form-group mb-0">
+                        <label for="inputAnswerName" class="fw-600">Nombre Respuesta</label>
+                        <input 
+                        type="text" 
+                        class="form-control" 
+                        id="inputAnswerName"
+                        [disabled]="answerNameDisabled"
+                        #answerName>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <button
+                    type="button"
+                    class="btn btn-primary mt-31px"
+                    [hidden]="newButtonHidden"
+                    (click)="enableEditControls()">Nuevo</button>
+                    <button 
+                    type="button" 
+                    class="btn btn-primary mt-31px"
+                    [hidden]="saveButtonHidden"
+                    id="saveButton">Guardar</button>
+                    <button 
+                    type="button" 
+                    class="btn btn-warning mt-31px"
+                    [hidden]="cancelButtonHidden"
+                    (click)="cancel()"
+                    id="cancelButton">Cancelar</button>
+                </div>
+            </div>
+            <div class="row">
+                <app-answers-table
+                class="w-100"
+                [answersInput]="answers"></app-answers-table>
+            </div>
+        </div>
+        <div class="col-6">
+        hola
+        </div>
+    </div>
+</div>

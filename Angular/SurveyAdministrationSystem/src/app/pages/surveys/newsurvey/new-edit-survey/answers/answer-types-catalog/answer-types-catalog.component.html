@@ -45,37 +45,18 @@
         </div>
     </div>
     <hr>
-    <div class="row ml-5px">
-        <input 
-        type="checkbox" 
-        class="form-check-input pointer" 
-        id="exampleCheck1" 
-        (change)="onChangeForceResponse(checkForceResponse.checked)" 
-        #checkForceResponse>
-        <label class="form-check-label pointer" for="exampleCheck1">Respuesta forzosa</label>
-    </div>
-    <div class="row ml-5px">
-        <input
-        class="form-check-input pointer" 
-        type="checkbox"
-        id="inputCheckAcceptNA"
-        (change)="onChangeAcceptNA(matCheckAcceptNA.checked)"
-        #matCheckAcceptNA>
-        <label class="form-check-label pointer" for="inputCheckAcceptNA">Aceptar NA</label>
-    </div>
-    <div class="row ml-5px" [hidden]="!justifyAnswerVisible">
-        <input
-        class="form-check-input pointer"
-        id="checkJustifyAnswer"
-        type="checkbox"
-        (change)="onChangeJustifyAnswer(justifyAnswerInput.checked)"
-        #justifyAnswerInput>
-        <label class="form-check-label pointer" for="checkJustifyAnswer">Justificar respuesta</label>
-    </div>
+    <app-config-options
+    [idQuestionInput]="idQuestionSelected"></app-config-options>
     <hr>
     <div class="row">
         <div class="btn-group w-100">
-            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button 
+            type="button" 
+            class="btn btn-secondary dropdown-toggle" 
+            data-toggle="dropdown" 
+            aria-haspopup="true" 
+            aria-expanded="false"
+            #selectDepartment>
               <span *ngIf="departmentSelected == undefined">Seleccione el departamento</span>
               <span *ngIf="departmentSelected != undefined && departmentSelected.id > 0">{{departmentSelected.name}}</span>
             </button>
@@ -87,12 +68,19 @@
     <br>
     <div class="row">
         <div class="btn-group w-100">
-            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <span *ngIf="areaSelected == undefined">Seleccione el área</span>
-              <span *ngIf="areaSelected != undefined && areaSelected.id > 0">{{areaSelected.area}}</span>
+            <button 
+            type="button" 
+            class="btn btn-secondary dropdown-toggle cursorDefault" 
+            data-toggle="dropdown" 
+            aria-haspopup="true" 
+            aria-expanded="false"
+            [disabled]="selectAreaDisabled"
+            #selectArea>
+              <span *ngIf="areaSelected == undefined || areaSelected.id == 0">Seleccione el área</span>
+              <span *ngIf="areaSelected != undefined && areaSelected.id > 0">{{areaSelected.name}}</span>
             </button>
             <div class="dropdown-menu scrollable-menu w-100 mh-374px pointer">
-                <a class="dropdown-item" *ngFor="let area of areas" (click)="onSelectArea(area)">{{area.area}}</a>
+                <a class="dropdown-item" *ngFor="let area of areas" (click)="onSelectArea(area)">{{area.name}}</a>
             </div>
           </div>
     </div>

@@ -1,0 +1,27 @@
+<div class="row ml-5px">
+  <input 
+  type="checkbox" 
+  class="form-check-input pointer" 
+  id="exampleCheck1" 
+  (change)="onChangeForceResponse(checkForceResponse.checked)" 
+  #checkForceResponse>
+  <label class="form-check-label pointer" for="exampleCheck1">Respuesta forzosa</label>
+</div>
+<div class="row ml-5px">
+  <input
+  class="form-check-input pointer" 
+  type="checkbox"
+  id="inputCheckAcceptNA"
+  (change)="onChangeAcceptNA(matCheckAcceptNA.checked)"
+  #matCheckAcceptNA>
+  <label class="form-check-label pointer" for="inputCheckAcceptNA">Aceptar NA</label>
+</div>
+<div class="row ml-5px">
+  <input
+  class="form-check-input pointer"
+  id="checkJustifyAnswer"
+  type="checkbox"
+  (change)="onChangeJustifyAnswer(justifyAnswerInput.checked)"
+  #justifyAnswerInput>
+  <label class="form-check-label pointer" for="checkJustifyAnswer">Justificar respuesta</label>
+</div>

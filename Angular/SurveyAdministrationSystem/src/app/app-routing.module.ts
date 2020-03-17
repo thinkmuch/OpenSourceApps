@@ -13,8 +13,13 @@ import { AreasComponent } from './pages/catalogs/areas/areas.component';
 import { LanguagesComponent } from './pages/catalogs/languages/languages.component';
 import { CruisesComponent } from './pages/catalogs/cruises/cruises.component';
 import { AnswersComponent } from './pages/catalogs/answers/answers.component';
+import { ReportesComponent } from './pages/reportes/reportes.component';
 
 const routes: Routes = [
+  {
+    path: 'reportes',
+    component: ReportesComponent
+  },
   { 
     path: 'dashboard', 
     component: DashboardComponent 

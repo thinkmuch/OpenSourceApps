@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Renderer2 } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { Answer } from 'src/app/models/answer';
 import { AnswerServices } from 'src/app/services/answer-services';
 import { Question } from 'src/app/models/question';
@@ -14,7 +14,7 @@ import { Department } from 'src/app/models/department';
   templateUrl: './answer-types-catalog.component.html',
   styleUrls: ['./answer-types-catalog.component.css']
 })
-export class AnswerTypesCatalogComponent implements OnInit, AfterViewInit {
+export class AnswerTypesCatalogComponent implements OnInit {
 
   public disablePredefined: boolean;
   public answers: Array<Answer>;
@@ -28,13 +28,13 @@ export class AnswerTypesCatalogComponent implements OnInit, AfterViewInit {
   public areaSelected: Area;
   public departmentSelected: Department;
   public departments: Array<Department>;
+  public selectAreaDisabled: boolean;
 
-  @ViewChild("checkPredefinedAnswer", {read: ElementRef }) checkSingeAnswer: ElementRef;
-  @ViewChild("checkFreeText", {read: ElementRef }) checkFreeText: ElementRef;
-  @ViewChild("checkMultitpleOptions", {read: ElementRef }) checkMultipleOptions: ElementRef;
-  @ViewChild("checkForceResponse", {read: ElementRef }) checkForceResponse: ElementRef;
-  @ViewChild("matCheckAcceptNA", {read: ElementRef}) matCheckAcceptNA: ElementRef;
-  @ViewChild("justifyAnswerInput", {read: ElementRef }) checkJustifyAnswer: ElementRef;
+  @ViewChild("checkPredefinedAnswer", { read: ElementRef }) checkSingeAnswer: ElementRef;
+  @ViewChild("checkFreeText", { read: ElementRef }) checkFreeText: ElementRef;
+  @ViewChild("checkMultitpleOptions", { read: ElementRef }) checkMultipleOptions: ElementRef;
+  @ViewChild("selectDepartment", { read: ElementRef }) selectDepartment: ElementRef;
+  @ViewChild("selectArea", { read: ElementRef }) selectArea: ElementRef;
 
   constructor(
     private _surveyCaptureServices: SurveyCaptureServices,
@@ -51,12 +51,13 @@ export class AnswerTypesCatalogComponent implements OnInit, AfterViewInit {
     this.checkedAcceptNA = false;
     this.checkedForceResponse = false;
     this.justifyAnswerVisible = false;
+    this.selectAreaDisabled = true;
     this.answers = new Array<Answer>();
     this.areaSelected = new Area();
 
     this._surveyCaptureServices.rowSelected.subscribe(idQuestion => {
       this.idQuestionSelected = idQuestion;
-    })
+    });
 
     this._answerServices.answerSelected.subscribe((idQuestion: number) => {
       let question: Question = this._surveyCaptureServices.getQuestionById(idQuestion);
@@ -65,23 +66,14 @@ export class AnswerTypesCatalogComponent implements OnInit, AfterViewInit {
 
     this._answerServices.showOptions.subscribe((visible: boolean) => {
       this.isAnswerTypeCatalogsVisible = visible;
-    })
+    });
 
-    this.areas = this._areasServices.getAll();
     this.answers = this._surveyCaptureServices.getAnswers();
     this.departments = this._departmentsServices.getAll();
   }
 
-  ngAfterViewInit() {
-
-  }
-
   showJustifyAnswerControl(visible: boolean) {
     this.justifyAnswerVisible = visible;
-  }
-
-  onChangeJustifyAnswer(checked: boolean) {
-    this._surveyCaptureServices.setJustifyAnswer(this.idQuestionSelected, checked);
   }
 
   selectDefaultOption() {
@@ -106,14 +98,17 @@ export class AnswerTypesCatalogComponent implements OnInit, AfterViewInit {
       this.checkSingeAnswer.nativeElement.checked = false;
     }
 
-    this.checkForceResponse.nativeElement.checked = false;
+    this._renderer.removeClass(this.selectDepartment.nativeElement, "btn-info");
+    this._renderer.removeClass(this.selectArea.nativeElement, "btn-info");
+
+    this._renderer.addClass(this.selectDepartment.nativeElement, "btn-secondary");
+    this._renderer.addClass(this.selectArea.nativeElement, "btn-secondary");
   }
 
   uncheckAllCheckbox() {
     this._renderer.setProperty(this.checkMultipleOptions.nativeElement, "checked", "false");
     this._renderer.setProperty(this.checkSingeAnswer.nativeElement, "checked", "false");
     this._renderer.setProperty(this.checkFreeText.nativeElement, "checked", "false");
-    this._renderer.setProperty(this.checkJustifyAnswer.nativeElement, "checked", "false");
   }
 
   setAnswerTypeSelected(answer: Answer) {
@@ -125,33 +120,6 @@ export class AnswerTypesCatalogComponent implements OnInit, AfterViewInit {
     }
     else if(answer.answerType == AnswerType.SingleAnswer) {
       this._renderer.setProperty(this.checkSingeAnswer.nativeElement, "checked", "true");
-    }
-  }
-
-  setAcceptNA(question: Question) {
-    if(question.acceptNA == undefined || !question.acceptNA) {
-      this.matCheckAcceptNA.nativeElement.checked = false;
-    }
-    else {
-      this.matCheckAcceptNA.nativeElement.checked = true;
-    }
-  }
-
-  setForceResponse(question: Question) {
-    if(question.forceResponse == undefined || !question.forceResponse) {
-      this.checkForceResponse.nativeElement.checked = false;
-    }
-    else {
-      this.checkForceResponse.nativeElement.checked = true;
-    }
-  }
-
-  setJustifyAnswer(question: Question) {
-    if(question.justifyAnswer == undefined || !question.justifyAnswer) {
-      this.checkJustifyAnswer.nativeElement.checked = false;
-    }
-    else {
-      this.checkJustifyAnswer.nativeElement.checked = true;
     }
   }
 
@@ -169,14 +137,26 @@ export class AnswerTypesCatalogComponent implements OnInit, AfterViewInit {
       this.setAnswerTypeSelected(answer);
     }
 
-    this.setAcceptNA(question);
-    this.setForceResponse(question);
-    this.setJustifyAnswer(question);
-    this.setArea(question);
+    this.setDepartment(question.department);
+    this.setArea(question.area);
   }
 
-  setArea(question: Question) {
-    this.areaSelected = question.area;
+  setArea(area: Area) {
+    this.areaSelected = area;
+
+    if(this.areaSelected != undefined) {
+      this._renderer.removeClass(this.selectArea.nativeElement, "btn-info");
+      this._renderer.addClass(this.selectArea.nativeElement, "btn-info");
+    }
+  }
+
+  setDepartment(department: Department) {
+    this.departmentSelected = department;
+
+    if(department != undefined) {
+      this._renderer.removeClass(this.selectDepartment.nativeElement, "btn-info");
+      this._renderer.addClass(this.selectDepartment.nativeElement, "btn-info");
+    }
   }
 
   isQuestionSelected() {
@@ -197,25 +177,30 @@ export class AnswerTypesCatalogComponent implements OnInit, AfterViewInit {
     }
   }
 
-  onChangeForceResponse(checked: boolean) {
-    if(this.isQuestionSelected()) {
-      this._surveyCaptureServices.setResponseAnswer(this.idQuestionSelected, checked);
-    }
-  }
-
-  onChangeAcceptNA(checked: boolean) {
-    if(this.isQuestionSelected()) {
-      this._surveyCaptureServices.setAcceptNA(this.idQuestionSelected, checked);
-    }
-  }
-
   onSelectArea(area: Area) {
     this.areaSelected = area;
     this._surveyCaptureServices.setArea(this.idQuestionSelected, area);
+
+    this._renderer.removeClass(this.selectArea.nativeElement, "btn-secondary");
+    this._renderer.addClass(this.selectArea.nativeElement, "btn-info");
   }
 
   onSelectDepartment(department: Department) {
     this.departmentSelected = department;
+
+    this._renderer.removeClass(this.selectDepartment.nativeElement, "btn-secondary");
+    this._renderer.addClass(this.selectDepartment.nativeElement, "btn-info");
+
     this._surveyCaptureServices.setDepartment(this.idQuestionSelected, department);
+    this.areas = this._areasServices.getAreasByDepartmentId(department.id);
+
+    this.enableSelectArea();
+  }
+
+  enableSelectArea() {
+    this.selectAreaDisabled = false;
+    this.areaSelected = new Area();
+    this._renderer.removeClass(this.selectArea.nativeElement, "btn-info");
+    this._renderer.addClass(this.selectArea.nativeElement, "btn-secondary");
   }
 }
