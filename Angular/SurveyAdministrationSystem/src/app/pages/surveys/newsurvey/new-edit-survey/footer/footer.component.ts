@@ -6,6 +6,7 @@ import { SquareHotelCatalogModalComponent } from './square-hotel-catalog-modal/s
 import { ViewServices } from 'src/app/services/view-services';
 import { Alerts } from 'src/app/enums/class-enum';
 import { SurveyCaptureServices } from 'src/app/services/survey-capture.services';
+import { SquareHotelCatalogComponent } from './square-hotel-catalog/square-hotel-catalog.component';
 
 @Component({
   selector: 'app-footer',
@@ -52,7 +53,7 @@ export class FooterComponent implements OnInit, AfterViewInit {
   onClickConfigSquareHotel() {
     this._render.removeClass(this.suqaresControl.nativeElement, Alerts.Danger);
 
-    this._matDialog.open(SquareHotelCatalogModalComponent, {
+    this._matDialog.open(SquareHotelCatalogComponent, {
       width: '900px',
       data: { }
     });

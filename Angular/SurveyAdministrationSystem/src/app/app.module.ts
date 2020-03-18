@@ -59,11 +59,13 @@ import { DepartmentsTableComponent } from './pages/catalogs/departments/departme
 import { AnswersTableComponent } from './pages/catalogs/answers/answers-table/answers-table.component';
 import { ReportesComponent } from './pages/reportes/reportes.component';
 import { ConfigOptionsComponent } from './pages/surveys/newsurvey/new-edit-survey/answers/config-options/config-options.component';
+import { SquareHotelCatalogComponent } from './pages/surveys/newsurvey/new-edit-survey/footer/square-hotel-catalog/square-hotel-catalog.component';
 
 @NgModule({
   entryComponents: [
     SitesCatalogModalComponent,
-    SquareHotelCatalogModalComponent
+    SquareHotelCatalogModalComponent,
+    SquareHotelCatalogComponent
   ],
   declarations: [
     AppComponent,
@@ -112,7 +114,8 @@ import { ConfigOptionsComponent } from './pages/surveys/newsurvey/new-edit-surve
     DepartmentsTableComponent,
     AnswersTableComponent,
     ReportesComponent,
-    ConfigOptionsComponent
+    ConfigOptionsComponent,
+    SquareHotelCatalogComponent
   ],
   imports: [
     BrowserModule,

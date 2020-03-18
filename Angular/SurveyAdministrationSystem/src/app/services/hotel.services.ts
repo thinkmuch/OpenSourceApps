@@ -101,4 +101,8 @@ export class HotelServices {
 
         this.hotels.push(hotel);
     }
+
+    getHotelsBySquareId(squareId) {
+        return this.hotels;
+    }
 }

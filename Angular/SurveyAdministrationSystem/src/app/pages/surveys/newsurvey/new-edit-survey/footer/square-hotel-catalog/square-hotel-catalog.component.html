@@ -1,0 +1,41 @@
+<ul class="nav nav-tabs" id="square-hotel-catalog-tab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="square-hotel-tab" data-toggle="tab" href="#squareHotels" role="tab" aria-controls="squareHotels" aria-selected="true">Hoteles</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="cruises-tab" data-toggle="tab" href="#cruises" role="tab" aria-controls="cruises" aria-selected="false">Cruceros</a>
+  </li>
+</ul>
+<div class="tab-content" id="squares-hotels-tab">
+  <div class="tab-pane fade show active" id="squareHotels" role="tabpanel" aria-labelledby="square-hotel-tab">
+    <div class="row">
+      <div class="col-4" id="squares-container">
+        <div class="list-group" id="list-tab" role="tablist">
+          <a 
+          class="list-group-item list-group-item-action" 
+          id="list-home-list" 
+          data-toggle="list" 
+          href="#list-home" 
+          role="tab" 
+          aria-controls="home"
+          *ngFor="let square of squares"
+          (click)="onClickSquare(square)">{{square.name}}</a>
+        </div>
+      </div>
+      <div class="col-8" id="hotels-container">
+        <ul class="list-group" id="hotelsList" *ngIf="hotels.length > 0">
+          <li class="list-group-item" *ngFor="let hotel of hotels">
+            <mat-checkbox>{{hotel.name}}</mat-checkbox>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="cruises" role="tabpanel" aria-labelledby="cruises-tab">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let cruise of cruises">
+        <mat-checkbox>{{cruise.name}}</mat-checkbox>
+      </li>
+    </ul>
+  </div>
+</div>
