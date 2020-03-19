@@ -23,9 +23,17 @@
         </div>
       </div>
       <div class="col-8" id="hotels-container">
-        <ul class="list-group" id="hotelsList" *ngIf="hotels.length > 0">
-          <li class="list-group-item" *ngFor="let hotel of hotels">
-            <mat-checkbox>{{hotel.name}}</mat-checkbox>
+        <ul class="list-group animated fadeIn faster" id="hotelsList" *ngIf="hotels.length > 0">
+          <li class="list-group-item animated fadeIn faster" *ngFor="let hotel of hotels">
+            <mat-checkbox
+            (click)="onClickHotel(hotel, !checkHotel.checked)"
+            *ngIf="isHotelSelected(hotel)"
+            [checked]="true"
+            #checkHotel>{{hotel.name}}</mat-checkbox>
+            <mat-checkbox
+            (click)="onClickHotel(hotel, !checkHotel.checked)"
+            *ngIf="!isHotelSelected(hotel)"
+            #checkHotel>{{hotel.name}}</mat-checkbox>
           </li>
         </ul>
       </div>
@@ -34,8 +42,22 @@
   <div class="tab-pane fade" id="cruises" role="tabpanel" aria-labelledby="cruises-tab">
     <ul class="list-group">
       <li class="list-group-item" *ngFor="let cruise of cruises">
-        <mat-checkbox>{{cruise.name}}</mat-checkbox>
+        <mat-checkbox
+        *ngIf="isCruiseSelected(cruise)"
+        [checked]="true"
+        (click)="onClickCruise(cruise, !checkCruise.checked)"
+        #checkCruise>{{cruise.name}}</mat-checkbox>
+        <mat-checkbox
+        *ngIf="!isCruiseSelected(cruise)"
+        [checked]="false"
+        (click)="onClickCruise(cruise, !checkCruise.checked)"
+        #checkCruise>{{cruise.name}}</mat-checkbox>
       </li>
     </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col text-right">
+    <button type="button" class="btn btn-primary" (click)="close()">Cerrar</button>
   </div>
 </div>

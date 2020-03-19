@@ -18,8 +18,7 @@ import { Cruise } from '../models/cruise';
 export class SurveyCaptureServices
 {
     public language: Language;
-    public squares: Array<Square>;
-    public hotels: Array<Hotel>;
+    public hotels: Array<{ squareId: number, hotelId: number }>;
     public cruises: Array<Cruise>;
     public questions: Array<Question>;
     private answers: Array<Answer>;
@@ -30,15 +29,13 @@ export class SurveyCaptureServices
         this.questions = new Array<Question>();
         this.answers = new Array<Answer>();
         this.rowSelected = new EventEmitter<number>();
-        this.squares = new Array<Square>();
-        this.hotels = new Array<Hotel>();
+        this.hotels = new Array<{ squareId: number, hotelId: number }>();
         this.cruises = new Array<Cruise>();
     }
 
     initialize() {
         this.language = new Language();
-        this.squares = new Array<Square>();
-        this.hotels = new Array<Hotel>();
+        this.hotels = new Array<{ squareId: number, hotelId: number }>();
         this.cruises = new Array<Cruise>();
         this.questions = new Array<Question>();
         this.answers = new Array<Answer>();
@@ -62,9 +59,8 @@ export class SurveyCaptureServices
 
         newSurvey.name = this.nameSurvey;
         newSurvey.language = this.language;
-        newSurvey.squares = this.squares;
-        newSurvey.hotels = this.hotels;
         newSurvey.questions = this.questions;
+        newSurvey.hotels = this.hotels;
 
         return newSurvey;
     }
@@ -78,9 +74,7 @@ export class SurveyCaptureServices
 
         survey.language = this.language;
         survey.questions = this.questions;
-        survey.squares = this.squares;
         survey.name = this.nameSurvey;
-        survey.hotels = this.hotels;
 
         return survey;
     }
@@ -159,40 +153,24 @@ export class SurveyCaptureServices
         this.language = language;
     }
 
-    addSquare(square: Square) {
-        this.squares.push(square);
+    addHotel(square: Square, hotel: Hotel) {
+        this.hotels.push({
+            squareId: square.id,
+            hotelId: hotel.id
+        });
     }
 
-    removeSquare(square: Square) {
-        for(let i = 0; i < this.squares.length; i++) {
-            if(this.squares[i].id == square.id) {
-                this.squares.splice(i, 1);
-            }
-        }
-    }
-
-    removeAllSquares() {
-        this.squares = [];
-    }
-
-    addHotel(hotel: Hotel) {
-        this.hotels.push(hotel);
-    }
-
-    removeAllHotels() {
-        this.hotels = [];
+    removeHotel(square: Square, hotel: Hotel) {
+       for(let i = 0; i < this.hotels.length; i++) {
+           if(square.id == this.hotels[i].squareId && hotel.id == this.hotels[i].hotelId) {
+               this.hotels.splice(i, 1);
+               break;
+           }
+       }
     }
 
     removeAllCruises() {
         this.cruises = [];
-    }
-
-    removeHotel(hotel: Hotel) {
-        for(let i = 0; i < this.hotels.length; i++) {
-            if(this.hotels[i].id == hotel.id) {
-                this.hotels.splice(i, 1);
-            }
-        }
     }
 
     setAcceptNA(idQuestion: number, acceptNA: boolean) {

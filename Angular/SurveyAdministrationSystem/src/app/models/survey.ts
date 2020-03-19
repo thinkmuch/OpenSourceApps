@@ -8,6 +8,5 @@ export class Survey {
     name: string;
     questions: Array<Question>;
     language: Language;
-    squares: Array<Square>;
-    hotels: Array<Hotel>;
+    hotels: Array<{ squareId: number, hotelId: number }>;
 }

@@ -18,6 +18,7 @@ export class SurveysComponent implements OnInit {
 
   ngOnInit() {
     this.surveys = this._surveysServices.getAllSurveysSummary();
+    console.log(this.surveys);
   }
 
   goToNewSurvey() {

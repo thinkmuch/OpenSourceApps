@@ -2,7 +2,6 @@ import { Component, OnInit, ElementRef, ViewChild, AfterViewInit, Renderer2, Inp
 import { LanguageServices } from 'src/app/services/language-services';
 import { Language } from 'src/app/models/laguage';
 import { MatDialog } from '@angular/material';
-import { SquareHotelCatalogModalComponent } from './square-hotel-catalog-modal/square-hotel-catalog-modal.component';
 import { ViewServices } from 'src/app/services/view-services';
 import { Alerts } from 'src/app/enums/class-enum';
 import { SurveyCaptureServices } from 'src/app/services/survey-capture.services';

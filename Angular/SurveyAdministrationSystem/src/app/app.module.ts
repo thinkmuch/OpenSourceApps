@@ -28,7 +28,6 @@ import { MatMenuModule } from '@angular/material/menu';
 import { FooterComponent } from './pages/surveys/newsurvey/new-edit-survey/footer/footer.component';
 import { DropdownPredefinedAnswerComponent } from './pages/surveys/newsurvey/new-edit-survey/answers/dropdown-single-selection-answer/dropdown-predefined-answer.component';
 import { QuestionMenuComponent } from './pages/surveys/newsurvey/new-edit-survey/question/question-menu/question-menu.component';
-import { SquareHotelCatalogModalComponent } from './pages/surveys/newsurvey/new-edit-survey/footer/square-hotel-catalog-modal/square-hotel-catalog-modal.component';
 import { AddLanguageComponent } from './pages/surveys/add-language/add-language.component';
 import { CatalogsComponent } from './pages/catalogs/catalogs.component';
 import { ChartsModule } from 'ng2-charts';
@@ -64,7 +63,6 @@ import { SquareHotelCatalogComponent } from './pages/surveys/newsurvey/new-edit-
 @NgModule({
   entryComponents: [
     SitesCatalogModalComponent,
-    SquareHotelCatalogModalComponent,
     SquareHotelCatalogComponent
   ],
   declarations: [
@@ -85,7 +83,6 @@ import { SquareHotelCatalogComponent } from './pages/surveys/newsurvey/new-edit-
     FooterComponent,
     DropdownPredefinedAnswerComponent,
     QuestionMenuComponent,
-    SquareHotelCatalogModalComponent,
     AddLanguageComponent,
     CatalogsComponent,
     SurveysNameListComponent,

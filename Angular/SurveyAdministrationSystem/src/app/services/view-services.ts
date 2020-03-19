@@ -85,17 +85,6 @@ export class ViewServices {
     return result;
   }
 
-  isSquaresAndHotelsSelected(): boolean {
-    let result: boolean = true;
-
-    if(this._surveyCaptureServices.squares.length == 0 || this._surveyCaptureServices.hotels.length == 0) {
-      result = false;
-      this.setInvalidControl(this.SquaresControl);
-    }
-
-    return result;
-  }
-
   setInvalidControl(control: any) {
     this._renderer.addClass(control, Alerts.Danger);
   }

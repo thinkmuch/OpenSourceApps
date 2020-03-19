@@ -2,8 +2,6 @@ import { SurveySummary } from '../models/survey-summary';
 import { Injectable, EventEmitter, Output } from '@angular/core';
 import { Survey } from '../models/survey';
 import { QuestionsByLanguage } from '../models/questions-by-language';
-import { QuestionText } from '../models/question-text';
-import { Question } from '../models/question';
 import { QuestionSummary } from '../models/question-summary';
 
 @Injectable({
@@ -40,7 +38,7 @@ export class SurveyServices
             surveySummary.statusDescripcion = "Inactiva";
             surveySummary.totalQuestions = survey.questions.length;
             surveySummary.lenguages = 1;
-            surveySummary.plazas = survey.squares.length;
+            surveySummary.plazas = 3;
             surveySummary.hoteles = survey.hotels.length;
             surveySummary.owner = true;
             surveySummary.answeredCount = 34;
@@ -67,16 +65,7 @@ export class SurveyServices
     }
 
     saveNewSurvey(newSurvey: Survey) {
-        if(localStorage.questionsByLanguage) {
-            this.questionsByLanguage = JSON.parse(localStorage.questionsByLanguage);
-        }
-
-        newSurvey.id = this.questionsByLanguage.length + 1;
-
-        this.fullSurveys.push(newSurvey);
-        localStorage.fullSurveys = JSON.stringify(this.fullSurveys);
-
-        this.saveQuestionText(newSurvey);
+       console.log(newSurvey);
     }
 
     getSurveyById(surveyId: number): Survey {
@@ -94,25 +83,6 @@ export class SurveyServices
         }
 
         return new Survey();
-    }
-
-    saveQuestionText(newSurvey: Survey) {
-        let questionsText = new QuestionsByLanguage();
-
-        questionsText.surveyId = newSurvey.id;
-        questionsText.lenguage = newSurvey.language;
-        questionsText.questionsText = new Array<QuestionText>();
-
-        for(let i = 0; i < newSurvey.questions.length; i++) {
-
-            let questionText = new QuestionText();
-            questionText.id = newSurvey.questions[i].id;
-            questionText.text = newSurvey.questions[i].text;
-            questionsText.questionsText.push(questionText);
-        }
-
-        this.questionsByLanguage.push(questionsText);
-        localStorage.questionsByLanguage = JSON.stringify(this.questionsByLanguage);
     }
 
     deleteSurvey(id: number) {

@@ -68,8 +68,6 @@ export class NewEditSurveyComponent implements OnInit, AfterViewInit, OnDestroy 
     this._surveyCaptureServices.nameSurvey = survey.name;
     this._surveyCaptureServices.language = survey.language;
     this._surveyCaptureServices.questions = survey.questions;
-    this._surveyCaptureServices.squares = survey.squares;
-    this._surveyCaptureServices.hotels = survey.hotels;
 
     this.questions = this._surveyCaptureServices.questions;
   }
