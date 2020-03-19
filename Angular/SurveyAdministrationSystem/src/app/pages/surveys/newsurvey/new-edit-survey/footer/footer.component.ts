@@ -28,10 +28,18 @@ export class FooterComponent implements OnInit, AfterViewInit {
     private _render: Renderer2
   ) { 
     this.languageSelected = new Language();
-    //this.languages = this._languageServices.getAll();
   }
 
   ngOnInit() { 
+    this._languageServices.getAll().subscribe(
+      data => {
+        this.languages = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+
     if(!this.isNewSurvey) {
       if(this._surveyCaprureServices.language.languageId > 0) {
         this.languageSelected = this._surveyCaprureServices.language;
