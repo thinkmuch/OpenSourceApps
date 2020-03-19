@@ -1,4 +1,7 @@
-<table class="table table-hover text-center w-50">
+<div class="alert alert-warning w-50 mt-15px animated fadeIn faster" role="alert" *ngIf="areas == undefined || areas.length == 0">
+    No hay áreas registradas
+</div>
+<table class="table table-hover text-center w-50 animated fadeIn faster" *ngIf="areas && areas.length">
   <thead>
       <tr>
           <th scope="col">ID</th>
@@ -8,14 +11,14 @@
       </tr>
   </thead>
   <tbody>
-      <tr *ngFor="let area of areas" class="pointer" id="{{area.id}}" #row>
-          <th scope="row">{{area.id}}</th>
+      <tr *ngFor="let area of areas" class="pointer" id="{{area.areaId}}" #row>
+          <th scope="row">{{area.areaId}}</th>
           <td>{{area.name}}</td>
           <td>
-              <span *ngIf="area.status == 0">
+              <span *ngIf="area.statusId == 1">
                   <span class="badge badge-dark fw-500">Inactivo</span>
               </span>
-              <span *ngIf="area.status == 1">
+              <span *ngIf="area.statusId == 2">
                   <span class="badge badge-success fw-500">Activo</span>
               </span>
           </td>
@@ -23,10 +26,10 @@
               <div class="btn-group dropleft">
                   <mat-icon aria-hidden="false" [matMenuTriggerFor]="menu" class="pointer">more_vert</mat-icon>
                   <mat-menu #menu="matMenu">
-                      <div class="pointer item-menu-question" *ngIf="area.status == 0" (click)="enable(area)">
+                      <div class="pointer item-menu-question" *ngIf="area.statusId == 1" (click)="enable(area)">
                           <a class="dropdown-item"><i class="fas fa-power-off text-success"></i>   Activar</a>
                       </div>
-                      <div class="pointer item-menu-question" *ngIf="area.status == 1" (click)="disable(area)">
+                      <div class="pointer item-menu-question" *ngIf="area.statusId == 2" (click)="disable(area)">
                           <a class="dropdown-item"><i class="fas fa-power-off text-secondary"></i>   Desactivar</a>
                       </div>
                       <div class="pointer item-menu-question" (click)="edit(area, row)">

@@ -18,16 +18,34 @@ export class AreasComponent implements OnInit {
   inputNameDisabled: boolean;
   newButtonHidden: boolean;
   areaExist: boolean;
+  loading: boolean;
   @ViewChild('areaName', { read: ElementRef }) areaName: ElementRef;
 
   constructor(
     private _areasServices: AreasServices,
     private _renderer: Renderer2
-  ) { }
+  ) { 
+    this.areaSelected = new Area();
+  }
 
   ngOnInit() {
-    this.restartScreen();
-    this.areas = this._areasServices.getAll();
+    this.getAllAreas();
+  }
+
+  getAllAreas() {
+    this.loading = true;
+
+    this._areasServices.getAll().subscribe(
+      data => {
+        this.areas = data;
+        this.loading = false;
+        this.restartScreen();
+      },
+      error => {
+        console.log(error);
+        this.loading = false;
+      }
+    );
   }
 
   restartScreen() {
@@ -59,7 +77,7 @@ export class AreasComponent implements OnInit {
 
   onKeyUpAreaName(name: string) {
     if(name.length > 0) {
-      this.areaExist = this._areasServices.exist(name);
+      this.areaExist = (this.areas.find(a => a.name.trim().toLowerCase() == name.trim().toLowerCase()) != undefined);
     }
     else {
       this.areaExist = false;
@@ -92,7 +110,7 @@ export class AreasComponent implements OnInit {
   }
 
   save(name: string) {
-    if(name == undefined || name.trim().length == 0) {
+    if(name == undefined || name.trim().length == 0 || this.areaExist) {
       this._renderer.addClass(this.areaName.nativeElement, Alerts.Danger);
       
       Swal.fire({
@@ -102,20 +120,36 @@ export class AreasComponent implements OnInit {
       });
     }
     else {
-      if(this.areaSelected.id > 0) {
-        this._areasServices.update(this.areaSelected);
+      if(this.areaSelected.areaId > 0) {
+        this._areasServices.update(this.areaSelected).subscribe(
+          data => {
+            this.getAllAreas();
+
+            Swal.fire({
+              title: 'Area actualizada',
+              icon: 'success'
+            });
+          },
+          error => {
+            console.log(error);
+          }
+        );
       }
       else {
-        this._areasServices.save(name);
-      }
-      
-      this.areas = this._areasServices.getAll();
-      this.restartScreen();
+        this._areasServices.save(name).subscribe(
+          data => {
+            this.getAllAreas();
 
-      Swal.fire({
-        title: 'Area registrada',
-        icon: 'success'
-      });
+            Swal.fire({
+              title: 'Area registrada',
+              icon: 'success'
+            });
+          },
+          error => {
+            console.log(error);
+          }
+        )
+      }
     }
   }
 }

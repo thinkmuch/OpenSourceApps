@@ -27,7 +27,7 @@ export class SearchButtonsComponent implements OnInit {
   ngOnInit() {
     this.squares = this._squaresServices.getAllSquares();
     this.hotels = this._squaresServices.getAllHotels();
-    this.areas = this._areasServices.getAll();
+    //this.areas = this._areasServices.getAll();
   }
 
   onClickSquare(square: Square) {

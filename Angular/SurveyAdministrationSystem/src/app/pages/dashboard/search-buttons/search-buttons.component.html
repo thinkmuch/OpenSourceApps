@@ -19,9 +19,9 @@
 <div class="btn-group minw-150px">
   <button class="btn btn-info btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <span *ngIf="areaSelected == undefined">Area</span>
-    <span *ngIf="areaSelected && areaSelected.id > 0">{{areaSelected.area}}</span>
+    <span *ngIf="areaSelected && areaSelected.areaId > 0">{{areaSelected.name}}</span>
   </button>
   <div class="dropdown-menu scrollable-menu mh-374px pointer">
-    <a class="dropdown-item pointer" *ngFor="let area of areas" (click)="onClickArea(area)">{{area.area}}</a>
+    <a class="dropdown-item pointer" *ngFor="let area of areas" (click)="onClickArea(area)">{{area.name}}</a>
   </div>
 </div>

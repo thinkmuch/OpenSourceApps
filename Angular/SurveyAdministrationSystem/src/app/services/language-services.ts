@@ -22,16 +22,6 @@ export class LanguageServices {
        return this._http.put("http://10.2.180.10:5999/api/Language", language);
     }
 
-    exist(name: string): boolean {
-        for(let i = 0; i < this.languages.length; i++) {
-            if(this.languages[i].name.trim() == name.trim()) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     save(name: string) {
         return this._http.post(`http://10.2.180.10:5999/api/Language?name=${name}`, {});
     }

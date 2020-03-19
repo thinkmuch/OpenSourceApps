@@ -24,7 +24,7 @@ export class DepartmentDetailComponent implements OnInit {
   ngOnInit() {
     this._departmentsServices.deparmentEvent.subscribe(department => {
       this.departmentSelected = department;
-      this.areas = this._areasServices.getAll();
+      //this.areas = this._areasServices.getAll();
     });
   }
 

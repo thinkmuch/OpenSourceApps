@@ -87,7 +87,7 @@ export class LanguagesComponent implements OnInit {
 
   onKeyUpLanguageName(name: string) {
     if(name.length > 0) {
-      this.languageExist = this._languageServices.exist(name);
+      this.languageExist = (this.languages.find(l => l.name.trim().toUpperCase() == name.trim().toUpperCase()) != undefined);
     }
     else {
       this.languageExist = false;
@@ -108,8 +108,34 @@ export class LanguagesComponent implements OnInit {
     );
   }
 
+  update() {
+    this._languageServices.update(this.languageSelected).subscribe(
+      data => {
+        this.getAllLanguages();
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  saveLanguage(name: string) {
+    this._languageServices.save(name).subscribe(
+      data => {
+        this.getAllLanguages();
+
+        Swal.fire({
+          title: 'Idioma registrado',
+          icon: 'success'
+        });
+      },
+      error => {
+        console.log(error);
+      });
+  }
+
   save(name: string) {
-    if(name == undefined || name.length == 0) {
+    if(name == undefined || name.length == 0 || this.languageExist) {
       this._renderer.addClass(this.languageName.nativeElement, Alerts.Danger);
 
       Swal.fire({
@@ -120,23 +146,10 @@ export class LanguagesComponent implements OnInit {
     }
     else {
       if(this.languageSelected.languageId > 0) {
-        this._languageServices.update(this.languageSelected).subscribe(
-          data => {
-            this.getAllLanguages();
-          },
-          error => {
-            console.log(error);
-          }
-        )
+        this.update();
       }
       else {
-        this._languageServices.save(name).subscribe(
-        data => {
-          this.getAllLanguages();
-        },
-        error => {
-          console.log(error);
-        });
+        this.saveLanguage(name);
       }
     }
   }
