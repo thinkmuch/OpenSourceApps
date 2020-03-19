@@ -35,7 +35,7 @@ export class LanguagesTableComponent implements OnInit {
       
       if(response.value) {
 
-        language.status = Status.Active;
+        language.statusId = Status.Active;
         this._languageServices.update(language);
 
         Swal.fire({
@@ -58,7 +58,7 @@ export class LanguagesTableComponent implements OnInit {
       
       if(response.value) {
 
-        language.status = Status.Inactive;
+        language.statusId = Status.Inactive;
         this._languageServices.update(language);
         
         Swal.fire({

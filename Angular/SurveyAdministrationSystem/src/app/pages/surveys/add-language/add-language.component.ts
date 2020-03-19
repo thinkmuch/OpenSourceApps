@@ -27,7 +27,7 @@ export class AddLanguageComponent implements OnInit {
     private _router: Router,
   ) { 
     this.surveyId = parseInt(this._activatedRoute.snapshot.paramMap.get("id"));
-    this.languages = this._languageServices.getAll();
+    //this.languages = this._languageServices.getAll();
     this.defaultQuestionsText = this._surveyServices.getQuestionsBySurveyId(this.surveyId);
     
     this._activatedRoute.queryParams.subscribe(params => {

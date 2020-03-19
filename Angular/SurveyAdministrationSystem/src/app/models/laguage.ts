@@ -1,5 +1,5 @@
 export class Language {
-    id: number;
+    languageId: number;
     name: string;
-    status: number;
+    statusId: number;
 }

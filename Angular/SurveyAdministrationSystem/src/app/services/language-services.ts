@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Language } from '../models/laguage';
-import { Status } from '../enums/class-enum';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -9,28 +10,17 @@ export class LanguageServices {
     
     languages = new Array<Language>();
 
-    constructor() {
-        let language1 = new Language();
-        language1.id = 1;
-        language1.name = "Español";
-        language1.status = 1;
+    constructor(
+        private _http: HttpClient
+    ) { }
 
-        let language2 = new Language();
-        language2.id = 2;
-        language2.name = "Inglés";
-        language2.status = 1;
-
-        this.languages.push(language1);
-        this.languages.push(language2);
-    }
-
-    getAll(): Array<Language> {
-        return this.languages;
+    getAll(): Observable<Array<Language>> {
+        return this._http.get<Array<Language>>("http://10.2.180.10:5999/api/Language");
     }
 
     update(language: Language) {
         for(let i = 0; i < this.languages.length; i++) {
-            if(this.languages[i].id == language.id) {
+            if(this.languages[i].languageId == language.languageId) {
                 this.languages[i].name = language.name;
                 break;
             }
@@ -48,15 +38,6 @@ export class LanguageServices {
     }
 
     save(name: string) {
-
-        let id = this.languages.length + 1;
-        let language = new Language();
-
-        language.id = id;
-        language.name = name;
-        language.status = Status.Inactive;
-
-        this.languages.push(language);
-        console.log(this.languages);
+        return this._http.post(`http://10.2.180.10:5999/api/Language?name=${name}`, {});
     }
 }

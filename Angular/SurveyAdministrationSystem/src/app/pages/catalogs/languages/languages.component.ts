@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild, Renderer2 } from '@angular/core';
 import { Language } from 'src/app/models/laguage';
 import { LanguageServices } from 'src/app/services/language-services';
-import { Status, Alerts } from 'src/app/enums/class-enum';
+import { Alerts } from 'src/app/enums/class-enum';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -18,6 +18,7 @@ export class LanguagesComponent implements OnInit {
   cancelButtonHidden: boolean;
   newButtonHidden: boolean;
   languageExist: boolean;
+  loading: boolean = false;
   @ViewChild('languageName', { read: ElementRef }) languageName: ElementRef;
 
   constructor(
@@ -27,7 +28,8 @@ export class LanguagesComponent implements OnInit {
 
   ngOnInit() {
     this.restartScreen();
-    this.languages = this._languageServices.getAll();
+    this.loading = true;
+    this.getAllLanguages();
   }
 
   restartScreen() {
@@ -92,6 +94,20 @@ export class LanguagesComponent implements OnInit {
     }
   }
 
+  getAllLanguages() {
+    this._languageServices.getAll().subscribe(
+      data => {
+        this.languages = data
+        this.loading = false;
+        this.restartScreen();
+      },
+      error => {
+        console.log(error);
+        this.loading = false;
+      }
+    );
+  }
+
   save(name: string) {
     if(name == undefined || name.length == 0) {
       this._renderer.addClass(this.languageName.nativeElement, Alerts.Danger);
@@ -103,20 +119,17 @@ export class LanguagesComponent implements OnInit {
       });
     }
     else {
-      if(this.languageSelected.id > 0) {
+      if(this.languageSelected.languageId > 0) {
         this._languageServices.update(this.languageSelected);
       }
       else {
-        this._languageServices.save(name);
+        this._languageServices.save(name).subscribe(data => {
+          this.getAllLanguages();
+        },
+        error => {
+          console.log(error);
+        });
       }
-      
-      this.languages = this._languageServices.getAll();
-      this.restartScreen();
-      
-      Swal.fire({
-        title: 'Idioma registrado',
-        icon: 'success'
-      });
     }
   }
 }

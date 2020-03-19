@@ -17,13 +17,13 @@
                 <button 
                 type="button" 
                 class="btn btn-secondary dropdown-toggle btn-sm w-150px" 
-                [ngClass]="{ 'btn-info': languageSelected != undefined && languageSelected.id > 0}" 
+                [ngClass]="{ 'btn-info': languageSelected != undefined && languageSelected.languageId > 0}" 
                 data-toggle="dropdown" 
                 aria-haspopup="true" 
                 aria-expanded="false"
                 (click)="onClickLanguage()"
                 #language>
-                    <span *ngIf="languageSelected && languageSelected.id > 0; else elseLenguageSelected;">{{ languageSelected.name }}</span>
+                    <span *ngIf="languageSelected && languageSelected.languageId > 0; else elseLenguageSelected;">{{ languageSelected.name }}</span>
                     <ng-template #elseLenguageSelected>
                         <span>Seleccione Idioma</span>
                     </ng-template>
