@@ -9,6 +9,6 @@ export enum AnswerType {
 }
 
 export enum Status {
-    Inactive = 0,
-    Active = 1
+    Inactive = 1,
+    Active = 2
 }

@@ -19,12 +19,7 @@ export class LanguageServices {
     }
 
     update(language: Language) {
-        for(let i = 0; i < this.languages.length; i++) {
-            if(this.languages[i].languageId == language.languageId) {
-                this.languages[i].name = language.name;
-                break;
-            }
-        }
+       return this._http.put("http://10.2.180.10:5999/api/Language", language);
     }
 
     exist(name: string): boolean {

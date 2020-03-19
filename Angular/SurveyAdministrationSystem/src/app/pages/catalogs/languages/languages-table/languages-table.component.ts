@@ -36,11 +36,15 @@ export class LanguagesTableComponent implements OnInit {
       if(response.value) {
 
         language.statusId = Status.Active;
-        this._languageServices.update(language);
-
-        Swal.fire({
-          title: 'Idioma activado',
-          icon: 'success'
+        this._languageServices.update(language).subscribe(
+        data => {
+          Swal.fire({
+            title: 'Idioma activado',
+            icon: 'success'
+          });
+        },
+        error => {
+          console.log(error);
         });
       }
     });
@@ -59,12 +63,17 @@ export class LanguagesTableComponent implements OnInit {
       if(response.value) {
 
         language.statusId = Status.Inactive;
-        this._languageServices.update(language);
-        
-        Swal.fire({
-          title: 'Idioma desactivado',
-          icon: 'success'
-        });
+        this._languageServices.update(language).subscribe(
+          data => {
+            Swal.fire({
+              title: 'Idioma desactivado',
+              icon: 'success'
+            });
+          },
+          error => {
+            console.log(error);
+          }
+        );
       }
     });
   }

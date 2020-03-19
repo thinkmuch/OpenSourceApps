@@ -120,10 +120,18 @@ export class LanguagesComponent implements OnInit {
     }
     else {
       if(this.languageSelected.languageId > 0) {
-        this._languageServices.update(this.languageSelected);
+        this._languageServices.update(this.languageSelected).subscribe(
+          data => {
+            this.getAllLanguages();
+          },
+          error => {
+            console.log(error);
+          }
+        )
       }
       else {
-        this._languageServices.save(name).subscribe(data => {
+        this._languageServices.save(name).subscribe(
+        data => {
           this.getAllLanguages();
         },
         error => {
