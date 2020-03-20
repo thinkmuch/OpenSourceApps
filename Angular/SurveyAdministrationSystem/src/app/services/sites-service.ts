@@ -8,16 +8,12 @@ import { Observable } from 'rxjs';
 })
 export class SitesServices {
 
-  private sites: Array<Site> = new Array<Site>();
-
   constructor(
     private _http: HttpClient
-  ) { 
-    
-  }
+  ) {}
 
   update(site: Site) {
-    
+    return this._http.put("http://10.2.180.10:5999/api/Site", site);
   }
 
   save(name: string) {

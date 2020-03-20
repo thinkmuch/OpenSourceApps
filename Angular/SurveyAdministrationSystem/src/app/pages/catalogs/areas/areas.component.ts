@@ -112,12 +112,12 @@ export class AreasComponent implements OnInit {
   update(area: Area) {
     this._areasServices.update(area).subscribe(
       data => {
-        this.getAllAreas();
-
         Swal.fire({
           title: 'Area actualizada',
           icon: 'success'
         });
+        this.getAllAreas();
+        this.restartScreen();
       },
       error => {
         console.log(error);

@@ -104,7 +104,7 @@ export class SitesComponent implements OnInit {
 
   onKeyUpSiteName(name: string) {
     if(name.length > 0 && this.sites != undefined && this.sites.length > 0) {
-      // this.siteExist = this._sitesServices.exist(name);
+       this.siteExist = (this.sites.find(s => s.name.trim().toLocaleLowerCase() == name.trim().toLowerCase()) != undefined);
     }
     else {
       this.siteExist = false;
@@ -114,7 +114,6 @@ export class SitesComponent implements OnInit {
   saveSite(name: string) {
     this._sitesServices.save(name).subscribe(
       data => {
-        console.log(data);
         this.restartScreen();
         this.getAllSites();
         Swal.fire({
@@ -128,8 +127,23 @@ export class SitesComponent implements OnInit {
     );
   }
 
+  update(site: Site) {
+    this._sitesServices.update(site).subscribe(
+    data => {
+        this.restartScreen();
+        this.getAllSites();
+        Swal.fire({
+          title: 'Sitio actualizado',
+          icon: 'success'
+        });
+    },
+    error => {
+      console.log(error);
+    });
+  }
+
   save(name: string) {
-    if(name == undefined || name.trim().length == 0) {
+    if(name == undefined || name.trim().length == 0 || this.siteExist) {
       this._renderer.addClass(this.siteName.nativeElement, Alerts.Danger);
 
       Swal.fire({
@@ -140,7 +154,7 @@ export class SitesComponent implements OnInit {
     }
     else {
       if(this.siteSelected.siteId > 0) {
-        this._sitesServices.update(this.siteSelected);
+        this.update(this.siteSelected);
       }
       else {
         this.saveSite(name);

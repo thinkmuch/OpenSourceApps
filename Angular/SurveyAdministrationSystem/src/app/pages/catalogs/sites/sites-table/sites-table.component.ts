@@ -36,12 +36,17 @@ export class SitesTableComponent implements OnInit {
       if(response.value) {
 
         site.statusId = Status.Active;
-        this._sitesServices.update(site);
-
-        Swal.fire({
-          title: 'Sitio activado',
-          icon: 'success'
-        });
+        this._sitesServices.update(site).subscribe(
+          data => {
+            Swal.fire({
+              title: 'Sitio activado',
+              icon: 'success'
+            });
+          },
+          error => {
+            console.log(error);
+          }
+        )
       }
     });
   }
@@ -59,12 +64,17 @@ export class SitesTableComponent implements OnInit {
       if(response.value) {
 
         site.statusId = Status.Inactive;
-        this._sitesServices.update(site);
-        
-        Swal.fire({
-          title: 'Sitio desactivado',
-          icon: 'success'
-        });
+        this._sitesServices.update(site).subscribe(
+          data => {
+            Swal.fire({
+              title: 'Sitio desactivado',
+              icon: 'success'
+            });
+          },
+          error => {
+            console.log(error);
+          }
+        );
       }
     });
   }

@@ -111,6 +111,10 @@ export class LanguagesComponent implements OnInit {
   update() {
     this._languageServices.update(this.languageSelected).subscribe(
       data => {
+        Swal.fire({
+          title: 'Idioma actualizado',
+          icon: 'success'
+        });
         this.getAllLanguages();
       },
       error => {
