@@ -20,7 +20,7 @@ export class DepartmentsServices {
     }
 
     addArea(area: Area, department: Department) {
-        this._http.post(`http://10.2.180.10:5999/api/Department/Area/${area.areaId}`, department).subscribe(
+        this._http.post(`http://10.2.180.10:5999/api/Department/${department.departmentId}/Area/${area.areaId}`, {}).subscribe(
             data => {
                 console.log(data);
             },
@@ -35,10 +35,6 @@ export class DepartmentsServices {
     }
 
     removeArea(area: Area, department: Department) {
-
-        console.log(area);
-        console.log(department);
-
         this._http.delete(`http://10.2.180.10:5999/api/Department/${department.departmentId}/Area/${area.areaId}`).subscribe(
             data => {
                 console.log(data);
@@ -59,5 +55,9 @@ export class DepartmentsServices {
 
     getAll(): Observable<Array<Department>> {
         return this._http.get<Array<Department>>("http://10.2.180.10:5999/api/Department");
+    }
+
+    getAreasByDepartmentId(department: Department): Observable<Array<Area>> {
+        return this._http.get<Array<Area>>(`http://10.2.180.10:5999/api/Department/${department.departmentId}/Areas`);
     }
 }

@@ -26,12 +26,14 @@
             class="btn btn-primary mt-31px" 
             id="saveButton"
             [hidden]="saveButtonHidden"
+            *ngIf="!loading"
             (click)="save(languageName.value)">Guardar</button>
             <button 
             type="button" 
             class="btn btn-warning mt-31px" 
             id="cancelButton" 
             [hidden]="cancelButtonHidden" 
+            *ngIf="!loading"
             (click)="cancel()">Cancelar</button>
         </div>
     </div>
