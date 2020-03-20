@@ -1,31 +1,25 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Cruise } from '../models/cruise';
-import { Status } from '../enums/class-enum';
 import { Site } from '../models/site';
 import { Department } from '../models/department';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CruisesService {
 
-  private cruises = new Array<Cruise>();
   @Output() cruiseSelectedEvent: EventEmitter<Cruise>;
 
-  constructor() { 
-
+  constructor(
+    private _http: HttpClient
+  ) { 
     this.cruiseSelectedEvent = new EventEmitter<Cruise>();
-
-    let cruise1 = new Cruise();
-    cruise1.id = 1;
-    cruise1.name = "Vidanta Elegant";
-    cruise1.status = 1;
-
-    this.cruises.push(cruise1);
   }
 
-  getAll(): Array<Cruise> {
-    return this.cruises;
+  getAll(): Observable<Array<Cruise>> {
+    return this._http.get<Array<Cruise>>("http://10.2.180.10:5999/api/Cruise");
   }
 
   addSite(cruise: Cruise, site: Site) {
@@ -45,20 +39,10 @@ export class CruisesService {
   }
 
   update(cruise: Cruise) {
-    for(let i = 0; i < this.cruises.length; i++) {
-      if(this.cruises[i].id == cruise.id) {
-        this.cruises[i].name = cruise.name;
-        break;
-      }
-    }
+    return this._http.put("http://10.2.180.10:5999/api/Cruise", cruise);
   }
 
   save(name: string) {
-    let cruise = new Cruise();
-    cruise.id = this.cruises.length + 1;
-    cruise.name = name;
-    cruise.status = Status.Inactive;
-
-    this.cruises.push(cruise);
+    return this._http.post(`http://10.2.180.10:5999/api/Cruise?name=${name}`, {});
   }
 }

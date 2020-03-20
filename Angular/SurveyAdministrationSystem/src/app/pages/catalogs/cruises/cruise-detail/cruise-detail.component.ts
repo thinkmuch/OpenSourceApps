@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Site } from 'src/app/models/site';
 import { SitesServices } from 'src/app/services/sites-service';
 import { Department } from 'src/app/models/department';
@@ -16,6 +16,8 @@ export class CruiseDetailComponent implements OnInit {
   sites: Array<Site>;
   departments: Array<Department>;
   cruiseSelected: Cruise;
+  detailHidden: boolean;
+  @Input("cruisesInput") cruises: Array<Cruise>;
   
   constructor(
     private _siteServices: SitesServices,
@@ -29,13 +31,41 @@ export class CruiseDetailComponent implements OnInit {
 
   ngOnInit() {
     this._cruiseServices.cruiseSelectedEvent.subscribe(cruise => {
-
-      console.log(cruise);
-
-      this.cruiseSelected = cruise;
-      //this.sites = this._siteServices.getAll();
-      //this.departments = this._departmentServices.getAll();
+      if(cruise != null) {
+        this.cruiseSelected = cruise;
+        this.getAllSites();
+        this.getAllDepartments();
+        this.detailHidden = false;
+      }
+      else {
+        
+        this.detailHidden = true;
+      }
     });
+
+    this.detailHidden = true;
+  }
+
+  getAllSites() {
+    this._siteServices.getAll().subscribe(
+      data => {
+        this.sites = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  getAllDepartments() {
+    this._departmentServices.getAll().subscribe(
+      data => {
+        this.departments = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   onClickSite(site: Site, checked: boolean) {

@@ -35,14 +35,18 @@ export class CruisesTableComponent implements OnInit {
     }).then((response) => {
       
       if(response.value) {
-
-        cruise.status = Status.Active;
-        this._cruisesServices.update(cruise);
-
-        Swal.fire({
-          title: 'Crucero activado',
-          icon: 'success'
-        });
+        cruise.statusId = Status.Active;
+        this._cruisesServices.update(cruise).subscribe(
+          data => {
+            Swal.fire({
+              title: 'Crucero activado',
+              icon: 'success'
+            });
+          },
+          error => {
+            console.log(error);
+          }
+        );
       }
     });
   }
@@ -58,14 +62,18 @@ export class CruisesTableComponent implements OnInit {
     }).then((response) => {
       
       if(response.value) {
-
-        cruise.status = Status.Inactive;
-        this._cruisesServices.update(cruise);
-        
-        Swal.fire({
-          title: 'Crucero desactivado',
-          icon: 'success'
-        });
+        cruise.statusId = Status.Inactive;
+        this._cruisesServices.update(cruise).subscribe(
+          data => {
+            Swal.fire({
+              title: 'Crucero desactivado',
+              icon: 'success'
+            });
+          },
+          error => {
+            console.log(error);
+          }
+        );
       }
     });
   }

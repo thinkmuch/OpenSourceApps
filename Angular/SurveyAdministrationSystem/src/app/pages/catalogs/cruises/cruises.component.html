@@ -37,20 +37,17 @@
                 </div>
             </div>
             <div class="row" id="tableContainer">
-                <div class="alert alert-warning w-100 animated fadeIn faster mt-15px" role="alert" *ngIf="cruises.length == 0; else cruisesTable;">
-                    No hay cruceros registrados
-                </div>
-                <ng-template #cruisesTable>
-                    <app-cruises-table
-                    class="w-100"
-                    [cruisesInput]="cruises"
-                    (editEvent)="edit($event)"
-                    (clickRowEvent)="onClickRow($event)"></app-cruises-table>
-                </ng-template>
+                <app-cruises-table
+                *ngIf="!loading"
+                class="w-100"
+                [cruisesInput]="cruises"
+                (editEvent)="edit($event)"
+                (clickRowEvent)="onClickRow($event)"></app-cruises-table>
             </div>
         </div>
         <div class="col-7">
-            <app-cruise-detail></app-cruise-detail>
+            <app-cruise-detail
+            [cruisesInput]="cruises"></app-cruise-detail>
         </div>
     </div>
 </div>

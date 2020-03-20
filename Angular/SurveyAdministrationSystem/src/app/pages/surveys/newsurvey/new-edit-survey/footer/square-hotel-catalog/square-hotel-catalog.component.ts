@@ -31,7 +31,7 @@ export class SquareHotelCatalogComponent implements OnInit {
   ngOnInit() {
     this.hotels = new Array<Hotel>();
     this.squares = this._squareServices.getAllSquares();
-    this.cruises = this._cruiseServices.getAll();
+    //this.cruises = this._cruiseServices.getAll();
   }
 
   onClickSquare(square: Square) {
@@ -57,7 +57,7 @@ export class SquareHotelCatalogComponent implements OnInit {
   }
 
   isCruiseSelected(cruise: Cruise) {
-    return (this._surveyCaptureServices.cruises.find(c => c.id == cruise.id) != undefined);
+    return (this._surveyCaptureServices.cruises.find(c => c.cruiseId == cruise.cruiseId) != undefined);
   }
 
   onClickCruise(cruise: Cruise, checked: boolean) {

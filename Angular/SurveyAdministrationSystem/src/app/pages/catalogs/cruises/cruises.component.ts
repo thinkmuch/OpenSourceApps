@@ -2,8 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/co
 import { Cruise } from 'src/app/models/cruise';
 import { CruisesService } from 'src/app/services/cruises.service';
 import Swal from 'sweetalert2';
-import { Alerts, Status } from 'src/app/enums/class-enum';
-import { Site } from 'src/app/models/site';
+import { Alerts } from 'src/app/enums/class-enum';
 
 @Component({
   selector: 'app-cruises',
@@ -20,6 +19,7 @@ export class CruisesComponent implements OnInit {
   cruises: Array<Cruise>;
   cruiseSelected: Cruise;
   cruiseDetailHidden: boolean;
+  loading: boolean;
   @ViewChild("cruiseName", { read: ElementRef }) cruiseName: ElementRef;
 
   constructor(
@@ -29,7 +29,21 @@ export class CruisesComponent implements OnInit {
 
   ngOnInit() {
     this.restartScreen();
-    this.cruises = this._cruisesServices.getAll();
+    this.getAllCruises();
+  }
+
+  getAllCruises() {
+    this.loading = true;
+    this._cruisesServices.getAll().subscribe(
+      data => {
+        this.cruises = data;
+        this.loading = false;
+      },
+      error => {
+        console.log(error);
+        this.loading = false;
+      }
+    );
   }
 
   enableEditControls() {
@@ -76,7 +90,6 @@ export class CruisesComponent implements OnInit {
   }
 
   onClickRow($event) {
-
     let row = $event['row'];
     let cruise = $event['cruise'];
 
@@ -98,6 +111,39 @@ export class CruisesComponent implements OnInit {
     this.selectRow(row);
   }
 
+  saveCruise(name: string) {
+    this._cruisesServices.save(name).subscribe(
+      data => {
+        this.restartScreen();
+        this.getAllCruises();
+        Swal.fire({
+          title: 'Crucero registrado',
+          icon: 'success'
+        });
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  updateCruise(cruise: Cruise) {
+    this._cruisesServices.update(cruise).subscribe(
+      data => {
+        this.restartScreen();
+        this.getAllCruises();
+        this._cruisesServices.cruiseSelectedEvent.emit(null);
+        Swal.fire({
+          title: 'Crucero actualizado',
+          icon: 'success'
+        });
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
   save(name: string) {
     if(name == undefined || name.trim().length == 0) {
       this._renderer.addClass(this.cruiseName.nativeElement, Alerts.Danger);
@@ -109,20 +155,12 @@ export class CruisesComponent implements OnInit {
       });
     }
     else {
-      if(this.cruiseSelected.id > 0) {
-        this._cruisesServices.update(this.cruiseSelected);
+      if(this.cruiseSelected.cruiseId > 0) {
+        this.updateCruise(this.cruiseSelected);
       }
       else {
-        this._cruisesServices.save(name);
+        this.saveCruise(name);
       }
-
-      this.cruises = this._cruisesServices.getAll();
-      this.restartScreen();
-
-      Swal.fire({
-        title: 'Crucero registrado',
-        icon: 'success'
-      });
     }
   }
 }

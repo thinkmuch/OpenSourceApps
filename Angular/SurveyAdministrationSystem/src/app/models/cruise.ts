@@ -1,5 +1,5 @@
 export class Cruise {
-    id: number;
+    cruiseId: number;
     name: string;
-    status: number;
+    statusId: number;
 }

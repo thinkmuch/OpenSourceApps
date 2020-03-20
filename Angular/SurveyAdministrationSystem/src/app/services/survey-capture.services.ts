@@ -198,11 +198,7 @@ export class SurveyCaptureServices
     }
 
     removeCruise(cruise: Cruise) {
-        for(let i = 0; i < this.cruises.length; i++) {
-            if(this.cruises[i].id == cruise.id) {
-                this.cruises.splice(i, 1);
-            }
-        }
+        
     }
 
     getAnswers() : Array<Answer> {

@@ -1,4 +1,7 @@
-<table class="table table-hover text-center mt-15px">
+<div class="alert alert-warning w-100 animated fadeIn faster mt-15px" role="alert" *ngIf="cruises == undefined || cruises.length == 0">
+    No hay cruceros registrados
+</div>
+<table class="table table-hover text-center mt-15px animated fadeIn faster" *ngIf="cruises != undefined && cruises.length > 0">
   <thead>
       <tr>
           <th scope="col">
@@ -12,14 +15,14 @@
       </tr>
   </thead>
   <tbody>
-      <tr *ngFor="let cruise of cruises" class="pointer" id="{{cruise.id}}" (click)="onClickRow(cruise, row)" #row>
-          <th scope="row">{{cruise.id}}</th>
+      <tr *ngFor="let cruise of cruises" class="pointer" id="{{cruise.cruiseId}}" (click)="onClickRow(cruise, row)" #row>
+          <th scope="row">{{cruise.cruiseId}}</th>
           <td>{{cruise.name}}</td>
           <td>
-              <span *ngIf="cruise.status == 0">
+              <span *ngIf="cruise.statusId == 1">
                   <span class="badge badge-dark fw-500">Inactivo</span>
               </span>
-              <span *ngIf="cruise.status == 1">
+              <span *ngIf="cruise.statusId == 2">
                   <span class="badge badge-success fw-500">Activo</span>
               </span>
           </td>
@@ -27,10 +30,10 @@
               <div class="btn-group dropleft">
                   <mat-icon aria-hidden="false" [matMenuTriggerFor]="menu" class="pointer">more_vert</mat-icon>
                   <mat-menu #menu="matMenu">
-                      <div class="pointer item-menu-question" *ngIf="cruise.status == 0" (click)="enable(cruise)">
+                      <div class="pointer item-menu-question" *ngIf="cruise.statusId == 1" (click)="enable(cruise)">
                           <a class="dropdown-item"><i class="fas fa-power-off text-success"></i>   Activar</a>
                       </div>
-                      <div class="pointer item-menu-question" *ngIf="cruise.status == 1" (click)="disable(cruise)">
+                      <div class="pointer item-menu-question" *ngIf="cruise.statusId == 2" (click)="disable(cruise)">
                           <a class="dropdown-item"><i class="fas fa-power-off text-secondary"></i>   Desactivar</a>
                       </div>
                       <div class="pointer item-menu-question" (click)="edit(cruise, row)">
