@@ -27,7 +27,7 @@ export class SquareDetailComponent implements OnInit {
 
     this._squareServices.squareSelectedEvent.subscribe(squareId => {
       this.hotels = this._hotelServices.getAll();
-      this.sites = this._sitesServices.getAll();
+      //this.sites = this._sitesServices.getAll();
     });
   }
 

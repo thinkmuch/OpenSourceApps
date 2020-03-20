@@ -35,7 +35,7 @@ export class SitesTableComponent implements OnInit {
       
       if(response.value) {
 
-        site.status = Status.Active;
+        site.statusId = Status.Active;
         this._sitesServices.update(site);
 
         Swal.fire({
@@ -58,7 +58,7 @@ export class SitesTableComponent implements OnInit {
       
       if(response.value) {
 
-        site.status = Status.Inactive;
+        site.statusId = Status.Inactive;
         this._sitesServices.update(site);
         
         Swal.fire({

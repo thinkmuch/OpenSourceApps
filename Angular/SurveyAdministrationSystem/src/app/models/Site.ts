@@ -1,5 +1,5 @@
 export class Site {
-    id: number;
+    siteId: number;
     name: string;
-    status: number;
+    statusId: number;
 }

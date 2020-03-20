@@ -33,7 +33,7 @@ export class CruiseDetailComponent implements OnInit {
       console.log(cruise);
 
       this.cruiseSelected = cruise;
-      this.sites = this._siteServices.getAll();
+      //this.sites = this._siteServices.getAll();
       //this.departments = this._departmentServices.getAll();
     });
   }

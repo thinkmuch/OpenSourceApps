@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DepartmentsServices } from 'src/app/services/departments.services';
 import { Area } from 'src/app/models/area';
 import { Department } from 'src/app/models/department';
@@ -15,6 +15,7 @@ export class DepartmentDetailComponent implements OnInit {
   areasDepartment: Array<Area>;
   departmentSelected: Department;
   loading: boolean;
+  @Input("departmentsInput") departments: Array<Department>;
 
   constructor(
     private _departmentsServices: DepartmentsServices,
@@ -62,9 +63,6 @@ export class DepartmentDetailComponent implements OnInit {
   }
 
   onClickArea(area: Area, checked: boolean) {
-
-    console.log(checked);
-
     if(checked) {
       this._departmentsServices.addArea(area, this.departmentSelected);
     }

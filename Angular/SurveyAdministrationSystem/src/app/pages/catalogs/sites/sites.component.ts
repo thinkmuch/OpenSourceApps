@@ -19,6 +19,7 @@ export class SitesComponent implements OnInit {
   cancelButtonHidden: boolean;
   inputNameDisabled: boolean;
   siteExist: boolean;
+  loading: boolean;
   @ViewChild('siteName', { read: ElementRef }) siteName: ElementRef;
   
   constructor(
@@ -28,7 +29,7 @@ export class SitesComponent implements OnInit {
 
   ngOnInit() {
     this.restartScreen();
-    this.sites = this._sitesServices.getAll();
+    this.getAllSites();
   }
 
   restartScreen() {
@@ -52,6 +53,20 @@ export class SitesComponent implements OnInit {
     this.cancelButtonHidden = false;
     this.inputNameDisabled = false;
     this.newButtonHidden = true;
+  }
+
+  getAllSites() {
+    this.loading = true;
+    this._sitesServices.getAll().subscribe(
+      data => {
+        this.sites = data;
+        this.loading = false;
+      },
+      error => {
+        console.log(error);
+        this.loading = false;
+      }
+    );
   }
 
   cancel() {
@@ -88,12 +103,29 @@ export class SitesComponent implements OnInit {
   }
 
   onKeyUpSiteName(name: string) {
-    if(name.length > 0) {
-      this.siteExist = this._sitesServices.exist(name);
+    if(name.length > 0 && this.sites != undefined && this.sites.length > 0) {
+      // this.siteExist = this._sitesServices.exist(name);
     }
     else {
       this.siteExist = false;
     }
+  }
+
+  saveSite(name: string) {
+    this._sitesServices.save(name).subscribe(
+      data => {
+        console.log(data);
+        this.restartScreen();
+        this.getAllSites();
+        Swal.fire({
+          title: 'Sitio registrado',
+          icon: 'success'
+        });
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   save(name: string) {
@@ -107,20 +139,12 @@ export class SitesComponent implements OnInit {
       });
     }
     else {
-      if(this.siteSelected.id > 0) {
+      if(this.siteSelected.siteId > 0) {
         this._sitesServices.update(this.siteSelected);
       }
       else {
-        this._sitesServices.save(name);
+        this.saveSite(name);
       }
-      
-      this.sites = this._sitesServices.getAll();
-      this.restartScreen();
-      
-      Swal.fire({
-        title: 'Sitio registrado',
-        icon: 'success'
-      });
     }
   }
 }

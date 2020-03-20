@@ -86,7 +86,7 @@ export class LanguagesComponent implements OnInit {
   }
 
   onKeyUpLanguageName(name: string) {
-    if(name.length > 0) {
+    if(name.length > 0 && this.languages != undefined && this.languages.length > 0) {
       this.languageExist = (this.languages.find(l => l.name.trim().toUpperCase() == name.trim().toUpperCase()) != undefined);
     }
     else {

@@ -1,4 +1,3 @@
-
 <div class="content mt-20px animated fadeIn faster">
     <div class="row">
         <div class="col-3">
@@ -37,14 +36,10 @@
         </div>
     </div>
     <div class="row" id="tableContainer">
-        <div class="alert alert-warning w-50 mt-15px" role="alert" *ngIf="sites.length == 0; else sitesTable;">
-            No hay sitios registrados
-        </div>
-        <ng-template #sitesTable>
-            <app-sites-table
-            class="w-100"
-            [sitesInput]="sites"
-            (editEvent)="edit($event)"></app-sites-table>
-        </ng-template>
+        <app-sites-table
+        *ngIf="!loading"
+        class="w-100"
+        [sitesInput]="sites"
+        (editEvent)="edit($event)"></app-sites-table>
     </div>
 </div>

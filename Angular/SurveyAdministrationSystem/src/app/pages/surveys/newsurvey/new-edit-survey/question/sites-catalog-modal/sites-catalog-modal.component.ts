@@ -23,7 +23,7 @@ export class SitesCatalogModalComponent implements OnInit, AfterViewInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { 
     this.siteSelected = new Site();
-    this.sites = this._sitesServices.getAll();
+    //this.sites = this._sitesServices.getAll();
     this.idQuestion = data["idQuestion"];
   }
 
@@ -32,9 +32,9 @@ export class SitesCatalogModalComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     let site = this._surveyCaptureServices.getSite(this.idQuestion);
 
-    if(site != undefined && site.id > 0) {
+    if(site != undefined && site.siteId > 0) {
       this.selectSite(site, true);
-      document.getElementById(`Site_${site.id}`).scrollIntoView();
+      document.getElementById(`Site_${site.siteId}`).scrollIntoView();
     }
   }
 
@@ -49,11 +49,11 @@ export class SitesCatalogModalComponent implements OnInit, AfterViewInit {
     let currentSelectedRow = document.getElementsByClassName("active")[0];
 
     if(currentSelectedRow != undefined &&
-      (currentSelectedRow.id != `Site_${site.id}`)) {
+      (currentSelectedRow.id != `Site_${site.siteId}`)) {
       currentSelectedRow.classList.toggle("active");
     }
 
-    let newSelectedRow = document.getElementById(`Site_${site.id}`);
+    let newSelectedRow = document.getElementById(`Site_${site.siteId}`);
     newSelectedRow.classList.toggle("active");
 
     this.siteSelected = (newSelectedRow.classList.contains("active")) ? site : new Site();

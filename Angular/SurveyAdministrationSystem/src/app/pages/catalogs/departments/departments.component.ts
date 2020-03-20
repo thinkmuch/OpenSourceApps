@@ -33,6 +33,7 @@ export class DepartmentsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.restartScreen();
     this.getAllDepartments();
   }
 
@@ -42,7 +43,6 @@ export class DepartmentsComponent implements OnInit {
       data => {
         this.departments = data;
         this.loading = false;
-        this.restartScreen();
       },
       error => {
         console.log(error);
@@ -69,7 +69,7 @@ export class DepartmentsComponent implements OnInit {
   }
 
   onKeyUpDepartmentName(name: string) {
-    if(name.length > 0) {
+    if(name.length > 0 && this.departments != undefined && this.departments.length > 0) {
       this.departmentExist = ((this.departments.find(d => d.name.trim().toUpperCase() == name.trim().toUpperCase())) != undefined)
     }
     else {
@@ -96,9 +96,6 @@ export class DepartmentsComponent implements OnInit {
   }
 
   onClickRow($event) {
-
-    console.log("onClickRow");
-
     let department = $event["department"];
     let row = $event["row"];
     
@@ -128,6 +125,7 @@ export class DepartmentsComponent implements OnInit {
   saveDepartment(name: string) {
     this._departmentsServices.save(name).subscribe(
       data => {
+        this.restartScreen();
         this.getAllDepartments();
         Swal.fire({
           title: 'Departamento registrado',
