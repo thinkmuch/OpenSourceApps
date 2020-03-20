@@ -58,7 +58,7 @@
             aria-expanded="false"
             #selectDepartment>
               <span *ngIf="departmentSelected == undefined">Seleccione el departamento</span>
-              <span *ngIf="departmentSelected != undefined && departmentSelected.id > 0">{{departmentSelected.name}}</span>
+              <span *ngIf="departmentSelected != undefined && departmentSelected.departmentId > 0">{{departmentSelected.name}}</span>
             </button>
             <div class="dropdown-menu scrollable-menu w-100 mh-374px pointer">
                 <a class="dropdown-item" *ngFor="let department of departments" (click)="onSelectDepartment(department)">{{department.name}}</a>
@@ -76,8 +76,8 @@
             aria-expanded="false"
             [disabled]="selectAreaDisabled"
             #selectArea>
-              <span *ngIf="areaSelected == undefined || areaSelected.id == 0">Seleccione el área</span>
-              <span *ngIf="areaSelected != undefined && areaSelected.id > 0">{{areaSelected.name}}</span>
+              <span *ngIf="areaSelected == undefined || areaSelected.areaId == 0">Seleccione el área</span>
+              <span *ngIf="areaSelected != undefined && areaSelected.areaId > 0">{{areaSelected.name}}</span>
             </button>
             <div class="dropdown-menu scrollable-menu w-100 mh-374px pointer">
                 <a class="dropdown-item" *ngFor="let area of areas" (click)="onSelectArea(area)">{{area.name}}</a>

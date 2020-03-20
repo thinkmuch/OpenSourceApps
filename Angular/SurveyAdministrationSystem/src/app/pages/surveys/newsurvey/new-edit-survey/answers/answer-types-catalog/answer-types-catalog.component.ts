@@ -69,7 +69,14 @@ export class AnswerTypesCatalogComponent implements OnInit {
     });
 
     this.answers = this._surveyCaptureServices.getAnswers();
-    //this.departments = this._departmentsServices.getAll();
+    this._departmentsServices.getAll().subscribe(
+      data => {
+        this.departments = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   showJustifyAnswerControl(visible: boolean) {

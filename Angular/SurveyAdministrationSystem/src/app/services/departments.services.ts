@@ -20,7 +20,14 @@ export class DepartmentsServices {
     }
 
     addArea(area: Area, department: Department) {
-        
+        this._http.post(`http://10.2.180.10:5999/api/Department/Area/${area.areaId}`, department).subscribe(
+            data => {
+                console.log(data);
+            },
+            error => {
+                console.log(error);
+            }
+        )
     }
 
     getDepartmentsByHotelId(hotelId: number): Array<Department> {
@@ -29,6 +36,17 @@ export class DepartmentsServices {
 
     removeArea(area: Area, department: Department) {
 
+        console.log(area);
+        console.log(department);
+
+        this._http.delete(`http://10.2.180.10:5999/api/Department/${department.departmentId}/Area/${area.areaId}`).subscribe(
+            data => {
+                console.log(data);
+            },
+            error => {
+                console.log(error);
+            }
+        );
     }
 
     update(department: Department) {

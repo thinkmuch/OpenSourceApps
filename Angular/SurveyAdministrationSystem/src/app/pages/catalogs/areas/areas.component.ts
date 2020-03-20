@@ -109,6 +109,38 @@ export class AreasComponent implements OnInit {
     this._renderer.removeClass(this.areaName.nativeElement, Alerts.Danger);
   }
 
+  update(area: Area) {
+    this._areasServices.update(area).subscribe(
+      data => {
+        this.getAllAreas();
+
+        Swal.fire({
+          title: 'Area actualizada',
+          icon: 'success'
+        });
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  saveArea(name: string) {
+    this._areasServices.save(name).subscribe(
+      data => {
+        this.getAllAreas();
+
+        Swal.fire({
+          title: 'Area registrada',
+          icon: 'success'
+        });
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
   save(name: string) {
     if(name == undefined || name.trim().length == 0 || this.areaExist) {
       this._renderer.addClass(this.areaName.nativeElement, Alerts.Danger);
@@ -121,34 +153,10 @@ export class AreasComponent implements OnInit {
     }
     else {
       if(this.areaSelected.areaId > 0) {
-        this._areasServices.update(this.areaSelected).subscribe(
-          data => {
-            this.getAllAreas();
-
-            Swal.fire({
-              title: 'Area actualizada',
-              icon: 'success'
-            });
-          },
-          error => {
-            console.log(error);
-          }
-        );
+        this.update(this.areaSelected);
       }
       else {
-        this._areasServices.save(name).subscribe(
-          data => {
-            this.getAllAreas();
-
-            Swal.fire({
-              title: 'Area registrada',
-              icon: 'success'
-            });
-          },
-          error => {
-            console.log(error);
-          }
-        )
+        this.saveArea(name);
       }
     }
   }
