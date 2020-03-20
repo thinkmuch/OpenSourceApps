@@ -51,13 +51,18 @@ export class DepartmentsTableComponent implements OnInit {
       
       if(response.value) {
 
-        department.status = Status.Active;
-        this._departmentsServices.update(department);
-        
-        Swal.fire({
-          title: 'Departamento activado',
-          icon: 'success'
-        });
+        department.statusId = Status.Active;
+        this._departmentsServices.update(department).subscribe(
+          data => {
+            Swal.fire({
+              title: 'Departamento activado',
+              icon: 'success'
+            });
+          },
+          error => {
+            console.log(error);
+          }
+        );
       }
     });
   }
@@ -74,13 +79,18 @@ export class DepartmentsTableComponent implements OnInit {
       
       if(response.value) {
 
-        department.status = Status.Inactive;
-        this._departmentsServices.update(department);
-        
-        Swal.fire({
-          title: 'Departamento desactivado',
-          icon: 'success'
-        });
+        department.statusId = Status.Inactive;
+        this._departmentsServices.update(department).subscribe(
+          data => {
+            Swal.fire({
+              title: 'Departamento desactivado',
+              icon: 'success'
+            });
+          },
+          error => {
+            console.log(error);
+          }
+        );
       }
     });
   }

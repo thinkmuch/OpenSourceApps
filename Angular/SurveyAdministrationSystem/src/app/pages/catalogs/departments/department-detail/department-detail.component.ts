@@ -22,10 +22,19 @@ export class DepartmentDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    
     this._departmentsServices.deparmentEvent.subscribe(department => {
       this.departmentSelected = department;
-      //this.areas = this._areasServices.getAll();
+      this._areasServices.getAll().subscribe(
+        data => {
+          this.areas = data;
+        },
+        error => {
+          console.log(error);
+        }
+      );
     });
+    
   }
 
   onClickArea(area: Area, checked: boolean) {

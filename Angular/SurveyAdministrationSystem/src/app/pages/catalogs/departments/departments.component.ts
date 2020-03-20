@@ -21,23 +21,39 @@ export class DepartmentsComponent implements OnInit {
   departments: Array<Department>;
   areasSelected: Array<Area>;
   departmentSelected: Department;
+  loading: boolean;
   @ViewChild('departmentName', { read: ElementRef }) departmentName: ElementRef;
 
   constructor(
     private _departmentsServices: DepartmentsServices,
     private _renderer: Renderer2,
     private _areasServices: AreasServices
-  ) { }
+  ) { 
+    this.departmentSelected = new Department();
+  }
 
   ngOnInit() {
-    this.restartScreen();
-    this.areasSelected = new Array<Area>();
-    this.departmentSelected = new Department();
-    this.departments = this._departmentsServices.getAll();
+    this.getAllDepartments();
+  }
+
+  getAllDepartments() {
+    this.loading = true;
+    this._departmentsServices.getAll().subscribe(
+      data => {
+        this.departments = data;
+        this.loading = false;
+        this.restartScreen();
+      },
+      error => {
+        console.log(error);
+        this.loading = false;
+      }
+    );
   }
 
   restartScreen() {
     this.departmentSelected = new Department();
+    this.areasSelected = new Array<Area>();
     this.saveButtonHidden = true;
     this.cancelButtonHidden = true;
     this.inputNameDisabled = true;
@@ -54,7 +70,7 @@ export class DepartmentsComponent implements OnInit {
 
   onKeyUpDepartmentName(name: string) {
     if(name.length > 0) {
-      this.departmentExist = this._departmentsServices.exist(name);
+      this.departmentExist = ((this.departments.find(d => d.name.trim().toUpperCase() == name.trim().toUpperCase())) != undefined)
     }
     else {
       this.departmentExist = false;
@@ -80,6 +96,9 @@ export class DepartmentsComponent implements OnInit {
   }
 
   onClickRow($event) {
+
+    console.log("onClickRow");
+
     let department = $event["department"];
     let row = $event["row"];
     
@@ -106,8 +125,38 @@ export class DepartmentsComponent implements OnInit {
     this._renderer.removeClass(this.departmentName.nativeElement, Alerts.Danger);
   }
 
+  saveDepartment(name: string) {
+    this._departmentsServices.save(name).subscribe(
+      data => {
+        this.getAllDepartments();
+        Swal.fire({
+          title: 'Departamento registrado',
+          icon: 'success'
+        });
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  update(department: Department) {
+    this._departmentsServices.update(department).subscribe(
+      data => {
+        this.getAllDepartments();
+        Swal.fire({
+          title: 'Departamento actualizado',
+          icon: 'success'
+        });
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
   save(name: string) {
-    if(name.length == 0) {
+    if(name.length == 0 || this.departmentExist) {
       this._renderer.addClass(this.departmentName.nativeElement, Alerts.Danger);
 
       Swal.fire({
@@ -117,20 +166,12 @@ export class DepartmentsComponent implements OnInit {
       });
     }
     else {
-      if(this.departmentSelected.id > 0) {
-        this._departmentsServices.update(this.departmentSelected);
+      if(this.departmentSelected.departmentId > 0) {
+        this.update(this.departmentSelected);
       }
       else {
-        this._departmentsServices.save(name);
+        this.saveDepartment(name);
       }
-      
-      this.departments = this._departmentsServices.getAll();
-      this.restartScreen();
-      
-      Swal.fire({
-        title: 'Departamento registrado',
-        icon: 'success'
-      });
     }
   }
 }

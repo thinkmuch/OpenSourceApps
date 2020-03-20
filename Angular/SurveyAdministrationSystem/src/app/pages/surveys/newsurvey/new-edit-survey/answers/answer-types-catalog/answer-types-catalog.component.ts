@@ -69,7 +69,7 @@ export class AnswerTypesCatalogComponent implements OnInit {
     });
 
     this.answers = this._surveyCaptureServices.getAnswers();
-    this.departments = this._departmentsServices.getAll();
+    //this.departments = this._departmentsServices.getAll();
   }
 
   showJustifyAnswerControl(visible: boolean) {
@@ -192,7 +192,7 @@ export class AnswerTypesCatalogComponent implements OnInit {
     this._renderer.addClass(this.selectDepartment.nativeElement, "btn-info");
 
     this._surveyCaptureServices.setDepartment(this.idQuestionSelected, department);
-    this.areas = this._areasServices.getAreasByDepartmentId(department.id);
+    this.areas = this._areasServices.getAreasByDepartmentId(department.departmentId);
 
     this.enableSelectArea();
   }

@@ -39,6 +39,7 @@
             </div>
             <div class="row" id="tableContainer">
                 <app-departments-table
+                *ngIf="!loading"
                 class="w-100"
                 [departmentsInpud]="departments"
                 (editEvent)="edit($event)"
