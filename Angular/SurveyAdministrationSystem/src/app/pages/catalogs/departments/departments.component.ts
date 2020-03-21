@@ -142,6 +142,7 @@ export class DepartmentsComponent implements OnInit {
     this._departmentsServices.update(department).subscribe(
       data => {
         this.getAllDepartments();
+        this._departmentsServices.deparmentEvent.emit(null);
         Swal.fire({
           title: 'Departamento actualizado',
           icon: 'success'

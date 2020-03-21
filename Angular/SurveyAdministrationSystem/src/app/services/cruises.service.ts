@@ -23,11 +23,11 @@ export class CruisesService {
   }
 
   addSite(cruise: Cruise, site: Site) {
-
+    return this._http.post(`http://10.2.180.10:5999/api/Cruise/${cruise.cruiseId}/Site/${site.siteId}`, {});
   }
 
   removeSite(cruise: Cruise, site: Site) {
-
+    return this._http.delete(`http://10.2.180.10:5999/api/Cruise/${cruise.cruiseId}/Site/${site.siteId}`);
   }
 
   addDepartment(cruise: Cruise, department: Department) {

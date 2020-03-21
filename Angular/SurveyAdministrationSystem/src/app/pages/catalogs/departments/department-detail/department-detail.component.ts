@@ -15,6 +15,7 @@ export class DepartmentDetailComponent implements OnInit {
   areasDepartment: Array<Area>;
   departmentSelected: Department;
   loading: boolean;
+  detailHidden: boolean;
   @Input("departmentsInput") departments: Array<Department>;
 
   constructor(
@@ -26,9 +27,16 @@ export class DepartmentDetailComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true;
+    this.detailHidden = true;
     this._departmentsServices.deparmentEvent.subscribe(department => {
-      this.departmentSelected = department;
-      this.getAllAreasByDepartmentId(department);
+      if(department != null) {
+        this.departmentSelected = department;
+        this.getAllAreasByDepartmentId(department);
+        this.detailHidden = false;
+      }
+      else {
+        this.detailHidden = true;
+      }
     });
   }
 

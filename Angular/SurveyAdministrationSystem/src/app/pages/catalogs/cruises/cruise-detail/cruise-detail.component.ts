@@ -70,10 +70,24 @@ export class CruiseDetailComponent implements OnInit {
 
   onClickSite(site: Site, checked: boolean) {
     if(checked) {
-      this._cruiseServices.addSite(this.cruiseSelected, site);
+      this._cruiseServices.addSite(this.cruiseSelected, site).subscribe(
+        data => {
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        }
+      );
     }
     else {
-      this._cruiseServices.removeSite(this.cruiseSelected, site);
+      this._cruiseServices.removeSite(this.cruiseSelected, site).subscribe(
+        data => {
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        }
+      );
     }
   }
 

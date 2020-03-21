@@ -15,7 +15,7 @@
       <ul class="list-group">
         <li class="list-group-item pointer animated fadeIn faster" aria-disabled="true" *ngFor="let site of sites">
             <mat-checkbox
-            (click)="onClickSite(site, !checkSite.value)" 
+            (click)="onClickSite(site, !checkSite.checked)" 
             #checkSite>{{site.name}}</mat-checkbox>
         </li>
       </ul>
@@ -24,7 +24,7 @@
       <ul class="list-group">
         <li class="list-group-item pointer animated fadeIn faster" aria-disabled="true" *ngFor="let department of departments">
             <mat-checkbox 
-            (click)="onClickDepartment(department, !checkDepartment.value)"
+            (click)="onClickDepartment(department, !checkDepartment.checked)"
             #checkDepartment>{{department.name}}</mat-checkbox>
         </li>
       </ul>

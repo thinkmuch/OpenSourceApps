@@ -1,20 +1,22 @@
-<div class="alert alert-warning" role="alert" *ngIf="departmentSelected == undefined">
+<div class="alert alert-warning" role="alert" *ngIf="detailHidden else areasTable;">
   Selecciona un departamento para configurar sus áreas
 </div>
-<ul class="nav nav-tabs animated fadeIn faster" id="cruiseDetail" role="tablist" *ngIf="areas.length > 0">
-  <li class="nav-item">
-    <a class="nav-link active" id="sites-tab" data-toggle="tab" href="#sites" role="tab" aria-controls="sites" aria-selected="true">Areas</a>
-  </li>
-</ul>
-<div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="sites" role="tabpanel" aria-labelledby="sites-tab">
-    <ul class="list-group" *ngIf="areas.length > 0">
-      <li class="list-group-item pointer animated fadeIn faster" aria-disabled="true" *ngFor="let area of areas">
-          <mat-checkbox 
-          (click)="onClickArea(area, !checkArea.checked)"
-          [checked]="isAreaContained(area)"
-          #checkArea>{{area.name}}</mat-checkbox>
-      </li>
-    </ul>
+<ng-template #areasTable>
+  <ul class="nav nav-tabs animated fadeIn faster" id="cruiseDetail" role="tablist" *ngIf="areas.length > 0">
+    <li class="nav-item">
+      <a class="nav-link active" id="sites-tab" data-toggle="tab" href="#sites" role="tab" aria-controls="sites" aria-selected="true">Areas</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="sites" role="tabpanel" aria-labelledby="sites-tab">
+      <ul class="list-group" *ngIf="areas.length > 0">
+        <li class="list-group-item pointer animated fadeIn faster" aria-disabled="true" *ngFor="let area of areas">
+            <mat-checkbox 
+            (click)="onClickArea(area, !checkArea.checked)"
+            [checked]="isAreaContained(area)"
+            #checkArea>{{area.name}}</mat-checkbox>
+        </li>
+      </ul>
+    </div>
   </div>
-</div>
+</ng-template>
