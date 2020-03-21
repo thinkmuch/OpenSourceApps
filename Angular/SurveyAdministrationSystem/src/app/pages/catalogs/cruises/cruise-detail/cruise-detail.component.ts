@@ -15,6 +15,7 @@ export class CruiseDetailComponent implements OnInit {
 
   sites: Array<Site>;
   departments: Array<Department>;
+  sitesByCruise: Array<Site>;
   cruiseSelected: Cruise;
   detailHidden: boolean;
   @Input("cruisesInput") cruises: Array<Cruise>;
@@ -38,7 +39,6 @@ export class CruiseDetailComponent implements OnInit {
         this.detailHidden = false;
       }
       else {
-        
         this.detailHidden = true;
       }
     });
@@ -47,14 +47,26 @@ export class CruiseDetailComponent implements OnInit {
   }
 
   getAllSites() {
-    this._siteServices.getAll().subscribe(
+    this._cruiseServices.getSitesByCruiseId(this.cruiseSelected).subscribe(
       data => {
-        this.sites = data;
+        this.sitesByCruise = data;
+        this._siteServices.getAll().subscribe(
+          data => {
+            this.sites = data;
+          },
+          error => {
+            console.log(error);
+          }
+        );
       },
       error => {
         console.log(error);
       }
     );
+  }
+
+  isSiteContained(site: Site) {
+    return (this.sitesByCruise.find(a => a.siteId == site.siteId) != undefined);
   }
 
   getAllDepartments() {

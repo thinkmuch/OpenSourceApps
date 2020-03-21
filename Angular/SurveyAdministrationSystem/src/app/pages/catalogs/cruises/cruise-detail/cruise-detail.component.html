@@ -15,6 +15,7 @@
       <ul class="list-group">
         <li class="list-group-item pointer animated fadeIn faster" aria-disabled="true" *ngFor="let site of sites">
             <mat-checkbox
+            [checked]="isSiteContained(site)"
             (click)="onClickSite(site, !checkSite.checked)" 
             #checkSite>{{site.name}}</mat-checkbox>
         </li>

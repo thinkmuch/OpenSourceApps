@@ -30,6 +30,10 @@ export class CruisesService {
     return this._http.delete(`http://10.2.180.10:5999/api/Cruise/${cruise.cruiseId}/Site/${site.siteId}`);
   }
 
+  getSitesByCruiseId(cruise: Cruise): Observable<Array<Site>> {
+    return this._http.get<Array<Site>>(`http://10.2.180.10:5999/api/Cruise/${cruise.cruiseId}/Sites`);
+  }
+
   addDepartment(cruise: Cruise, department: Department) {
 
   }
