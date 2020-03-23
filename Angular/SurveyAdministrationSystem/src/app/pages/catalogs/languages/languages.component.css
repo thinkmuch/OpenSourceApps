@@ -9,3 +9,15 @@
 .mt-20px {
     margin-top: 30px;
 }
+
+.loadingLanguages {
+    position: absolute;
+    top: 50%;
+    left: 15%;
+}
+
+.loadingLegend {
+    position: absolute;
+    top: 60%;
+    left: 14%;
+}

@@ -43,3 +43,9 @@
         (editEvent)="edit($event)"></app-sites-table>
     </div>
 </div>
+<div class="row" *ngIf="loading">
+    <div class="spinner-border text-primary loadingSites" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <p class="loadingLegend">Cargando...</p>
+</div>

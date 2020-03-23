@@ -1,3 +1,15 @@
 #cancelButton {
     margin-left: 10px;
 }
+
+.loadingAreas {
+    position: absolute;
+    top: 50%;
+    left: 18%;
+}
+
+.loadingLegend {
+    position: absolute;
+    top: 60%;
+    left: 17%;
+}
