@@ -1,0 +1,11 @@
+.loadingAreas {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+}
+
+.loadingLegend {
+    position: absolute;
+    top: 13%;
+    left: 48%;
+}

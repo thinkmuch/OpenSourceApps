@@ -18,6 +18,7 @@ export class CruiseDetailComponent implements OnInit {
   sitesByCruise: Array<Site>;
   cruiseSelected: Cruise;
   detailHidden: boolean;
+  loading: boolean;
   @Input("cruisesInput") cruises: Array<Cruise>;
   
   constructor(
@@ -47,20 +48,24 @@ export class CruiseDetailComponent implements OnInit {
   }
 
   getAllSites() {
+    this.loading = true;
     this._cruiseServices.getSitesByCruiseId(this.cruiseSelected).subscribe(
       data => {
         this.sitesByCruise = data;
         this._siteServices.getAll().subscribe(
           data => {
             this.sites = data;
+            this.loading = false;
           },
           error => {
             console.log(error);
+            this.loading = false;
           }
         );
       },
       error => {
         console.log(error);
+        this.loading = false;
       }
     );
   }

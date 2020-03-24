@@ -30,6 +30,7 @@ export class DepartmentDetailComponent implements OnInit {
     this.detailHidden = true;
     this._departmentsServices.deparmentEvent.subscribe(department => {
       if(department != null) {
+        this.areas = new Array<Area>();
         this.departmentSelected = department;
         this.getAllAreasByDepartmentId(department);
         this.detailHidden = false;
@@ -41,6 +42,7 @@ export class DepartmentDetailComponent implements OnInit {
   }
 
   getAllAreasByDepartmentId(department: Department) {
+    this.loading = true;
     this._departmentsServices.getAreasByDepartmentId(department).subscribe(
       data => {
         this.areasDepartment = data;
