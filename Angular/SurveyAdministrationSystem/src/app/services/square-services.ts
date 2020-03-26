@@ -100,54 +100,6 @@ export class SquareServices {
 
     getAllHotels(): Array<Hotel> {
 
-        let hotels = new Array<Hotel>();
-
-        let hotel1 = new Hotel();
-        hotel1.id = 1;
-        hotel1.name = "The Estates";
-        
-        let hotel2 = new Hotel();
-        hotel2.id = 2;
-        hotel2.name = "Grand Luxxe";
-
-        let hotel3 = new Hotel();
-        hotel3.id = 3;
-        hotel3.name = "The Grand Bliss"
-        
-        let hotel4 = new Hotel();
-        hotel4.id = 4;
-        hotel4.name = "The Grand Mayan";
-
-        let hotel5 = new Hotel();
-        hotel5.id = 5;
-        hotel5.name = "The Bliss";
-
-        let hotel6 = new Hotel();
-        hotel6.id = 6;
-        hotel6.name = "Mayan Palace";
-
-        let hotel7 = new Hotel();
-        hotel7.id = 7;
-        hotel7.name = "Kingdom of the Sun";
-
-        let hotel8 = new Hotel();
-        hotel8.id = 8;
-        hotel8.name = "The Cascades";
-
-        let hotel9 = new Hotel();
-        hotel9.id = 9;
-        hotel9.name = "The States";
-
-        hotels.push(hotel1);
-        hotels.push(hotel2);
-        hotels.push(hotel3);
-        hotels.push(hotel4);
-        hotels.push(hotel5);
-        hotels.push(hotel6);
-        hotels.push(hotel7);
-        hotels.push(hotel8);
-        hotels.push(hotel9);
-
-        return hotels;
+        return new Array<Hotel>();
     }
 }

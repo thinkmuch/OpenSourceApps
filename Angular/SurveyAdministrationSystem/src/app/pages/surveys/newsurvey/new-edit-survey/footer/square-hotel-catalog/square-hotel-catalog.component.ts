@@ -53,7 +53,7 @@ export class SquareHotelCatalogComponent implements OnInit {
   }
 
   isHotelSelected(hotel: Hotel): boolean {
-    return (this._surveyCaptureServices.hotels.find(a => a.squareId == this.squareSelected.id && a.hotelId == hotel.id) != undefined);
+    return (this._surveyCaptureServices.hotels.find(a => a.squareId == this.squareSelected.id && a.hotelId == hotel.hotelId) != undefined);
   }
 
   isCruiseSelected(cruise: Cruise) {

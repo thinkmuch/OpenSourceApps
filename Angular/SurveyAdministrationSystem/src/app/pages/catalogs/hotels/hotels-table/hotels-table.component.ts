@@ -3,7 +3,6 @@ import { Hotel } from 'src/app/models/hotel';
 import { HotelServices } from 'src/app/services/hotel.services';
 import Swal from 'sweetalert2';
 import { Status } from 'src/app/enums/class-enum';
-import { DepartmentsServices } from 'src/app/services/departments.services';
 import { Department } from 'src/app/models/department';
 
 @Component({
@@ -40,7 +39,7 @@ export class HotelsTableComponent implements OnInit {
       
       if(response.value) {
 
-        hotel.status = Status.Inactive;
+        hotel.statusId = Status.Inactive;
         this._hotelServices.update(hotel);
         
         Swal.fire({
@@ -63,7 +62,7 @@ export class HotelsTableComponent implements OnInit {
       
       if(response.value) {
 
-        hotel.status = Status.Active;
+        hotel.statusId = Status.Active;
         this._hotelServices.update(hotel);
         
         Swal.fire({

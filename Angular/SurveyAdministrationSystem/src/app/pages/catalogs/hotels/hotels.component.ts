@@ -16,9 +16,10 @@ export class HotelsComponent implements OnInit {
   hotelNameDisabled: boolean;
   shortNameDisabled: boolean;
   newButtonHidden: boolean;
-  hotelExist: boolean;
-  hotels: Array<Hotel>;
-  hotelSelected: Hotel;
+  hotelExist: boolean = false;
+  hotels: Array<Hotel> = new Array<Hotel>();
+  hotelSelected: Hotel = new Hotel();
+  loading: boolean = true;
   @ViewChild("hotelName", { read: ElementRef }) hotelName: ElementRef;
   
   constructor(
@@ -28,7 +29,19 @@ export class HotelsComponent implements OnInit {
 
   ngOnInit() {
     this.restartScreen();
-    this.hotels = this._hotelServices.getAll();
+    this.getAllHotels();
+  }
+
+  getAllHotels() {
+    this.loading = true;
+    this._hotelServices.getAll().subscribe(
+    data => {
+      this.hotels = data;
+      this.loading = false;
+    },
+    error => {
+      console.log(error);
+    });
   }
 
   restartScreen() {
@@ -60,7 +73,7 @@ export class HotelsComponent implements OnInit {
 
     this.restartScreen();
     this.selectRow(row);
-    this._hotelServices.hotelSelectedEvent.emit(hotel.id);
+    this._hotelServices.hotelSelectedEvent.emit(hotel.hotelId);
   }
 
   enableEditControls() {
@@ -90,6 +103,10 @@ export class HotelsComponent implements OnInit {
     this._renderer.removeClass(this.hotelName.nativeElement, Alerts.Danger);
   }
 
+  saveHotel() {
+
+  }
+
   save(name: string) {
     if(name == undefined || name.length == 0) {
       this._renderer.addClass(this.hotelName.nativeElement, Alerts.Danger);
@@ -101,7 +118,7 @@ export class HotelsComponent implements OnInit {
       });
     }
     else {
-      if(this.hotelSelected.id > 0) {
+      if(this.hotelSelected.hotelId > 0) {
         this.hotelSelected.name = name;
         this._hotelServices.update(this.hotelSelected);
       }
@@ -109,7 +126,7 @@ export class HotelsComponent implements OnInit {
         this._hotelServices.save(name);
       }
 
-      this.hotels = this._hotelServices.getAll();
+      //this.hotels = this._hotelServices.getAll();
       this.restartScreen();
 
       Swal.fire({

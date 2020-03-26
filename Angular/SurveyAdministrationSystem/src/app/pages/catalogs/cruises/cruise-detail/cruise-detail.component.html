@@ -1,4 +1,4 @@
-<div class="alert alert-warning" role="alert" *ngIf="detailHidden; else detailTable;">
+<div class="alert alert-warning" role="alert" *ngIf="(detailHidden && loading) else detailTable;">
   Selecciona un crucero para configurar sus sitios y departamentos
 </div>
 <ng-template #detailTable>

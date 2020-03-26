@@ -154,19 +154,11 @@ export class SurveyCaptureServices
     }
 
     addHotel(square: Square, hotel: Hotel) {
-        this.hotels.push({
-            squareId: square.id,
-            hotelId: hotel.id
-        });
+        
     }
 
     removeHotel(square: Square, hotel: Hotel) {
-       for(let i = 0; i < this.hotels.length; i++) {
-           if(square.id == this.hotels[i].squareId && hotel.id == this.hotels[i].hotelId) {
-               this.hotels.splice(i, 1);
-               break;
-           }
-       }
+       
     }
 
     removeAllCruises() {

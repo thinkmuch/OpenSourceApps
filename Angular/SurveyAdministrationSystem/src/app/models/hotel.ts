@@ -1,5 +1,5 @@
 export class Hotel {
-    id: number;
+    hotelId: number;
     name: string;
-    status: number;
+    statusId: number;
 }

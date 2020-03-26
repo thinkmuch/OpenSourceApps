@@ -1,4 +1,4 @@
-<div class="alert alert-warning" role="alert" *ngIf="detailHidden else areasTable;">
+<div class="alert alert-warning" role="alert" *ngIf="(detailHidden && !loading) else areasTable;">
   Selecciona un departamento para configurar sus áreas
 </div>
 <ng-template #areasTable>

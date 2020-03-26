@@ -22,10 +22,10 @@ export class HotelDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._hotelServices.hotelSelectedEvent.subscribe(hotelId => {
+    /*this._hotelServices.hotelSelectedEvent.subscribe(hotelId => {
       this.departmentsOfHotel = this._departmentServices.getDepartmentsByHotelId(hotelId);
       //this.departments = this._departmentServices.getAll();
-    });
+    });*/
   }
 
   onClickDepartment(department:Department, checked: boolean) {
