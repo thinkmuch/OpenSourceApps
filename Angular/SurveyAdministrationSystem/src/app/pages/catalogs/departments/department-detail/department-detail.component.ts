@@ -11,27 +11,23 @@ import { AreasServices } from 'src/app/services/areas-services';
 })
 export class DepartmentDetailComponent implements OnInit {
 
-  areas: Array<Area>;
+  areas: Array<Area> = new Array<Area>();
   areasDepartment: Array<Area>;
-  departmentSelected: Department;
-  loading: boolean;
-  detailHidden: boolean;
+  departmentIdSelected: number = 0;
+  loading: boolean = false;
+  detailHidden: boolean = true;
   @Input("departmentsInput") departments: Array<Department>;
 
   constructor(
     private _departmentsServices: DepartmentsServices,
     private _areasServices: AreasServices
-  ) { 
-    this.areas = new Array<Area>();
-  }
+  ) { }
 
   ngOnInit() {
-    this.loading = true;
-    this.detailHidden = true;
-    this._departmentsServices.deparmentEvent.subscribe(department => {
+    this._departmentsServices.deparmentEvent.subscribe((department: Department) => {
       if(department != null) {
         this.areas = new Array<Area>();
-        this.departmentSelected = department;
+        this.departmentIdSelected = department.departmentId;
         this.getAllAreasByDepartmentId(department);
         this.detailHidden = false;
       }
@@ -74,10 +70,10 @@ export class DepartmentDetailComponent implements OnInit {
 
   onClickArea(area: Area, checked: boolean) {
     if(checked) {
-      this._departmentsServices.addArea(area, this.departmentSelected);
+      this._departmentsServices.addArea(area, this.departmentIdSelected);
     }
     else {
-      this._departmentsServices.removeArea(area, this.departmentSelected);
+      this._departmentsServices.removeArea(area, this.departmentIdSelected);
     }
   }
 }

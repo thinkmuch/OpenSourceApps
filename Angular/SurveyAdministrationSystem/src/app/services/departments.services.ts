@@ -19,8 +19,8 @@ export class DepartmentsServices {
         this.deparmentEvent = new EventEmitter<Department>();
     }
 
-    addArea(area: Area, department: Department) {
-        this._http.post(`http://10.2.180.10:5999/api/Department/${department.departmentId}/Area/${area.areaId}`, {}).subscribe(
+    addArea(area: Area, departmentId: number) {
+        this._http.post(`http://10.2.180.10:5999/api/Department/${departmentId}/Area/${area.areaId}`, {}).subscribe(
             data => {
                 console.log(data);
             },
@@ -34,8 +34,8 @@ export class DepartmentsServices {
         return new Array<Department>();
     }
 
-    removeArea(area: Area, department: Department) {
-        this._http.delete(`http://10.2.180.10:5999/api/Department/${department.departmentId}/Area/${area.areaId}`).subscribe(
+    removeArea(area: Area, departmentId: number) {
+        this._http.delete(`http://10.2.180.10:5999/api/Department/${departmentId}/Area/${area.areaId}`).subscribe(
             data => {
                 console.log(data);
             },

@@ -40,12 +40,17 @@ export class HotelsTableComponent implements OnInit {
       if(response.value) {
 
         hotel.statusId = Status.Inactive;
-        this._hotelServices.update(hotel);
-        
-        Swal.fire({
-          title: 'Hotel desactivado',
-          icon: 'success'
-        });
+        this._hotelServices.update(hotel).subscribe(
+          data => {
+            Swal.fire({
+              title: 'Hotel desactivado',
+              icon: 'success'
+            });
+          },
+          error => {
+            console.log(error);
+          }
+        );
       }
     });
   }
@@ -63,12 +68,17 @@ export class HotelsTableComponent implements OnInit {
       if(response.value) {
 
         hotel.statusId = Status.Active;
-        this._hotelServices.update(hotel);
-        
-        Swal.fire({
-          title: 'Hotel activado',
-          icon: 'success'
-        });
+        this._hotelServices.update(hotel).subscribe(
+          data => {
+            Swal.fire({
+              title: 'Hotel activado',
+              icon: 'success'
+            });
+          },
+          error => {
+            console.log(error);
+          }
+        );
       }
     });
   }

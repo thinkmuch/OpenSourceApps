@@ -12,14 +12,30 @@ export class HotelServices {
     private hotels: Array<Hotel>;
     @Output() hotelSelectedEvent: EventEmitter<number>;
     
-    constructor(private _http: HttpClient) { }
+    constructor(private _http: HttpClient) {
+        this.hotelSelectedEvent = new EventEmitter<number>();
+     }
 
-    addDepartment(department: Department) {
-
+    addDepartment(hotelId: number, departmentId: number) {
+        return this._http.post(`http://10.2.180.10:5999/api/Hotel/${hotelId}/Department/${departmentId}`, {}).subscribe(
+            data => {
+                console.log(data);
+            },
+            error => {
+                console.log(error);
+            }
+        );
     }
 
-    removeDepartment(department: Department) {
-
+    removeDepartment(hotelId: number, departmentId: number) {
+        return this._http.delete(`http://10.2.180.10:5999/api/Hotel/${hotelId}/Department/${departmentId}`, {}).subscribe(
+            data => {
+                console.log(data);
+            },
+            error => {
+                console.log(error);
+            }
+        );
     }
 
     getAll(): Observable<Array<Hotel>> {
@@ -27,11 +43,11 @@ export class HotelServices {
     }
 
     update(hotel: Hotel) {
-
+        return this._http.put("http://10.2.180.10:5999/api/Hotel", hotel);
     }
 
     save(name: string) {
-
+        return this._http.post(`http://10.2.180.10:5999/api/Hotel?name=${name}`, {});
     }
 
     getHotelsBySquareId(squareId)  {

@@ -1,17 +1,25 @@
-<div class="alert alert-warning" role="alert" *ngIf="departments.length == 0">
+<div class="alert alert-warning" role="alert" *ngIf="hotelIdSelected == 0; else departmentsList;">
   Selecciona un hotel para configurar sus departamentos
 </div>
-<ul class="nav nav-tabs animated fadeIn faster" id="cruiseDetail" role="tablist" *ngIf="departments.length > 0">
-  <li class="nav-item">
-    <a class="nav-link active" id="sites-tab" data-toggle="tab" href="#departments" role="tab" aria-controls="sites" aria-selected="true">Departamentos</a>
-  </li>
-</ul>
-<div class="tab-content" id="departmentsContainer">
-  <div class="tab-pane fade show active" id="departments" role="tabpanel" aria-labelledby="sites-tab">
-    <ul class="list-group">
-      <li class="list-group-item pointer animated fadeIn faster" aria-disabled="true" *ngFor="let department of departments">
-        <mat-checkbox (click)="onClickDepartment(department, !checkDepartment.value)" #checkDepartment>{{department.name}}</mat-checkbox>
-      </li>
-    </ul>
+<ng-template #departmentsList>
+  <ul class="nav nav-tabs animated fadeIn faster" id="cruiseDetail" role="tablist" *ngIf="departments.length > 0">
+    <li class="nav-item">
+      <a class="nav-link active" id="sites-tab" data-toggle="tab" href="#departments" role="tab" aria-controls="sites" aria-selected="true">Departamentos</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="departmentsContainer">
+    <div class="tab-pane fade show active" id="departments" role="tabpanel" aria-labelledby="sites-tab">
+      <ul class="list-group">
+        <li class="list-group-item pointer animated fadeIn faster" aria-disabled="true" *ngFor="let department of departments">
+          <mat-checkbox (click)="onClickDepartment(department, !checkDepartment.value)" #checkDepartment>{{department.name}}</mat-checkbox>
+        </li>
+      </ul>
+    </div>
   </div>
+</ng-template>
+<div class="row" *ngIf="loading">
+  <div class="spinner-border text-primary loadingDepartments" style="width: 3rem; height: 3rem;" role="status">
+      <span class="sr-only">Loading...</span>
+  </div>
+  <p class="loadingLegend">Cargando...</p>
 </div>

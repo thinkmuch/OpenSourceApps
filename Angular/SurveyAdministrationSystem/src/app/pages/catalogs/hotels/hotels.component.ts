@@ -103,8 +103,38 @@ export class HotelsComponent implements OnInit {
     this._renderer.removeClass(this.hotelName.nativeElement, Alerts.Danger);
   }
 
-  saveHotel() {
+  saveHotel(name: string) {
+    this._hotelServices.save(name).subscribe(
+      data => {
+        this.restartScreen();
+        this.getAllHotels();
 
+        Swal.fire({
+          title: 'Hotel registrado',
+          icon: 'success'
+        });
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  update(hotel: Hotel) {
+    this._hotelServices.update(hotel).subscribe(
+      data => {
+        this.restartScreen();
+        this.getAllHotels();
+
+        Swal.fire({
+          title: 'Hotel actualizado',
+          icon: 'success'
+        });
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   save(name: string) {
@@ -119,20 +149,11 @@ export class HotelsComponent implements OnInit {
     }
     else {
       if(this.hotelSelected.hotelId > 0) {
-        this.hotelSelected.name = name;
-        this._hotelServices.update(this.hotelSelected);
+        this.update(this.hotelSelected);
       }
       else {
-        this._hotelServices.save(name);
+        this.saveHotel(name);
       }
-
-      //this.hotels = this._hotelServices.getAll();
-      this.restartScreen();
-
-      Swal.fire({
-        title: 'Hotel registrado',
-        icon: 'success'
-      });
     }
   }
 }

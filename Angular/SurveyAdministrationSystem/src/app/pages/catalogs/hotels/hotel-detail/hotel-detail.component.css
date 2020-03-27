@@ -1,0 +1,11 @@
+.loadingDepartments {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.loadingLegend {
+    position: absolute;
+    top: 70%;
+    left: 48%;
+}

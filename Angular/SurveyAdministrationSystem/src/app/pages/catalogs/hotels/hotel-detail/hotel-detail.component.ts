@@ -10,30 +10,45 @@ import { Department } from 'src/app/models/department';
 })
 export class HotelDetailComponent implements OnInit {
 
-  departments: Array<Department>;
-  departmentsOfHotel: Array<Department>;
+  departments: Array<Department> = new Array<Department>();
+  departmentsOfHotel: Array<Department> = new Array<Department>();
+  hotelIdSelected: number = 0;
+  loading: boolean = false;
+  showDetail: boolean = false;
 
   constructor(
     private _hotelServices: HotelServices,
     private _departmentServices: DepartmentsServices
-  ) { 
-    this.departments = new Array<Department>();
-    this.departmentsOfHotel = new Array<Department>();
-  }
+  ) { }
 
   ngOnInit() {
-    /*this._hotelServices.hotelSelectedEvent.subscribe(hotelId => {
-      this.departmentsOfHotel = this._departmentServices.getDepartmentsByHotelId(hotelId);
-      //this.departments = this._departmentServices.getAll();
-    });*/
+    this._hotelServices.hotelSelectedEvent.subscribe(hotelId => {
+      this.hotelIdSelected = hotelId;
+      this.loading = true;
+      this.showDetail = false;
+      this.departments = new Array<Department>();
+
+      this._departmentServices.getAll().subscribe(
+        data => {
+          this.departments = data;
+          this.loading = false;
+          this.showDetail = true;
+        },
+        error => {
+          console.log(error);
+          this.loading = false;
+          this.showDetail = true;
+        }
+      );
+    });
   }
 
-  onClickDepartment(department:Department, checked: boolean) {
+  onClickDepartment(department: Department, checked: boolean) {
     if(checked) {
-      this._hotelServices.addDepartment(department);
+      this._hotelServices.addDepartment(this.hotelIdSelected, department.departmentId);
     }
     else {
-      this._hotelServices.removeDepartment(department);
+      this._hotelServices.removeDepartment(this.hotelIdSelected, department.departmentId);
     }
   }
 }
