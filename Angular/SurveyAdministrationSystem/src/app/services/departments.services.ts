@@ -30,8 +30,8 @@ export class DepartmentsServices {
         )
     }
 
-    getDepartmentsByHotelId(hotelId: number): Array<Department> {
-        return new Array<Department>();
+    getDepartmentsByHotelId(hotelId: number): Observable<Array<Department>> {
+        return this._http.get<Array<Department>>(`http://10.2.180.10:5999/api/Hotel/${hotelId}/Departments`);
     }
 
     removeArea(area: Area, departmentId: number) {

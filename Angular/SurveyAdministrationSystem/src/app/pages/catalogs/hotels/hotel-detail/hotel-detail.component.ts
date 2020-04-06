@@ -28,11 +28,20 @@ export class HotelDetailComponent implements OnInit {
       this.showDetail = false;
       this.departments = new Array<Department>();
 
-      this._departmentServices.getAll().subscribe(
+      this._departmentServices.getDepartmentsByHotelId(hotelId).subscribe(
         data => {
-          this.departments = data;
-          this.loading = false;
-          this.showDetail = true;
+          this.departmentsOfHotel = data;
+
+          this._departmentServices.getAll().subscribe(
+            data => {
+              this.departments = data;
+              this.loading = false;
+              this.showDetail = true;
+            },
+            error => {
+              console.log(error);
+            }
+          );
         },
         error => {
           console.log(error);
@@ -41,6 +50,10 @@ export class HotelDetailComponent implements OnInit {
         }
       );
     });
+  }
+
+  isDepartmentContained(department: Department) {
+    return (this.departmentsOfHotel.find(d => d.departmentId == department.departmentId) != undefined);
   }
 
   onClickDepartment(department: Department, checked: boolean) {
