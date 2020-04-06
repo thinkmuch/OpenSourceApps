@@ -28,14 +28,14 @@ export class HotelServices {
     }
 
     removeDepartment(hotelId: number, departmentId: number) {
-        return this._http.delete(`http://10.2.180.10:5999/api/Hotel/${hotelId}/Department/${departmentId}`, {}).subscribe(
+        return this._http.delete(`http://10.2.180.10:5999/api/Hotel/${hotelId}/Department/${departmentId}`).subscribe(
             data => {
                 console.log(data);
             },
             error => {
                 console.log(error);
             }
-        );
+        )
     }
 
     getAll(): Observable<Array<Hotel>> {

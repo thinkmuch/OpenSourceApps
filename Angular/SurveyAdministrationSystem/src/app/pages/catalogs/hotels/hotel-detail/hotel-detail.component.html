@@ -13,7 +13,7 @@
         <li class="list-group-item pointer animated fadeIn faster" aria-disabled="true" *ngFor="let department of departments">
           <mat-checkbox 
           [checked]="isDepartmentContained(department)"
-          (click)="onClickDepartment(department, !checkDepartment.value)" 
+          (click)="onClickDepartment(department, !checkDepartment.checked)" 
           #checkDepartment>{{department.name}}</mat-checkbox>
         </li>
       </ul>

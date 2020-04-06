@@ -1,7 +1,6 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Department } from '../models/department';
 import { Area } from '../models/area';
-import { Status } from '../enums/class-enum';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
