@@ -3,6 +3,7 @@ import { Department } from 'src/app/models/department';
 import Swal from 'sweetalert2';
 import { DepartmentsServices } from 'src/app/services/departments.services';
 import { Status } from 'src/app/enums/class-enum';
+import { DepartmentEmitter } from 'src/app/models/emitters/department-emitter';
 
 @Component({
   selector: 'app-departments-table',
@@ -11,32 +12,25 @@ import { Status } from 'src/app/enums/class-enum';
 })
 export class DepartmentsTableComponent implements OnInit {
 
-  @Input("departmentsInpud") departments: Array<Department>;
-  @Output() editEvent: EventEmitter<{department: Department, row: HTMLElement}>;
-  @Output() clickRowEvent: EventEmitter<{department: Department, row: HTMLElement}>;
+  @Input("departmentsInput") departments: Array<Department>;
+  @Output() editEvent: EventEmitter<DepartmentEmitter> = new EventEmitter<DepartmentEmitter>();
+  @Output() clickRowEvent: EventEmitter<DepartmentEmitter> = new EventEmitter<DepartmentEmitter>();
 
   constructor(
     private _departmentsServices: DepartmentsServices
-  ) { 
-    this.editEvent = new EventEmitter<{department: Department, row: HTMLElement}>();
-    this.clickRowEvent = new EventEmitter<{department: Department, row: HTMLElement}>();
-  }
+  ) { }
 
   ngOnInit() {
   }
 
   onClickRow(row: HTMLElement, department: Department) {
-    this.clickRowEvent.emit({
-      department: department,
-      row: row
-    });
+    let departmentSelected = new DepartmentEmitter(department, row);
+    this.clickRowEvent.emit(departmentSelected);
   }
 
   edit(department: Department, row: HTMLElement) {
-    this.editEvent.emit({
-      department: department,
-      row: row
-    });
+    let departmentSelected = new DepartmentEmitter(department, row);
+    this.editEvent.emit(departmentSelected);
   }
 
   enable(department: Department) {

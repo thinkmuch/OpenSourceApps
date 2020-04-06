@@ -59,4 +59,8 @@ export class DepartmentsServices {
     getAreasByDepartmentId(department: Department): Observable<Array<Area>> {
         return this._http.get<Array<Area>>(`http://10.2.180.10:5999/api/Department/${department.departmentId}/Areas`);
     }
+
+    getDepartmentsByCruiseId(cruiseId: number): Observable<Array<Department>> {
+        return this._http.get<Array<Department>>(`http://10.2.180.10:5999/api/Department/Cruise/${cruiseId}`);
+    }
 }

@@ -35,11 +35,11 @@ export class CruisesService {
   }
 
   addDepartment(cruise: Cruise, department: Department) {
-
+    return this._http.post(`http://10.2.180.10:5999/api/Cruise/${cruise.cruiseId}/Department/${department.departmentId}`, {});
   }
 
   removeDepartment(cruise: Cruise, department: Department) {
-
+    return this._http.delete(`http://10.2.180.10:5999/api/Cruise/${cruise.cruiseId}/Department/${department.departmentId}`);
   }
 
   update(cruise: Cruise) {

@@ -3,6 +3,7 @@ import { Area } from 'src/app/models/area';
 import Swal from 'sweetalert2';
 import { AreasServices } from 'src/app/services/areas-services';
 import { Status } from 'src/app/enums/class-enum';
+import { AreaEmitter } from 'src/app/models/emitters/area-emitter';
 
 @Component({
   selector: 'app-areas-table',
@@ -12,13 +13,11 @@ import { Status } from 'src/app/enums/class-enum';
 export class AreasTableComponent implements OnInit {
 
   @Input("areasInput") areas: Array<Area>;
-  @Output() editEvent: EventEmitter<{ area: Area, row: HTMLElement}>;
+  @Output() editEvent: EventEmitter<AreaEmitter> = new EventEmitter<AreaEmitter>();
 
   constructor(
     private _areasServices: AreasServices
-  ) { 
-    this.editEvent = new EventEmitter<{ area: Area, row: HTMLElement}>();
-  }
+  ) { }
 
   ngOnInit() {
   }
@@ -80,9 +79,7 @@ export class AreasTableComponent implements OnInit {
   }
 
   edit(area: Area, row: HTMLElement) {
-    this.editEvent.emit( {
-      area: area,
-      row: row
-    });
+    let areaSelected = new AreaEmitter(area, row);
+    this.editEvent.emit(areaSelected);
   }
 }

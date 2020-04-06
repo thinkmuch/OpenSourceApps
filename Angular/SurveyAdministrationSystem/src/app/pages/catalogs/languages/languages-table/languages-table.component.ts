@@ -3,6 +3,7 @@ import { Language } from 'src/app/models/laguage';
 import Swal from 'sweetalert2';
 import { Status } from 'src/app/enums/class-enum';
 import { LanguageServices } from 'src/app/services/language-services';
+import { LanguageEmitter } from 'src/app/models/emitters/language-emitter';
 
 @Component({
   selector: 'app-languages-table',
@@ -12,13 +13,11 @@ import { LanguageServices } from 'src/app/services/language-services';
 export class LanguagesTableComponent implements OnInit {
 
   @Input("languagesInput") languages: Array<Language>;
-  @Output() editEvent: EventEmitter<{ language: Language, row: HTMLElement }>;
+  @Output() editEvent: EventEmitter<LanguageEmitter> = new EventEmitter<LanguageEmitter>();
 
   constructor(
     private _languageServices: LanguageServices
-  ) { 
-    this.editEvent = new EventEmitter<{ language: Language, row: HTMLElement }>();
-  }
+  ) { }
 
   ngOnInit() {
   }
@@ -79,9 +78,7 @@ export class LanguagesTableComponent implements OnInit {
   }
 
   edit(language: Language, row: HTMLElement) {
-    this.editEvent.emit({
-      language: language,
-      row: row
-    });
+    let languageSelected = new LanguageEmitter(language, row);
+    this.editEvent.emit(languageSelected);
   }
 }

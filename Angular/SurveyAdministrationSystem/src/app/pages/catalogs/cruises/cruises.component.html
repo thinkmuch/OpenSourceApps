@@ -47,6 +47,7 @@
         </div>
         <div class="col-7">
             <app-cruise-detail
+            *ngIf="!loading"
             [cruisesInput]="cruises"></app-cruise-detail>
         </div>
     </div>

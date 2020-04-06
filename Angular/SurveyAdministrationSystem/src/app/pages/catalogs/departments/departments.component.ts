@@ -20,7 +20,7 @@ export class DepartmentsComponent implements OnInit {
   departmentExist: boolean;
   departments: Array<Department>;
   areasSelected: Array<Area>;
-  departmentSelected: Department;
+  departmentSelected: Department = new Department();
   loading: boolean;
   @ViewChild('departmentName', { read: ElementRef }) departmentName: ElementRef;
 
@@ -28,9 +28,7 @@ export class DepartmentsComponent implements OnInit {
     private _departmentsServices: DepartmentsServices,
     private _renderer: Renderer2,
     private _areasServices: AreasServices
-  ) { 
-    this.departmentSelected = new Department();
-  }
+  ) { }
 
   ngOnInit() {
     this.restartScreen();
@@ -39,6 +37,7 @@ export class DepartmentsComponent implements OnInit {
 
   getAllDepartments() {
     this.loading = true;
+
     this._departmentsServices.getAll().subscribe(
       data => {
         this.departments = data;
@@ -96,8 +95,8 @@ export class DepartmentsComponent implements OnInit {
   }
 
   onClickRow($event) {
-    let department = $event["department"];
-    let row = $event["row"];
+    let department = $event["Department"];
+    let row = $event["Row"];
     
     this.restartScreen();
     this.selectRow(row);
@@ -106,8 +105,8 @@ export class DepartmentsComponent implements OnInit {
   }
 
   edit($event) {
-    let department = $event["department"];
-    let row = $event["row"];
+    let department = $event["Department"];
+    let row = $event["Row"];
 
     this.departmentSelected = JSON.parse(JSON.stringify(department));
     this.enableEditControls();
@@ -115,7 +114,7 @@ export class DepartmentsComponent implements OnInit {
   }
 
   selectRow(row: HTMLElement) {
-    row.classList.add("selected");
+    this._renderer.addClass(row, "selected");
   }
 
   onClickDepartmentName() {

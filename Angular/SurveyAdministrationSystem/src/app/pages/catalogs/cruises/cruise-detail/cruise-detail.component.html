@@ -1,4 +1,4 @@
-<div class="alert alert-warning" role="alert" *ngIf="(detailHidden && loading) else detailTable;">
+<div class="alert alert-warning" role="alert" *ngIf="(detailHidden && !loading) else detailTable;">
   Selecciona un crucero para configurar sus sitios y departamentos
 </div>
 <ng-template #detailTable>
@@ -25,6 +25,7 @@
       <ul class="list-group">
         <li class="list-group-item pointer animated fadeIn faster" aria-disabled="true" *ngFor="let department of departments">
             <mat-checkbox 
+            [checked]="isDepartmentContained(department)"
             (click)="onClickDepartment(department, !checkDepartment.checked)"
             #checkDepartment>{{department.name}}</mat-checkbox>
         </li>

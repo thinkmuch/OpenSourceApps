@@ -13,10 +13,11 @@ import { Cruise } from 'src/app/models/cruise';
 })
 export class CruiseDetailComponent implements OnInit {
 
-  sites: Array<Site>;
-  departments: Array<Department>;
+  sites: Array<Site> = new Array<Site>();
+  departments: Array<Department>  = new Array<Department>();
+  departmentsByCruise: Array<Department>;
   sitesByCruise: Array<Site>;
-  cruiseSelected: Cruise;
+  cruiseSelected: Cruise = new Cruise();
   detailHidden: boolean;
   loading: boolean;
   @Input("cruisesInput") cruises: Array<Cruise>;
@@ -25,11 +26,7 @@ export class CruiseDetailComponent implements OnInit {
     private _siteServices: SitesServices,
     private _departmentServices: DepartmentsServices,
     private _cruiseServices: CruisesService
-  ) {
-    this.sites = new Array<Site>();
-    this.departments = new Array<Department>();
-    this.cruiseSelected = new Cruise();
-  }
+  ) { }
 
   ngOnInit() {
     this._cruiseServices.cruiseSelectedEvent.subscribe(cruise => {
@@ -74,10 +71,23 @@ export class CruiseDetailComponent implements OnInit {
     return (this.sitesByCruise.find(a => a.siteId == site.siteId) != undefined);
   }
 
+  isDepartmentContained(department: Department) {
+    return (this.departmentsByCruise.find(d => d.departmentId == department.departmentId) != undefined);
+  }
+
   getAllDepartments() {
-    this._departmentServices.getAll().subscribe(
+    this._departmentServices.getDepartmentsByCruiseId(this.cruiseSelected.cruiseId).subscribe(
       data => {
-        this.departments = data;
+        this.departmentsByCruise = data;
+
+        this._departmentServices.getAll().subscribe(
+          data => {
+            this.departments = data;
+          },
+          error => {
+            console.log(error);
+          }
+        );
       },
       error => {
         console.log(error);
@@ -110,10 +120,24 @@ export class CruiseDetailComponent implements OnInit {
 
   onClickDepartment(department: Department, checked: boolean) {
     if(checked) {
-      this._cruiseServices.addDepartment(this.cruiseSelected, department);
+      this._cruiseServices.addDepartment(this.cruiseSelected, department).subscribe(
+        data => {
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        }
+      )
     }
     else {
-      this._cruiseServices.removeDepartment(this.cruiseSelected, department);
+      this._cruiseServices.removeDepartment(this.cruiseSelected, department).subscribe(
+        data => {
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        }
+      );
     }
   }
 }

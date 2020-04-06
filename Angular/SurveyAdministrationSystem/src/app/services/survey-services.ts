@@ -11,12 +11,10 @@ export class SurveyServices
 {
     private surveys = new Array<SurveySummary>();
     public fullSurveys = new Array<Survey>();
-    private questionsByLanguage: Array<QuestionsByLanguage>;
+    private questionsByLanguage: Array<QuestionsByLanguage> = new Array<QuestionsByLanguage>();
     @Output('questionsSummaryEmmiter') questionsSummary: EventEmitter<Array<QuestionSummary>>;
 
     constructor() { 
-        this.fullSurveys = new Array<Survey>();
-        this.questionsByLanguage = new Array<QuestionsByLanguage>();
         this.questionsSummary = new EventEmitter<Array<QuestionSummary>>();
     }
 

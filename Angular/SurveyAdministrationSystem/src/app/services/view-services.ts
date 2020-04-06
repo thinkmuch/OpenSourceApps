@@ -7,19 +7,16 @@ import { SurveyCaptureServices } from './survey-capture.services';
 })
 export class ViewServices {
 
-  public _questionControls: Array<ElementRef>;
+  public _questionControls: Array<ElementRef> = new Array<ElementRef>();
   private _languageControl: ElementRef;
   private _surveyNameControl: ElementRef;
   private _squaresControl: ElementRef;
-  private _renderer: Renderer2;
+  private _renderer: Renderer2 = this._rendererFactory.createRenderer(null, null);
 
   constructor(
     private _surveyCaptureServices: SurveyCaptureServices,
     private _rendererFactory: RendererFactory2,
-  ) { 
-    this._questionControls = new Array<ElementRef>();
-    this._renderer = this._rendererFactory.createRenderer(null, null);
-  }
+  ) { }
 
   addControl(control: ElementRef) {
     this._questionControls.push(control);

@@ -28,7 +28,6 @@ export class LanguagesComponent implements OnInit {
 
   ngOnInit() {
     this.restartScreen();
-    this.loading = true;
     this.getAllLanguages();
   }
 
@@ -56,12 +55,12 @@ export class LanguagesComponent implements OnInit {
   }
 
   selectRow(row: HTMLElement) {
-    row.classList.add("selected");
+    this._renderer.addClass(row, "selected");
   }
 
   edit($event) {
-    let language = $event['language'];
-    let row = $event['row'];
+    let language: Language = $event["Language"];
+    let row: HTMLElement = $event["Row"];
 
     this.languageSelected = JSON.parse(JSON.stringify(language));
     
@@ -95,6 +94,7 @@ export class LanguagesComponent implements OnInit {
   }
 
   getAllLanguages() {
+    this.loading = true;
     this._languageServices.getAll().subscribe(
       data => {
         this.languages = data

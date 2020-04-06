@@ -17,20 +17,16 @@ import { Cruise } from '../models/cruise';
 })
 export class SurveyCaptureServices
 {
-    public language: Language;
-    public hotels: Array<{ squareId: number, hotelId: number }>;
-    public cruises: Array<Cruise>;
-    public questions: Array<Question>;
-    private answers: Array<Answer>;
-    public nameSurvey: string;
-    @Output() rowSelected: EventEmitter<number>;
+    language: Language;
+    hotels: Array<{ squareId: number, hotelId: number }>;
+    cruises: Array<Cruise>  = new Array<Cruise>();
+    questions: Array<Question> = new Array<Question>();
+    private answers: Array<Answer> = new Array<Answer>();
+    nameSurvey: string;
+    @Output() rowSelected: EventEmitter<number> = new EventEmitter<number>();
 
     constructor() {
-        this.questions = new Array<Question>();
-        this.answers = new Array<Answer>();
-        this.rowSelected = new EventEmitter<number>();
         this.hotels = new Array<{ squareId: number, hotelId: number }>();
-        this.cruises = new Array<Cruise>();
     }
 
     initialize() {

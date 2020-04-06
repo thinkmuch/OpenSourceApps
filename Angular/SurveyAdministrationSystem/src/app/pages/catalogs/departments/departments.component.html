@@ -43,13 +43,14 @@
                 <app-departments-table
                 *ngIf="!loading"
                 class="w-100"
-                [departmentsInpud]="departments"
+                [departmentsInput]="departments"
                 (editEvent)="edit($event)"
                 (clickRowEvent)="onClickRow($event)"></app-departments-table>
             </div>
         </div>
         <div class="col-6">
             <app-department-detail
+            *ngIf="!loading"
             [departmentsInput]="departments"></app-department-detail>
         </div>
     </div>

@@ -12,7 +12,7 @@ import { Status, Alerts } from 'src/app/enums/class-enum';
 export class AreasComponent implements OnInit {
 
   areas: Array<Area>;
-  areaSelected: Area;
+  areaSelected: Area  = new Area();
   saveButtonHidden: boolean;
   cancelButtonHidden: boolean;
   inputNameDisabled: boolean;
@@ -24,9 +24,7 @@ export class AreasComponent implements OnInit {
   constructor(
     private _areasServices: AreasServices,
     private _renderer: Renderer2
-  ) { 
-    this.areaSelected = new Area();
-  }
+  ) { }
 
   ngOnInit() {
     this.restartScreen();
@@ -85,8 +83,8 @@ export class AreasComponent implements OnInit {
   }
 
   edit($event) {
-    let area = $event['area'];
-    let row = $event['row'];
+    let area = $event['Area'];
+    let row = $event['Row'];
 
     this.areaSelected = JSON.parse(JSON.stringify(area));
     this.enableEditControls();
@@ -102,7 +100,7 @@ export class AreasComponent implements OnInit {
   }
 
   selectRow(row: HTMLElement) {
-    row.classList.add("selected");
+    this._renderer.addClass(row, "selected");
   }
 
   onClickAreaName() {
