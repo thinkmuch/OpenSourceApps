@@ -30,13 +30,13 @@ export class SquareHotelCatalogComponent implements OnInit {
 
   ngOnInit() {
     this.hotels = new Array<Hotel>();
-    this.squares = this._squareServices.getAllSquares();
+    //this.squares = this._squareServices.getAllSquares();
     //this.cruises = this._cruiseServices.getAll();
   }
 
   onClickSquare(square: Square) {
     this.squareSelected = square;
-    this.hotels = this._hotelServices.getHotelsBySquareId(square.id);
+    //this.hotels = this._hotelServices.getHotelsBySquareId(square.id);
   }
 
   close() {
@@ -53,7 +53,7 @@ export class SquareHotelCatalogComponent implements OnInit {
   }
 
   isHotelSelected(hotel: Hotel): boolean {
-    return (this._surveyCaptureServices.hotels.find(a => a.squareId == this.squareSelected.id && a.hotelId == hotel.hotelId) != undefined);
+    return (this._surveyCaptureServices.hotels.find(a => a.squareId == this.squareSelected.squareId && a.hotelId == hotel.hotelId) != undefined);
   }
 
   isCruiseSelected(cruise: Cruise) {

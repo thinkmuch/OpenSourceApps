@@ -69,6 +69,35 @@ export class LanguagesComponent implements OnInit {
     this.selectRow(row);
   }
 
+  remove($event) {
+    let language: Language = $event["Language"];
+
+    Swal.fire({
+      title: 'Eliminar',
+      text: `¿Seguro que desea eliminar el idioma ${language.name}?`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Si, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((response) => {
+      
+      if(response.value) {
+        this.delete(language.languageId);
+      }
+    });
+  }
+
+  delete(languageId: number) {
+    this._languageServices.delete(languageId).subscribe(
+      data => {
+        this.getAllLanguages();
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
   enableEditControls() {
     this.saveButtonHidden = false;
     this.cancelButtonHidden = false;

@@ -37,22 +37,23 @@
                 </div>
             </div>
             <div class="row" id="tableContainer">
-                <div class="alert alert-warning w-100 animated fadeIn faster mt-15px"
-                role="alert"
-                *ngIf="squares.length == 0; else squaresTable;">
-                    No hay plazas registrados
-                </div>
-                <ng-template #squaresTable>
-                    <app-squares-table
-                    class="w-100"
-                    [squaresInpue]="squares"
-                    (editEvent)="edit($event)"
-                    (clickRowEvent)="onClickRow($event)"></app-squares-table>
-                </ng-template>
+                <app-squares-table
+                class="w-100"
+                *ngIf="!loading"
+                [squaresInpue]="squares"
+                (editEvent)="edit($event)"
+                (clickRowEvent)="onClickRow($event)"></app-squares-table>
             </div>
         </div>
         <div class="col-6">
-            <app-square-detail *ngIf="squareSelected"></app-square-detail>
+            <app-square-detail
+            *ngIf="!loading"></app-square-detail>
         </div>
     </div>
+</div>
+<div class="row" *ngIf="loading">
+    <div class="spinner-border text-primary loadingSquares" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <p class="loadingLegend">Cargando...</p>
 </div>

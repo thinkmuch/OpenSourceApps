@@ -25,4 +25,8 @@ export class LanguageServices {
     save(name: string) {
         return this._http.post(`http://10.2.180.10:5999/api/Language?name=${name}`, {});
     }
+
+    delete(languageId: number) {
+        return this._http.delete(`http://10.2.180.10:5999/api/Language/${languageId}`);
+    }
 }

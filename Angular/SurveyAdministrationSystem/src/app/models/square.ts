@@ -1,7 +1,7 @@
 import { Hotel } from './hotel';
 
 export class Square {
-    id: number;
+    squareId: number;
     name: string;
-    status: number;
+    statusId: number;
 }

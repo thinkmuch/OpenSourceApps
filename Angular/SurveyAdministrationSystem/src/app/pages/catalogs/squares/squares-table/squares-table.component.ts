@@ -38,7 +38,7 @@ export class SquaresTableComponent implements OnInit {
       
       if(response.value) {
 
-        square.status = Status.Inactive;
+        square.statusId = Status.Inactive;
         this._squareServices.update(square);
         
         Swal.fire({
@@ -61,7 +61,7 @@ export class SquaresTableComponent implements OnInit {
       
       if(response.value) {
 
-        square.status = Status.Active;
+        square.statusId = Status.Active;
         this._squareServices.update(square);
         
         Swal.fire({

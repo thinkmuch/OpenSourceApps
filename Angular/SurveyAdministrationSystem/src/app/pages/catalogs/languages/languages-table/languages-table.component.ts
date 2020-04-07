@@ -14,6 +14,7 @@ export class LanguagesTableComponent implements OnInit {
 
   @Input("languagesInput") languages: Array<Language>;
   @Output() editEvent: EventEmitter<LanguageEmitter> = new EventEmitter<LanguageEmitter>();
+  @Output() removeEvent: EventEmitter<LanguageEmitter> = new EventEmitter<LanguageEmitter>();
 
   constructor(
     private _languageServices: LanguageServices
@@ -80,5 +81,10 @@ export class LanguagesTableComponent implements OnInit {
   edit(language: Language, row: HTMLElement) {
     let languageSelected = new LanguageEmitter(language, row);
     this.editEvent.emit(languageSelected);
+  }
+
+  remove(language: Language, row: HTMLElement) {
+    let languageSelected = new LanguageEmitter(language, row);
+    this.removeEvent.emit(languageSelected);
   }
 }

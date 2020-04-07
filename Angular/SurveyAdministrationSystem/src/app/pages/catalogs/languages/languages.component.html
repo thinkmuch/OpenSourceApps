@@ -42,7 +42,8 @@
         *ngIf="!loading"
         class="w-100"
         [languagesInput]="languages"
-        (editEvent)="edit($event)"></app-languages-table>
+        (editEvent)="edit($event)"
+        (removeEvent)="remove($event)"></app-languages-table>
     </div>
 </div>
 <div class="row" *ngIf="loading">

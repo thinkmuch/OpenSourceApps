@@ -16,8 +16,9 @@ export class SquaresComponent implements OnInit {
   squareNameDisabled: boolean;
   squareExist: boolean;
   newButtonHidden: boolean;
-  squares: Array<Square>;
-  squareSelected: Square;
+  loading: boolean = false;
+  squares: Array<Square> = new Array<Square>();
+  squareSelected: Square = new Square();
   @ViewChild("squareName", {read: ElementRef}) squareName: ElementRef;
   
   constructor(
@@ -27,6 +28,22 @@ export class SquaresComponent implements OnInit {
 
   ngOnInit() {
     this.restarScreen();
+    this.getAllSquares();
+  }
+
+  getAllSquares() {
+    this.loading = true;
+
+    this._squareServices.getAll().subscribe(
+      data => {
+        this.squares = data;
+        this.loading = false;
+      },
+      error => {
+        console.log(error);
+        this.loading = false;
+      }
+    );
   }
 
   restarScreen() {
@@ -38,7 +55,6 @@ export class SquaresComponent implements OnInit {
     this.squareSelected = new Square();
     this._renderer.removeClass(this.squareName.nativeElement, Alerts.Danger);
     this.deselectAllRows();
-    this.squares = this._squareServices.getAllSquares();
   }
 
   onClickSquareName() {
@@ -73,7 +89,7 @@ export class SquaresComponent implements OnInit {
 
     this.restarScreen();
     this.selectRow(row);
-    this._squareServices.squareSelectedEvent.emit(square.id);
+    this._squareServices.squareSelectedEvent.emit(square.squareId);
   }
 
   deselectAllRows() {
@@ -84,7 +100,7 @@ export class SquaresComponent implements OnInit {
   }
 
   selectRow(row: HTMLElement) {
-    row.classList.add("selected");
+    this._renderer.addClass(row, "selected");
   }
 
   save(name: string) {
@@ -98,7 +114,7 @@ export class SquaresComponent implements OnInit {
       });
     }
     else {
-      if(this.squareSelected.id > 0) {
+      if(this.squareSelected.squareId > 0) {
         this.squareSelected.name = name;
         this._squareServices.update(this.squareSelected);
       }
@@ -106,7 +122,6 @@ export class SquaresComponent implements OnInit {
         this._squareServices.save(name);
       }
 
-      this.squares = this._squareServices.getAllSquares();
       this.restarScreen();
 
       Swal.fire({

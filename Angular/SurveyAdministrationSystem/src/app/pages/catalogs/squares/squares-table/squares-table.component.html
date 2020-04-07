@@ -8,14 +8,14 @@
       </tr>
   </thead>
   <tbody>
-      <tr *ngFor="let square of squares" class="pointer" id="{{square.id}}" (click)="onClickRow(square, row)" #row>
-          <th scope="row">{{square.id}}</th>
+      <tr *ngFor="let square of squares" class="pointer" id="{{square.squareId}}" (click)="onClickRow(square, row)" #row>
+          <th scope="row">{{square.squareId}}</th>
           <td>{{square.name}}</td>
           <td>
-              <span *ngIf="square.status == 0">
+              <span *ngIf="square.statusId == 1">
                   <span class="badge badge-dark fw-500">Inactivo</span>
               </span>
-              <span *ngIf="square.status == 1">
+              <span *ngIf="square.statusId == 2">
                   <span class="badge badge-success fw-500">Activo</span>
               </span>
           </td>
@@ -23,10 +23,10 @@
               <div class="btn-group dropleft">
                   <mat-icon aria-hidden="false" [matMenuTriggerFor]="menu" class="pointer">more_vert</mat-icon>
                   <mat-menu #menu="matMenu">
-                      <div class="pointer item-menu-question" *ngIf="square.status == 0" (click)="enable(square)">
+                      <div class="pointer item-menu-question" *ngIf="square.statusId == 1" (click)="enable(square)">
                           <a class="dropdown-item"><i class="fas fa-power-off text-success"></i>   Activar</a>
                       </div>
-                      <div class="pointer item-menu-question" *ngIf="square.status == 1" (click)="disable(square)">
+                      <div class="pointer item-menu-question" *ngIf="square.statusId == 2" (click)="disable(square)">
                           <a class="dropdown-item"><i class="fas fa-power-off text-secondary"></i>   Desactivar</a>
                       </div>
                       <div class="pointer item-menu-question" (click)="edit(square, row)">
