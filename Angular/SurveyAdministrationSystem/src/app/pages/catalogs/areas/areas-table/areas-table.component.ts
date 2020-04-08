@@ -14,13 +14,13 @@ export class AreasTableComponent implements OnInit {
 
   @Input("areasInput") areas: Array<Area>;
   @Output() editEvent: EventEmitter<AreaEmitter> = new EventEmitter<AreaEmitter>();
+  @Output() removeEvent: EventEmitter<AreaEmitter> = new EventEmitter<AreaEmitter>();
 
   constructor(
     private _areasServices: AreasServices
   ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   enable(area: Area) {
     Swal.fire({
@@ -33,7 +33,6 @@ export class AreasTableComponent implements OnInit {
     }).then((response) => {
       
       if(response.value) {
-
         area.statusId = Status.Active;
         this._areasServices.update(area).subscribe(
           data => {
@@ -73,7 +72,7 @@ export class AreasTableComponent implements OnInit {
           error => {
             console.log(error);
           }
-        )
+        );
       }
     });
   }
@@ -81,5 +80,10 @@ export class AreasTableComponent implements OnInit {
   edit(area: Area, row: HTMLElement) {
     let areaSelected = new AreaEmitter(area, row);
     this.editEvent.emit(areaSelected);
+  }
+
+  remove(area: Area) {
+    let areaSelected = new AreaEmitter(area, null);
+    this.removeEvent.emit(areaSelected);
   }
 }

@@ -15,6 +15,7 @@ export class DepartmentsTableComponent implements OnInit {
   @Input("departmentsInput") departments: Array<Department>;
   @Output() editEvent: EventEmitter<DepartmentEmitter> = new EventEmitter<DepartmentEmitter>();
   @Output() clickRowEvent: EventEmitter<DepartmentEmitter> = new EventEmitter<DepartmentEmitter>();
+  @Output() removeEvent: EventEmitter<DepartmentEmitter> = new EventEmitter<DepartmentEmitter>();
 
   constructor(
     private _departmentsServices: DepartmentsServices
@@ -59,6 +60,11 @@ export class DepartmentsTableComponent implements OnInit {
         );
       }
     });
+  }
+
+  remove(department: Department) {
+    let departmentSelected = new DepartmentEmitter(department, null);
+    this.removeEvent.emit(departmentSelected);
   }
 
   disabled(department: Department) {

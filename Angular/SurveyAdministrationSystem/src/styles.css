@@ -176,6 +176,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     min-width: 150px;
 }
 
+.w-200px {
+    width: 180px;
+}
+
 .pd-5px {
     padding: 5px;
 }

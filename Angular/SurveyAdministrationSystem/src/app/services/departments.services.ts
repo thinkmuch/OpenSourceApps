@@ -9,14 +9,11 @@ import { Observable } from 'rxjs';
 })
 export class DepartmentsServices {
 
-    private departments = new Array<Department>();
-    @Output() deparmentEvent: EventEmitter<Department>;
+    @Output() deparmentEvent: EventEmitter<Department> = new EventEmitter<Department>();
 
     constructor(
         private _http: HttpClient
-    ) {
-        this.deparmentEvent = new EventEmitter<Department>();
-    }
+    ) {}
 
     addArea(area: Area, departmentId: number) {
         this._http.post(`http://10.2.180.10:5999/api/Department/${departmentId}/Area/${area.areaId}`, {}).subscribe(
@@ -50,6 +47,10 @@ export class DepartmentsServices {
 
     save(name: string) {
         return this._http.post(`http://10.2.180.10:5999/api/Department?name=${name}`, {});
+    }
+
+    remove(department: Department) {
+        return this._http.delete(`http://10.2.180.10:5999/api/Department/${department.departmentId}`);
     }
 
     getAll(): Observable<Array<Department>> {

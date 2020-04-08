@@ -14,8 +14,9 @@ import { SquareHotelCatalogComponent } from './square-hotel-catalog/square-hotel
 })
 export class FooterComponent implements OnInit, AfterViewInit {
 
-  public languages: Array<Language>;
-  public languageSelected: Language;
+  languages: Array<Language>;
+  languageSelected: Language = new Language();
+  loadingLanguages: boolean = false;
   @Input('isNewSurveyInput') isNewSurvey: boolean;
   @ViewChild("language", { read: ElementRef }) languageControl: ElementRef;
   @ViewChild("squaresAndHotels", { read: ElementRef }) suqaresControl: ElementRef;
@@ -26,25 +27,31 @@ export class FooterComponent implements OnInit, AfterViewInit {
     public _matDialog: MatDialog,
     private _viewServices: ViewServices,
     private _render: Renderer2
-  ) { 
-    this.languageSelected = new Language();
-  }
+  ) { }
 
   ngOnInit() { 
-    this._languageServices.getAll().subscribe(
-      data => {
-        this.languages = data;
-      },
-      error => {
-        console.log(error);
-      }
-    );
+    this.getAllLanguages();
 
     if(!this.isNewSurvey) {
       if(this._surveyCaprureServices.language.languageId > 0) {
         this.languageSelected = this._surveyCaprureServices.language;
       }
     }
+  }
+
+  getAllLanguages() {
+    this.loadingLanguages = true;
+
+    this._languageServices.getAll().subscribe(
+      data => {
+        this.languages = data;
+        this.loadingLanguages = false;
+      },
+      error => {
+        console.log(error);
+        this.loadingLanguages = false;
+      }
+    );
   }
 
   ngAfterViewInit() {

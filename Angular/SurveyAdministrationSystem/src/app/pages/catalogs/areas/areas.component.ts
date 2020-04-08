@@ -159,4 +159,34 @@ export class AreasComponent implements OnInit {
       }
     }
   }
+
+  remove($event) {
+    let area: Area = $event["Area"];
+    
+    Swal.fire({
+      title: 'Eliminar',
+      text: `¿Seguro que desea eliminar el área ${area.name}?`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Si, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((response) => {
+      
+      if(response.value) {
+        this._areasServices.remove(area).subscribe(
+          data => {
+            this.getAllAreas();
+
+            Swal.fire({
+              title: 'Area desactivada',
+              icon: 'success'
+            });
+          },
+          error => {
+            console.log(error);
+          }
+        );
+      }
+    });
+  }
 }

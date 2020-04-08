@@ -172,4 +172,33 @@ export class DepartmentsComponent implements OnInit {
       }
     }
   }
+
+  remove($event) {
+    let department = $event["Department"];
+
+    Swal.fire({
+      title: 'Eliminar',
+      text: `¿Seguro que desea eliminar el departamento ${department.name}?`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Si, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((response) => {
+
+      if(response.value) {
+        this._departmentsServices.remove(department).subscribe(
+        data => {
+          this.getAllDepartments();
+          
+          Swal.fire({
+            title: 'Departamento eliminado',
+            icon: 'success'
+          });
+        },
+        error => {
+          console.log(error);
+        });
+      }
+    });
+  }
 }

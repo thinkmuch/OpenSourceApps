@@ -29,4 +29,8 @@ export class AreasServices {
     getAll(): Observable<Array<Area>> {
         return this._http.get<Array<Area>>("http://10.2.180.10:5999/api/Area");
     }
+
+    remove(area: Area) {
+        return this._http.delete(`http://10.2.180.10:5999/api/Area/${area.areaId}`);
+    }
 }

@@ -40,7 +40,8 @@
         *ngIf="!loading"
         class="w-100"
         [areasInput]="areas"
-        (editEvent)="edit($event)"></app-areas-table>
+        (editEvent)="edit($event)"
+        (removeEvent)="remove($event)"></app-areas-table>
     </div>
 </div>
 <div class="row" *ngIf="loading">

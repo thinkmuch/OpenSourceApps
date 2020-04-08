@@ -45,7 +45,8 @@
                 class="w-100"
                 [departmentsInput]="departments"
                 (editEvent)="edit($event)"
-                (clickRowEvent)="onClickRow($event)"></app-departments-table>
+                (clickRowEvent)="onClickRow($event)"
+                (removeEvent)="remove($event)"></app-departments-table>
             </div>
         </div>
         <div class="col-6">
