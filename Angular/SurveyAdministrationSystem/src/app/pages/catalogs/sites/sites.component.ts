@@ -132,6 +132,7 @@ export class SitesComponent implements OnInit {
     data => {
         this.restartScreen();
         this.getAllSites();
+
         Swal.fire({
           title: 'Sitio actualizado',
           icon: 'success'
@@ -160,5 +161,34 @@ export class SitesComponent implements OnInit {
         this.saveSite(name);
       }
     }
+  }
+
+  remove($event) {
+    let site: Site = $event["Site"];
+
+    Swal.fire({
+      title: 'Activar',
+      text: `¿Seguro que desea eliminar el sitio ${site.name}?`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Si, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((response) => {
+      
+      if(response.value) {
+        this._sitesServices.remove(site).subscribe(
+          data => {
+            this.getAllSites();
+            Swal.fire({
+              title: 'Sitio eliminado',
+              icon: 'success'
+            });
+          },
+          error => {
+            console.log(error);
+          }
+        );
+      }
+    });
   }
 }

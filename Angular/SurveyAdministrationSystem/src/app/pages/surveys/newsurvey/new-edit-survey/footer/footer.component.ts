@@ -32,6 +32,8 @@ export class FooterComponent implements OnInit, AfterViewInit {
   ngOnInit() { 
     this.getAllLanguages();
 
+    console.log(this.languageSelected);
+
     if(!this.isNewSurvey) {
       if(this._surveyCaprureServices.language.languageId > 0) {
         this.languageSelected = this._surveyCaprureServices.language;
@@ -42,7 +44,7 @@ export class FooterComponent implements OnInit, AfterViewInit {
   getAllLanguages() {
     this.loadingLanguages = true;
 
-    this._languageServices.getAll().subscribe(
+    this._languageServices.getAllActiveLanguages().subscribe(
       data => {
         this.languages = data;
         this.loadingLanguages = false;

@@ -18,6 +18,10 @@ export class LanguageServices {
         return this._http.get<Array<Language>>("http://10.2.180.10:5999/api/Language");
     }
 
+    getAllActiveLanguages(): Observable<Array<Language>> {
+        return this._http.get<Array<Language>>("http://10.2.180.10:5999/api/Language/Active");
+    }
+
     update(language: Language) {
        return this._http.put("http://10.2.180.10:5999/api/Language", language);
     }

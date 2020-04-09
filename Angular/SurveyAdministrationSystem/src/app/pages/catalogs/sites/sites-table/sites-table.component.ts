@@ -3,6 +3,7 @@ import { Site } from 'src/app/models/site';
 import Swal from 'sweetalert2';
 import { Status } from 'src/app/enums/class-enum';
 import { SitesServices } from 'src/app/services/sites-service';
+import { SiteEmitter } from 'src/app/models/emitters/site-emitter';
 
 @Component({
   selector: 'app-sites-table',
@@ -12,13 +13,12 @@ import { SitesServices } from 'src/app/services/sites-service';
 export class SitesTableComponent implements OnInit {
 
   @Input("sitesInput") sites: Array<Site>;
-  @Output() editEvent: EventEmitter<{ site: Site, row: HTMLElement }>;
+  @Output() editEvent: EventEmitter<SiteEmitter> = new EventEmitter<SiteEmitter>();
+  @Output() removeEvent: EventEmitter<SiteEmitter> = new EventEmitter<SiteEmitter>();
   
   constructor(
     private _sitesServices: SitesServices
-  ) {
-    this.editEvent = new EventEmitter<{ site: Site, row: HTMLElement }>();
-   }
+  ) { }
 
   ngOnInit() {
   }
@@ -46,7 +46,7 @@ export class SitesTableComponent implements OnInit {
           error => {
             console.log(error);
           }
-        )
+        );
       }
     });
   }
@@ -80,9 +80,12 @@ export class SitesTableComponent implements OnInit {
   }
 
   edit(site: Site, row: HTMLElement) {
-    this.editEvent.emit({
-      site: site,
-      row: row
-    });
+    let siteSelected = new SiteEmitter(site, null);
+    this.editEvent.emit(siteSelected);
+  }
+
+  remove(site: Site) {
+    let siteSelected = new SiteEmitter(site, null);
+    this.removeEvent.emit(siteSelected);
   }
 }

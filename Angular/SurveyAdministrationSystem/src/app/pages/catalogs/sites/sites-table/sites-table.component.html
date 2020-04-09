@@ -7,6 +7,7 @@
           <th scope="col">ID</th>
           <th scope="col">Sitio</th>
           <th scope="col">Estatus</th>
+          <th scope="col">En uso</th>
           <th scope="col">Acciones</th>
       </tr>
   </thead>
@@ -23,6 +24,14 @@
               </span>
           </td>
           <td>
+              <span *ngIf="site.use > 0">
+                <span class="badge badge-success fw-500">Si</span>
+              </span>
+              <span *ngIf="site.use == 0">
+                <span class="badge badge-dark fw-500">No</span>
+              </span>
+          </td>
+          <td>
               <div class="btn-group dropleft">
                   <mat-icon aria-hidden="false" [matMenuTriggerFor]="menu" class="pointer">more_vert</mat-icon>
                   <mat-menu #menu="matMenu">
@@ -35,6 +44,9 @@
                       <div class="pointer item-menu-question" (click)="edit(site, row)">
                           <a class="dropdown-item"><i class="fas fa-edit c-orange"></i>   Editar</a>
                       </div>
+                      <div class="pointer item-menu-question" (click)="remove(site)" *ngIf="site.use == 0">
+                        <a class="dropdown-item"><i class="far fa-trash-alt red"></i>   Eliminar</a>
+                    </div>
                   </mat-menu>
               </div>
           </td>

@@ -16,19 +16,19 @@ import { Department } from 'src/app/models/department';
 })
 export class AnswerTypesCatalogComponent implements OnInit {
 
-  public disablePredefined: boolean;
-  public answers: Array<Answer>;
-  public areas: Array<Area>;
-  public idQuestionSelected: number;
-  public answerName: string;
-  public isAnswerTypeCatalogsVisible: boolean;
-  public checkedAcceptNA: boolean;
-  public checkedForceResponse: boolean;
-  public justifyAnswerVisible: boolean;
-  public areaSelected: Area;
-  public departmentSelected: Department;
-  public departments: Array<Department>;
-  public selectAreaDisabled: boolean;
+  disablePredefined: boolean;
+  answers: Array<Answer>;
+  areas: Array<Area>;
+  idQuestionSelected: number;
+  answerName: string;
+  isAnswerTypeCatalogsVisible: boolean;
+  checkedAcceptNA: boolean;
+  checkedForceResponse: boolean;
+  justifyAnswerVisible: boolean;
+  areaSelected: Area;
+  departmentSelected: Department;
+  departments: Array<Department>;
+  selectAreaDisabled: boolean;
 
   @ViewChild("checkPredefinedAnswer", { read: ElementRef }) checkSingeAnswer: ElementRef;
   @ViewChild("checkFreeText", { read: ElementRef }) checkFreeText: ElementRef;
@@ -69,7 +69,11 @@ export class AnswerTypesCatalogComponent implements OnInit {
     });
 
     this.answers = this._surveyCaptureServices.getAnswers();
-    this._departmentsServices.getAll().subscribe(
+    this.getAllActiveDepartments();
+  }
+
+  getAllActiveDepartments() {
+    this._departmentsServices.getAllActiveDepartments().subscribe(
       data => {
         this.departments = data;
       },

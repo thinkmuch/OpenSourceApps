@@ -23,4 +23,8 @@ export class SitesServices {
   getAll() : Observable<Array<Site>> {
     return this._http.get<Array<Site>>("http://10.2.180.10:5999/api/Site");
   }
+
+  remove(site: Site) {
+    return this._http.delete(`http://10.2.180.10:5999/api/Site/${site.siteId}`);
+  }
 }

@@ -29,7 +29,7 @@
                     <span class="spinner-border spinner-border-sm mr-10px" role="status" aria-hidden="true" *ngIf="loadingLanguages"></span>
                     <span *ngIf="loadingLanguages">Cargando idiomas</span>
                     <span *ngIf="languageSelected && languageSelected.languageId > 0 && !loadingLanguages">{{ languageSelected.name }}</span>
-                    <span *ngIf="!loadingLanguages">Seleccione Idioma</span>
+                    <span *ngIf="!loadingLanguages && languageSelected && languageSelected.languageId == undefined">Seleccione Idioma</span>
                 </button>
                 <div class="dropdown-menu" *ngIf="!loadingLanguages">
                     <a 

@@ -40,7 +40,8 @@
         *ngIf="!loading"
         class="w-100"
         [sitesInput]="sites"
-        (editEvent)="edit($event)"></app-sites-table>
+        (editEvent)="edit($event)"
+        (removeEvent)="remove($event)"></app-sites-table>
     </div>
 </div>
 <div class="row" *ngIf="loading">
