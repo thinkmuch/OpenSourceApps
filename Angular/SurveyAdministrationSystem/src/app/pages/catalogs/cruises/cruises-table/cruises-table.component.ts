@@ -12,15 +12,12 @@ import { Status } from 'src/app/enums/class-enum';
 export class CruisesTableComponent implements OnInit {
 
   @Input("cruisesInput") cruises: Array<Cruise>;
-  @Output() editEvent: EventEmitter<{ cruise: Cruise, row: HTMLElement }>;
-  @Output() clickRowEvent: EventEmitter<{ cruise: Cruise, row: HTMLElement }>;
+  @Output() editEvent: EventEmitter<{ cruise: Cruise, row: HTMLElement }> = new EventEmitter<{cruise: Cruise, row: HTMLElement}>();
+  @Output() clickRowEvent: EventEmitter<{ cruise: Cruise, row: HTMLElement }> = new EventEmitter<{cruise: Cruise, row: HTMLElement}>();
 
   constructor(
     private _cruisesServices: CruisesService
-  ) { 
-    this.editEvent = new EventEmitter<{cruise: Cruise, row: HTMLElement}>();
-    this.clickRowEvent = new EventEmitter<{cruise: Cruise, row: HTMLElement}>();
-  }
+  ) { }
 
   ngOnInit() { }
 

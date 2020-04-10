@@ -22,6 +22,7 @@
                     type="button"
                     class="btn btn-primary mt-31px"
                     (click)="enableEditControls()"
+                    [disabled]="loading"
                     [hidden]="newButtonHidden">Nuevo</button>
                     <button 
                     type="button" 

@@ -76,8 +76,16 @@
             aria-expanded="false"
             [disabled]="selectAreaDisabled"
             #selectArea>
-              <span *ngIf="areaSelected == undefined || areaSelected.areaId == 0">Seleccione el área</span>
-              <span *ngIf="areaSelected != undefined && areaSelected.areaId > 0">{{areaSelected.name}}</span>
+                <span
+                class="spinner-border spinner-border-sm mr-10px"
+                role="status"
+                aria-hidden="true"
+                *ngIf="loadingAreas"></span>
+                <span *ngIf="loadingAreas">Cargando áreas...</span>
+                <span *ngIf="areaOption == 0">Area</span>
+                <span *ngIf="!loadingAreas && areaOption == 1">Seleccione el área</span>
+                <span *ngIf="!loadingAreas && areaOption == 2">No hay áreas asignadas</span>
+                <span *ngIf="!loadingAreas && areaOption == 3">{{areaSelected.name}}</span>
             </button>
             <div class="dropdown-menu scrollable-menu w-100 mh-374px pointer">
                 <a class="dropdown-item" *ngFor="let area of areas" (click)="onSelectArea(area)">{{area.name}}</a>

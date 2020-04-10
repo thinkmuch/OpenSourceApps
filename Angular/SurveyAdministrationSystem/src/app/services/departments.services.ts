@@ -18,7 +18,7 @@ export class DepartmentsServices {
     addArea(area: Area, departmentId: number) {
         this._http.post(`http://10.2.180.10:5999/api/Department/${departmentId}/Area/${area.areaId}`, {}).subscribe(
             data => {
-                console.log(data);
+                
             },
             error => {
                 console.log(error);
@@ -33,7 +33,7 @@ export class DepartmentsServices {
     removeArea(area: Area, departmentId: number) {
         this._http.delete(`http://10.2.180.10:5999/api/Department/${departmentId}/Area/${area.areaId}`).subscribe(
             data => {
-                console.log(data);
+                
             },
             error => {
                 console.log(error);

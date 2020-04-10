@@ -73,8 +73,8 @@ export class SquaresComponent implements OnInit {
   }
 
   edit($event) {
-    let square = $event['square'];
-    let row = $event['row'];
+    let square = $event['Square'];
+    let row = $event['Row'];
 
     this.squareSelected = JSON.parse(JSON.stringify(square));
 
@@ -84,8 +84,8 @@ export class SquaresComponent implements OnInit {
   }
 
   onClickRow($event) {
-    let square: Square = $event["square"];
-    let row: HTMLElement = $event["row"];
+    let square: Square = $event["Square"];
+    let row: HTMLElement = $event["Row"];
 
     this.restarScreen();
     this.selectRow(row);
@@ -101,6 +101,24 @@ export class SquaresComponent implements OnInit {
 
   selectRow(row: HTMLElement) {
     this._renderer.addClass(row, "selected");
+  }
+
+  saveSquare(name: string) {
+    this._squareServices.save(name).subscribe(
+      data => {
+        
+        this.restarScreen();
+        this.getAllSquares();
+        
+        Swal.fire({
+          title: 'Plaza registrada',
+          icon: 'success'
+        });
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   save(name: string) {
@@ -119,15 +137,8 @@ export class SquaresComponent implements OnInit {
         this._squareServices.update(this.squareSelected);
       }
       else {
-        this._squareServices.save(name);
+        this.saveSquare(name);
       }
-
-      this.restarScreen();
-
-      Swal.fire({
-        title: 'Plaza registrada',
-        icon: 'success'
-      });
     }
   }
 }

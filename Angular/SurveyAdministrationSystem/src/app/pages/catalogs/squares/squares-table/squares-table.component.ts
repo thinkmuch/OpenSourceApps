@@ -3,6 +3,7 @@ import { Square } from 'src/app/models/square';
 import { SquareServices } from 'src/app/services/square-services';
 import Swal from 'sweetalert2';
 import { Status } from 'src/app/enums/class-enum';
+import { SquareEmitter } from 'src/app/models/emitters/square-emitter';
 
 @Component({
   selector: 'app-squares-table',
@@ -12,19 +13,14 @@ import { Status } from 'src/app/enums/class-enum';
 export class SquaresTableComponent implements OnInit {
 
   @Input("squaresInpue") squares: Array<Square>;
-  @Output() editEvent: EventEmitter<{square: Square, row: HTMLElement}>;
-  @Output() clickRowEvent: EventEmitter<{square: Square, row: HTMLElement}>;
+  @Output() editEvent: EventEmitter<SquareEmitter> = new EventEmitter<SquareEmitter>();
+  @Output() clickRowEvent: EventEmitter<SquareEmitter> = new EventEmitter<SquareEmitter>();
   
   constructor(
     private _squareServices: SquareServices
-  ) { 
-    this.editEvent = new EventEmitter<{square: Square, row: HTMLElement}>();
-    this.clickRowEvent = new EventEmitter<{square: Square, row: HTMLElement}>();
-  }
+  ) { }
 
-  ngOnInit() {
-    
-  }
+  ngOnInit() { }
 
   disable(square: Square) {
     Swal.fire({
@@ -39,12 +35,17 @@ export class SquaresTableComponent implements OnInit {
       if(response.value) {
 
         square.statusId = Status.Inactive;
-        this._squareServices.update(square);
-        
-        Swal.fire({
-          title: 'Plaza desactivada',
-          icon: 'success'
-        });
+        this._squareServices.update(square).subscribe(
+          data => {
+            Swal.fire({
+              title: 'Plaza desactivada',
+              icon: 'success'
+            });
+          },
+          error => {
+            console.log(error);
+          }
+        );
       }
     });
   }
@@ -62,27 +63,28 @@ export class SquaresTableComponent implements OnInit {
       if(response.value) {
 
         square.statusId = Status.Active;
-        this._squareServices.update(square);
-        
-        Swal.fire({
-          title: 'Plaza activada',
-          icon: 'success'
-        });
+        this._squareServices.update(square).subscribe(
+          data => {
+            Swal.fire({
+              title: 'Plaza activada',
+              icon: 'success'
+            });
+          },
+          error => {
+            console.log(error);
+          }
+        );
       }
     });
   }
 
   edit(square: Square, row: HTMLElement) {
-    this.editEvent.emit({
-      square: square,
-      row: row
-    });
+    let squareSelected = new SquareEmitter(square, row);
+    this.editEvent.emit(squareSelected);
   }
 
   onClickRow(square, row) {
-    this.clickRowEvent.emit({
-      square: square,
-      row: row
-    });
+    let squareSelected = new SquareEmitter(square, row);
+    this.clickRowEvent.emit(squareSelected);
   }
 }

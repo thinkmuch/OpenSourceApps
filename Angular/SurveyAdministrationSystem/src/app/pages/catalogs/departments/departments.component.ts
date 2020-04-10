@@ -100,7 +100,6 @@ export class DepartmentsComponent implements OnInit {
     
     this.restartScreen();
     this.selectRow(row);
-    this.areasSelected = this._areasServices.getAreasByDepartmentId(department.id);
     this._departmentsServices.deparmentEvent.emit(department);
   }
 

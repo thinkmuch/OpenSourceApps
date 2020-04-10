@@ -46,6 +46,8 @@ export class CruiseDetailComponent implements OnInit {
 
   getAllSites() {
     this.loading = true;
+    this.sites = new Array<Site>();
+
     this._cruiseServices.getSitesByCruiseId(this.cruiseSelected).subscribe(
       data => {
         this.sitesByCruise = data;
@@ -76,6 +78,8 @@ export class CruiseDetailComponent implements OnInit {
   }
 
   getAllDepartments() {
+    this.departments = new Array<Department>();
+
     this._departmentServices.getDepartmentsByCruiseId(this.cruiseSelected.cruiseId).subscribe(
       data => {
         this.departmentsByCruise = data;
@@ -99,7 +103,7 @@ export class CruiseDetailComponent implements OnInit {
     if(checked) {
       this._cruiseServices.addSite(this.cruiseSelected, site).subscribe(
         data => {
-          console.log(data);
+          
         },
         error => {
           console.log(error);
@@ -109,7 +113,7 @@ export class CruiseDetailComponent implements OnInit {
     else {
       this._cruiseServices.removeSite(this.cruiseSelected, site).subscribe(
         data => {
-          console.log(data);
+          
         },
         error => {
           console.log(error);
@@ -122,7 +126,7 @@ export class CruiseDetailComponent implements OnInit {
     if(checked) {
       this._cruiseServices.addDepartment(this.cruiseSelected, department).subscribe(
         data => {
-          console.log(data);
+          
         },
         error => {
           console.log(error);
@@ -132,7 +136,7 @@ export class CruiseDetailComponent implements OnInit {
     else {
       this._cruiseServices.removeDepartment(this.cruiseSelected, department).subscribe(
         data => {
-          console.log(data);
+          
         },
         error => {
           console.log(error);

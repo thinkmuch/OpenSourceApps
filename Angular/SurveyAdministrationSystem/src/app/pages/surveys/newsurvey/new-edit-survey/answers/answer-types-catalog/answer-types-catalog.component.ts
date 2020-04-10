@@ -5,7 +5,7 @@ import { Question } from 'src/app/models/question';
 import { AreasServices } from 'src/app/services/areas-services';
 import { Area } from 'src/app/models/area';
 import { SurveyCaptureServices } from 'src/app/services/survey-capture.services';
-import { AnswerType } from 'src/app/enums/class-enum';
+import { AnswerType, SelectArea } from 'src/app/enums/class-enum';
 import { DepartmentsServices } from 'src/app/services/departments.services';
 import { Department } from 'src/app/models/department';
 
@@ -25,10 +25,12 @@ export class AnswerTypesCatalogComponent implements OnInit {
   checkedAcceptNA: boolean;
   checkedForceResponse: boolean;
   justifyAnswerVisible: boolean;
-  areaSelected: Area;
+  areaSelected: Area = new Area();
   departmentSelected: Department;
   departments: Array<Department>;
   selectAreaDisabled: boolean;
+  loadingAreas: boolean = false;
+  areaOption: SelectArea = SelectArea.Default;
 
   @ViewChild("checkPredefinedAnswer", { read: ElementRef }) checkSingeAnswer: ElementRef;
   @ViewChild("checkFreeText", { read: ElementRef }) checkFreeText: ElementRef;
@@ -194,6 +196,8 @@ export class AnswerTypesCatalogComponent implements OnInit {
 
     this._renderer.removeClass(this.selectArea.nativeElement, "btn-secondary");
     this._renderer.addClass(this.selectArea.nativeElement, "btn-info");
+
+    this.areaOption = SelectArea.AreaName;
   }
 
   onSelectDepartment(department: Department) {
@@ -201,11 +205,24 @@ export class AnswerTypesCatalogComponent implements OnInit {
 
     this._renderer.removeClass(this.selectDepartment.nativeElement, "btn-secondary");
     this._renderer.addClass(this.selectDepartment.nativeElement, "btn-info");
-
     this._surveyCaptureServices.setDepartment(this.idQuestionSelected, department);
-    this.areas = this._areasServices.getAreasByDepartmentId(department.departmentId);
+    this.getAreasByDepartmentId(department);
+  }
 
-    this.enableSelectArea();
+  getAreasByDepartmentId(department: Department) {
+    this.loadingAreas = true;
+
+    this._areasServices.getAreasByDepartmentId(department.departmentId).subscribe(
+      data => {
+        this.areas = data;
+        this.loadingAreas = false;
+        this.enableSelectArea();
+      },
+      error => {
+        this.loadingAreas = false;
+        console.log(error);
+      }
+    );
   }
 
   enableSelectArea() {
@@ -213,5 +230,12 @@ export class AnswerTypesCatalogComponent implements OnInit {
     this.areaSelected = new Area();
     this._renderer.removeClass(this.selectArea.nativeElement, "btn-info");
     this._renderer.addClass(this.selectArea.nativeElement, "btn-secondary");
+
+    if(this.areas.length == 0) {
+      this.areaOption = SelectArea.AreasNotExist;
+    }
+    else {
+      this.areaOption = SelectArea.SelectArea;
+    }
   }
 }

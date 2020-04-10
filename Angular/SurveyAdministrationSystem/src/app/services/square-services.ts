@@ -18,11 +18,11 @@ export class SquareServices {
     ) { }
 
     update(square: Square) {
-        
+        return this._http.put("http://10.2.180.10:5999/api/Square", square);
     }
 
     save(name: string) {
-        
+        return this._http.post(`http://10.2.180.10:5999/api/Square?name=${name}`, {});
     }
 
     getAll(): Observable<Array<Square>> {

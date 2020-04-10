@@ -22,8 +22,8 @@ export class AreasServices {
         return this._http.post(`http://10.2.180.10:5999/api/Area?name=${name}`, {});
     }
 
-    getAreasByDepartmentId(departmentId: number) {
-        return this.areas;
+    getAreasByDepartmentId(departmentId: number): Observable<Array<Area>> {
+        return this._http.get<Array<Area>>(`http://10.2.180.10:5999/api/Department/${departmentId}/Areas`);
     }
 
     getAll(): Observable<Array<Area>> {
