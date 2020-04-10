@@ -1,4 +1,4 @@
-<div class="alert alert-warning" role="alert" *ngIf="hotels.length == 0">
+<div class="alert alert-warning" role="alert" *ngIf="squareIdSelected == 0">
   Selecciona una plaza para configurar sus hoteles y sitios
 </div>
 <ul class="nav nav-tabs animated fadeIn faster" id="cruiseDetail" role="tablist" *ngIf="hotels.length > 0">
@@ -14,7 +14,8 @@
     <ul class="list-group">
       <li class="list-group-item pointer animated fadeIn faster" aria-disabled="true" *ngFor="let hotel of hotels">
           <mat-checkbox 
-          (click)="onClickHotel(hotel, !checkHotel.value)"
+          (click)="onClickHotel(hotel, !checkHotel.checked)"
+          [checked]="isHotelContained(hotel)"
           #checkHotel>{{hotel.name}}</mat-checkbox>
       </li>
     </ul>
@@ -23,9 +24,15 @@
     <ul class="list-group">
       <li class="list-group-item pointer animated fadeIn faster" aria-disabled="true" *ngFor="let site of sites">
           <mat-checkbox 
-          (click)="onClickSite(site, !checkSite.value)"
+          (click)="onClickSite(site, !checkSite.checked)"
           #checkSite>{{site.name}}</mat-checkbox>
       </li>
     </ul>
   </div>
+</div>
+<div class="row" *ngIf="loadingHotels">
+  <div class="spinner-border text-primary loadingHotels" style="width: 3rem; height: 3rem;" role="status">
+      <span class="sr-only">Loading...</span>
+  </div>
+  <p class="loadingLegend">Cargando...</p>
 </div>

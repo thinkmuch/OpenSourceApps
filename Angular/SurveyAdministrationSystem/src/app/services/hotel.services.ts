@@ -50,7 +50,7 @@ export class HotelServices {
         return this._http.post(`http://10.2.180.10:5999/api/Hotel?name=${name}`, {});
     }
 
-    getHotelsBySquareId(squareId)  {
-        return new Array<Hotel>();
+    getHotelsBySquareId(squareId: number): Observable<Array<Hotel>>  {
+        return this._http.get<Array<Hotel>>(`http://10.2.180.10:5999/api/Square/${squareId}/Hotels`);
     }
 }

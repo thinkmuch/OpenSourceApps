@@ -12,8 +12,11 @@ import { SitesServices } from 'src/app/services/sites-service';
 })
 export class SquareDetailComponent implements OnInit {
 
-  hotels: Array<Hotel>;
-  sites: Array<Site>;
+  hotels: Array<Hotel> = new Array<Hotel>();
+  hotelsBySquare: Array<Hotel> = new Array<Hotel>();
+  sites: Array<Site> = new Array<Site>();
+  squareIdSelected: number = 0;
+  loadingHotels: boolean = false;
 
   constructor(
     private _squareServices: SquareServices,
@@ -26,9 +29,55 @@ export class SquareDetailComponent implements OnInit {
     this.sites = new Array<Site>();
 
     this._squareServices.squareSelectedEvent.subscribe(squareId => {
-      //this.hotels = this._hotelServices.getAll();
-      //this.sites = this._sitesServices.getAll();
+      this.squareIdSelected = squareId;
+      this.getHotels();
+      this.getAllSites();
     });
+  }
+
+  getAllHotels() {
+    this._hotelServices.getAll().subscribe(
+      data => {
+        this.hotels = data;
+        this.loadingHotels = false;
+      },
+      error => {
+        console.log(error);
+        this.loadingHotels = false;
+      }
+    );
+  }
+
+  getHotels() {
+    this.loadingHotels = true;
+    this.hotelsBySquare = new Array<Hotel>();
+    this.hotels = new Array<Hotel>();
+
+    this._hotelServices.getHotelsBySquareId(this.squareIdSelected).subscribe(
+      data => {
+        this.hotelsBySquare = data;
+        this.getAllHotels();
+      },
+      error => {
+        console.log(error);
+        this.loadingHotels = false;
+      }
+    );
+  }
+
+  isHotelContained(hotel: Hotel) {
+    return ((this.hotelsBySquare.find(h => h.hotelId == hotel.hotelId)) != undefined);
+  }
+
+  getAllSites() {
+    this._sitesServices.getAll().subscribe(
+      data => {
+        this.sites = data;
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 
   onClickSite(site: Site, checked: boolean) {
@@ -40,12 +89,34 @@ export class SquareDetailComponent implements OnInit {
     }
   }
 
+  addHotel(squareId: number, hotelId: number) {
+    this._squareServices.addHotel(squareId, hotelId).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  removeHotel(squareId: number, hotelId: number) {
+    this._squareServices.removeHotel(squareId, hotelId).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
   onClickHotel(hotel: Hotel, checked: boolean) {
     if(checked) {
-      this._squareServices.addHotel(hotel);
+      this.addHotel(this.squareIdSelected, hotel.hotelId);
     }
     else {
-      this._squareServices.removeHotel(hotel);
+      this.removeHotel(this.squareIdSelected, hotel.hotelId);
     }
   }
 }

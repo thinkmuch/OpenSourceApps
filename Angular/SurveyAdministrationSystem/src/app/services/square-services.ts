@@ -10,7 +10,6 @@ import { Observable } from 'rxjs';
 })
 export class SquareServices {
 
-    private squares = new Array<Square>();
     @Output() squareSelectedEvent: EventEmitter<number> = new EventEmitter<number>();
 
     constructor(
@@ -29,12 +28,12 @@ export class SquareServices {
         return this._http.get<Array<Square>>("http://10.2.180.10:5999/api/Square");
     }
 
-    addHotel(hotel: Hotel) {
-
+    addHotel(squareId: number, hotelId: number) {
+        return this._http.post(`http://10.2.180.10:5999/api/Square/${squareId}/Hotel/${hotelId}`, {});
     }
 
-    removeHotel(hotel: Hotel) {
-
+    removeHotel(squareId: number, hotelId: number) {
+        return this._http.delete(`http://10.2.180.10:5999/api/Square/${squareId}/Hotel/${hotelId}`);
     }
 
     addSite(site: Site) {

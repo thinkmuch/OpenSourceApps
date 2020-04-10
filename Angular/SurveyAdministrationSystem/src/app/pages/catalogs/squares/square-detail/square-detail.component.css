@@ -1,0 +1,11 @@
+.loadingHotels {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.loadingLegend{
+    position: absolute;
+    top: 63%;
+    left: 48%;
+}
