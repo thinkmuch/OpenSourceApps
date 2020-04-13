@@ -57,8 +57,8 @@ export class HotelsComponent implements OnInit {
   }
 
   edit($event) {
-    let hotel = $event['hotel'];
-    let row = $event['row'];
+    let hotel = $event['Hotel'];
+    let row = $event['Row'];
 
     this.hotelSelected = JSON.parse(JSON.stringify(hotel));
 
@@ -68,8 +68,8 @@ export class HotelsComponent implements OnInit {
   }
 
   onClickRow($event) {
-    let hotel: Hotel = $event['hotel'];
-    let row: HTMLElement = $event['row'];
+    let hotel: Hotel = $event['Hotel'];
+    let row: HTMLElement = $event['Row'];
 
     this.restartScreen();
     this.selectRow(row);

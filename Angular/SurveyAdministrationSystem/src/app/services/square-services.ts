@@ -1,7 +1,5 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Square } from '../models/square';
-import { Hotel } from '../models/hotel';
-import { Site } from '../models/site';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -28,6 +26,10 @@ export class SquareServices {
         return this._http.get<Array<Square>>("http://10.2.180.10:5999/api/Square");
     }
 
+    getAllActiveSquares(): Observable<Array<Square>> {
+        return this._http.get<Array<Square>>("http://10.2.180.10:5999/api/Square/Active");
+    }
+
     addHotel(squareId: number, hotelId: number) {
         return this._http.post(`http://10.2.180.10:5999/api/Square/${squareId}/Hotel/${hotelId}`, {});
     }
@@ -36,11 +38,11 @@ export class SquareServices {
         return this._http.delete(`http://10.2.180.10:5999/api/Square/${squareId}/Hotel/${hotelId}`);
     }
 
-    addSite(site: Site) {
-        
+    addSite(squareId: number, siteId: number) {
+        return this._http.post(`http://10.2.180.10:5999/api/Square/${squareId}/Site/${siteId}`, {});
     }
 
-    removeSite(site: Site) {
-        
+    removeSite(squareId: number, siteId: number) {
+        return this._http.delete(`http://10.2.180.10:5999/api/Square/${squareId}/Site/${siteId}`);
     }
 }

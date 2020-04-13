@@ -30,9 +30,9 @@
     </ul>
   </div>
 </div>
-<div class="row" *ngIf="loadingHotels">
-  <div class="spinner-border text-primary loadingHotels" style="width: 3rem; height: 3rem;" role="status">
-      <span class="sr-only">Loading...</span>
-  </div>
-  <p class="loadingLegend">Cargando...</p>
-</div>
+<app-loading 
+*ngIf="loadingHotels"
+[topCircle]="50"
+[leftCircle]="50"
+[topLegend]="63"
+[leftLegend]="48"></app-loading>

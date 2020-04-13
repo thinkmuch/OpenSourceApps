@@ -1,0 +1,9 @@
+.loadingLanguages {
+    position: absolute;
+    width: 3rem;
+    height: 3rem;
+}
+
+.loadingLegend {
+    position: absolute;
+}

@@ -81,12 +81,35 @@ export class SquareDetailComponent implements OnInit {
   }
 
   onClickSite(site: Site, checked: boolean) {
+
     if(checked) {
-      this._squareServices.addSite(site);
+      this.addSite(this.squareIdSelected, site.siteId);
     }
     else {
-      this._squareServices.removeSite(site);
+      this.removeSite(this.squareIdSelected, site.siteId);
     }
+  }
+
+  removeSite(squareId: number, siteId: number) {
+    this._squareServices.removeSite(squareId, siteId).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  addSite(squareId: number, siteId: number) {
+    this._squareServices.addSite(squareId, siteId).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   addHotel(squareId: number, hotelId: number) {

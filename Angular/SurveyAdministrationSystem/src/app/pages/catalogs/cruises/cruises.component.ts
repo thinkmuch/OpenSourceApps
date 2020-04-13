@@ -90,8 +90,8 @@ export class CruisesComponent implements OnInit {
   }
 
   onClickRow($event) {
-    let row = $event['row'];
-    let cruise = $event['cruise'];
+    let row = $event['Row'];
+    let cruise = $event['Cruise'];
 
     this.restartScreen();
     this.selectRow(row);
@@ -100,8 +100,8 @@ export class CruisesComponent implements OnInit {
   }
 
   edit($event) {
-    let cruise = $event['cruise'];
-    let row = $event['row'];
+    let cruise = $event['Cruise'];
+    let row = $event['Row'];
 
     this.cruiseDetailHidden = true;
     this.cruiseSelected = JSON.parse(JSON.stringify(cruise));

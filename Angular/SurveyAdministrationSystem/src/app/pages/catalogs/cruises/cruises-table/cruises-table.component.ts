@@ -3,6 +3,7 @@ import { Cruise } from 'src/app/models/cruise';
 import Swal from 'sweetalert2';
 import { CruisesService } from 'src/app/services/cruises.service';
 import { Status } from 'src/app/enums/class-enum';
+import { CruiseEmitter } from 'src/app/models/emitters/cruise-emitter';
 
 @Component({
   selector: 'app-cruises-table',
@@ -12,8 +13,8 @@ import { Status } from 'src/app/enums/class-enum';
 export class CruisesTableComponent implements OnInit {
 
   @Input("cruisesInput") cruises: Array<Cruise>;
-  @Output() editEvent: EventEmitter<{ cruise: Cruise, row: HTMLElement }> = new EventEmitter<{cruise: Cruise, row: HTMLElement}>();
-  @Output() clickRowEvent: EventEmitter<{ cruise: Cruise, row: HTMLElement }> = new EventEmitter<{cruise: Cruise, row: HTMLElement}>();
+  @Output() editEvent: EventEmitter<CruiseEmitter> = new EventEmitter<CruiseEmitter>();
+  @Output() clickRowEvent: EventEmitter<CruiseEmitter> = new EventEmitter<CruiseEmitter>();
 
   constructor(
     private _cruisesServices: CruisesService
@@ -76,16 +77,12 @@ export class CruisesTableComponent implements OnInit {
   }
 
   edit(cruise: Cruise, row: HTMLElement) {
-    this.editEvent.emit({ 
-      cruise: cruise, 
-      row: row
-    });
+    let cruiseSelected = new CruiseEmitter(cruise, row);
+    this.editEvent.emit(cruiseSelected);
   }
 
   onClickRow(cruise: Cruise, row: HTMLElement) {
-    this.clickRowEvent.emit({
-      cruise: cruise,
-      row: row
-    });
+    let cruiseSelected = new CruiseEmitter(cruise, row);
+    this.clickRowEvent.emit(cruiseSelected);
   }
 }

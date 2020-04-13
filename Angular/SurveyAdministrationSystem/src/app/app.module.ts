@@ -60,6 +60,7 @@ import { ReportesComponent } from './pages/reportes/reportes.component';
 import { ConfigOptionsComponent } from './pages/surveys/newsurvey/new-edit-survey/answers/config-options/config-options.component';
 import { SquareHotelCatalogComponent } from './pages/surveys/newsurvey/new-edit-survey/footer/square-hotel-catalog/square-hotel-catalog.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoadingComponent } from './shared/loading/loading.component';
 
 @NgModule({
   entryComponents: [
@@ -113,7 +114,8 @@ import { HttpClientModule } from '@angular/common/http';
     AnswersTableComponent,
     ReportesComponent,
     ConfigOptionsComponent,
-    SquareHotelCatalogComponent
+    SquareHotelCatalogComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

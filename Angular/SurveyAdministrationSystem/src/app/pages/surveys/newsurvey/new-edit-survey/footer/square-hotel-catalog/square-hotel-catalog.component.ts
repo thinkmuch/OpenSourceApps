@@ -19,6 +19,7 @@ export class SquareHotelCatalogComponent implements OnInit {
   hotels: Array<Hotel>;
   cruises: Array<Cruise>;
   squareSelected: Square;
+  loadingSquares: boolean = false;
   
   constructor(
     private _squareServices: SquareServices,
@@ -30,13 +31,30 @@ export class SquareHotelCatalogComponent implements OnInit {
 
   ngOnInit() {
     this.hotels = new Array<Hotel>();
-    //this.squares = this._squareServices.getAllSquares();
+    this.getAllSquares();
     //this.cruises = this._cruiseServices.getAll();
+  }
+
+  getAllSquares() {
+    this._squareServices.getAllActiveSquares().subscribe(
+      data => {
+        this.squares = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   onClickSquare(square: Square) {
     this.squareSelected = square;
-    //this.hotels = this._hotelServices.getHotelsBySquareId(square.id);
+    this._hotelServices.getHotelsBySquareId(square.squareId).subscribe(
+      data => {
+        this.hotels = data;
+      },
+      error => {
+        console.log(error);
+      });
   }
 
   close() {
