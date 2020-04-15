@@ -20,6 +20,7 @@ export class SquareHotelCatalogComponent implements OnInit {
   cruises: Array<Cruise>;
   squareSelected: Square;
   loadingSquares: boolean = false;
+  loadinghotels: boolean = false;
   
   constructor(
     private _squareServices: SquareServices,
@@ -36,24 +37,33 @@ export class SquareHotelCatalogComponent implements OnInit {
   }
 
   getAllSquares() {
+    this.loadingSquares = true;
+
     this._squareServices.getAllActiveSquares().subscribe(
       data => {
         this.squares = data;
+        this.loadingSquares = false;
       },
       error => {
         console.log(error);
+        this.loadingSquares = false;
       }
     );
   }
 
   onClickSquare(square: Square) {
     this.squareSelected = square;
+    this.loadinghotels = true;
+    this.hotels = new Array<Hotel>();
+
     this._hotelServices.getHotelsBySquareId(square.squareId).subscribe(
       data => {
         this.hotels = data;
+        this.loadinghotels = false;
       },
       error => {
         console.log(error);
+        this.loadinghotels = false;
       });
   }
 
