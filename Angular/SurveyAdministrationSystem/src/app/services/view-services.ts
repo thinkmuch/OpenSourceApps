@@ -45,6 +45,17 @@ export class ViewServices {
   get SquaresControl() {
     return this._squaresControl.nativeElement;
   }
+
+  isHotelsCaptured(): boolean {
+    let hotels = this._surveyCaptureServices.hotels;
+
+    if(hotels == undefined || hotels.length == 0) {
+      this._renderer.addClass(this._squaresControl.nativeElement, Alerts.Danger);
+      return false;
+    }
+
+    return true;
+  }
   
   isAllQuestionCaptured(): boolean {
     let isValidSurvey = true;

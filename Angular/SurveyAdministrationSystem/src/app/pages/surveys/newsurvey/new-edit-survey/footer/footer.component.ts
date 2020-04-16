@@ -39,6 +39,10 @@ export class FooterComponent implements OnInit, AfterViewInit {
     }
   }
 
+  ngafterViewInit() {
+    this._viewServices.squaresControl = this.suqaresControl;
+  }
+
   getAllLanguages() {
     this.loadingLanguages = true;
 

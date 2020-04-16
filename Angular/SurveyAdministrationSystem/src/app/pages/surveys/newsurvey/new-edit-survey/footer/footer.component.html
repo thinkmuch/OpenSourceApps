@@ -7,6 +7,9 @@
             <button 
             class="btn btn btn-secondary fz-14px btn-sm mr-10px" 
             (click)="onClickConfigSquareHotel()"
+            [ngClass]="{
+                'btn-info' : _surveyCaprureServices.hotels.length > 0
+            }"
             #squaresAndHotels>
                 <i class="fas fa-wrench"></i>
                 Configurar plazas y hoteles

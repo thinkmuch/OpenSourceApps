@@ -36,13 +36,14 @@ export class ControlButtonsComponent implements OnInit {
     let allQuestionCaptured: boolean = this._viewServices.isAllQuestionCaptured();
     let languageSelected: boolean = this._viewServices.isLanguageSelected();
     let surveyNameCaptured: boolean = this._viewServices.isSurveyNameCaptured();
+    let isHotelsCaptures: boolean = this._viewServices.isHotelsCaptured();
 
     if(allQuestionCaptured && 
       languageSelected && 
-      surveyNameCaptured) {
+      surveyNameCaptured &&
+      isHotelsCaptures) {
 
       let newSurvey: Survey = this._surveyCaptureServices.generateNewSurvey();
-      console.log(newSurvey);
       // this._surveyServices.saveNewSurvey(newSurvey);
 
       Swal.fire({
