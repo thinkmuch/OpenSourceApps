@@ -15,34 +15,34 @@ export class SquareServices {
     ) { }
 
     update(square: Square) {
-        return this._http.put("http://10.2.180.10:5999/api/Square", square);
+        return this._http.put("http://10.2.180.11:5999/api/Square", square);
     }
 
     save(name: string) {
-        return this._http.post(`http://10.2.180.10:5999/api/Square?name=${name}`, {});
+        return this._http.post(`http://10.2.180.11:5999/api/Square?name=${name}`, {});
     }
 
     getAll(): Observable<Array<Square>> {
-        return this._http.get<Array<Square>>("http://10.2.180.10:5999/api/Square");
+        return this._http.get<Array<Square>>("http://10.2.180.11:5999/api/Square");
     }
 
     getAllActiveSquares(): Observable<Array<Square>> {
-        return this._http.get<Array<Square>>("http://10.2.180.10:5999/api/Square/Active");
+        return this._http.get<Array<Square>>("http://10.2.180.11:5999/api/Square/Active");
     }
 
     addHotel(squareId: number, hotelId: number) {
-        return this._http.post(`http://10.2.180.10:5999/api/Square/${squareId}/Hotel/${hotelId}`, {});
+        return this._http.post(`http://10.2.180.11:5999/api/Square/${squareId}/Hotel/${hotelId}`, {});
     }
 
     removeHotel(squareId: number, hotelId: number) {
-        return this._http.delete(`http://10.2.180.10:5999/api/Square/${squareId}/Hotel/${hotelId}`);
+        return this._http.delete(`http://10.2.180.11:5999/api/Square/${squareId}/Hotel/${hotelId}`);
     }
 
     addSite(squareId: number, siteId: number) {
-        return this._http.post(`http://10.2.180.10:5999/api/Square/${squareId}/Site/${siteId}`, {});
+        return this._http.post(`http://10.2.180.11:5999/api/Square/${squareId}/Site/${siteId}`, {});
     }
 
     removeSite(squareId: number, siteId: number) {
-        return this._http.delete(`http://10.2.180.10:5999/api/Square/${squareId}/Site/${siteId}`);
+        return this._http.delete(`http://10.2.180.11:5999/api/Square/${squareId}/Site/${siteId}`);
     }
 }

@@ -29,7 +29,7 @@
             <div class="dropdown">
               <button class="btn btn-info dropdown-toggle w-300px" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span *ngIf="this.languageSelected == undefined">Seleccione el idioma</span>
-                <span *ngIf="this.languageSelected != undefined && this.languageSelected.id > 0">{{this.languageSelected.name}}</span>
+                <span *ngIf="this.languageSelected != undefined && this.languageSelected.languageId > 0">{{this.languageSelected.name}}</span>
               </button>
               <div class="dropdown-menu w-300px" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item pointer" *ngFor="let language of languages" (click)="onSelectLanguage(language)">

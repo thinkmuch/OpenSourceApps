@@ -33,7 +33,7 @@ export class SquareHotelCatalogComponent implements OnInit {
   ngOnInit() {
     this.hotels = new Array<Hotel>();
     this.getAllSquares();
-    //this.cruises = this._cruiseServices.getAll();
+    this.getAllCruises();
   }
 
   getAllSquares() {
@@ -47,6 +47,17 @@ export class SquareHotelCatalogComponent implements OnInit {
       error => {
         console.log(error);
         this.loadingSquares = false;
+      }
+    );
+  }
+
+  getAllCruises() {
+    this._cruiseServices.getAllActiveCruises().subscribe(
+      data => {
+        this.cruises = data;
+      },
+      error => {
+        console.log(error);
       }
     );
   }

@@ -22,12 +22,14 @@
           (click)="onClickSquare(square)">{{square.name}}</a>
         </div>
       </div>
+
       <app-loading 
         *ngIf="loadingSquares"
         [topCircle]="35"
         [leftCircle]="25"
         [topLegend]="43"
         [leftLegend]="24"></app-loading>
+
       <div class="col-8" id="hotels-container">
         <ul class="list-group animated fadeIn faster" id="hotelsList" *ngIf="hotels.length > 0">
           <li class="list-group-item animated fadeIn faster" *ngFor="let hotel of hotels">
@@ -42,13 +44,21 @@
             #checkHotel>{{hotel.name}}</mat-checkbox>
           </li>
         </ul>
+        <div
+        class="alert alert-warning animated fadeIn faster"
+        role="alert"
+        *ngIf="(squareSelected) && hotels.length == 0 && !loadingSquares && !loadinghotels">
+          No hay hoteles registrados
+        </div>
       </div>
+
       <app-loading 
         *ngIf="loadinghotels"
         [topCircle]="35"
         [leftCircle]="58"
         [topLegend]="43"
         [leftLegend]="57"></app-loading>
+
     </div>
   </div>
   <div class="tab-pane fade" id="cruises" role="tabpanel" aria-labelledby="cruises-tab">

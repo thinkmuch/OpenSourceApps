@@ -15,22 +15,22 @@ export class AreasServices {
     ) { }
 
     update(area: Area) {
-        return this._http.put("http://10.2.180.10:5999/api/Area", area);
+        return this._http.put("http://10.2.180.11:5999/api/Area", area);
     }
 
     save(name: string) {
-        return this._http.post(`http://10.2.180.10:5999/api/Area?name=${name}`, {});
+        return this._http.post(`http://10.2.180.11:5999/api/Area?name=${name}`, {});
     }
 
     getAreasByDepartmentId(departmentId: number): Observable<Array<Area>> {
-        return this._http.get<Array<Area>>(`http://10.2.180.10:5999/api/Department/${departmentId}/Areas`);
+        return this._http.get<Array<Area>>(`http://10.2.180.11:5999/api/Department/${departmentId}/Areas`);
     }
 
     getAll(): Observable<Array<Area>> {
-        return this._http.get<Array<Area>>("http://10.2.180.10:5999/api/Area");
+        return this._http.get<Array<Area>>("http://10.2.180.11:5999/api/Area");
     }
 
     remove(area: Area) {
-        return this._http.delete(`http://10.2.180.10:5999/api/Area/${area.areaId}`);
+        return this._http.delete(`http://10.2.180.11:5999/api/Area/${area.areaId}`);
     }
 }

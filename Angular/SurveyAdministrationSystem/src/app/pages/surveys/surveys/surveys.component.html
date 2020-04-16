@@ -11,6 +11,6 @@
 <div class="alert alert-warning text-center" role="alert" *ngIf="surveys.length == 0">
   No hay encuestas capturadas
 </div>
-<div *ngFor="let survey of surveys" class="animated fadeIn faster">
+<ng-container *ngFor="let survey of surveys">
   <app-surveysummary class="pointer" [summaryInput] = "survey"></app-surveysummary>
-</div>
+</ng-container>

@@ -16,7 +16,7 @@ export class DepartmentsServices {
     ) {}
 
     addArea(area: Area, departmentId: number) {
-        this._http.post(`http://10.2.180.10:5999/api/Department/${departmentId}/Area/${area.areaId}`, {}).subscribe(
+        this._http.post(`http://10.2.180.11:5999/api/Department/${departmentId}/Area/${area.areaId}`, {}).subscribe(
             data => {
                 
             },
@@ -27,11 +27,11 @@ export class DepartmentsServices {
     }
 
     getDepartmentsByHotelId(hotelId: number): Observable<Array<Department>> {
-        return this._http.get<Array<Department>>(`http://10.2.180.10:5999/api/Hotel/${hotelId}/Departments`);
+        return this._http.get<Array<Department>>(`http://10.2.180.11:5999/api/Hotel/${hotelId}/Departments`);
     }
 
     removeArea(area: Area, departmentId: number) {
-        this._http.delete(`http://10.2.180.10:5999/api/Department/${departmentId}/Area/${area.areaId}`).subscribe(
+        this._http.delete(`http://10.2.180.11:5999/api/Department/${departmentId}/Area/${area.areaId}`).subscribe(
             data => {
                 
             },
@@ -42,30 +42,30 @@ export class DepartmentsServices {
     }
 
     update(department: Department) {
-        return this._http.put("http://10.2.180.10:5999/api/Department", department);
+        return this._http.put("http://10.2.180.11:5999/api/Department", department);
     }
 
     save(name: string) {
-        return this._http.post(`http://10.2.180.10:5999/api/Department?name=${name}`, {});
+        return this._http.post(`http://10.2.180.11:5999/api/Department?name=${name}`, {});
     }
 
     remove(department: Department) {
-        return this._http.delete(`http://10.2.180.10:5999/api/Department/${department.departmentId}`);
+        return this._http.delete(`http://10.2.180.11:5999/api/Department/${department.departmentId}`);
     }
 
     getAll(): Observable<Array<Department>> {
-        return this._http.get<Array<Department>>("http://10.2.180.10:5999/api/Department");
+        return this._http.get<Array<Department>>("http://10.2.180.11:5999/api/Department");
     }
 
     getAllActiveDepartments(): Observable<Array<Department>> {
-        return this._http.get<Array<Department>>("http://10.2.180.10:5999/api/Department/Active");
+        return this._http.get<Array<Department>>("http://10.2.180.11:5999/api/Department/Active");
     }
 
     getAreasByDepartmentId(department: Department): Observable<Array<Area>> {
-        return this._http.get<Array<Area>>(`http://10.2.180.10:5999/api/Department/${department.departmentId}/Areas`);
+        return this._http.get<Array<Area>>(`http://10.2.180.11:5999/api/Department/${department.departmentId}/Areas`);
     }
 
     getDepartmentsByCruiseId(cruiseId: number): Observable<Array<Department>> {
-        return this._http.get<Array<Department>>(`http://10.2.180.10:5999/api/Department/Cruise/${cruiseId}`);
+        return this._http.get<Array<Department>>(`http://10.2.180.11:5999/api/Department/Cruise/${cruiseId}`);
     }
 }

@@ -13,18 +13,22 @@ export class SitesServices {
   ) {}
 
   update(site: Site) {
-    return this._http.put("http://10.2.180.10:5999/api/Site", site);
+    return this._http.put("http://10.2.180.11:5999/api/Site", site);
   }
 
   save(name: string) {
-    return this._http.post(`http://10.2.180.10:5999/api/Site?name=${name}`, {});
+    return this._http.post(`http://10.2.180.11:5999/api/Site?name=${name}`, {});
   }
 
-  getAll() : Observable<Array<Site>> {
-    return this._http.get<Array<Site>>("http://10.2.180.10:5999/api/Site");
+  getAll(): Observable<Array<Site>> {
+    return this._http.get<Array<Site>>("http://10.2.180.11:5999/api/Site");
+  }
+
+  getAllActiveSites(): Observable<Array<Site>> {
+    return this._http.get<Array<Site>>("http://10.2.180.11:5999/api/Site");
   }
 
   remove(site: Site) {
-    return this._http.delete(`http://10.2.180.10:5999/api/Site/${site.siteId}`);
+    return this._http.delete(`http://10.2.180.11:5999/api/Site/${site.siteId}`);
   }
 }

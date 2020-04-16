@@ -21,7 +21,7 @@
                     [ngClass]="{
                         'red-danger': _surveyCaptureServices.questions[index - 1] &&
                                       _surveyCaptureServices.questions[index - 1].site &&
-                                      _surveyCaptureServices.questions[index - 1].site.id > 0
+                                      _surveyCaptureServices.questions[index - 1].site.siteId > 0
                     }"
                     id="iconSite"
                     (click)="openCatalogSitesModal(index)"></i>

@@ -1,5 +1,5 @@
 <div class="row">
-  <input class="form-control" type="text" value="Buscar">
+  <input class="form-control" type="text" value="Buscar" *ngIf="!loadingSites">
 </div>
 <div class="row">
   <div class="list-group w-100">
@@ -7,11 +7,22 @@
     class="list-group-item list-group-item-action" 
     *ngFor="let site of sites"
     id="Site_{{site.siteId}}"
-    (click)="selectSite(site)">{{site.name}}</a>
+    (click)="selectSite(site)"
+    [ngClass]="{ 
+      active: siteSelected && site.siteId == siteSelected.siteId
+    } ">{{site.name}}</a>
   </div>
+
+  <app-loading 
+  *ngIf="loadingSites"
+  [topCircle]="45"
+  [leftCircle]="50"
+  [topLegend]="52"
+  [leftLegend]="49"></app-loading>
+
 </div>
 <br>
-<div class="container text-right">
+<div class="container text-right" *ngIf="!loadingSites">
   <button type="button" class="btn btn-primary" id="btnAccept" (click)="close(true)">Aceptar</button>
   <button type="button" class="btn btn-secondary" (click)="close(false)">Cancelar</button>
 </div>

@@ -21,8 +21,8 @@ export class QuestionComponent implements OnInit, AfterViewInit {
   @ViewChild("inputText", { read: ElementRef }) inputText: ElementRef;
   @ViewChild("rowQuestion", { read: ElementRef}) rowQuestion: ElementRef;
 
-  public answer: Answer;
-  public showSitesCatalog: boolean;
+  answer: Answer;
+  showSitesCatalog: boolean;
   selected: boolean;
 
   constructor(
@@ -70,6 +70,9 @@ export class QuestionComponent implements OnInit, AfterViewInit {
   }
 
   openCatalogSitesModal(idQuestion: number) {
+
+    // ¿Ya seleccionó hotel y plaza?
+
     this._matDialog.open(SitesCatalogModalComponent, {
       width: '800px',
       data: { idQuestion: idQuestion}

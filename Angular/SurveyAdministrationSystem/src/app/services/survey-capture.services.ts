@@ -18,16 +18,14 @@ import { Cruise } from '../models/cruise';
 export class SurveyCaptureServices
 {
     language: Language;
-    hotels: Array<{ squareId: number, hotelId: number }>;
+    hotels: Array<{ squareId: number, hotelId: number }> = new Array<{ squareId: number, hotelId: number }>();
     cruises: Array<Cruise>  = new Array<Cruise>();
     questions: Array<Question> = new Array<Question>();
     private answers: Array<Answer> = new Array<Answer>();
     nameSurvey: string;
     @Output() rowSelected: EventEmitter<number> = new EventEmitter<number>();
 
-    constructor() {
-        this.hotels = new Array<{ squareId: number, hotelId: number }>();
-    }
+    constructor() { }
 
     initialize() {
         this.language = new Language();
@@ -150,11 +148,15 @@ export class SurveyCaptureServices
     }
 
     addHotel(square: Square, hotel: Hotel) {
-        
+        this.hotels.push({
+            squareId: square.squareId,
+            hotelId: hotel.hotelId
+        });
     }
 
     removeHotel(square: Square, hotel: Hotel) {
-       
+       let index = this.hotels.findIndex(h => h.squareId == square.squareId && h.hotelId == hotel.hotelId);
+       this.hotels.splice(index, 1);
     }
 
     removeAllCruises() {

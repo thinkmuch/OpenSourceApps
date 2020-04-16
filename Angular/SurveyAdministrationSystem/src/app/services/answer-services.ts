@@ -9,10 +9,10 @@ import { AnswerOption_2 } from '../models/answer-option_2';
 })
 export class AnswerServices {
 
-    public answers_2: Array<Answer_2>;
-    public answers: Array<Answer>;
-    public answerSelected: EventEmitter<number>;
-    public showOptions: EventEmitter<boolean>;
+    answers_2: Array<Answer_2>;
+    answers: Array<Answer>;
+    answerSelected: EventEmitter<number>;
+    showOptions: EventEmitter<boolean>;
 
     constructor() {
         this.answers = new Array<Answer>();

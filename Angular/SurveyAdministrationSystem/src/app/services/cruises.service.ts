@@ -19,34 +19,38 @@ export class CruisesService {
   }
 
   getAll(): Observable<Array<Cruise>> {
-    return this._http.get<Array<Cruise>>("http://10.2.180.10:5999/api/Cruise");
+    return this._http.get<Array<Cruise>>("http://10.2.180.11:5999/api/Cruise");
+  }
+
+  getAllActiveCruises(): Observable<Array<Cruise>> {
+    return this._http.get<Array<Cruise>>("http://10.2.180.11:5999/api/Cruise/Active");
   }
 
   addSite(cruise: Cruise, site: Site) {
-    return this._http.post(`http://10.2.180.10:5999/api/Cruise/${cruise.cruiseId}/Site/${site.siteId}`, {});
+    return this._http.post(`http://10.2.180.11:5999/api/Cruise/${cruise.cruiseId}/Site/${site.siteId}`, {});
   }
 
   removeSite(cruise: Cruise, site: Site) {
-    return this._http.delete(`http://10.2.180.10:5999/api/Cruise/${cruise.cruiseId}/Site/${site.siteId}`);
+    return this._http.delete(`http://10.2.180.11:5999/api/Cruise/${cruise.cruiseId}/Site/${site.siteId}`);
   }
 
   getSitesByCruiseId(cruise: Cruise): Observable<Array<Site>> {
-    return this._http.get<Array<Site>>(`http://10.2.180.10:5999/api/Cruise/${cruise.cruiseId}/Sites`);
+    return this._http.get<Array<Site>>(`http://10.2.180.11:5999/api/Cruise/${cruise.cruiseId}/Sites`);
   }
 
   addDepartment(cruise: Cruise, department: Department) {
-    return this._http.post(`http://10.2.180.10:5999/api/Cruise/${cruise.cruiseId}/Department/${department.departmentId}`, {});
+    return this._http.post(`http://10.2.180.11:5999/api/Cruise/${cruise.cruiseId}/Department/${department.departmentId}`, {});
   }
 
   removeDepartment(cruise: Cruise, department: Department) {
-    return this._http.delete(`http://10.2.180.10:5999/api/Cruise/${cruise.cruiseId}/Department/${department.departmentId}`);
+    return this._http.delete(`http://10.2.180.11:5999/api/Cruise/${cruise.cruiseId}/Department/${department.departmentId}`);
   }
 
   update(cruise: Cruise) {
-    return this._http.put("http://10.2.180.10:5999/api/Cruise", cruise);
+    return this._http.put("http://10.2.180.11:5999/api/Cruise", cruise);
   }
 
   save(name: string) {
-    return this._http.post(`http://10.2.180.10:5999/api/Cruise?name=${name}`, {});
+    return this._http.post(`http://10.2.180.11:5999/api/Cruise?name=${name}`, {});
   }
 }

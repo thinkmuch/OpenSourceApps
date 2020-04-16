@@ -1,6 +1,6 @@
 <div class="form-check">
   <div *ngIf="answerInput && answerInput.answerOptions" class="animated fadeIn faster">
-    <div class="row animated fadeIn faster" *ngFor="let option of answerInput.answerOptions">
+    <div class="row" *ngFor="let option of answerInput.answerOptions">
       <mat-radio-group name="singleAnswerOptions">
         <mat-radio-button name="singleAnswerOption" value="option.id">{{option.text}}</mat-radio-button>
       </mat-radio-group>

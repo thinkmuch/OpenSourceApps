@@ -17,7 +17,7 @@ export class HotelServices {
      }
 
     addDepartment(hotelId: number, departmentId: number) {
-        return this._http.post(`http://10.2.180.10:5999/api/Hotel/${hotelId}/Department/${departmentId}`, {}).subscribe(
+        return this._http.post(`http://10.2.180.11:5999/api/Hotel/${hotelId}/Department/${departmentId}`, {}).subscribe(
             data => {
                 console.log(data);
             },
@@ -28,7 +28,7 @@ export class HotelServices {
     }
 
     removeDepartment(hotelId: number, departmentId: number) {
-        return this._http.delete(`http://10.2.180.10:5999/api/Hotel/${hotelId}/Department/${departmentId}`).subscribe(
+        return this._http.delete(`http://10.2.180.11:5999/api/Hotel/${hotelId}/Department/${departmentId}`).subscribe(
             data => {
                 console.log(data);
             },
@@ -39,18 +39,18 @@ export class HotelServices {
     }
 
     getAll(): Observable<Array<Hotel>> {
-        return this._http.get<Array<Hotel>>("http://10.2.180.10:5999/api/Hotel");
+        return this._http.get<Array<Hotel>>("http://10.2.180.11:5999/api/Hotel");
     }
 
     update(hotel: Hotel) {
-        return this._http.put("http://10.2.180.10:5999/api/Hotel", hotel);
+        return this._http.put("http://10.2.180.11:5999/api/Hotel", hotel);
     }
 
     save(name: string) {
-        return this._http.post(`http://10.2.180.10:5999/api/Hotel?name=${name}`, {});
+        return this._http.post(`http://10.2.180.11:5999/api/Hotel?name=${name}`, {});
     }
 
     getHotelsBySquareId(squareId: number): Observable<Array<Hotel>>  {
-        return this._http.get<Array<Hotel>>(`http://10.2.180.10:5999/api/Square/${squareId}/Hotels`);
+        return this._http.get<Array<Hotel>>(`http://10.2.180.11:5999/api/Square/${squareId}/Hotels`);
     }
 }

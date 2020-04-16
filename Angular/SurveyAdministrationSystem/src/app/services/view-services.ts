@@ -7,7 +7,7 @@ import { SurveyCaptureServices } from './survey-capture.services';
 })
 export class ViewServices {
 
-  public _questionControls: Array<ElementRef> = new Array<ElementRef>();
+  _questionControls: Array<ElementRef> = new Array<ElementRef>();
   private _languageControl: ElementRef;
   private _surveyNameControl: ElementRef;
   private _squaresControl: ElementRef;

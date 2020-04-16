@@ -1,7 +1,7 @@
 <div class="btn-group minw-150px mr-15px">
   <button class="btn btn-info btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <span *ngIf="squareSelected == undefined">Plaza</span>
-    <span *ngIf="squareSelected && squareSelected.id > 0">{{squareSelected.name}}</span>
+    <span *ngIf="squareSelected && squareSelected.squareId > 0">{{squareSelected.name}}</span>
   </button>
   <div class="dropdown-menu">
     <a class="dropdown-item pointer" *ngFor="let square of squares" (click)="onClickSquare(square)">{{square.name}}</a>
@@ -10,7 +10,7 @@
 <div class="btn-group minw-150px mr-15px">
   <button class="btn btn-info btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <span *ngIf="hotelSelected == undefined">Hotel</span>
-    <span *ngIf="hotelSelected && hotelSelected.id > 0">{{hotelSelected.name}}</span>
+    <span *ngIf="hotelSelected && hotelSelected.hotelId > 0">{{hotelSelected.name}}</span>
   </button>
   <div class="dropdown-menu">
     <a class="dropdown-item pointer" *ngFor="let hotel of hotels" (click)="onClickHotel(hotel)">{{hotel.name}}</a>

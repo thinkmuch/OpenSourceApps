@@ -15,22 +15,22 @@ export class LanguageServices {
     ) { }
 
     getAll(): Observable<Array<Language>> {
-        return this._http.get<Array<Language>>("http://10.2.180.10:5999/api/Language");
+        return this._http.get<Array<Language>>("http://10.2.180.11:5999/api/Language");
     }
 
     getAllActiveLanguages(): Observable<Array<Language>> {
-        return this._http.get<Array<Language>>("http://10.2.180.10:5999/api/Language/Active");
+        return this._http.get<Array<Language>>("http://10.2.180.11:5999/api/Language/Active");
     }
 
     update(language: Language) {
-       return this._http.put("http://10.2.180.10:5999/api/Language", language);
+       return this._http.put("http://10.2.180.11:5999/api/Language", language);
     }
 
     save(name: string) {
-        return this._http.post(`http://10.2.180.10:5999/api/Language?name=${name}`, {});
+        return this._http.post(`http://10.2.180.11:5999/api/Language?name=${name}`, {});
     }
 
     delete(languageId: number) {
-        return this._http.delete(`http://10.2.180.10:5999/api/Language/${languageId}`);
+        return this._http.delete(`http://10.2.180.11:5999/api/Language/${languageId}`);
     }
 }

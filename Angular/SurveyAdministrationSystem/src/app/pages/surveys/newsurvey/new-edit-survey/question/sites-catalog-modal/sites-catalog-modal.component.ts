@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Inject, AfterViewInit, Renderer2 } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Site } from 'src/app/models/site';
 import { SitesServices } from 'src/app/services/sites-service';
@@ -11,8 +11,9 @@ import { SurveyCaptureServices } from 'src/app/services/survey-capture.services'
 })
 export class SitesCatalogModalComponent implements OnInit, AfterViewInit {
 
-  public sites: Array<Site>;
-  public siteSelected: Site;
+  sites: Array<Site>;
+  siteSelected: Site = new Site();
+  loadingSites: boolean = false;
   private idQuestion: number;
 
   constructor(
@@ -22,20 +23,31 @@ export class SitesCatalogModalComponent implements OnInit, AfterViewInit {
     public dialogRef: MatDialogRef<SitesCatalogModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { 
-    this.siteSelected = new Site();
-    //this.sites = this._sitesServices.getAll();
     this.idQuestion = data["idQuestion"];
   }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    this.getSites();
+    this.siteSelected = this._surveyCaptureServices.getSite(this.idQuestion);
+  }
 
   ngAfterViewInit() {
-    let site = this._surveyCaptureServices.getSite(this.idQuestion);
+    
+  }
 
-    if(site != undefined && site.siteId > 0) {
-      this.selectSite(site, true);
-      document.getElementById(`Site_${site.siteId}`).scrollIntoView();
-    }
+  getSites() {
+    this.loadingSites = true;
+
+    this._sitesServices.getAllActiveSites().subscribe(
+      data => {
+        this.sites = data;
+        this.loadingSites = false;
+      },
+      error => {
+        console.log(error);
+        this.loadingSites = false;
+      }
+    );
   }
 
   close(accept: boolean) {
@@ -45,7 +57,7 @@ export class SitesCatalogModalComponent implements OnInit, AfterViewInit {
     this._matDialog.closeAll();
   }
 
-  selectSite(site: Site, checked: boolean) {
+  selectSite(site: Site) {
     let currentSelectedRow = document.getElementsByClassName("active")[0];
 
     if(currentSelectedRow != undefined &&

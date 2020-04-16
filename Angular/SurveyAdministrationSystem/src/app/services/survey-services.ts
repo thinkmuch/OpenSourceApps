@@ -10,7 +10,7 @@ import { QuestionSummary } from '../models/question-summary';
 export class SurveyServices
 {
     private surveys = new Array<SurveySummary>();
-    public fullSurveys = new Array<Survey>();
+    fullSurveys = new Array<Survey>();
     private questionsByLanguage: Array<QuestionsByLanguage> = new Array<QuestionsByLanguage>();
     @Output('questionsSummaryEmmiter') questionsSummary: EventEmitter<Array<QuestionSummary>>;
 

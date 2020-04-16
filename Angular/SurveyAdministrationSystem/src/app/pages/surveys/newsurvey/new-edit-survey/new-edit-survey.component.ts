@@ -17,7 +17,7 @@ export class NewEditSurveyComponent implements OnInit, AfterViewInit, OnDestroy 
   isPredefinedChecked: boolean;
   questions: Array<Question>;
   private surveyId: number;
-  public isNewSurvey: boolean;
+  isNewSurvey: boolean;
   @ViewChild("surveyName", { read: ElementRef }) surveyName: ElementRef;
 
   constructor(
