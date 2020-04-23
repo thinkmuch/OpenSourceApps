@@ -13,18 +13,10 @@ import { ControlButtonsComponent } from './pages/surveys/newsurvey/new-edit-surv
 import { QuestionComponent } from './pages/surveys/newsurvey/new-edit-survey/question/question.component';  
 import { AnswerTypesCatalogComponent } from './pages/surveys/newsurvey/new-edit-survey/answers/answer-types-catalog/answer-types-catalog.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MatRadioModule } from '@angular/material/radio';
 import { SingleSelectionAnswerPreviewComponent } from './pages/surveys/newsurvey/new-edit-survey/question/single-selection-answer-preview/single-selection-answer-preview.component';
 import { FreeTextAnswerPreviewComponent } from './pages/surveys/newsurvey/new-edit-survey/question/free-text-answer-preview/free-text-answer-preview.component';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SitesCatalogModalComponent } from "./pages/surveys/newsurvey/new-edit-survey/question/sites-catalog-modal/sites-catalog-modal.component";
 import { MultipleChoisesPreviewComponent } from './pages/surveys/newsurvey/new-edit-survey/question/multiple-choises-preview/multiple-choises-preview.component';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
 import { FooterComponent } from './pages/surveys/newsurvey/new-edit-survey/footer/footer.component';
 import { DropdownPredefinedAnswerComponent } from './pages/surveys/newsurvey/new-edit-survey/answers/dropdown-single-selection-answer/dropdown-predefined-answer.component';
 import { QuestionMenuComponent } from './pages/surveys/newsurvey/new-edit-survey/question/question-menu/question-menu.component';
@@ -61,6 +53,7 @@ import { ConfigOptionsComponent } from './pages/surveys/newsurvey/new-edit-surve
 import { SquareHotelCatalogComponent } from './pages/surveys/newsurvey/new-edit-survey/footer/square-hotel-catalog/square-hotel-catalog.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoadingComponent } from './shared/loading/loading.component';
+import { MaterialModule } from './modules/material/material.module';
 
 @NgModule({
   entryComponents: [
@@ -121,18 +114,11 @@ import { LoadingComponent } from './shared/loading/loading.component';
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
-    MatRadioModule,
     FormsModule,
     ReactiveFormsModule,
-    MatDialogModule,
-    MatSnackBarModule,
-    MatCheckboxModule,
-    MatTooltipModule,
-    MatButtonModule,
-    MatIconModule,
-    MatMenuModule,
     ChartsModule,
-    HttpClientModule
+    HttpClientModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
