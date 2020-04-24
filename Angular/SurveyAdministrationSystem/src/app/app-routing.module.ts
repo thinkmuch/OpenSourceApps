@@ -14,6 +14,7 @@ import { LanguagesComponent } from './pages/catalogs/languages/languages.compone
 import { CruisesComponent } from './pages/catalogs/cruises/cruises.component';
 import { AnswersComponent } from './pages/catalogs/answers/answers.component';
 import { ReportesComponent } from './pages/reportes/reportes.component';
+import { CatalogsModule } from './modules/catalogs.module';
 
 const routes: Routes = [
   {

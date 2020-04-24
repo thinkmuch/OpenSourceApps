@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './pages/navbar/navbar.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -28,32 +27,13 @@ import { QuestionListComponent } from './pages/dashboard/question-list/question-
 import { SearchButtonsComponent } from './pages/dashboard/search-buttons/search-buttons.component';
 import { SatisfactionBarComponent } from './pages/dashboard/satisfaction-bar/satisfaction-bar.component';
 import { PercentageBarComponent } from './pages/dashboard/percentage-bar/percentage-bar.component';
-import { SquaresComponent } from './pages/catalogs/squares/squares.component';
-import { HotelsComponent } from './pages/catalogs/hotels/hotels.component';
-import { SitesComponent } from './pages/catalogs/sites/sites.component';
-import { DepartmentsComponent } from './pages/catalogs/departments/departments.component';
-import { AreasComponent } from './pages/catalogs/areas/areas.component';
-import { LanguagesComponent } from './pages/catalogs/languages/languages.component';
-import { CruisesComponent } from './pages/catalogs/cruises/cruises.component';
-import { AnswersComponent } from './pages/catalogs/answers/answers.component';
-import { CruiseDetailComponent } from './pages/catalogs/cruises/cruise-detail/cruise-detail.component';
-import { CruisesTableComponent } from './pages/catalogs/cruises/cruises-table/cruises-table.component';
-import { AreasTableComponent } from './pages/catalogs/areas/areas-table/areas-table.component';
-import { LanguagesTableComponent } from './pages/catalogs/languages/languages-table/languages-table.component';
-import { SitesTableComponent } from './pages/catalogs/sites/sites-table/sites-table.component';
-import { HotelsTableComponent } from './pages/catalogs/hotels/hotels-table/hotels-table.component';
-import { HotelDetailComponent } from './pages/catalogs/hotels/hotel-detail/hotel-detail.component';
-import { SquaresTableComponent } from './pages/catalogs/squares/squares-table/squares-table.component';
-import { SquareDetailComponent } from './pages/catalogs/squares/square-detail/square-detail.component';
-import { DepartmentDetailComponent } from './pages/catalogs/departments/department-detail/department-detail.component';
-import { DepartmentsTableComponent } from './pages/catalogs/departments/departments-table/departments-table.component';
-import { AnswersTableComponent } from './pages/catalogs/answers/answers-table/answers-table.component';
 import { ReportesComponent } from './pages/reportes/reportes.component';
 import { ConfigOptionsComponent } from './pages/surveys/newsurvey/new-edit-survey/answers/config-options/config-options.component';
 import { SquareHotelCatalogComponent } from './pages/surveys/newsurvey/new-edit-survey/footer/square-hotel-catalog/square-hotel-catalog.component';
 import { HttpClientModule } from '@angular/common/http';
-import { LoadingComponent } from './shared/loading/loading.component';
-import { MaterialModule } from './modules/material/material.module';
+import { MaterialModule } from './modules/material.module';
+import { SharedModule } from './modules/shared.module';
+import { CatalogsModule } from './modules/catalogs.module';
 
 @NgModule({
   entryComponents: [
@@ -85,40 +65,19 @@ import { MaterialModule } from './modules/material/material.module';
     SearchButtonsComponent,
     SatisfactionBarComponent,
     PercentageBarComponent,
-    SquaresComponent,
-    HotelsComponent,
-    SitesComponent,
-    DepartmentsComponent,
-    AreasComponent,
-    LanguagesComponent,
-    CruisesComponent,
-    AnswersComponent,
-    CruiseDetailComponent,
-    CruisesTableComponent,
-    AreasTableComponent,
-    LanguagesTableComponent,
-    SitesTableComponent,
-    HotelsTableComponent,
-    HotelDetailComponent,
-    SquaresTableComponent,
-    SquareDetailComponent,
-    DepartmentDetailComponent,
-    DepartmentsTableComponent,
-    AnswersTableComponent,
     ReportesComponent,
     ConfigOptionsComponent,
     SquareHotelCatalogComponent,
-    LoadingComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
     ChartsModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    CatalogsModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
