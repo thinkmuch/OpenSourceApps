@@ -1,5 +1,5 @@
 <div class="row">
-  <input class="form-control" type="text" value="Buscar" *ngIf="!loadingSites">
+  <input class="form-control" type="text" placeholder="Buscar" *ngIf="!loadingSites" (input)="search(siteName.value)" #siteName>
 </div>
 <div class="row">
   <div class="list-group w-100">

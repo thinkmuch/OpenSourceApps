@@ -11,7 +11,8 @@ import { SurveyCaptureServices } from 'src/app/services/survey-capture.services'
 })
 export class SitesCatalogModalComponent implements OnInit, AfterViewInit {
 
-  sites: Array<Site>;
+  sites: Array<Site> = new Array<Site>();
+  backupSites: Array<Site> = new Array<Site>();
   siteSelected: Site = new Site();
   loadingSites: boolean = false;
   private idQuestion: number;
@@ -31,9 +32,7 @@ export class SitesCatalogModalComponent implements OnInit, AfterViewInit {
     this.siteSelected = this._surveyCaptureServices.getSite(this.idQuestion);
   }
 
-  ngAfterViewInit() {
-    
-  }
+  ngAfterViewInit() { }
 
   getSites() {
     this.loadingSites = true;
@@ -41,6 +40,7 @@ export class SitesCatalogModalComponent implements OnInit, AfterViewInit {
     this._sitesServices.getAllActiveSites().subscribe(
       data => {
         this.sites = data;
+        this.backupSites = this.sites;
         this.loadingSites = false;
       },
       error => {
@@ -69,5 +69,15 @@ export class SitesCatalogModalComponent implements OnInit, AfterViewInit {
     newSelectedRow.classList.toggle("active");
 
     this.siteSelected = (newSelectedRow.classList.contains("active")) ? site : new Site();
+  }
+
+  search(siteName: string) {
+    this.sites = new Array<Site>();
+
+    for(let site of this.backupSites) {
+      if(site.name.trim().toLowerCase().includes(siteName.trim().toLowerCase())) {
+        this.sites.push(site);
+      }
+    }
   }
 }
