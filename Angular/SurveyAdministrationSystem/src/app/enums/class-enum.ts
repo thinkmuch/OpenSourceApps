@@ -9,8 +9,8 @@ export enum AnswerType {
 }
 
 export enum Status {
-    Inactive = 1,
-    Active = 2
+    Inactive = 2,
+    Active = 1
 }
 
 export enum SelectArea {

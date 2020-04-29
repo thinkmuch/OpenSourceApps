@@ -13,21 +13,33 @@
   </thead>
   <tbody>
       <tr *ngFor="let answer of answers" class="pointer" id="{{answer.id}}" #row>
-          <th scope="row">{{answer.id}}</th>
+          <th scope="row">{{answer.answerId}}</th>
           <td>{{answer.name}}</td>
           <td>
-              <span *ngIf="answer.status == 0">
+              <span *ngIf="answer.statusId == 2">
                   <span class="badge badge-dark fw-500">Inactivo</span>
               </span>
-              <span *ngIf="answer.status == 1">
+              <span *ngIf="answer.statusId == 1">
                   <span class="badge badge-success fw-500">Activo</span>
               </span>
           </td>
           <td>
               <div class="btn-group dropleft">
-                  <mat-icon aria-hidden="false" [matMenuTriggerFor]="menu" class="pointer">more_vert</mat-icon>
-                  <mat-menu #menu="matMenu">
-                  </mat-menu>
+                <mat-icon aria-hidden="false" [matMenuTriggerFor]="menu" class="pointer">more_vert</mat-icon>
+                <mat-menu #menu="matMenu">
+                    <div class="pointer item-menu-question" *ngIf="answer.statusId == 2" (click)="onClickEnable(answer)">
+                        <a class="dropdown-item"><i class="fas fa-power-off text-success"></i>   Activar</a>
+                    </div>
+                    <div class="pointer item-menu-question" *ngIf="answer.statusId == 1" (click)="onClickDisable()">
+                        <a class="dropdown-item"><i class="fas fa-power-off text-secondary"></i>   Desactivar</a>
+                    </div>
+                    <div class="pointer item-menu-question" (click)="onClickEdit()">
+                        <a class="dropdown-item"><i class="fas fa-edit c-orange"></i>   Editar</a>
+                    </div>
+                    <div class="pointer item-menu-question" (click)="onClickDelete()">
+                      <a class="dropdown-item"><i class="far fa-trash-alt red"></i>   Eliminar</a>
+                  </div>
+                </mat-menu>
               </div>
           </td>
       </tr>

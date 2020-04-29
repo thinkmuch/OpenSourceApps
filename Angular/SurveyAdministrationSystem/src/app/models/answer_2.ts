@@ -2,7 +2,7 @@ import { AnswerType } from '../enums/class-enum';
 import { AnswerOption_2 } from './answer-option_2';
 
 export class Answer_2 {
-    id: number;
+    answerId: number;
     name: string;
     answerType: AnswerType;
     status: number;

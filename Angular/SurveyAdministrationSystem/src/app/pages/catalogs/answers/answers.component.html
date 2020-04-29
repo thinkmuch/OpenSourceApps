@@ -10,6 +10,7 @@
                         class="form-control" 
                         id="inputAnswerName"
                         [disabled]="answerNameDisabled"
+                        (click)="onInputAnswer()"
                         #answerName>
                     </div>
                 </div>
@@ -18,11 +19,12 @@
                     type="button"
                     class="btn btn-primary mt-31px"
                     [hidden]="newButtonHidden"
-                    (click)="enableEditControls()">Nuevo</button>
+                    (click)="onClickNew()">Nuevo</button>
                     <button 
                     type="button" 
                     class="btn btn-primary mt-31px"
                     [hidden]="saveButtonHidden"
+                    (click)="onClickSave(answerName.value)"
                     id="saveButton">Guardar</button>
                     <button 
                     type="button" 
@@ -34,6 +36,7 @@
             </div>
             <div class="row">
                 <app-answers-table
+                *ngIf="!loadingAnswers"
                 class="w-100"
                 [answersInput]="answers"></app-answers-table>
             </div>
@@ -43,3 +46,9 @@
         </div>
     </div>
 </div>
+<app-loading 
+*ngIf="loadingAnswers"
+[topCircle]="50"
+[leftCircle]="20"
+[topLegend]="57"
+[leftLegend]="19"></app-loading>
