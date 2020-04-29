@@ -9,10 +9,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AnswerServices {
 
-    answers_2: Array<Answer_2>;
-    answers: Array<Answer>;
-    answerSelected: EventEmitter<number>;
-    showOptions: EventEmitter<boolean>;
+    answers_2: Array<Answer_2> = new Array<Answer_2>();
+    answers: Array<Answer> = new Array<Answer>();
+    answerSelected: EventEmitter<number> = new EventEmitter<number>();
+    showOptions: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     constructor(private _http: HttpClient) { }
 
@@ -22,5 +22,9 @@ export class AnswerServices {
     
     save(name: string) {
         return this._http.post(`http://10.2.180.11:5999/api/Answer?name=${name}`, { });
+    }
+
+    update(answer: Answer_2) {
+        return this._http.put("http://10.2.180.11:5999/api/Answer", answer);
     }
 }

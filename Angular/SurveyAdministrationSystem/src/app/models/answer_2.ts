@@ -5,6 +5,6 @@ export class Answer_2 {
     answerId: number;
     name: string;
     answerType: AnswerType;
-    status: number;
+    statusId: number;
     answerOptions: Array<AnswerOption_2>;
 }
