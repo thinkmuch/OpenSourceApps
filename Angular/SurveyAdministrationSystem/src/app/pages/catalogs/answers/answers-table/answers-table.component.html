@@ -33,7 +33,7 @@
                     <div class="pointer item-menu-question" *ngIf="answer.statusId == 1" (click)="onClickDisable(answer)">
                         <a class="dropdown-item"><i class="fas fa-power-off text-secondary"></i>   Desactivar</a>
                     </div>
-                    <div class="pointer item-menu-question" (click)="onClickEdit()">
+                    <div class="pointer item-menu-question" (click)="onClickEdit(answer, row)">
                         <a class="dropdown-item"><i class="fas fa-edit c-orange"></i>   Editar</a>
                     </div>
                     <div class="pointer item-menu-question" (click)="onClickDelete()">

@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Answer_2 } from 'src/app/models/answer_2';
 import Swal from 'sweetalert2';
 import { Status } from 'src/app/enums/class-enum';
 import { AnswerServices } from 'src/app/services/answer-services';
 import { Alert } from 'src/app/util/Alert';
+import { AnswerEmitter } from 'src/app/models/emitters/answer-emitter';
 
 @Component({
   selector: 'app-answers-table',
@@ -13,6 +14,7 @@ import { Alert } from 'src/app/util/Alert';
 export class AnswersTableComponent implements OnInit {
   
   @Input("answersInput") answers: Array<Answer_2>;
+  @Output() editEvent: EventEmitter<AnswerEmitter> = new EventEmitter<AnswerEmitter>();
 
   constructor(
     private _answerServices: AnswerServices
@@ -31,10 +33,9 @@ export class AnswersTableComponent implements OnInit {
     }).then((response) => {
       
       if(response.value) {
-        
         answer.statusId = Status.Active;
         this._answerServices.update(answer).subscribe(
-          data => {
+          () => {
             Alert.success("Idioma activado");
           },
           error => {
@@ -56,10 +57,9 @@ export class AnswersTableComponent implements OnInit {
     }).then((response) => {
 
       if(response.value) {
-
         answer.statusId = Status.Inactive;
         this._answerServices.update(answer).subscribe(
-          data => {
+          () => {
             Alert.success("Idioma desactivado");
           },
           error => {
@@ -70,8 +70,9 @@ export class AnswersTableComponent implements OnInit {
     });
   }
 
-  onClickEdit() {
-    console.log("onClickEdit");
+  onClickEdit(answer: Answer_2, row: HTMLElement) {
+    let answerSelected = new AnswerEmitter(answer, row);
+    this.editEvent.emit(answerSelected);
   }
 
   onClickDelete() {

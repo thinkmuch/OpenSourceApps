@@ -8,6 +8,7 @@
                         <input 
                         type="text" 
                         class="form-control" 
+                        [(ngModel)]="answerSelected.name"
                         id="inputAnswerName"
                         [disabled]="answerNameDisabled"
                         (click)="onInputAnswer()"
@@ -38,7 +39,8 @@
                 <app-answers-table
                 *ngIf="!loadingAnswers"
                 class="w-100"
-                [answersInput]="answers"></app-answers-table>
+                [answersInput]="answers"
+                (editEvent)="edit($event)"></app-answers-table>
             </div>
         </div>
         <div class="col-6">
