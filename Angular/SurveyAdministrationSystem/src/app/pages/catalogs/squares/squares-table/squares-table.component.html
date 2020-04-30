@@ -1,4 +1,7 @@
-<table class="table table-hover text-center">
+<div class="alert alert-warning" role="alert" *ngIf="squares.length == 0">
+    No hay plazas registradas
+</div>
+<table class="table table-hover text-center" *ngIf="squares.length > 0">
   <thead>
       <tr>
           <th scope="col">ID</th>

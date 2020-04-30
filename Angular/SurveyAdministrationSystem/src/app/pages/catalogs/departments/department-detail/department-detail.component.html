@@ -1,28 +1,29 @@
-<div class="alert alert-warning" role="alert" *ngIf="departmentIdSelected == 0; else areasTable;">
+<div
+class="alert alert-warning"
+role="alert"
+*ngIf="departments != undefined && departments.length > 0 && departmentIdSelected == 0">
   Selecciona un departamento para configurar sus áreas
 </div>
-<ng-template #areasTable>
-  <ul class="nav nav-tabs animated fadeIn faster" id="cruiseDetail" role="tablist" *ngIf="areas.length > 0">
-    <li class="nav-item">
-      <a class="nav-link active" id="sites-tab" data-toggle="tab" href="#sites" role="tab" aria-controls="sites" aria-selected="true">Areas</a>
-    </li>
-  </ul>
-  <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="sites" role="tabpanel" aria-labelledby="sites-tab">
-      <ul class="list-group" *ngIf="areas.length > 0">
-        <li class="list-group-item pointer animated fadeIn faster" aria-disabled="true" *ngFor="let area of areas">
-            <mat-checkbox 
-            (click)="onClickArea(area, !checkArea.checked)"
-            [checked]="isAreaContained(area)"
-            #checkArea>{{area.name}}</mat-checkbox>
-        </li>
-      </ul>
-    </div>
+<ul class="nav nav-tabs animated fadeIn faster" id="cruiseDetail" role="tablist" *ngIf="areas.length > 0">
+  <li class="nav-item">
+    <a class="nav-link active" id="sites-tab" data-toggle="tab" href="#sites" role="tab" aria-controls="sites" aria-selected="true">Areas</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="sites" role="tabpanel" aria-labelledby="sites-tab">
+    <ul class="list-group" *ngIf="areas.length > 0">
+      <li class="list-group-item pointer animated fadeIn faster" aria-disabled="true" *ngFor="let area of areas">
+          <mat-checkbox 
+          (click)="onClickArea(area, !checkArea.checked)"
+          [checked]="isAreaContained(area)"
+          #checkArea>{{area.name}}</mat-checkbox>
+      </li>
+    </ul>
   </div>
-</ng-template>
+</div>
 <app-loading 
 *ngIf="loading"
-[topCircle]="10"
+[topCircle]="50"
 [leftCircle]="50"
-[topLegend]="14"
+[topLegend]="75"
 [leftLegend]="48"></app-loading>

@@ -41,6 +41,7 @@ export class HotelsComponent implements OnInit {
     },
     error => {
       console.log(error);
+      this.loading = false;
     });
   }
 

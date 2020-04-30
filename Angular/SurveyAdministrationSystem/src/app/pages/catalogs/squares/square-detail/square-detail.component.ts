@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SquareServices } from 'src/app/services/square-services';
 import { Hotel } from 'src/app/models/hotel';
 import { HotelServices } from 'src/app/services/hotel.services';
 import { Site } from 'src/app/models/site';
 import { SitesServices } from 'src/app/services/sites-service';
+import { Square } from 'src/app/models/square';
 
 @Component({
   selector: 'app-square-detail',
@@ -17,6 +18,7 @@ export class SquareDetailComponent implements OnInit {
   sites: Array<Site> = new Array<Site>();
   squareIdSelected: number = 0;
   loadingHotels: boolean = false;
+  @Input("squaresInput") squares: Array<Square> = new Array<Square>();
 
   constructor(
     private _squareServices: SquareServices,

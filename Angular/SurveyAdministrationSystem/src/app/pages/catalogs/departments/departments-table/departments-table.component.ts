@@ -12,7 +12,7 @@ import { DepartmentEmitter } from 'src/app/models/emitters/department-emitter';
 })
 export class DepartmentsTableComponent implements OnInit {
 
-  @Input("departmentsInput") departments: Array<Department>;
+  @Input("departmentsInput") departments: Array<Department> = new Array<Department>();
   @Output() editEvent: EventEmitter<DepartmentEmitter> = new EventEmitter<DepartmentEmitter>();
   @Output() clickRowEvent: EventEmitter<DepartmentEmitter> = new EventEmitter<DepartmentEmitter>();
   @Output() removeEvent: EventEmitter<DepartmentEmitter> = new EventEmitter<DepartmentEmitter>();

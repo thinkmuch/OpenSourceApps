@@ -29,6 +29,7 @@ export class CruiseDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log(this.cruiseSelected.cruiseId);
     this._cruiseServices.cruiseSelectedEvent.subscribe(cruise => {
       if(cruise != null) {
         this.cruiseSelected = cruise;

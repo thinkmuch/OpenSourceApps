@@ -36,10 +36,9 @@ export class HotelsTableComponent implements OnInit {
     }).then((response) => {
       
       if(response.value) {
-
         hotel.statusId = Status.Inactive;
         this._hotelServices.update(hotel).subscribe(
-          data => {
+          () => {
             Swal.fire({
               title: 'Hotel desactivado',
               icon: 'success'
@@ -64,10 +63,9 @@ export class HotelsTableComponent implements OnInit {
     }).then((response) => {
       
       if(response.value) {
-
         hotel.statusId = Status.Active;
         this._hotelServices.update(hotel).subscribe(
-          data => {
+          () => {
             Swal.fire({
               title: 'Hotel activado',
               icon: 'success'
