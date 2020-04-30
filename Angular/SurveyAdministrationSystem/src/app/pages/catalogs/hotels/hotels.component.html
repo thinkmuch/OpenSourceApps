@@ -47,7 +47,8 @@
         </div>
         <div class="col-6">
             <app-hotel-detail
-            *ngIf="!loading"></app-hotel-detail>
+            *ngIf="!loading"
+            [hotelsInput]="hotels"></app-hotel-detail>
         </div>
     </div>
 </div>

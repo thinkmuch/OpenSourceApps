@@ -1,4 +1,4 @@
-<div class="alert alert-warning" role="alert">
+<div class="alert alert-warning" role="alert" *ngIf="hotels.length > 0 && hotelIdSelected == 0">
   Selecciona un hotel para configurar sus departamentos
 </div>
 <ul class="nav nav-tabs animated fadeIn faster" id="cruiseDetail" role="tablist" *ngIf="departments.length > 0">
@@ -22,5 +22,5 @@
 *ngIf="loading"
 [topCircle]="50"
 [leftCircle]="50"
-[topLegend]="70"
+[topLegend]="73"
 [leftLegend]="48"></app-loading>

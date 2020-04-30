@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DepartmentsServices } from 'src/app/services/departments.services';
 import { HotelServices } from 'src/app/services/hotel.services';
 import { Department } from 'src/app/models/department';
+import { Hotel } from 'src/app/models/hotel';
 
 @Component({
   selector: 'app-hotel-detail',
@@ -15,6 +16,7 @@ export class HotelDetailComponent implements OnInit {
   hotelIdSelected: number = 0;
   loading: boolean = false;
   showDetail: boolean = false;
+  @Input("hotelsInput") hotels: Array<Hotel> = new Array<Hotel>();
 
   constructor(
     private _hotelServices: HotelServices,
