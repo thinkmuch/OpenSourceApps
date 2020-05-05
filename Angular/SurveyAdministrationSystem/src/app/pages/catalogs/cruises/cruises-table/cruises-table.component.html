@@ -1,6 +1,7 @@
-<div class="alert alert-warning w-100 animated fadeIn faster mt-15px" role="alert" *ngIf="cruises == undefined || cruises.length == 0">
+<app-alert *ngIf="cruises == undefined || cruises.length == 0">
     No hay cruceros registrados
-</div>
+</app-alert>
+
 <table class="table table-hover text-center mt-15px animated fadeIn faster" *ngIf="cruises != undefined && cruises.length > 0">
   <thead>
       <tr>

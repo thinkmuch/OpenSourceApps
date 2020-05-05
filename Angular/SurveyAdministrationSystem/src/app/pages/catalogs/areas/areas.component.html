@@ -39,12 +39,13 @@
     <div class="row" id="tableContainer">
         <app-areas-table
         *ngIf="!loading"
-        class="w-50"
+        class="w-70"
         [areasInput]="areas"
         (editEvent)="edit($event)"
         (removeEvent)="remove($event)"></app-areas-table>
     </div>
 </div>
+
 <app-loading 
 *ngIf="loading"
 [topCircle]="50"

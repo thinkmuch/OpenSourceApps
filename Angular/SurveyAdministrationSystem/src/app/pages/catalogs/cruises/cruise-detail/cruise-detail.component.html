@@ -1,19 +1,13 @@
 <app-alert *ngIf="cruiseIdSelected > 0 && !loadingDepartments && this.departments.length == 0">
   No hay departamentos registrados
 </app-alert>
+
 <app-alert *ngIf="cruiseIdSelected > 0 && !loadingSites && this.sites.length == 0">
   No hay sitios registrados
 </app-alert>
-<ul class="nav nav-tabs animated fadeIn faster" id="cruiseDetail" role="tablist" *ngIf="departments.length > 0">
-  <li class="nav-item">
-    <a class="nav-link active" id="sites-tab" data-toggle="tab" href="#sites" role="tab" aria-controls="sites" aria-selected="true">Sitios</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="departments-tab" data-toggle="tab" href="#departments" role="tab" aria-controls="departments" aria-selected="false">Departamentos</a>
-  </li>
-</ul>
-<div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="sites" role="tabpanel" aria-labelledby="sites-tab">
+
+<mat-tab-group *ngIf="departments.length > 0">
+  <mat-tab label="Sitios">
     <ul class="list-group">
       <li class="list-group-item pointer animated fadeIn faster" aria-disabled="true" *ngFor="let site of sites">
           <mat-checkbox
@@ -22,8 +16,8 @@
           #checkSite>{{site.name}}</mat-checkbox>
       </li>
     </ul>
-  </div>
-  <div class="tab-pane fade" id="departments" role="tabpanel" aria-labelledby="departments-tab">
+  </mat-tab>
+  <mat-tab label="Departamentos">
     <ul class="list-group">
       <li class="list-group-item pointer animated fadeIn faster" aria-disabled="true" *ngFor="let department of departments">
           <mat-checkbox 
@@ -32,8 +26,9 @@
           #checkDepartment>{{department.name}}</mat-checkbox>
       </li>
     </ul>
-  </div>
-</div>
+  </mat-tab>
+</mat-tab-group>
+
 <app-loading 
 *ngIf="loading"
 [topCircle]="50"

@@ -1,19 +1,9 @@
-<div
-class="alert alert-warning"
-role="alert"
-*ngIf="squares.length > 0 && squareIdSelected == 0">
+<app-alert *ngIf="squares.length > 0 && squareIdSelected == 0">
   Selecciona una plaza para configurar sus hoteles y sitios
-</div>
-<ul class="nav nav-tabs animated fadeIn faster" id="cruiseDetail" role="tablist" *ngIf="hotels.length > 0">
-  <li class="nav-item">
-    <a class="nav-link active" id="hotels-tab" data-toggle="tab" href="#hotels" role="tab" aria-controls="sites" aria-selected="true">Hoteles</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="sites-tab" data-toggle="tab" href="#sites" role="tab" aria-controls="departments" aria-selected="false">Sitios</a>
-  </li>
-</ul>
-<div class="tab-content" id="tabsContainer">
-  <div class="tab-pane fade show active" id="hotels" role="tabpanel" aria-labelledby="sites-tab">
+</app-alert>
+
+<mat-tab-group *ngIf="hotels.length > 0">
+  <mat-tab label="Hoteles">
     <ul class="list-group">
       <li class="list-group-item pointer animated fadeIn faster" aria-disabled="true" *ngFor="let hotel of hotels">
           <mat-checkbox 
@@ -22,8 +12,8 @@ role="alert"
           #checkHotel>{{hotel.name}}</mat-checkbox>
       </li>
     </ul>
-  </div>
-  <div class="tab-pane fade" id="sites" role="tabpanel" aria-labelledby="departments-tab">
+  </mat-tab>
+  <mat-tab label="Sitios">
     <ul class="list-group">
       <li class="list-group-item pointer animated fadeIn faster" aria-disabled="true" *ngFor="let site of sites">
           <mat-checkbox 
@@ -31,8 +21,9 @@ role="alert"
           #checkSite>{{site.name}}</mat-checkbox>
       </li>
     </ul>
-  </div>
-</div>
+  </mat-tab>
+</mat-tab-group>
+
 <app-loading 
 *ngIf="loadingHotels"
 [topCircle]="50"

@@ -1,6 +1,7 @@
 <app-alert *ngIf="departments == undefined || departments.length == 0">
     No hay departamentos registrados
 </app-alert>
+
 <table class="table table-hover text-center animated fadeIn faster" *ngIf="departments && departments.length > 0">
     <thead>
         <tr>
