@@ -67,7 +67,7 @@ import { CatalogsModule } from './modules/catalogs.module';
     PercentageBarComponent,
     ReportesComponent,
     ConfigOptionsComponent,
-    SquareHotelCatalogComponent,
+    SquareHotelCatalogComponent
   ],
   imports: [
     BrowserModule,

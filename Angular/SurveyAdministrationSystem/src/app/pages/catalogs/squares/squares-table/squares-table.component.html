@@ -1,6 +1,6 @@
-<div class="alert alert-warning" role="alert" *ngIf="squares.length == 0">
+<app-alert *ngIf="squares.length == 0">
     No hay plazas registradas
-</div>
+</app-alert>
 <table class="table table-hover text-center" *ngIf="squares.length > 0">
   <thead>
       <tr>

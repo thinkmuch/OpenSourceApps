@@ -12,14 +12,14 @@ import { Cruise } from 'src/app/models/cruise';
   styleUrls: ['./cruise-detail.component.css']
 })
 export class CruiseDetailComponent implements OnInit {
-
   sites: Array<Site> = new Array<Site>();
-  departments: Array<Department>  = new Array<Department>();
+  departments: Array<Department> = new Array<Department>();
   departmentsByCruise: Array<Department>;
   sitesByCruise: Array<Site>;
-  cruiseSelected: Cruise = new Cruise();
-  detailHidden: boolean;
-  loading: boolean;
+  cruiseIdSelected: number = 0;
+  detailHidden: boolean = false;
+  loadingSites: boolean = false;
+  loadingDepartments: boolean = false;
   @Input("cruisesInput") cruises: Array<Cruise>;
   
   constructor(
@@ -29,10 +29,9 @@ export class CruiseDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.cruiseSelected.cruiseId);
-    this._cruiseServices.cruiseSelectedEvent.subscribe(cruise => {
-      if(cruise != null) {
-        this.cruiseSelected = cruise;
+    this._cruiseServices.cruiseSelectedEvent.subscribe((cruiseId: number) => {
+      if(cruiseId != null) {
+        this.cruiseIdSelected = cruiseId;
         this.getAllSites();
         this.getAllDepartments();
         this.detailHidden = false;
@@ -46,26 +45,26 @@ export class CruiseDetailComponent implements OnInit {
   }
 
   getAllSites() {
-    this.loading = true;
+    this.loadingSites = true;
     this.sites = new Array<Site>();
 
-    this._cruiseServices.getSitesByCruiseId(this.cruiseSelected).subscribe(
+    this._cruiseServices.getSitesByCruiseId(this.cruiseIdSelected).subscribe(
       data => {
         this.sitesByCruise = data;
         this._siteServices.getAll().subscribe(
           data => {
             this.sites = data;
-            this.loading = false;
+            this.loadingSites = false;
           },
           error => {
             console.log(error);
-            this.loading = false;
+            this.loadingSites = false;
           }
         );
       },
       error => {
         console.log(error);
-        this.loading = false;
+        this.loadingSites = false;
       }
     );
   }
@@ -79,43 +78,42 @@ export class CruiseDetailComponent implements OnInit {
   }
 
   getAllDepartments() {
+    this.loadingDepartments = true;
     this.departments = new Array<Department>();
 
-    this._departmentServices.getDepartmentsByCruiseId(this.cruiseSelected.cruiseId).subscribe(
+    this._departmentServices.getDepartmentsByCruiseId(this.cruiseIdSelected).subscribe(
       data => {
         this.departmentsByCruise = data;
-
         this._departmentServices.getAll().subscribe(
           data => {
             this.departments = data;
+            this.loadingDepartments = false;
           },
           error => {
             console.log(error);
+            this.loadingDepartments = false;
           }
         );
       },
       error => {
         console.log(error);
+        this.loadingDepartments = false;
       }
     );
   }
 
   onClickSite(site: Site, checked: boolean) {
     if(checked) {
-      this._cruiseServices.addSite(this.cruiseSelected, site).subscribe(
-        data => {
-          
-        },
+      this._cruiseServices.addSite(this.cruiseIdSelected, site).subscribe(
+        () => { },
         error => {
           console.log(error);
         }
       );
     }
     else {
-      this._cruiseServices.removeSite(this.cruiseSelected, site).subscribe(
-        data => {
-          
-        },
+      this._cruiseServices.removeSite(this.cruiseIdSelected, site).subscribe(
+        () => { },
         error => {
           console.log(error);
         }
@@ -125,20 +123,16 @@ export class CruiseDetailComponent implements OnInit {
 
   onClickDepartment(department: Department, checked: boolean) {
     if(checked) {
-      this._cruiseServices.addDepartment(this.cruiseSelected, department).subscribe(
-        data => {
-          
-        },
+      this._cruiseServices.addDepartment(this.cruiseIdSelected, department).subscribe(
+        () => { },
         error => {
           console.log(error);
         }
       )
     }
     else {
-      this._cruiseServices.removeDepartment(this.cruiseSelected, department).subscribe(
-        data => {
-          
-        },
+      this._cruiseServices.removeDepartment(this.cruiseIdSelected, department).subscribe(
+        () => { },
         error => {
           console.log(error);
         }

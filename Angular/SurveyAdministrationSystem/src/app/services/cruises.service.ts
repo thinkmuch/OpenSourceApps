@@ -10,13 +10,11 @@ import { Observable } from 'rxjs';
 })
 export class CruisesService {
 
-  @Output() cruiseSelectedEvent: EventEmitter<Cruise>;
+  @Output() cruiseSelectedEvent: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(
     private _http: HttpClient
-  ) { 
-    this.cruiseSelectedEvent = new EventEmitter<Cruise>();
-  }
+  ) { }
 
   getAll(): Observable<Array<Cruise>> {
     return this._http.get<Array<Cruise>>("http://10.2.180.11:5999/api/Cruise");
@@ -26,24 +24,24 @@ export class CruisesService {
     return this._http.get<Array<Cruise>>("http://10.2.180.11:5999/api/Cruise/Active");
   }
 
-  addSite(cruise: Cruise, site: Site) {
-    return this._http.post(`http://10.2.180.11:5999/api/Cruise/${cruise.cruiseId}/Site/${site.siteId}`, {});
+  addSite(cruiseId: number, site: Site) {
+    return this._http.post(`http://10.2.180.11:5999/api/Cruise/${cruiseId}/Site/${site.siteId}`, {});
   }
 
-  removeSite(cruise: Cruise, site: Site) {
-    return this._http.delete(`http://10.2.180.11:5999/api/Cruise/${cruise.cruiseId}/Site/${site.siteId}`);
+  removeSite(cruiseId: number, site: Site) {
+    return this._http.delete(`http://10.2.180.11:5999/api/Cruise/${cruiseId}/Site/${site.siteId}`);
   }
 
-  getSitesByCruiseId(cruise: Cruise): Observable<Array<Site>> {
-    return this._http.get<Array<Site>>(`http://10.2.180.11:5999/api/Cruise/${cruise.cruiseId}/Sites`);
+  getSitesByCruiseId(cruiseId: number): Observable<Array<Site>> {
+    return this._http.get<Array<Site>>(`http://10.2.180.11:5999/api/Cruise/${cruiseId}/Sites`);
   }
 
-  addDepartment(cruise: Cruise, department: Department) {
-    return this._http.post(`http://10.2.180.11:5999/api/Cruise/${cruise.cruiseId}/Department/${department.departmentId}`, {});
+  addDepartment(cruiseId: number, department: Department) {
+    return this._http.post(`http://10.2.180.11:5999/api/Cruise/${cruiseId}/Department/${department.departmentId}`, {});
   }
 
-  removeDepartment(cruise: Cruise, department: Department) {
-    return this._http.delete(`http://10.2.180.11:5999/api/Cruise/${cruise.cruiseId}/Department/${department.departmentId}`);
+  removeDepartment(cruiseId: number, department: Department) {
+    return this._http.delete(`http://10.2.180.11:5999/api/Cruise/${cruiseId}/Department/${department.departmentId}`);
   }
 
   update(cruise: Cruise) {

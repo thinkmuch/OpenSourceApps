@@ -22,6 +22,7 @@ import { AnswersComponent } from '../pages/catalogs/answers/answers.component';
 import { AnswersTableComponent } from '../pages/catalogs/answers/answers-table/answers-table.component';
 import { SharedModule } from '../modules/shared.module';
 import { MaterialModule } from '../modules/material.module';
+import { AlertComponent } from '../shared/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { MaterialModule } from '../modules/material.module';
     SquaresTableComponent,
     SquareDetailComponent,
     AnswersComponent,
-    AnswersTableComponent
+    AnswersTableComponent,
+    AlertComponent
   ],
   imports: [
     CommonModule,

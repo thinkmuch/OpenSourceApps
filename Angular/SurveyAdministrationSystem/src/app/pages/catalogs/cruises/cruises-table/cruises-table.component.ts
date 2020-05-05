@@ -35,7 +35,7 @@ export class CruisesTableComponent implements OnInit {
       if(response.value) {
         cruise.statusId = Status.Active;
         this._cruisesServices.update(cruise).subscribe(
-          data => {
+          () => {
             Swal.fire({
               title: 'Crucero activado',
               icon: 'success'
@@ -62,7 +62,7 @@ export class CruisesTableComponent implements OnInit {
       if(response.value) {
         cruise.statusId = Status.Inactive;
         this._cruisesServices.update(cruise).subscribe(
-          data => {
+          () => {
             Swal.fire({
               title: 'Crucero desactivado',
               icon: 'success'

@@ -14,8 +14,9 @@ export class HotelDetailComponent implements OnInit {
   departments: Array<Department> = new Array<Department>();
   departmentsOfHotel: Array<Department> = new Array<Department>();
   hotelIdSelected: number = 0;
-  loading: boolean = false;
+  loadingDetail: boolean = false;
   showDetail: boolean = false;
+  loadingDepartments: boolean = false;
   @Input("hotelsInput") hotels: Array<Hotel> = new Array<Hotel>();
 
   constructor(
@@ -26,32 +27,38 @@ export class HotelDetailComponent implements OnInit {
   ngOnInit() {
     this._hotelServices.hotelSelectedEvent.subscribe(hotelId => {
       this.hotelIdSelected = hotelId;
-      this.loading = true;
+      this.loadingDetail = true;
       this.showDetail = false;
       this.departments = new Array<Department>();
 
+      this.getAllDepartments();
+      /*
       this._departmentServices.getDepartmentsByHotelId(hotelId).subscribe(
         data => {
           this.departmentsOfHotel = data;
-
-          this._departmentServices.getAll().subscribe(
-            data => {
-              this.departments = data;
-              this.loading = false;
-              this.showDetail = true;
-            },
-            error => {
-              console.log(error);
-            }
-          );
+          
         },
         error => {
           console.log(error);
-          this.loading = false;
+          this.loadingDetail = false;
           this.showDetail = true;
         }
-      );
+      );*/
     });
+  }
+
+  getAllDepartments() {
+    this.loadingDepartments = true;
+    this._departmentServices.getAll().subscribe(
+      data => {
+        this.departments = data;
+        this.loadingDepartments = false;
+      },
+      error => {
+        console.log(error);
+        this.loadingDepartments = false;
+      }
+    );
   }
 
   isDepartmentContained(department: Department) {

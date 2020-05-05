@@ -1,6 +1,6 @@
-<div class="alert alert-warning w-50 mt-15px animated fadeIn faster" role="alert" *ngIf="sites == undefined || sites.length == 0">
+<app-alert *ngIf="sites == undefined || sites.length == 0">
     No hay sitios registrados
-</div>
+</app-alert>
 <table class="table table-hover text-center mt-15px w-50 animated fadeIn faster" *ngIf="sites && sites.length > 0">
   <thead>
       <tr>

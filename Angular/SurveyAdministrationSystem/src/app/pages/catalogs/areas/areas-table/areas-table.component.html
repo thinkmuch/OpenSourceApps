@@ -1,6 +1,6 @@
-<div class="alert alert-warning w-50 mt-15px animated fadeIn faster" role="alert" *ngIf="areas == undefined || areas.length == 0">
+<app-alert *ngIf="areas == undefined || areas.length == 0">
     No hay áreas registradas
-</div>
+</app-alert>
 <table class="table table-hover text-center w-50 animated fadeIn faster" *ngIf="areas && areas.length">
   <thead>
       <tr>

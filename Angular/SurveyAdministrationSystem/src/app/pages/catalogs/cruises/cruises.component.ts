@@ -96,7 +96,7 @@ export class CruisesComponent implements OnInit {
     this.restartScreen();
     this.selectRow(row);
     this.cruiseDetailHidden = true;
-    this._cruisesServices.cruiseSelectedEvent.emit(cruise);
+    this._cruisesServices.cruiseSelectedEvent.emit(cruise.cruiseId);
   }
 
   edit($event) {
