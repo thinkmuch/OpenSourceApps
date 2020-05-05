@@ -45,12 +45,10 @@ export class FooterComponent implements OnInit, AfterViewInit {
 
   getAllLanguages() {
     this.loadingLanguages = true;
-
     this._languageServices.getAllActiveLanguages().subscribe(
       data => {
         this.languages = data;
         this.loadingLanguages = false;
-        console.log(this.languages);
       },
       error => {
         console.log(error);
