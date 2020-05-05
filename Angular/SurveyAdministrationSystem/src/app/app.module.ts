@@ -34,6 +34,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './modules/material.module';
 import { SharedModule } from './modules/shared.module';
 import { CatalogsModule } from './modules/catalogs.module';
+import { HotelsCatalogComponent } from './pages/surveys/newsurvey/new-edit-survey/footer/square-hotel-catalog/hotels-catalog/hotels-catalog.component';
+import { CruisesCatalogComponent } from './pages/surveys/newsurvey/new-edit-survey/footer/square-hotel-catalog/cruises-catalog/cruises-catalog.component';
 
 @NgModule({
   entryComponents: [
@@ -67,7 +69,9 @@ import { CatalogsModule } from './modules/catalogs.module';
     PercentageBarComponent,
     ReportesComponent,
     ConfigOptionsComponent,
-    SquareHotelCatalogComponent
+    SquareHotelCatalogComponent,
+    HotelsCatalogComponent,
+    CruisesCatalogComponent
   ],
   imports: [
     BrowserModule,

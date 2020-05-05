@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-4" id="squares-container">
+    <div class="list-group" id="list-tab" role="tablist">
+      <a 
+      class="list-group-item list-group-item-action animated fadeIn faster"
+      *ngFor="let square of squares"
+      (click)="onClickSquare(square)">{{square.name}}</a>
+    </div>
+
+    <app-loading 
+    *ngIf="loadingSquares"
+    [topCircle]="35"
+    [leftCircle]="25"></app-loading>
+
+  </div>
+  <div class="col-8" id="hotels-container">
+    <ul class="list-group animated fadeIn faster" *ngIf="hotels.length > 0">
+      <li class="list-group-item animated fadeIn faster" *ngFor="let hotel of hotels">
+        <mat-checkbox
+        (click)="onClickHotel(hotel, !checkHotel.checked)"
+        *ngIf="isHotelSelected(hotel)"
+        [checked]="true"
+        #checkHotel>{{hotel.name}}</mat-checkbox>
+        <mat-checkbox
+        (click)="onClickHotel(hotel, !checkHotel.checked)"
+        *ngIf="!isHotelSelected(hotel)"
+        #checkHotel>{{hotel.name}}</mat-checkbox>
+      </li>
+    </ul>
+    <app-alert *ngIf="squareSelected != undefined && squareSelected.squareId > 0 && hotels.length == 0">
+      No hay hoteles registrados
+    </app-alert>
+  </div>
+</div>
+

@@ -1,0 +1,14 @@
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let cruise of cruises">
+    <mat-checkbox
+    *ngIf="isCruiseSelected(cruise)"
+    [checked]="true"
+    (click)="onClickCruise(cruise, !checkCruise.checked)"
+    #checkCruise>{{cruise.name}}</mat-checkbox>
+    <mat-checkbox
+    *ngIf="!isCruiseSelected(cruise)"
+    [checked]="false"
+    (click)="onClickCruise(cruise, !checkCruise.checked)"
+    #checkCruise>{{cruise.name}}</mat-checkbox>
+  </li>
+</ul>

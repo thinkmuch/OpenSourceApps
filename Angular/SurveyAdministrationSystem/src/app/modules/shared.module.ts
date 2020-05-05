@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingComponent } from '../shared/loading/loading.component';
+import { AlertComponent } from '../shared/alert/alert.component';
 
 @NgModule({
   declarations: [
-    LoadingComponent
+    LoadingComponent,
+    AlertComponent
   ],
   imports: [
     CommonModule,
@@ -15,7 +17,8 @@ import { LoadingComponent } from '../shared/loading/loading.component';
   exports: [ 
     FormsModule, 
     ReactiveFormsModule,
-    LoadingComponent
+    LoadingComponent,
+    AlertComponent
   ]
 })
 export class SharedModule { }

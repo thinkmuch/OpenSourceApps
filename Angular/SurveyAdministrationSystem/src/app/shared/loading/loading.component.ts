@@ -12,7 +12,6 @@ export class LoadingComponent implements OnInit, AfterViewInit {
   @Input() topLegend: string;
   @Input() leftLegend: string;
   @ViewChild("circle", { read: ElementRef }) circle: ElementRef;
-  @ViewChild("legend", { read: ElementRef}) legend: ElementRef;
   
   constructor(
     private _renderer: Renderer2
@@ -23,7 +22,5 @@ export class LoadingComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this._renderer.setStyle(this.circle.nativeElement, "top", this.topCircle + "%");
     this._renderer.setStyle(this.circle.nativeElement, "left", this.leftCircle + "%");
-    this._renderer.setStyle(this.legend.nativeElement, "top", this.topLegend + "%");
-    this._renderer.setStyle(this.legend.nativeElement, "left", this.leftLegend + "%");
   }
 }

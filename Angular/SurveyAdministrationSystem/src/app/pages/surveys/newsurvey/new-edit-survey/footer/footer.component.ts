@@ -50,6 +50,7 @@ export class FooterComponent implements OnInit, AfterViewInit {
       data => {
         this.languages = data;
         this.loadingLanguages = false;
+        console.log(this.languages);
       },
       error => {
         console.log(error);
@@ -73,6 +74,7 @@ export class FooterComponent implements OnInit, AfterViewInit {
 
     this._matDialog.open(SquareHotelCatalogComponent, {
       width: '900px',
+      height: '500px',
       data: { }
     });
   }

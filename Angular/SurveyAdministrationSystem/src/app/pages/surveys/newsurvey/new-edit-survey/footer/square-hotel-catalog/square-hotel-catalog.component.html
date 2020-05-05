@@ -1,85 +1,11 @@
-<ul class="nav nav-tabs" id="square-hotel-catalog-tab" role="tablist">
-  <li class="nav-item">
-    <a class="nav-link active" id="square-hotel-tab" data-toggle="tab" href="#squareHotels" role="tab" aria-controls="squareHotels" aria-selected="true">Hoteles</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="cruises-tab" data-toggle="tab" href="#cruises" role="tab" aria-controls="cruises" aria-selected="false">Cruceros</a>
-  </li>
-</ul>
-<div class="tab-content" id="squares-hotels-tab">
-  <div class="tab-pane fade show active" id="squareHotels" role="tabpanel" aria-labelledby="square-hotel-tab">
-    <div class="row">
-      <div class="col-4" id="squares-container">
-        <div class="list-group" id="list-tab" role="tablist">
-          <a 
-          class="list-group-item list-group-item-action animated fadeIn faster" 
-          id="list-home-list" 
-          data-toggle="list" 
-          href="#list-home" 
-          role="tab" 
-          aria-controls="home"
-          *ngFor="let square of squares"
-          (click)="onClickSquare(square)">{{square.name}}</a>
-        </div>
-      </div>
-
-      <app-loading 
-        *ngIf="loadingSquares"
-        [topCircle]="35"
-        [leftCircle]="25"
-        [topLegend]="43"
-        [leftLegend]="24"></app-loading>
-
-      <div class="col-8" id="hotels-container">
-        <ul class="list-group animated fadeIn faster" id="hotelsList" *ngIf="hotels.length > 0">
-          <li class="list-group-item animated fadeIn faster" *ngFor="let hotel of hotels">
-            <mat-checkbox
-            (click)="onClickHotel(hotel, !checkHotel.checked)"
-            *ngIf="isHotelSelected(hotel)"
-            [checked]="true"
-            #checkHotel>{{hotel.name}}</mat-checkbox>
-            <mat-checkbox
-            (click)="onClickHotel(hotel, !checkHotel.checked)"
-            *ngIf="!isHotelSelected(hotel)"
-            #checkHotel>{{hotel.name}}</mat-checkbox>
-          </li>
-        </ul>
-        <div
-        class="alert alert-warning animated fadeIn faster"
-        role="alert"
-        *ngIf="(squareSelected) && hotels.length == 0 && !loadingSquares && !loadinghotels">
-          No hay hoteles registrados
-        </div>
-      </div>
-
-      <app-loading 
-        *ngIf="loadinghotels"
-        [topCircle]="35"
-        [leftCircle]="58"
-        [topLegend]="43"
-        [leftLegend]="57"></app-loading>
-
-    </div>
-  </div>
-  <div class="tab-pane fade" id="cruises" role="tabpanel" aria-labelledby="cruises-tab">
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let cruise of cruises">
-        <mat-checkbox
-        *ngIf="isCruiseSelected(cruise)"
-        [checked]="true"
-        (click)="onClickCruise(cruise, !checkCruise.checked)"
-        #checkCruise>{{cruise.name}}</mat-checkbox>
-        <mat-checkbox
-        *ngIf="!isCruiseSelected(cruise)"
-        [checked]="false"
-        (click)="onClickCruise(cruise, !checkCruise.checked)"
-        #checkCruise>{{cruise.name}}</mat-checkbox>
-      </li>
-    </ul>
-  </div>
-</div>
-<div class="row">
-  <div class="col text-right">
-    <button type="button" class="btn btn-primary" (click)="close()">Cerrar</button>
-  </div>
+<mat-tab-group>
+  <mat-tab label="Hoteles">
+    <app-hotels-catalog></app-hotels-catalog>
+  </mat-tab>
+  <mat-tab label="Cruceros">
+    <app-cruises-catalog></app-cruises-catalog>
+  </mat-tab>
+</mat-tab-group>
+<div>
+  <button type="button" class="btn btn-primary" (click)="close()">Cerrar</button>
 </div>
