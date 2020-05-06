@@ -15,7 +15,6 @@ import { SquareHotelCatalogComponent } from './square-hotel-catalog/square-hotel
 export class FooterComponent implements OnInit, AfterViewInit {
 
   @Input('isNewSurveyInput') isNewSurvey: boolean;
-  @ViewChild("language", { read: ElementRef }) languageControl: ElementRef;
   @ViewChild("squaresAndHotels", { read: ElementRef }) suqaresControl: ElementRef;
 
   constructor(
@@ -32,7 +31,6 @@ export class FooterComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this._viewServices.languageControl = this.languageControl;
     this._viewServices.squaresControl = this.suqaresControl;
   }
 
@@ -44,9 +42,5 @@ export class FooterComponent implements OnInit, AfterViewInit {
       height: '500px',
       data: { }
     });
-  }
-
-  onClickLanguage() {
-    this._render.removeClass(this.languageControl.nativeElement, Alerts.Danger);
   }
 }
