@@ -3,6 +3,7 @@ import { Answer_2 } from 'src/app/models/answer_2';
 import { AnswerServices } from 'src/app/services/answer-services';
 import { Alerts } from 'src/app/enums/class-enum';
 import { Alert } from 'src/app/util/Alert';
+import { AnswerEmitter } from 'src/app/models/emitters/answer-emitter';
 
 @Component({
   selector: 'app-answers',
@@ -114,5 +115,14 @@ export class AnswersComponent implements OnInit {
 
   selectRow(row: HTMLElement) {
     this._renderer.addClass(row, "selected");
+  }
+
+  onClickRow($event) {
+    let answer: Answer_2 = $event["Answer"];
+    let row: HTMLElement = $event["Row"];
+
+    this.deselectAllRows();
+    this.selectRow(row);
+    this._answerServices.answerSelected.emit(answer.answerId);
   }
 }

@@ -15,6 +15,7 @@ export class AnswersTableComponent implements OnInit {
   
   @Input("answersInput") answers: Array<Answer_2>;
   @Output() editEvent: EventEmitter<AnswerEmitter> = new EventEmitter<AnswerEmitter>();
+  @Output() selectRowEvent: EventEmitter<AnswerEmitter> = new EventEmitter<AnswerEmitter>();
 
   constructor(
     private _answerServices: AnswerServices
@@ -77,5 +78,10 @@ export class AnswersTableComponent implements OnInit {
 
   onClickDelete() {
     console.log("onClickDelete");
+  }
+
+  onClickRow(row: HTMLElement, answer: Answer_2) {
+    let answerSelected = new AnswerEmitter(answer, row);
+    this.selectRowEvent.emit(answerSelected);
   }
 }

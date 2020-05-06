@@ -10,7 +10,6 @@ import { HttpClient } from '@angular/common/http';
 export class AnswerServices {
 
     answers_2: Array<Answer_2> = new Array<Answer_2>();
-    answers: Array<Answer> = new Array<Answer>();
     answerSelected: EventEmitter<number> = new EventEmitter<number>();
     showOptions: EventEmitter<boolean> = new EventEmitter<boolean>();
 

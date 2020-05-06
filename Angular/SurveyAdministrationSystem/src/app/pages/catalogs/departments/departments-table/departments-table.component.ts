@@ -45,7 +45,6 @@ export class DepartmentsTableComponent implements OnInit {
     }).then((response) => {
       
       if(response.value) {
-
         department.statusId = Status.Active;
         this._departmentsServices.update(department).subscribe(
           () => {
@@ -78,7 +77,6 @@ export class DepartmentsTableComponent implements OnInit {
     }).then((response) => {
       
       if(response.value) {
-
         department.statusId = Status.Inactive;
         this._departmentsServices.update(department).subscribe(
           () => {

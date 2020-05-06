@@ -53,4 +53,8 @@ export class HotelServices {
     getHotelsBySquareId(squareId: number): Observable<Array<Hotel>>  {
         return this._http.get<Array<Hotel>>(`http://10.2.180.11:5999/api/Square/${squareId}/Hotels`);
     }
+
+    delete(hotelId: number) {
+        return this._http.delete(`http://10.2.180.11:5999/api/Hotel/${hotelId}`);
+    }
 }

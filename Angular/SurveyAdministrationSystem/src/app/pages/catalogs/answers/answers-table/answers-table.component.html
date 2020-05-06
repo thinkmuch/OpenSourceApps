@@ -1,6 +1,6 @@
-<div class="alert alert-warning mt-15px animated fadeIn faster" role="alert" *ngIf="answers.length == 0">
-  No hay respuestas registradas
-</div>
+<app-alert *ngIf="answers.length == 0">
+    No hay respuestas registradas
+</app-alert>
 <table class="table table-hover text-center mt-15px" *ngIf="answers.length > 0">
   <thead>
       <tr>
@@ -15,7 +15,12 @@
       </tr>
   </thead>
   <tbody>
-      <tr *ngFor="let answer of answers" class="pointer" id="{{answer.id}}" #row>
+      <tr
+      *ngFor="let answer of answers"
+      class="pointer"
+      id="{{answer.id}}"
+      (click)="onClickRow(row, answer)"
+      #row>
           <th scope="row">{{answer.answerId}}</th>
           <td>{{answer.name}}</td>
           <td>

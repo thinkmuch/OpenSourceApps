@@ -16,7 +16,8 @@ export class HotelsTableComponent implements OnInit {
   @Input('hotelsInput') hotels: Array<Hotel>;
   @Output() editEvent: EventEmitter<HotelEmitter> = new EventEmitter<HotelEmitter>();
   @Output() clickRowEvent: EventEmitter<HotelEmitter> = new EventEmitter<HotelEmitter>();
-  departments: Array<Department>;
+  @Output() deleteEvent: EventEmitter<HotelEmitter> = new EventEmitter<HotelEmitter>();
+  departments: Array<Department> = new Array<Department>();
   
   constructor(
     private _hotelServices: HotelServices,
@@ -77,6 +78,11 @@ export class HotelsTableComponent implements OnInit {
         );
       }
     });
+  }
+
+  delete(hotel: Hotel, row: HTMLElement) {
+    let hotelSelected = new HotelEmitter(hotel, row);
+    this.deleteEvent.emit(hotelSelected);
   }
 
   edit(hotel: Hotel, row: HTMLElement) {

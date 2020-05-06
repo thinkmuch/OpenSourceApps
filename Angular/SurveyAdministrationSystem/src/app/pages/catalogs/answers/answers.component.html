@@ -40,11 +40,13 @@
                 *ngIf="!loadingAnswers"
                 class="w-100"
                 [answersInput]="answers"
-                (editEvent)="edit($event)"></app-answers-table>
+                (editEvent)="edit($event)"
+                (selectRowEvent)="onClickRow($event)"></app-answers-table>
             </div>
         </div>
         <div class="col-6">
-        hola
+            <app-answer-detail
+            [answersInput]="answers"></app-answer-detail>
         </div>
     </div>
 </div>

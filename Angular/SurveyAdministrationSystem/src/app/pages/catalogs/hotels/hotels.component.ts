@@ -34,6 +34,8 @@ export class HotelsComponent implements OnInit {
 
   getAllHotels() {
     this.loading = true;
+    this.hotels = new Array<Hotel>();
+
     this._hotelServices.getAll().subscribe(
     data => {
       this.hotels = data;
@@ -119,6 +121,38 @@ export class HotelsComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  onClickDelete($event) {
+    let hotel: Hotel = $event["Hotel"];
+    let row: HTMLElement = $event["Row"];
+
+    Swal.fire({
+      title: 'Desactivar',
+      text: `¿Seguro que desea eliminar el hotel ${hotel.name}?`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Si, desactivar',
+      cancelButtonText: 'Cancelar'
+    }).then((response) => {
+      
+      if(response.value) {
+        this._hotelServices.delete(hotel.hotelId).subscribe(
+          () => {
+            this.restartScreen();
+            this.getAllHotels();
+
+            Swal.fire({
+              title: 'Hotel eliminado',
+              icon: 'success'
+            });
+          },
+          error => { 
+            console.log(error);
+          }
+        );
+      }
+    });
   }
 
   update(hotel: Hotel) {
