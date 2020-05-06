@@ -35,7 +35,7 @@ export class AreasTableComponent implements OnInit {
       if(response.value) {
         area.statusId = Status.Active;
         this._areasServices.update(area).subscribe(
-          data => {
+          () => {
             Swal.fire({
               title: 'Area activada',
               icon: 'success'
@@ -63,7 +63,7 @@ export class AreasTableComponent implements OnInit {
 
         area.statusId = Status.Inactive;
         this._areasServices.update(area).subscribe(
-          data => {
+          () => {
             Swal.fire({
               title: 'Area desactivada',
               icon: 'success'

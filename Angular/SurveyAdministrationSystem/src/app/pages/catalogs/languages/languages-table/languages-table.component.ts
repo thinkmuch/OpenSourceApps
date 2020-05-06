@@ -37,7 +37,7 @@ export class LanguagesTableComponent implements OnInit {
 
         language.statusId = Status.Active;
         this._languageServices.update(language).subscribe(
-        data => {
+        () => {
           Swal.fire({
             title: 'Idioma activado',
             icon: 'success'
@@ -64,7 +64,7 @@ export class LanguagesTableComponent implements OnInit {
 
         language.statusId = Status.Inactive;
         this._languageServices.update(language).subscribe(
-          data => {
+          () => {
             Swal.fire({
               title: 'Idioma desactivado',
               icon: 'success'

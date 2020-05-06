@@ -109,7 +109,7 @@ export class AreasComponent implements OnInit {
 
   update(area: Area) {
     this._areasServices.update(area).subscribe(
-      data => {
+      () => {
         Swal.fire({
           title: 'Area actualizada',
           icon: 'success'
@@ -125,7 +125,7 @@ export class AreasComponent implements OnInit {
 
   saveArea(name: string) {
     this._areasServices.save(name).subscribe(
-      data => {
+      () => {
         this.restartScreen();
         this.getAllAreas();
 
@@ -174,7 +174,7 @@ export class AreasComponent implements OnInit {
       
       if(response.value) {
         this._areasServices.remove(area).subscribe(
-          data => {
+          () => {
             this.getAllAreas();
 
             Swal.fire({

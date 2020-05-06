@@ -48,7 +48,7 @@ export class DepartmentsTableComponent implements OnInit {
 
         department.statusId = Status.Active;
         this._departmentsServices.update(department).subscribe(
-          data => {
+          () => {
             Swal.fire({
               title: 'Departamento activado',
               icon: 'success'
@@ -81,7 +81,7 @@ export class DepartmentsTableComponent implements OnInit {
 
         department.statusId = Status.Inactive;
         this._departmentsServices.update(department).subscribe(
-          data => {
+          () => {
             Swal.fire({
               title: 'Departamento desactivado',
               icon: 'success'

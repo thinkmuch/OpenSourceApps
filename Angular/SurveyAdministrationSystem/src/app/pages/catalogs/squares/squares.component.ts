@@ -105,7 +105,7 @@ export class SquaresComponent implements OnInit {
 
   saveSquare(name: string) {
     this._squareServices.save(name).subscribe(
-      data => {
+      () => {
         
         this.restarScreen();
         this.getAllSquares();

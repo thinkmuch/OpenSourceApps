@@ -106,7 +106,7 @@ export class HotelsComponent implements OnInit {
 
   saveHotel(name: string) {
     this._hotelServices.save(name).subscribe(
-      data => {
+      () => {
         this.restartScreen();
         this.getAllHotels();
 
@@ -123,7 +123,7 @@ export class HotelsComponent implements OnInit {
 
   update(hotel: Hotel) {
     this._hotelServices.update(hotel).subscribe(
-      data => {
+      () => {
         this.restartScreen();
         this.getAllHotels();
 

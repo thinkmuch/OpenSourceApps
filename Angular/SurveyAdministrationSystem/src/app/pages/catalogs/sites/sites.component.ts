@@ -113,7 +113,7 @@ export class SitesComponent implements OnInit {
 
   saveSite(name: string) {
     this._sitesServices.save(name).subscribe(
-      data => {
+      () => {
         this.restartScreen();
         this.getAllSites();
         Swal.fire({
@@ -129,7 +129,7 @@ export class SitesComponent implements OnInit {
 
   update(site: Site) {
     this._sitesServices.update(site).subscribe(
-    data => {
+    () => {
         this.restartScreen();
         this.getAllSites();
 
@@ -177,7 +177,7 @@ export class SitesComponent implements OnInit {
       
       if(response.value) {
         this._sitesServices.remove(site).subscribe(
-          data => {
+          () => {
             this.getAllSites();
             Swal.fire({
               title: 'Sitio eliminado',

@@ -113,7 +113,7 @@ export class CruisesComponent implements OnInit {
 
   saveCruise(name: string) {
     this._cruisesServices.save(name).subscribe(
-      data => {
+      () => {
         this.restartScreen();
         this.getAllCruises();
         Swal.fire({
@@ -129,9 +129,10 @@ export class CruisesComponent implements OnInit {
 
   updateCruise(cruise: Cruise) {
     this._cruisesServices.update(cruise).subscribe(
-      data => {
+      () => {
         this.restartScreen();
         this.getAllCruises();
+        
         this._cruisesServices.cruiseSelectedEvent.emit(null);
         Swal.fire({
           title: 'Crucero actualizado',

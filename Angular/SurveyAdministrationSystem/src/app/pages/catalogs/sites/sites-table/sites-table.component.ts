@@ -37,7 +37,7 @@ export class SitesTableComponent implements OnInit {
 
         site.statusId = Status.Active;
         this._sitesServices.update(site).subscribe(
-          data => {
+          () => {
             Swal.fire({
               title: 'Sitio activado',
               icon: 'success'
@@ -65,7 +65,7 @@ export class SitesTableComponent implements OnInit {
 
         site.statusId = Status.Inactive;
         this._sitesServices.update(site).subscribe(
-          data => {
+          () => {
             Swal.fire({
               title: 'Sitio desactivado',
               icon: 'success'

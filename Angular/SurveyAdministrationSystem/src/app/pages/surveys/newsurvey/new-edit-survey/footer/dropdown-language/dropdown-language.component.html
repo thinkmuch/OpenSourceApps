@@ -1,10 +1,25 @@
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown button
+<div class="btn-group dropup">
+  <button 
+  type="button" 
+  class="btn btn-secondary dropdown-toggle btn-sm w-200px" 
+  [ngClass]="{ 
+      'btn-info': languageSelected != undefined && languageSelected.languageId > 0
+  }" 
+  data-toggle="dropdown" 
+  aria-haspopup="true" 
+  aria-expanded="false"
+  [disabled]="loadingLanguages"
+  (click)="onClickLanguage()"
+  #language>
+      <span class="spinner-border spinner-border-sm mr-10px" role="status" aria-hidden="true" *ngIf="loadingLanguages"></span>
+      <span *ngIf="loadingLanguages">Cargando idiomas</span>
+      <span *ngIf="languageSelected && languageSelected.languageId > 0 && !loadingLanguages">{{ languageSelected.name }}</span>
+      <span *ngIf="!loadingLanguages && languageSelected && languageSelected.languageId == undefined">Seleccione Idioma</span>
   </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
+  <div class="dropdown-menu" *ngIf="!loadingLanguages">
+      <a 
+      class="dropdown-item pointer" 
+      *ngFor="let language of languages"
+      (click)="onSelectLanguage(language)">{{language.name}}</a>
   </div>
 </div>

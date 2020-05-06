@@ -122,7 +122,7 @@ export class DepartmentsComponent implements OnInit {
 
   saveDepartment(name: string) {
     this._departmentsServices.save(name).subscribe(
-      data => {
+      () => {
         this.restartScreen();
         this.getAllDepartments();
         Swal.fire({
@@ -138,7 +138,7 @@ export class DepartmentsComponent implements OnInit {
 
   update(department: Department) {
     this._departmentsServices.update(department).subscribe(
-      data => {
+      () => {
         this.getAllDepartments();
         this._departmentsServices.deparmentEvent.emit(null);
         Swal.fire({
@@ -186,7 +186,7 @@ export class DepartmentsComponent implements OnInit {
 
       if(response.value) {
         this._departmentsServices.remove(department).subscribe(
-        data => {
+        () => {
           this.getAllDepartments();
           
           Swal.fire({

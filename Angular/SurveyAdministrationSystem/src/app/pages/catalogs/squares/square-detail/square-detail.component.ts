@@ -83,7 +83,6 @@ export class SquareDetailComponent implements OnInit {
   }
 
   onClickSite(site: Site, checked: boolean) {
-
     if(checked) {
       this.addSite(this.squareIdSelected, site.siteId);
     }

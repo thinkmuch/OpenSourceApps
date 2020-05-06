@@ -36,7 +36,7 @@ export class SquaresTableComponent implements OnInit {
 
         square.statusId = Status.Inactive;
         this._squareServices.update(square).subscribe(
-          data => {
+          () => {
             Swal.fire({
               title: 'Plaza desactivada',
               icon: 'success'
@@ -64,7 +64,7 @@ export class SquaresTableComponent implements OnInit {
 
         square.statusId = Status.Active;
         this._squareServices.update(square).subscribe(
-          data => {
+          () => {
             Swal.fire({
               title: 'Plaza activada',
               icon: 'success'

@@ -89,7 +89,7 @@ export class LanguagesComponent implements OnInit {
 
   delete(languageId: number) {
     this._languageServices.delete(languageId).subscribe(
-      data => {
+      () => {
         this.getAllLanguages();
       },
       error => {
@@ -139,7 +139,7 @@ export class LanguagesComponent implements OnInit {
 
   update() {
     this._languageServices.update(this.languageSelected).subscribe(
-      data => {
+      () => {
         Swal.fire({
           title: 'Idioma actualizado',
           icon: 'success'
@@ -154,7 +154,7 @@ export class LanguagesComponent implements OnInit {
 
   saveLanguage(name: string) {
     this._languageServices.save(name).subscribe(
-      data => {
+      () => {
         this.getAllLanguages();
 
         Swal.fire({
