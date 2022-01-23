@@ -193,19 +193,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/jorgeramirez/.nuget/packages/": {}
+    "/Users/jorger/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/jorgeramirez/Development/OpenSourceApps/NetCore/SurveyAPI/SurveyAPI/SurveyAPI.csproj",
+      "projectUniqueName": "/Users/jorger/Documents/GitHub/OpenSourceApps/NetCore/SurveyAPI/SurveyAPI/SurveyAPI.csproj",
       "projectName": "SurveyAPI",
-      "projectPath": "/Users/jorgeramirez/Development/OpenSourceApps/NetCore/SurveyAPI/SurveyAPI/SurveyAPI.csproj",
-      "packagesPath": "/Users/jorgeramirez/.nuget/packages/",
-      "outputPath": "/Users/jorgeramirez/Development/OpenSourceApps/NetCore/SurveyAPI/SurveyAPI/obj/",
+      "projectPath": "/Users/jorger/Documents/GitHub/OpenSourceApps/NetCore/SurveyAPI/SurveyAPI/SurveyAPI.csproj",
+      "packagesPath": "/Users/jorger/.nuget/packages/",
+      "outputPath": "/Users/jorger/Documents/GitHub/OpenSourceApps/NetCore/SurveyAPI/SurveyAPI/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/jorgeramirez/.config/NuGet/NuGet.Config"
+        "/Users/jorger/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -244,6 +244,20 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[5.0.0, 5.0.0]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.osx-x64",
+            "version": "[5.0.13, 5.0.13]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[5.0.0, 5.0.0]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -252,7 +266,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.404/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.101/RuntimeIdentifierGraph.json"
       }
     }
   }

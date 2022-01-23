@@ -21,6 +21,7 @@
     <None Remove="Repository\IRepository\" />
     <None Remove="Models\DTO\" />
     <None Remove="Exceptions\" />
+    <None Remove="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Configurations\" />
@@ -35,5 +36,6 @@
     <Folder Include="Repository\IRepository\" />
     <Folder Include="Models\DTO\" />
     <Folder Include="Exceptions\" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
 </Project>

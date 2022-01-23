@@ -1,0 +1,7 @@
+/Users/jorger/Documents/GitHub/OpenSourceApps/NetCore/SurveyAPI/SurveyAPI/obj/Debug/net5.0/SurveyAPI.csproj.AssemblyReference.cache
+/Users/jorger/Documents/GitHub/OpenSourceApps/NetCore/SurveyAPI/SurveyAPI/obj/Debug/net5.0/SurveyAPI.GeneratedMSBuildEditorConfig.editorconfig
+/Users/jorger/Documents/GitHub/OpenSourceApps/NetCore/SurveyAPI/SurveyAPI/obj/Debug/net5.0/SurveyAPI.AssemblyInfoInputs.cache
+/Users/jorger/Documents/GitHub/OpenSourceApps/NetCore/SurveyAPI/SurveyAPI/obj/Debug/net5.0/SurveyAPI.AssemblyInfo.cs
+/Users/jorger/Documents/GitHub/OpenSourceApps/NetCore/SurveyAPI/SurveyAPI/obj/Debug/net5.0/SurveyAPI.csproj.CoreCompileInputs.cache
+/Users/jorger/Documents/GitHub/OpenSourceApps/NetCore/SurveyAPI/SurveyAPI/obj/Debug/net5.0/SurveyAPI.MvcApplicationPartsAssemblyInfo.cs
+/Users/jorger/Documents/GitHub/OpenSourceApps/NetCore/SurveyAPI/SurveyAPI/obj/Debug/net5.0/SurveyAPI.MvcApplicationPartsAssemblyInfo.cache

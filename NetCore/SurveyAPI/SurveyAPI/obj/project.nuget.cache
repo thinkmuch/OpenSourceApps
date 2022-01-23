@@ -1,15 +1,18 @@
 {
   "version": 2,
-  "dgSpecHash": "a+gPHbAc6/aufnqd2AT+g0FzrKa5j4RCqu2e9rFKAxF8JboIyf520VmmDyByGEn+Ab0aZuwXauj2TcpDcBWGeA==",
+  "dgSpecHash": "txf+426PH+igroUuexfCnBBtQqKKn1/2JIj/hYuJ18ZmlIlrLN0hKffWiB/Q+jxHYUDKTUyaNaipflu013pCbA==",
   "success": true,
-  "projectFilePath": "/Users/jorgeramirez/Development/OpenSourceApps/NetCore/SurveyAPI/SurveyAPI/SurveyAPI.csproj",
+  "projectFilePath": "/Users/jorger/Documents/GitHub/OpenSourceApps/NetCore/SurveyAPI/SurveyAPI/SurveyAPI.csproj",
   "expectedPackageFiles": [
-    "/Users/jorgeramirez/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
-    "/Users/jorgeramirez/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
-    "/Users/jorgeramirez/.nuget/packages/swashbuckle.aspnetcore/5.6.3/swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
-    "/Users/jorgeramirez/.nuget/packages/swashbuckle.aspnetcore.swagger/5.6.3/swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
-    "/Users/jorgeramirez/.nuget/packages/swashbuckle.aspnetcore.swaggergen/5.6.3/swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
-    "/Users/jorgeramirez/.nuget/packages/swashbuckle.aspnetcore.swaggerui/5.6.3/swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
+    "/Users/jorger/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "/Users/jorger/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/Users/jorger/.nuget/packages/swashbuckle.aspnetcore/5.6.3/swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "/Users/jorger/.nuget/packages/swashbuckle.aspnetcore.swagger/5.6.3/swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "/Users/jorger/.nuget/packages/swashbuckle.aspnetcore.swaggergen/5.6.3/swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "/Users/jorger/.nuget/packages/swashbuckle.aspnetcore.swaggerui/5.6.3/swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512",
+    "/Users/jorger/.nuget/packages/microsoft.aspnetcore.app.ref/5.0.0/microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",
+    "/Users/jorger/.nuget/packages/microsoft.netcore.app.host.osx-x64/5.0.13/microsoft.netcore.app.host.osx-x64.5.0.13.nupkg.sha512",
+    "/Users/jorger/.nuget/packages/microsoft.netcore.app.ref/5.0.0/microsoft.netcore.app.ref.5.0.0.nupkg.sha512"
   ],
   "logs": []
 }
